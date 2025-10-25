@@ -4,9 +4,9 @@
 
 AudioClip::AudioClip(const std::string& path) : filePath(path) {
     // Use WavAdapter for .wav files, Mp3Adapter for .mp3 files
-    if (path.length() >= 4 && path.substr(path.length() - 4) == ".wav") {
+    if (path.size() >= 4 && path.compare(path.size() - 4, 4, ".wav") == 0) {
         audioFile = std::make_shared<WavAdapter>();
-    } else if (path.length() >= 4 && path.substr(path.length() - 4) == ".mp3") {
+    } else if (path.size() >= 4 && path.compare(path.size() - 4, 4, ".mp3") == 0) {
         audioFile = std::make_shared<Mp3Adapter>();
     } else {
         Logger::getInstance().log("Unsupported file format: " + path);
@@ -45,41 +45,4 @@ void AudioClip::addEffect(std::shared_ptr<IEffect> effect) {
     std::lock_guard<std::mutex> lock(mutex_);
     effects.push_back(effect);
     Logger::getInstance().log("Effect added to clip: " + filePath);
-}
-
-void AudioClip::applyEffects() {
-    std::lock_guard<std::mutex> lock(mutex_);
-    if (!isLoaded || samples.empty()) return;
-    
-    Logger::getInstance().log("Applying " + std::to_string(effects.size()) + " effects to clip: " + filePath);
-    
-    // Apply each effect to the audio samples
-    for (auto& effect : effects) {
-        if (effect) {
-            effect->applyEffect(samples.data(), samples.size());
-        }
-    }
-}
-
-void AudioClip::mixToBuffer(float* outputBuffer, unsigned long framesPerBuffer) {
-    std::lock_guard<std::mutex> lock(mutex_);
-    if (!isLoaded || samples.empty()) return;
-    
-    // Simple mixing: copy mono samples to stereo output
-    // This is a basic implementation - in a real audio editor you'd have more sophisticated mixing
-    for (unsigned long i = 0; i < framesPerBuffer && i < samples.size(); ++i) {
-        float sample = samples[i];
-        outputBuffer[i * 2] += sample;     // Left channel
-        outputBuffer[i * 2 + 1] += sample; // Right channel
-    }
-}
-
-bool AudioClip::isClipLoaded() const {
-    std::lock_guard<std::mutex> lock(mutex_);
-    return isLoaded;
-}
-
-std::vector<float> AudioClip::getSamples() const {
-    std::lock_guard<std::mutex> lock(mutex_);
-    return samples;
 }

@@ -14,11 +14,8 @@ pkg_check_modules(PORTAUDIO REQUIRED portaudio-2.0)
 # Find libsndfile using pkg-config
 pkg_check_modules(SNDFILE REQUIRED sndfile)
 
-# Find mpg123 using pkg-config
-pkg_check_modules(MPG123 REQUIRED libmpg123)
-
 # Include directories
-include_directories(${PORTAUDIO_INCLUDE_DIRS} ${SNDFILE_INCLUDE_DIRS} ${MPG123_INCLUDE_DIRS})
+include_directories(${PORTAUDIO_INCLUDE_DIRS} ${SNDFILE_INCLUDE_DIRS})
 
 # Include project directories
 include_directories(${CMAKE_SOURCE_DIR}/Core ${CMAKE_SOURCE_DIR}/Core/Adapters ${CMAKE_SOURCE_DIR}/Core/Effects)
@@ -41,9 +38,9 @@ add_executable(AudioEditor
 )
 
 # Target-specific include directories
-target_include_directories(AudioEditor PRIVATE ${PORTAUDIO_INCLUDE_DIRS} ${SNDFILE_INCLUDE_DIRS} ${MPG123_INCLUDE_DIRS})
+target_include_directories(AudioEditor PRIVATE ${PORTAUDIO_INCLUDE_DIRS} ${SNDFILE_INCLUDE_DIRS})
 
 # Link libraries
-target_link_libraries(AudioEditor PRIVATE ${PORTAUDIO_LIBRARIES} ${SNDFILE_LIBRARIES} ${MPG123_LIBRARIES})
-target_compile_options(AudioEditor PRIVATE ${PORTAUDIO_CFLAGS_OTHER} ${SNDFILE_CFLAGS_OTHER} ${MPG123_CFLAGS_OTHER})
-target_link_directories(AudioEditor PRIVATE ${PORTAUDIO_LIBRARY_DIRS} ${SNDFILE_LIBRARY_DIRS} ${MPG123_LIBRARY_DIRS})
+target_link_libraries(AudioEditor PRIVATE ${PORTAUDIO_LIBRARIES} ${SNDFILE_LIBRARIES})
+target_compile_options(AudioEditor PRIVATE ${PORTAUDIO_CFLAGS_OTHER} ${SNDFILE_CFLAGS_OTHER})
+target_link_directories(AudioEditor PRIVATE ${PORTAUDIO_LIBRARY_DIRS} ${SNDFILE_LIBRARY_DIRS})`
