@@ -3,21 +3,18 @@
 #include "Core/Logger.h"       // log actions
 #include "Core/AudioEngine.h"  // access engine
 #include "Core/AudioTrack.h"   // create tracks
-#include "Core/AudioClip.h"
+#include "AudioClip.h"
 
 int main() {
-    std::cout << "Program started" << std::endl;
     Logger::getInstance().setLogFile("log.txt");
 
     auto& engine = AudioEngine::getInstance();
     auto track1 = std::make_shared<AudioTrack>("Track 1");
     auto clip1 = std::make_shared<AudioClip>("song.wav");
 
-    clip1->load();          // should print "Loading audio file from: ..."
-    track1->addClip(clip1); // might only log
-    engine.addTrack(track1); // might only log
-    engine.playAll();       // might only log depending on implementation
-    engine.stopAll();
+    clip1->load();
+    track1->addClip(clip1);
+    engine.addTrack(track1);
 
-    return 0;
+    engine.playAll();
 }
