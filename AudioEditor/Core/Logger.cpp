@@ -1,19 +1,12 @@
 #include "Logger.h"
+#include <chrono>
+#include <iomanip>
 #include <iostream>
 
+Logger* Logger::instance = nullptr;
 
-Logger::Logger() {
-    file.open("log.txt", std::ios::app);
-    if (!file.is_open()) {
-        std::cerr << "Failed to open log file." << std::endl;
-    }
-}
-
-Logger::~Logger() {
-    if (file.is_open()) {
-        file.close();
-    }
-}
+Logger::Logger() {}
+Logger::~Logger() { if (file.is_open()) file.close(); }
 
 Logger& Logger::getInstance() {
     static Logger instance;
@@ -21,20 +14,16 @@ Logger& Logger::getInstance() {
 }
 
 void Logger::log(const std::string& message) {
+    auto now = std::chrono::system_clock::now();
+    auto time = std::chrono::system_clock::to_time_t(now);
+    std::lock_guard<std::mutex> lock(mutex_);
     if (file.is_open()) {
-        file << message << std::endl;
+        file << std::put_time(std::localtime(&time), "%Y-%m-%d %H:%M:%S") << ": " << message << std::endl;
     }
-    std::cout << message << std::endl; // <-- add this line
+    std::cout << std::put_time(std::localtime(&time), "%Y-%m-%d %H:%M:%S") << ": " << message << std::endl;
 }
 
-
-void Logger::setLogFile(const std::string& filename) {
-    if (file.is_open()) {
-        file.close();
-    }
+bool Logger::setLogFile(const std::string& filename) {
     file.open(filename, std::ios::app);
-    if (!file.is_open()) {
-        std::cerr << "Failed to open log file: " << filename << std::endl;
-    }
+    return file.is_open();
 }
-

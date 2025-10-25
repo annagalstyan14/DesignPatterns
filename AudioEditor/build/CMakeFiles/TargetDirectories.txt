@@ -1,0 +1,3 @@
+/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/CMakeFiles/AudioEditor.dir
+/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/CMakeFiles/edit_cache.dir
+/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/CMakeFiles/rebuild_cache.dir

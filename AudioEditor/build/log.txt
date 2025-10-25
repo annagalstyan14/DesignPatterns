@@ -1,0 +1,36 @@
+2025-10-25 15:02:06: Program started
+2025-10-25 15:02:06: Clip added to track: Track 1
+2025-10-25 15:02:06: Loading MP3 file from: aespa (에스파) 'Whiplash' (Color Coded Lyrics).mp3
+2025-10-25 15:02:06: Failed to open MP3 file: aespa (에스파) 'Whiplash' (Color Coded Lyrics).mp3
+2025-10-25 15:02:06: Failed to load AESPA song - continuing with demo
+2025-10-25 15:02:06: Effect added to clip: aespa (에스파) 'Whiplash' (Color Coded Lyrics).mp3
+2025-10-25 15:02:06: Effect added to clip: aespa (에스파) 'Whiplash' (Color Coded Lyrics).mp3
+2025-10-25 15:02:06: Playing track: Track 1
+2025-10-25 15:02:06: Cannot play unloaded clip: aespa (에스파) 'Whiplash' (Color Coded Lyrics).mp3
+2025-10-25 15:02:06: 🎵 Audio is now playing! Press Enter to stop...
+2025-10-25 15:02:08: Cleaning up track: Track 1
+2025-10-25 15:02:08: AudioEngine cleaned up
+2025-10-25 15:02:12: Program started
+2025-10-25 15:02:12: Clip added to track: Track 1
+2025-10-25 15:02:12: Loading MP3 file from: aespa (에스파) 'Whiplash' (Color Coded Lyrics).mp3
+2025-10-25 15:02:12: Failed to open MP3 file: aespa (에스파) 'Whiplash' (Color Coded Lyrics).mp3
+2025-10-25 15:02:12: Failed to load AESPA song - continuing with demo
+2025-10-25 15:02:12: Effect added to clip: aespa (에스파) 'Whiplash' (Color Coded Lyrics).mp3
+2025-10-25 15:02:12: Effect added to clip: aespa (에스파) 'Whiplash' (Color Coded Lyrics).mp3
+2025-10-25 15:02:12: Playing track: Track 1
+2025-10-25 15:02:12: Cannot play unloaded clip: aespa (에스파) 'Whiplash' (Color Coded Lyrics).mp3
+2025-10-25 15:02:12: 🎵 Audio is now playing! Press Enter to stop...
+2025-10-25 15:02:23: Cleaning up track: Track 1
+2025-10-25 15:02:23: AudioEngine cleaned up
+2025-10-25 15:02:27: Program started
+2025-10-25 15:02:27: Clip added to track: Track 1
+2025-10-25 15:02:27: Loading MP3 file from: aespa (에스파) 'Whiplash' (Color Coded Lyrics).mp3
+2025-10-25 15:02:27: Failed to open MP3 file: aespa (에스파) 'Whiplash' (Color Coded Lyrics).mp3
+2025-10-25 15:02:27: Failed to load AESPA song - continuing with demo
+2025-10-25 15:02:27: Effect added to clip: aespa (에스파) 'Whiplash' (Color Coded Lyrics).mp3
+2025-10-25 15:02:27: Effect added to clip: aespa (에스파) 'Whiplash' (Color Coded Lyrics).mp3
+2025-10-25 15:02:27: Playing track: Track 1
+2025-10-25 15:02:27: Cannot play unloaded clip: aespa (에스파) 'Whiplash' (Color Coded Lyrics).mp3
+2025-10-25 15:02:27: 🎵 Audio is now playing! Press Enter to stop...
+2025-10-25 15:02:38: Cleaning up track: Track 1
+2025-10-25 15:02:38: AudioEngine cleaned up
