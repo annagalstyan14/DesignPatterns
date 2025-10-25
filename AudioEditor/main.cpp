@@ -1,67 +1,61 @@
-#include <thread>
-#include <chrono>
 #include <iostream>
+#include <filesystem>
 #include "Core/Logger.h"
-#include "Core/AudioEngine.h"
-#include "Core/AudioTrack.h"
 #include "Core/AudioClip.h"
-#include "Core/AudioProjectBuilder.h"
 #include "Core/EffectFactory.h"
-#include "Core/Adapters/Wav.h"
 #include "Core/Effects/Reverb.h"
 #include "Core/Effects/Echo.h"
-#include "Core/Effects/Fade.h"
 
-// Initialize EffectFactory registry
 void initializeRegistry() {
     EffectFactory::registerEffect("Reverb", []() { return std::make_shared<Reverb>(); });
     EffectFactory::registerEffect("Echo", []() { return std::make_shared<Echo>(); });
-    EffectFactory::registerEffect("Fade", []() { return std::make_shared<Fade>(); });
 }
 
 int main() {
-    // Initialize Logger
     if (!Logger::getInstance().setLogFile("log.txt")) {
         Logger::getInstance().log("Failed to open log file");
+        std::cerr << "Error: Failed to open log file: log.txt" << std::endl;
         return 1;
     }
     Logger::getInstance().log("Program started");
 
-    // Initialize EffectFactory
     initializeRegistry();
 
-    // Build AudioProject with tracks and clips
-    AudioProjectBuilder builder;
-    auto clip1 = std::make_shared<AudioClip>("aespa (에스파) 'Whiplash' (Color Coded Lyrics).mp3");
-
-    auto project = builder
-        .addTrack("Track 1")
-        .addClipToTrack(0, clip1)
-        .build();
-
-    // Load audio clips (optional for testing)
-    if (!clip1->load()) {
-        Logger::getInstance().log("Failed to load AESPA song - continuing with demo");
+    std::string inputFile = "test.mp3";
+    if (!std::filesystem::exists(inputFile)) {
+        Logger::getInstance().log("Input file does not exist: " + inputFile);
+        std::cerr << "Error: Input file does not exist: " + inputFile << std::endl;
+        return 1;
     }
 
-    // Add effects to clip1 and apply them
+    auto clip = std::make_shared<AudioClip>(inputFile);
+
+    if (!clip->load()) {
+        Logger::getInstance().log("Failed to load MP3 file: " + inputFile);
+        std::cerr << "Error: Failed to load MP3 file: " + inputFile << std::endl;
+        return 1;
+    }
+
     auto reverb = EffectFactory::createEffect("Reverb");
     auto echo = EffectFactory::createEffect("Echo");
-    if (reverb) clip1->addEffect(reverb);
-    if (echo) clip1->addEffect(echo);
-    
-    // Apply effects to the loaded audio data
-    clip1->applyEffects();
+    if (!reverb || !echo) {
+        Logger::getInstance().log("Failed to create effects");
+        std::cerr << "Error: Failed to create effects" << std::endl;
+        return 1;
+    }
+    clip->addEffect(reverb);
+    clip->addEffect(echo);
 
-    // Play project with real audio output
-    project->play();
+    clip->applyEffects();
 
-    // Real audio playback - wait for user to stop
-    Logger::getInstance().log("🎵 Audio is now playing! Press Enter to stop...");
-    std::cin.get(); // Wait for user to press Enter
+    std::string outputFile = "output.mp3";
+    if (!clip->save(outputFile)) {
+        Logger::getInstance().log("Failed to save processed MP3: " + outputFile);
+        std::cerr << "Error: Failed to save processed MP3: " + outputFile << std::endl;
+        return 1;
+    }
 
-    // Stop playback
-    AudioEngine::getInstance().stopAll();
-
+    Logger::getInstance().log("Successfully saved processed MP3 with Reverb and Echo to " + outputFile);
+    std::cout << "Successfully saved processed MP3 to " << outputFile << std::endl;
     return 0;
 }

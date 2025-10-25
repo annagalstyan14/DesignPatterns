@@ -153,30 +153,6 @@ Core/Adapters/Mp3.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Adapters/Mp3.cpp.s
 .PHONY : Core/Adapters/Mp3.cpp.s
 
-Core/Adapters/Wav.o: Core/Adapters/Wav.cpp.o
-.PHONY : Core/Adapters/Wav.o
-
-# target to build an object file
-Core/Adapters/Wav.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Adapters/Wav.cpp.o
-.PHONY : Core/Adapters/Wav.cpp.o
-
-Core/Adapters/Wav.i: Core/Adapters/Wav.cpp.i
-.PHONY : Core/Adapters/Wav.i
-
-# target to preprocess a source file
-Core/Adapters/Wav.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Adapters/Wav.cpp.i
-.PHONY : Core/Adapters/Wav.cpp.i
-
-Core/Adapters/Wav.s: Core/Adapters/Wav.cpp.s
-.PHONY : Core/Adapters/Wav.s
-
-# target to generate assembly for a file
-Core/Adapters/Wav.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Adapters/Wav.cpp.s
-.PHONY : Core/Adapters/Wav.cpp.s
-
 Core/AudioClip.o: Core/AudioClip.cpp.o
 .PHONY : Core/AudioClip.o
 
@@ -200,102 +176,6 @@ Core/AudioClip.s: Core/AudioClip.cpp.s
 Core/AudioClip.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/AudioClip.cpp.s
 .PHONY : Core/AudioClip.cpp.s
-
-Core/AudioEngine.o: Core/AudioEngine.cpp.o
-.PHONY : Core/AudioEngine.o
-
-# target to build an object file
-Core/AudioEngine.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/AudioEngine.cpp.o
-.PHONY : Core/AudioEngine.cpp.o
-
-Core/AudioEngine.i: Core/AudioEngine.cpp.i
-.PHONY : Core/AudioEngine.i
-
-# target to preprocess a source file
-Core/AudioEngine.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/AudioEngine.cpp.i
-.PHONY : Core/AudioEngine.cpp.i
-
-Core/AudioEngine.s: Core/AudioEngine.cpp.s
-.PHONY : Core/AudioEngine.s
-
-# target to generate assembly for a file
-Core/AudioEngine.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/AudioEngine.cpp.s
-.PHONY : Core/AudioEngine.cpp.s
-
-Core/AudioProject.o: Core/AudioProject.cpp.o
-.PHONY : Core/AudioProject.o
-
-# target to build an object file
-Core/AudioProject.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/AudioProject.cpp.o
-.PHONY : Core/AudioProject.cpp.o
-
-Core/AudioProject.i: Core/AudioProject.cpp.i
-.PHONY : Core/AudioProject.i
-
-# target to preprocess a source file
-Core/AudioProject.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/AudioProject.cpp.i
-.PHONY : Core/AudioProject.cpp.i
-
-Core/AudioProject.s: Core/AudioProject.cpp.s
-.PHONY : Core/AudioProject.s
-
-# target to generate assembly for a file
-Core/AudioProject.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/AudioProject.cpp.s
-.PHONY : Core/AudioProject.cpp.s
-
-Core/AudioProjectBuilder.o: Core/AudioProjectBuilder.cpp.o
-.PHONY : Core/AudioProjectBuilder.o
-
-# target to build an object file
-Core/AudioProjectBuilder.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/AudioProjectBuilder.cpp.o
-.PHONY : Core/AudioProjectBuilder.cpp.o
-
-Core/AudioProjectBuilder.i: Core/AudioProjectBuilder.cpp.i
-.PHONY : Core/AudioProjectBuilder.i
-
-# target to preprocess a source file
-Core/AudioProjectBuilder.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/AudioProjectBuilder.cpp.i
-.PHONY : Core/AudioProjectBuilder.cpp.i
-
-Core/AudioProjectBuilder.s: Core/AudioProjectBuilder.cpp.s
-.PHONY : Core/AudioProjectBuilder.s
-
-# target to generate assembly for a file
-Core/AudioProjectBuilder.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/AudioProjectBuilder.cpp.s
-.PHONY : Core/AudioProjectBuilder.cpp.s
-
-Core/AudioTrack.o: Core/AudioTrack.cpp.o
-.PHONY : Core/AudioTrack.o
-
-# target to build an object file
-Core/AudioTrack.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/AudioTrack.cpp.o
-.PHONY : Core/AudioTrack.cpp.o
-
-Core/AudioTrack.i: Core/AudioTrack.cpp.i
-.PHONY : Core/AudioTrack.i
-
-# target to preprocess a source file
-Core/AudioTrack.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/AudioTrack.cpp.i
-.PHONY : Core/AudioTrack.cpp.i
-
-Core/AudioTrack.s: Core/AudioTrack.cpp.s
-.PHONY : Core/AudioTrack.s
-
-# target to generate assembly for a file
-Core/AudioTrack.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/AudioTrack.cpp.s
-.PHONY : Core/AudioTrack.cpp.s
 
 Core/EffectFactory.o: Core/EffectFactory.cpp.o
 .PHONY : Core/EffectFactory.o
@@ -344,30 +224,6 @@ Core/Effects/Echo.s: Core/Effects/Echo.cpp.s
 Core/Effects/Echo.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Effects/Echo.cpp.s
 .PHONY : Core/Effects/Echo.cpp.s
-
-Core/Effects/Fade.o: Core/Effects/Fade.cpp.o
-.PHONY : Core/Effects/Fade.o
-
-# target to build an object file
-Core/Effects/Fade.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Effects/Fade.cpp.o
-.PHONY : Core/Effects/Fade.cpp.o
-
-Core/Effects/Fade.i: Core/Effects/Fade.cpp.i
-.PHONY : Core/Effects/Fade.i
-
-# target to preprocess a source file
-Core/Effects/Fade.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Effects/Fade.cpp.i
-.PHONY : Core/Effects/Fade.cpp.i
-
-Core/Effects/Fade.s: Core/Effects/Fade.cpp.s
-.PHONY : Core/Effects/Fade.s
-
-# target to generate assembly for a file
-Core/Effects/Fade.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Effects/Fade.cpp.s
-.PHONY : Core/Effects/Fade.cpp.s
 
 Core/Effects/Reverb.o: Core/Effects/Reverb.cpp.o
 .PHONY : Core/Effects/Reverb.o
@@ -453,33 +309,15 @@ help:
 	@echo "... Core/Adapters/Mp3.o"
 	@echo "... Core/Adapters/Mp3.i"
 	@echo "... Core/Adapters/Mp3.s"
-	@echo "... Core/Adapters/Wav.o"
-	@echo "... Core/Adapters/Wav.i"
-	@echo "... Core/Adapters/Wav.s"
 	@echo "... Core/AudioClip.o"
 	@echo "... Core/AudioClip.i"
 	@echo "... Core/AudioClip.s"
-	@echo "... Core/AudioEngine.o"
-	@echo "... Core/AudioEngine.i"
-	@echo "... Core/AudioEngine.s"
-	@echo "... Core/AudioProject.o"
-	@echo "... Core/AudioProject.i"
-	@echo "... Core/AudioProject.s"
-	@echo "... Core/AudioProjectBuilder.o"
-	@echo "... Core/AudioProjectBuilder.i"
-	@echo "... Core/AudioProjectBuilder.s"
-	@echo "... Core/AudioTrack.o"
-	@echo "... Core/AudioTrack.i"
-	@echo "... Core/AudioTrack.s"
 	@echo "... Core/EffectFactory.o"
 	@echo "... Core/EffectFactory.i"
 	@echo "... Core/EffectFactory.s"
 	@echo "... Core/Effects/Echo.o"
 	@echo "... Core/Effects/Echo.i"
 	@echo "... Core/Effects/Echo.s"
-	@echo "... Core/Effects/Fade.o"
-	@echo "... Core/Effects/Fade.i"
-	@echo "... Core/Effects/Fade.s"
 	@echo "... Core/Effects/Reverb.o"
 	@echo "... Core/Effects/Reverb.i"
 	@echo "... Core/Effects/Reverb.s"

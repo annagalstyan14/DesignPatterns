@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/opt/homebrew/Cellar/portaudio/19.7.0/include -I/opt/homebrew/Cellar/libsndfile/1.2.2_1/include -I/opt/homebrew/Cellar/flac/1.5.0/include -I/opt/homebrew/Cellar/libvorbis/1.3.7/include -I/opt/homebrew/Cellar/libogg/1.3.5/include -I/opt/homebrew/Cellar/opus/1.5.2/include/opus -I/opt/homebrew/Cellar/mpg123/1.33.3/include -I/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core -I/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Adapters -I/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects
+CXX_INCLUDES = -I/opt/homebrew/Cellar/mpg123/1.33.3/include -I/opt/homebrew/include -I/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core -I/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Adapters -I/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects
 
 CXX_FLAGSarm64 = -std=gnu++17 -arch arm64
 

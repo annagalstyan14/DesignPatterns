@@ -1,10 +1,8 @@
 #pragma once
 #include <cstddef>
 
-class IEffect{
-
+class IEffect {
 public:
     virtual ~IEffect() = default;
-
-    virtual void applyEffect(float* audioBuffer, size_t bufferSize) = 0;
+    virtual void apply(float* audioBuffer, size_t bufferSize) = 0;
 };

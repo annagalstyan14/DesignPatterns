@@ -1,36 +1,107 @@
-2025-10-25 15:02:06: Program started
-2025-10-25 15:02:06: Clip added to track: Track 1
-2025-10-25 15:02:06: Loading MP3 file from: aespa (에스파) 'Whiplash' (Color Coded Lyrics).mp3
-2025-10-25 15:02:06: Failed to open MP3 file: aespa (에스파) 'Whiplash' (Color Coded Lyrics).mp3
-2025-10-25 15:02:06: Failed to load AESPA song - continuing with demo
-2025-10-25 15:02:06: Effect added to clip: aespa (에스파) 'Whiplash' (Color Coded Lyrics).mp3
-2025-10-25 15:02:06: Effect added to clip: aespa (에스파) 'Whiplash' (Color Coded Lyrics).mp3
-2025-10-25 15:02:06: Playing track: Track 1
-2025-10-25 15:02:06: Cannot play unloaded clip: aespa (에스파) 'Whiplash' (Color Coded Lyrics).mp3
-2025-10-25 15:02:06: 🎵 Audio is now playing! Press Enter to stop...
-2025-10-25 15:02:08: Cleaning up track: Track 1
-2025-10-25 15:02:08: AudioEngine cleaned up
-2025-10-25 15:02:12: Program started
-2025-10-25 15:02:12: Clip added to track: Track 1
-2025-10-25 15:02:12: Loading MP3 file from: aespa (에스파) 'Whiplash' (Color Coded Lyrics).mp3
-2025-10-25 15:02:12: Failed to open MP3 file: aespa (에스파) 'Whiplash' (Color Coded Lyrics).mp3
-2025-10-25 15:02:12: Failed to load AESPA song - continuing with demo
-2025-10-25 15:02:12: Effect added to clip: aespa (에스파) 'Whiplash' (Color Coded Lyrics).mp3
-2025-10-25 15:02:12: Effect added to clip: aespa (에스파) 'Whiplash' (Color Coded Lyrics).mp3
-2025-10-25 15:02:12: Playing track: Track 1
-2025-10-25 15:02:12: Cannot play unloaded clip: aespa (에스파) 'Whiplash' (Color Coded Lyrics).mp3
-2025-10-25 15:02:12: 🎵 Audio is now playing! Press Enter to stop...
-2025-10-25 15:02:23: Cleaning up track: Track 1
-2025-10-25 15:02:23: AudioEngine cleaned up
-2025-10-25 15:02:27: Program started
-2025-10-25 15:02:27: Clip added to track: Track 1
-2025-10-25 15:02:27: Loading MP3 file from: aespa (에스파) 'Whiplash' (Color Coded Lyrics).mp3
-2025-10-25 15:02:27: Failed to open MP3 file: aespa (에스파) 'Whiplash' (Color Coded Lyrics).mp3
-2025-10-25 15:02:27: Failed to load AESPA song - continuing with demo
-2025-10-25 15:02:27: Effect added to clip: aespa (에스파) 'Whiplash' (Color Coded Lyrics).mp3
-2025-10-25 15:02:27: Effect added to clip: aespa (에스파) 'Whiplash' (Color Coded Lyrics).mp3
-2025-10-25 15:02:27: Playing track: Track 1
-2025-10-25 15:02:27: Cannot play unloaded clip: aespa (에스파) 'Whiplash' (Color Coded Lyrics).mp3
-2025-10-25 15:02:27: 🎵 Audio is now playing! Press Enter to stop...
-2025-10-25 15:02:38: Cleaning up track: Track 1
-2025-10-25 15:02:38: AudioEngine cleaned up
+2025-10-25 17:19:42: Program started
+2025-10-25 17:19:42: Loading MP3 file from: test.mp3
+2025-10-25 17:19:42: Loaded MP3: test.mp3 (1953792 samples, 22.151836s, 2 channels)
+2025-10-25 17:19:42: Loaded 1953792 samples from test.mp3
+2025-10-25 17:19:42: Effect added to clip: test.mp3
+2025-10-25 17:19:42: Effect added to clip: test.mp3
+2025-10-25 17:19:42: Before normalization - Max sample: 0.736664, RMS: 0.095108
+2025-10-25 17:19:42: After normalization - Max sample: 0.5
+2025-10-25 17:19:42: Applying Reverb Effect
+2025-10-25 17:19:42: Applying Echo Effect
+2025-10-25 17:19:42: Applying echo 1 with gain 0.250000 and delay 2205 samples
+2025-10-25 17:19:42: After effects - Max sample: 0.541847, RMS: 0.068046
+2025-10-25 17:19:42: Effects applied to clip: test.mp3
+2025-10-25 17:19:42: Saving MP3: output.mp3
+2025-10-25 17:19:42: Saving samples - Max sample: 0.541847, RMS: 0.068046
+2025-10-25 17:19:43: Successfully saved MP3: output.mp3
+2025-10-25 17:19:43: Successfully saved processed MP3 with Reverb and Echo to output.mp3
+2025-10-25 17:20:13: Program started
+2025-10-25 17:20:13: Loading MP3 file from: test.mp3
+2025-10-25 17:20:13: Loaded MP3: test.mp3 (1953792 samples, 22.151836s, 2 channels)
+2025-10-25 17:20:13: Loaded 1953792 samples from test.mp3
+2025-10-25 17:20:13: Effect added to clip: test.mp3
+2025-10-25 17:20:13: Effect added to clip: test.mp3
+2025-10-25 17:20:13: Before normalization - Max sample: 0.736664, RMS: 0.095108
+2025-10-25 17:20:13: After normalization - Max sample: 0.5
+2025-10-25 17:20:13: Applying Reverb Effect
+2025-10-25 17:20:13: Applying Echo Effect
+2025-10-25 17:20:13: Applying echo 1 with gain 0.250000 and delay 2205 samples
+2025-10-25 17:20:13: Applying echo 2 with gain 0.100000 and delay 4410 samples
+2025-10-25 17:20:13: After effects - Max sample: 0.563228, RMS: 0.069908
+2025-10-25 17:20:13: Effects applied to clip: test.mp3
+2025-10-25 17:20:13: Saving MP3: output.mp3
+2025-10-25 17:20:13: Saving samples - Max sample: 0.563228, RMS: 0.069908
+2025-10-25 17:20:13: Successfully saved MP3: output.mp3
+2025-10-25 17:20:13: Successfully saved processed MP3 with Reverb and Echo to output.mp3
+2025-10-25 17:22:05: Program started
+2025-10-25 17:22:05: Loading MP3 file from: test.mp3
+2025-10-25 17:22:05: Loaded MP3: test.mp3 (1953792 samples, 22.151836s, 2 channels)
+2025-10-25 17:22:05: Loaded 1953792 samples from test.mp3
+2025-10-25 17:22:05: Effect added to clip: test.mp3
+2025-10-25 17:22:05: Effect added to clip: test.mp3
+2025-10-25 17:22:05: Before normalization - Max sample: 0.736664, RMS: 0.095108
+2025-10-25 17:22:05: After normalization - Max sample: 0.5
+2025-10-25 17:22:05: Applying Reverb Effect
+2025-10-25 17:22:05: Applying Echo Effect
+2025-10-25 17:22:05: Applying echo 1 with gain 0.200000 and delay 4410 samples
+2025-10-25 17:22:05: After effects - Max sample: 0.511758, RMS: 0.066265
+2025-10-25 17:22:05: Effects applied to clip: test.mp3
+2025-10-25 17:22:05: Saving MP3: output.mp3
+2025-10-25 17:22:05: Saving samples - Max sample: 0.511758, RMS: 0.066265
+2025-10-25 17:22:06: Successfully saved MP3: output.mp3
+2025-10-25 17:22:06: Successfully saved processed MP3 with Reverb and Echo to output.mp3
+2025-10-25 17:22:35: Program started
+2025-10-25 17:22:35: Loading MP3 file from: test.mp3
+2025-10-25 17:22:35: Loaded MP3: test.mp3 (1953792 samples, 22.151836s, 2 channels)
+2025-10-25 17:22:35: Loaded 1953792 samples from test.mp3
+2025-10-25 17:22:35: Effect added to clip: test.mp3
+2025-10-25 17:22:35: Effect added to clip: test.mp3
+2025-10-25 17:22:35: Before normalization - Max sample: 0.736664, RMS: 0.095108
+2025-10-25 17:22:35: After normalization - Max sample: 0.5
+2025-10-25 17:22:35: Applying Reverb Effect
+2025-10-25 17:22:35: Applying Echo Effect
+2025-10-25 17:22:35: Applying echo 1 with gain 0.200000 and delay 4410 samples
+2025-10-25 17:22:35: Applying echo 2 with gain 0.100000 and delay 8820 samples
+2025-10-25 17:22:35: After effects - Max sample: 0.502919, RMS: 0.066951
+2025-10-25 17:22:35: Effects applied to clip: test.mp3
+2025-10-25 17:22:35: Saving MP3: output.mp3
+2025-10-25 17:22:35: Saving samples - Max sample: 0.502919, RMS: 0.066951
+2025-10-25 17:22:35: Successfully saved MP3: output.mp3
+2025-10-25 17:22:35: Successfully saved processed MP3 with Reverb and Echo to output.mp3
+2025-10-25 17:27:19: Program started
+2025-10-25 17:27:19: Loading MP3 file from: test.mp3
+2025-10-25 17:27:19: Loaded MP3: test.mp3 (1953792 samples, 22.151836s, 2 channels)
+2025-10-25 17:27:19: Loaded 1953792 samples from test.mp3
+2025-10-25 17:27:19: Effect added to clip: test.mp3
+2025-10-25 17:27:19: Effect added to clip: test.mp3
+2025-10-25 17:27:19: Before normalization - Max sample: 0.736664, RMS: 0.095108
+2025-10-25 17:27:19: After normalization - Max sample: 0.5
+2025-10-25 17:27:19: Applying Reverb Effect
+2025-10-25 17:27:19: Applying Echo Effect
+2025-10-25 17:27:19: Applying echo 1 with gain 0.300000 and delay 6615 samples
+2025-10-25 17:27:19: Applying echo 2 with gain 0.150000 and delay 13230 samples
+2025-10-25 17:27:19: After effects - Max sample: 0.532012, RMS: 0.071193
+2025-10-25 17:27:19: Effects applied to clip: test.mp3
+2025-10-25 17:27:19: Saving MP3: output.mp3
+2025-10-25 17:27:19: Saving samples - Max sample: 0.532012, RMS: 0.071193
+2025-10-25 17:27:20: Successfully saved MP3: output.mp3
+2025-10-25 17:27:20: Successfully saved processed MP3 with Reverb and Echo to output.mp3
+2025-10-25 17:28:04: Program started
+2025-10-25 17:28:04: Loading MP3 file from: test.mp3
+2025-10-25 17:28:04: Loaded MP3: test.mp3 (1953792 samples, 22.151836s, 2 channels)
+2025-10-25 17:28:04: Loaded 1953792 samples from test.mp3
+2025-10-25 17:28:04: Effect added to clip: test.mp3
+2025-10-25 17:28:04: Effect added to clip: test.mp3
+2025-10-25 17:28:04: Before normalization - Max sample: 0.736664, RMS: 0.095108
+2025-10-25 17:28:04: After normalization - Max sample: 0.5
+2025-10-25 17:28:04: Applying Reverb Effect
+2025-10-25 17:28:04: Applying Echo Effect
+2025-10-25 17:28:04: Applying echo 1 with gain 0.350000 and delay 6615 samples
+2025-10-25 17:28:04: Applying echo 2 with gain 0.175000 and delay 13230 samples
+2025-10-25 17:28:04: Applying echo 3 with gain 0.087500 and delay 19845 samples
+2025-10-25 17:28:04: After effects - Max sample: 0.549665, RMS: 0.074567
+2025-10-25 17:28:04: Effects applied to clip: test.mp3
+2025-10-25 17:28:04: Saving MP3: output.mp3
+2025-10-25 17:28:04: Saving samples - Max sample: 0.549665, RMS: 0.074567
+2025-10-25 17:28:05: Successfully saved MP3: output.mp3
+2025-10-25 17:28:05: Successfully saved processed MP3 with Reverb and Echo to output.mp3

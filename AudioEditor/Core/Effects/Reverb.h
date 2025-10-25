@@ -3,5 +3,5 @@
 
 class Reverb : public IEffect {
 public:
-    void applyEffect(float* audioBuffer, size_t bufferSize) override;
+    void apply(float* audioBuffer, size_t bufferSize) override;
 };

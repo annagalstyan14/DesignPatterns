@@ -6,11 +6,11 @@ bool AudioFileAdapter::load(const std::string& filePath) {
     return false;
 }
 
-std::vector<float> AudioFileAdapter::getSamples(){
+std::vector<float> AudioFileAdapter::getSamples()const{
     return {};
 }
 
-float AudioFileAdapter::getDuration(){
+float AudioFileAdapter::getDuration()const {
     return 0.0f;
 }
 
