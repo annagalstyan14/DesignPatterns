@@ -4,42 +4,36 @@ project(AudioEditor)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Set Homebrew paths for macOS
-set(CMAKE_PREFIX_PATH "/usr/local;/opt/homebrew" ${CMAKE_PREFIX_PATH})
+# Find MPG123 library
+find_library(MPG123_LIBRARY mpg123)
+if(NOT MPG123_LIBRARY)
+    message(FATAL_ERROR "mpg123 library not found. Please install libmpg123 using 'brew install mpg123'.")
+endif()
 
-# Find mpg123 using pkg-config
-find_package(PkgConfig REQUIRED)
-pkg_check_modules(MPG123 REQUIRED libmpg123)
-
-# Find lame
-find_library(LAME_LIBRARY NAMES mp3lame lame)
+# Find LAME library for MP3 encoding
+find_library(LAME_LIBRARY lame)
 if(NOT LAME_LIBRARY)
-    message(FATAL_ERROR "LAME library not found")
+    message(FATAL_ERROR "lame library not found. Please install lame using 'brew install lame'.")
 endif()
-find_path(LAME_INCLUDE_DIR lame/lame.h)
-if(NOT LAME_INCLUDE_DIR)
-    message(FATAL_ERROR "LAME headers not found")
-endif()
-
-# Include directories
-include_directories(${MPG123_INCLUDE_DIRS} ${LAME_INCLUDE_DIR})
-include_directories(${CMAKE_SOURCE_DIR}/Core ${CMAKE_SOURCE_DIR}/Core/Adapters ${CMAKE_SOURCE_DIR}/Core/Effects)
 
 # Add executable
 add_executable(AudioEditor
     main.cpp
-    Core/Logger.cpp
     Core/AudioClip.cpp
-    Core/EffectFactory.cpp
     Core/Adapters/Mp3.cpp
-    Core/Effects/Echo.cpp
     Core/Effects/Reverb.cpp
+    Core/Effects/Speed.cpp
+    Core/Logger.cpp
+    Core/EffectFactory.cpp
+    Core/Adapters/AudioFileAdapter.cpp
 )
 
-# Target-specific include directories
-target_include_directories(AudioEditor PRIVATE ${MPG123_INCLUDE_DIRS} ${LAME_INCLUDE_DIR})
+# Include directories
+target_include_directories(AudioEditor PRIVATE Core Core/Adapters Core/Effects)
+# Add system include directories for mpg123 and lame (Apple Silicon path)
+if(EXISTS /opt/homebrew/include)
+    target_include_directories(AudioEditor PRIVATE /opt/homebrew/include) # For Apple Silicon
+endif()
 
 # Link libraries
-target_link_libraries(AudioEditor PRIVATE ${MPG123_LIBRARIES} ${LAME_LIBRARY})
-target_compile_options(AudioEditor PRIVATE ${MPG123_CFLAGS_OTHER})
-target_link_directories(AudioEditor PRIVATE ${MPG123_LIBRARY_DIRS})
+target_link_libraries(AudioEditor PRIVATE ${MPG123_LIBRARY} ${LAME_LIBRARY})

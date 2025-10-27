@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/opt/homebrew/Cellar/mpg123/1.33.3/include -I/opt/homebrew/include -I/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core -I/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Adapters -I/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects
+CXX_INCLUDES = -I/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core -I/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Adapters -I/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects -I/opt/homebrew/include
 
 CXX_FLAGSarm64 = -std=gnu++17 -arch arm64
 

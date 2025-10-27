@@ -129,6 +129,30 @@ AudioEditor/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/build
 .PHONY : AudioEditor/fast
 
+Core/Adapters/AudioFileAdapter.o: Core/Adapters/AudioFileAdapter.cpp.o
+.PHONY : Core/Adapters/AudioFileAdapter.o
+
+# target to build an object file
+Core/Adapters/AudioFileAdapter.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Adapters/AudioFileAdapter.cpp.o
+.PHONY : Core/Adapters/AudioFileAdapter.cpp.o
+
+Core/Adapters/AudioFileAdapter.i: Core/Adapters/AudioFileAdapter.cpp.i
+.PHONY : Core/Adapters/AudioFileAdapter.i
+
+# target to preprocess a source file
+Core/Adapters/AudioFileAdapter.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Adapters/AudioFileAdapter.cpp.i
+.PHONY : Core/Adapters/AudioFileAdapter.cpp.i
+
+Core/Adapters/AudioFileAdapter.s: Core/Adapters/AudioFileAdapter.cpp.s
+.PHONY : Core/Adapters/AudioFileAdapter.s
+
+# target to generate assembly for a file
+Core/Adapters/AudioFileAdapter.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Adapters/AudioFileAdapter.cpp.s
+.PHONY : Core/Adapters/AudioFileAdapter.cpp.s
+
 Core/Adapters/Mp3.o: Core/Adapters/Mp3.cpp.o
 .PHONY : Core/Adapters/Mp3.o
 
@@ -201,30 +225,6 @@ Core/EffectFactory.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/EffectFactory.cpp.s
 .PHONY : Core/EffectFactory.cpp.s
 
-Core/Effects/Echo.o: Core/Effects/Echo.cpp.o
-.PHONY : Core/Effects/Echo.o
-
-# target to build an object file
-Core/Effects/Echo.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Effects/Echo.cpp.o
-.PHONY : Core/Effects/Echo.cpp.o
-
-Core/Effects/Echo.i: Core/Effects/Echo.cpp.i
-.PHONY : Core/Effects/Echo.i
-
-# target to preprocess a source file
-Core/Effects/Echo.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Effects/Echo.cpp.i
-.PHONY : Core/Effects/Echo.cpp.i
-
-Core/Effects/Echo.s: Core/Effects/Echo.cpp.s
-.PHONY : Core/Effects/Echo.s
-
-# target to generate assembly for a file
-Core/Effects/Echo.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Effects/Echo.cpp.s
-.PHONY : Core/Effects/Echo.cpp.s
-
 Core/Effects/Reverb.o: Core/Effects/Reverb.cpp.o
 .PHONY : Core/Effects/Reverb.o
 
@@ -248,6 +248,30 @@ Core/Effects/Reverb.s: Core/Effects/Reverb.cpp.s
 Core/Effects/Reverb.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Effects/Reverb.cpp.s
 .PHONY : Core/Effects/Reverb.cpp.s
+
+Core/Effects/Speed.o: Core/Effects/Speed.cpp.o
+.PHONY : Core/Effects/Speed.o
+
+# target to build an object file
+Core/Effects/Speed.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Effects/Speed.cpp.o
+.PHONY : Core/Effects/Speed.cpp.o
+
+Core/Effects/Speed.i: Core/Effects/Speed.cpp.i
+.PHONY : Core/Effects/Speed.i
+
+# target to preprocess a source file
+Core/Effects/Speed.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Effects/Speed.cpp.i
+.PHONY : Core/Effects/Speed.cpp.i
+
+Core/Effects/Speed.s: Core/Effects/Speed.cpp.s
+.PHONY : Core/Effects/Speed.s
+
+# target to generate assembly for a file
+Core/Effects/Speed.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Effects/Speed.cpp.s
+.PHONY : Core/Effects/Speed.cpp.s
 
 Core/Logger.o: Core/Logger.cpp.o
 .PHONY : Core/Logger.o
@@ -306,6 +330,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... AudioEditor"
+	@echo "... Core/Adapters/AudioFileAdapter.o"
+	@echo "... Core/Adapters/AudioFileAdapter.i"
+	@echo "... Core/Adapters/AudioFileAdapter.s"
 	@echo "... Core/Adapters/Mp3.o"
 	@echo "... Core/Adapters/Mp3.i"
 	@echo "... Core/Adapters/Mp3.s"
@@ -315,12 +342,12 @@ help:
 	@echo "... Core/EffectFactory.o"
 	@echo "... Core/EffectFactory.i"
 	@echo "... Core/EffectFactory.s"
-	@echo "... Core/Effects/Echo.o"
-	@echo "... Core/Effects/Echo.i"
-	@echo "... Core/Effects/Echo.s"
 	@echo "... Core/Effects/Reverb.o"
 	@echo "... Core/Effects/Reverb.i"
 	@echo "... Core/Effects/Reverb.s"
+	@echo "... Core/Effects/Speed.o"
+	@echo "... Core/Effects/Speed.i"
+	@echo "... Core/Effects/Speed.s"
 	@echo "... Core/Logger.o"
 	@echo "... Core/Logger.i"
 	@echo "... Core/Logger.s"

@@ -1,5 +1,6 @@
 #include "AudioClip.h"
 #include "Adapters/Mp3.h"
+#include "Effects/Speed.h" // SpeedChangeEffect
 #include <algorithm>
 #include <numeric>
 
@@ -14,6 +15,7 @@ AudioClip::AudioClip(const std::string& path) : filePath(path) {
 bool AudioClip::load() {
     std::lock_guard<std::mutex> lock(mutex_);
     if (!audioFile) return false;
+
     isLoaded = audioFile->load(filePath);
     if (isLoaded) {
         samples = audioFile->getSamples();
@@ -23,57 +25,44 @@ bool AudioClip::load() {
     return isLoaded;
 }
 
-void AudioClip::play() {
-    // Not needed for minimal version
-}
-
-void AudioClip::stop() {
-    // Not needed for minimal version
-}
-
-void AudioClip::mixToBuffer(float* outputBuffer, unsigned long framesPerBuffer) {
-    // Not needed for minimal version
-}
-
 void AudioClip::applyEffects() {
     std::lock_guard<std::mutex> lock(mutex_);
     if (!isLoaded || samples.empty()) {
-        Logger::getInstance().log("Cannot apply effects: no samples loaded for " + filePath);
+        Logger::getInstance().log("Cannot apply effects: no samples loaded");
         return;
     }
-n
-    float maxSampleBefore = 0.0f;
-    double sumSquaresBefore = 0.0;
-    for (const auto& sample : samples) {
-        maxSampleBefore = std::max(maxSampleBefore, std::abs(sample));
-        sumSquaresBefore += sample * sample;
-    }
-    double rmsBefore = std::sqrt(sumSquaresBefore / samples.size());
-    Logger::getInstance().log("Before normalization - Max sample: " + std::to_string(maxSampleBefore) + ", RMS: " + std::to_string(rmsBefore));
 
-    if (maxSampleBefore > 0.0f) {
-        float scale = 0.5f / maxSampleBefore; 
-        for (auto& sample : samples) {
-            sample *= scale;
-        }
-        Logger::getInstance().log("After normalization - Max sample: 0.5");
+    // Ensure stereo buffer (duplicate last sample if odd)
+    if (samples.size() % 2 != 0) {
+        samples.push_back(samples.back());
     }
 
-    for (const auto& effect : effects) {
-        if (effect) {
+    Logger::getInstance().log("Applying effects to clip: " + filePath);
+
+    // Apply each effect
+    for (auto& effect : effects) {
+        if (!effect) continue;
+
+        if (auto speedEffect = std::dynamic_pointer_cast<SpeedChangeEffect>(effect)) {
+            // Apply speed resampling
+            speedEffect->apply(samples.data(), samples.size());
+            auto& resampled = speedEffect->getResampledBuffer();
+            samples = resampled;
+            Logger::getInstance().log("Applied SpeedChangeEffect, new sample count = " + std::to_string(samples.size()));
+        } else {
+            // Apply other effects (Reverb, etc.)
             effect->apply(samples.data(), samples.size());
+            // Log max sample to ensure effect is modifying audio
+            float maxVal = 0.0f;
+            for (auto s : samples) maxVal = std::max(maxVal, std::abs(s));
+            Logger::getInstance().log("Effect applied: max abs sample = " + std::to_string(maxVal));
         }
     }
 
-    float maxSampleAfter = 0.0f;
-    double sumSquaresAfter = 0.0;
-    for (const auto& sample : samples) {
-        maxSampleAfter = std::max(maxSampleAfter, std::abs(sample));
-        sumSquaresAfter += sample * sample;
-    }
-    double rmsAfter = std::sqrt(sumSquaresAfter / samples.size());
-    Logger::getInstance().log("After effects - Max sample: " + std::to_string(maxSampleAfter) + ", RMS: " + std::to_string(rmsAfter));
-    Logger::getInstance().log("Effects applied to clip: " + filePath);
+    // Clamp final output to [-1,1] to prevent clipping
+    for (auto& s : samples) s = std::clamp(s, -1.0f, 1.0f);
+
+    Logger::getInstance().log("All effects applied, final sample count = " + std::to_string(samples.size()));
 }
 
 bool AudioClip::save(const std::string& outputPath) {
@@ -88,10 +77,12 @@ bool AudioClip::save(const std::string& outputPath) {
 float AudioClip::getDuration() const { return duration; }
 float AudioClip::getStartTime() const { return startTime; }
 void AudioClip::setStartTime(float time) { startTime = time; }
+
 void AudioClip::addEffect(std::shared_ptr<IEffect> effect) {
     std::lock_guard<std::mutex> lock(mutex_);
-    effects.push_back(effect);
+    if (effect) effects.push_back(effect);
     Logger::getInstance().log("Effect added to clip: " + filePath);
 }
+
 bool AudioClip::isClipLoaded() const { return isLoaded; }
 std::vector<float> AudioClip::getSamples() const { return samples; }

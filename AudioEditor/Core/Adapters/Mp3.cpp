@@ -1,123 +1,195 @@
 #include "Mp3.h"
-#include "Logger.h"
+#include "../Logger.h"
 #include <mpg123.h>
 #include <lame/lame.h>
-#include <cstring>
+#include <vector>
+#include <stdexcept>
+#include <cstdio> // For FILE, fopen, fclose, fwrite
+
+Mp3Adapter::Mp3Adapter() {
+    if (mpg123_init() != MPG123_OK) {
+        Logger::getInstance().log("Error: Failed to initialize MPG123");
+        throw std::runtime_error("MPG123 initialization failed");
+    }
+}
+
+Mp3Adapter::~Mp3Adapter() {
+    mpg123_exit();
+}
 
 bool Mp3Adapter::load(const std::string& filePath) {
-    Logger::getInstance().log("Loading MP3 file from: " + filePath);
-    
+    Logger::getInstance().log("Loading MP3 file: " + filePath);
     mpg123_handle* mh = mpg123_new(NULL, NULL);
-    if (!mh) {
-        Logger::getInstance().log("Failed to create mpg123 handle");
+    if (!mh || mpg123_open(mh, filePath.c_str()) != MPG123_OK) {
+        Logger::getInstance().log("Error: Failed to open MP3 file: " + filePath);
+        if (mh) mpg123_delete(mh);
         return false;
     }
-    
-    if (mpg123_open(mh, filePath.c_str()) != MPG123_OK) {
-        Logger::getInstance().log("Failed to open MP3 file: " + filePath);
-        mpg123_delete(mh);
-        return false;
-    }
-    
-    int encoding;
-    if (mpg123_getformat(mh, &sampleRate, &channels, &encoding) != MPG123_OK) {
-        Logger::getInstance().log("Failed to get MP3 format");
+
+    long rate;
+    int ch, encoding;
+    if (mpg123_getformat(mh, &rate, &ch, &encoding) != MPG123_OK) {
+        Logger::getInstance().log("Error: Failed to get MP3 format: " + filePath);
         mpg123_close(mh);
         mpg123_delete(mh);
         return false;
     }
-    
-    off_t length = mpg123_length(mh);
-    if (length == MPG123_ERR) {
-        Logger::getInstance().log("Failed to get MP3 length");
+
+    if (encoding != MPG123_ENC_SIGNED_16) {
+        Logger::getInstance().log("Error: Unsupported MP3 encoding: " + filePath);
         mpg123_close(mh);
         mpg123_delete(mh);
         return false;
     }
-    
-    duration = static_cast<float>(length) / sampleRate;
-    
-    samples.clear();
-    unsigned char* buffer = new unsigned char[4096];
+
+    inputRate = rate; // Store the detected rate
+    channels = ch;    // Store the detected channel count
+
+    size_t buffer_size = mpg123_outblock(mh);
+    std::vector<unsigned char> buffer(buffer_size);
+    std::vector<float> samples;
     size_t done;
     int err;
-    
-    while ((err = mpg123_read(mh, buffer, 4096, &done)) == MPG123_OK) {
-        for (size_t i = 0; i < done; i += 2) {
-            if (i + 1 < done) {
-                short sample = (buffer[i + 1] << 8) | buffer[i];
-                samples.push_back(static_cast<float>(sample) / 32768.0f);
+
+    while ((err = mpg123_read(mh, buffer.data(), buffer_size, &done)) == MPG123_OK || err == MPG123_DONE) {
+        if (done <= 0) break;
+        for (size_t i = 0; i < done; i += 2 * channels) {
+            short sample = (buffer[i + 1] << 8) | buffer[i];
+            samples.push_back(static_cast<float>(sample) / 32767.0f);
+            if (channels == 2 && i + 2 < done) {
+                short right = (buffer[i + 3] << 8) | buffer[i + 2];
+                samples.push_back(static_cast<float>(right) / 32767.0f);
             }
         }
+        if (err == MPG123_DONE) break;
     }
-    
-    delete[] buffer;
+
     mpg123_close(mh);
     mpg123_delete(mh);
-    
-    Logger::getInstance().log("Loaded MP3: " + filePath + " (" + std::to_string(samples.size()) + " samples, " + std::to_string(duration) + "s, " + std::to_string(channels) + " channels)");
+
+    if (samples.empty()) {
+        Logger::getInstance().log("Error: No samples decoded from: " + filePath);
+        return false;
+    }
+
+    samples_ = std::move(samples);
+    duration_ = static_cast<float>(samples_.size()) / (inputRate * channels);
+    Logger::getInstance().log("Loaded " + std::to_string(samples_.size()) + " samples from " + filePath);
     return true;
 }
 
-std::vector<float> Mp3Adapter::getSamples() const { return samples; }
-float Mp3Adapter::getDuration() const { return duration; }
-
-bool Mp3Adapter::save(const std::string& filePath, const std::vector<float>& processedSamples) {
-    Logger::getInstance().log("Saving MP3: " + filePath);
-    
-    // Log sample statistics
-    float maxSample = 0.0f;
-    double sumSquares = 0.0;
-    for (const auto& sample : processedSamples) {
-        maxSample = std::max(maxSample, std::abs(sample));
-        sumSquares += sample * sample;
+bool Mp3Adapter::save(const std::string& filePath, const std::vector<float, std::allocator<float>>& processedSamples) {
+    Logger::getInstance().log("Saving MP3 file: " + filePath);
+    if (processedSamples.empty()) {
+        Logger::getInstance().log("Error: Empty samples vector in save");
+        return false;
     }
-    double rms = std::sqrt(sumSquares / processedSamples.size());
-    Logger::getInstance().log("Saving samples - Max sample: " + std::to_string(maxSample) + ", RMS: " + std::to_string(rms));
-    
+
+    size_t numSamples = processedSamples.size();
+    if (numSamples % channels != 0) {
+        Logger::getInstance().log("Error: Sample count not divisible by channel count: " + std::to_string(numSamples) + " / " + std::to_string(channels));
+        return false;
+    }
+
+    // Convert float samples to 16-bit PCM
+    std::vector<short> pcmData(numSamples);
+    for (size_t i = 0; i < numSamples; ++i) {
+        float sample = std::clamp(processedSamples[i], -1.0f, 1.0f);
+        pcmData[i] = static_cast<short>(sample * 32767.0f);
+    }
+
     lame_t lame = lame_init();
-    lame_set_in_samplerate(lame, sampleRate);
+    if (!lame) {
+        Logger::getInstance().log("Error: LAME init failed");
+        return false;
+    }
+    
+    lame_set_in_samplerate(lame, inputRate);
+    lame_set_out_samplerate(lame, inputRate);
     lame_set_num_channels(lame, channels);
-    lame_set_quality(lame, 2);
+    lame_set_quality(lame, 2); // Higher quality (0-9, lower is better)
+    
     if (lame_init_params(lame) < 0) {
-        Logger::getInstance().log("Failed to initialize LAME");
-        return false;
-    }
-
-    FILE* file = fopen(filePath.c_str(), "wb");
-    if (!file) {
-        Logger::getInstance().log("Failed to open output file: " + filePath);
+        Logger::getInstance().log("Error: LAME initialization failed");
         lame_close(lame);
         return false;
     }
 
-    std::vector<short> intSamples(processedSamples.size());
-    for (size_t i = 0; i < processedSamples.size(); ++i) {
-        intSamples[i] = static_cast<short>(processedSamples[i] * 32767.0f);
-    }
-
-    int mp3Size;
-    std::vector<unsigned char> mp3Buffer(7200 + processedSamples.size() / channels * 1.25);
-    if (channels == 2) {
-        mp3Size = lame_encode_buffer_interleaved(lame, intSamples.data(),
-                                                processedSamples.size() / channels, mp3Buffer.data(), mp3Buffer.size());
-    } else {
-        mp3Size = lame_encode_buffer(lame, intSamples.data(), nullptr,
-                                     processedSamples.size(), mp3Buffer.data(), mp3Buffer.size());
-    }
-    if (mp3Size < 0) {
-        Logger::getInstance().log("LAME encoding failed");
-        fclose(file);
+    FILE* fp = fopen(filePath.c_str(), "wb");
+    if (!fp) {
+        Logger::getInstance().log("Error: Could not open output file: " + filePath);
         lame_close(lame);
         return false;
     }
-    fwrite(mp3Buffer.data(), 1, mp3Size, file);
 
-    mp3Size = lame_encode_flush(lame, mp3Buffer.data(), mp3Buffer.size());
-    fwrite(mp3Buffer.data(), 1, mp3Size, file);
+    // Calculate number of frames (for stereo, this is numSamples / 2)
+    int numFrames = static_cast<int>(numSamples / channels);
+    
+    // Encode in chunks to avoid buffer overflow
+    const int CHUNK_SIZE = 4096; // Process 4096 frames at a time
+    unsigned char mp3buffer[16384];
+    size_t pcmOffset = 0;
+    
+    Logger::getInstance().log("Encoding " + std::to_string(numFrames) + " frames (" + 
+                             std::to_string(numSamples) + " samples) to MP3");
 
-    fclose(file);
+    while (pcmOffset < numSamples) {
+        int framesToEncode = std::min(CHUNK_SIZE, static_cast<int>((numSamples - pcmOffset) / channels));
+        
+        int mp3bytes;
+        if (channels == 2) {
+            mp3bytes = lame_encode_buffer_interleaved(
+                lame,
+                pcmData.data() + pcmOffset,
+                framesToEncode,
+                mp3buffer,
+                sizeof(mp3buffer)
+            );
+        } else {
+            // Mono encoding
+            mp3bytes = lame_encode_buffer(
+                lame,
+                pcmData.data() + pcmOffset,
+                nullptr,
+                framesToEncode,
+                mp3buffer,
+                sizeof(mp3buffer)
+            );
+        }
+        
+        if (mp3bytes < 0) {
+            Logger::getInstance().log("Error: LAME encoding failed at offset " + 
+                                    std::to_string(pcmOffset) + 
+                                    " (return code: " + std::to_string(mp3bytes) + ")");
+            fclose(fp);
+            lame_close(lame);
+            return false;
+        }
+        
+        if (mp3bytes > 0) {
+            fwrite(mp3buffer, 1, mp3bytes, fp);
+        }
+        
+        pcmOffset += framesToEncode * channels;
+    }
+
+    // Flush remaining data
+    int mp3bytes = lame_encode_flush(lame, mp3buffer, sizeof(mp3buffer));
+    if (mp3bytes > 0) {
+        fwrite(mp3buffer, 1, mp3bytes, fp);
+    }
+
+    fclose(fp);
     lame_close(lame);
-    Logger::getInstance().log("Successfully saved MP3: " + filePath);
+    
+    Logger::getInstance().log("Saved " + std::to_string(numSamples) + " samples to " + filePath);
     return true;
+}
+
+std::vector<float> Mp3Adapter::getSamples() const {
+    return samples_;
+}
+
+float Mp3Adapter::getDuration() const {
+    return duration_;
 }

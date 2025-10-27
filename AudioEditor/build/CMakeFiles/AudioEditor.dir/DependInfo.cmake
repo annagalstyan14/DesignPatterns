@@ -8,11 +8,12 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Adapters/AudioFileAdapter.cpp" "CMakeFiles/AudioEditor.dir/Core/Adapters/AudioFileAdapter.cpp.o" "gcc" "CMakeFiles/AudioEditor.dir/Core/Adapters/AudioFileAdapter.cpp.o.d"
   "/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Adapters/Mp3.cpp" "CMakeFiles/AudioEditor.dir/Core/Adapters/Mp3.cpp.o" "gcc" "CMakeFiles/AudioEditor.dir/Core/Adapters/Mp3.cpp.o.d"
   "/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/AudioClip.cpp" "CMakeFiles/AudioEditor.dir/Core/AudioClip.cpp.o" "gcc" "CMakeFiles/AudioEditor.dir/Core/AudioClip.cpp.o.d"
   "/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/EffectFactory.cpp" "CMakeFiles/AudioEditor.dir/Core/EffectFactory.cpp.o" "gcc" "CMakeFiles/AudioEditor.dir/Core/EffectFactory.cpp.o.d"
-  "/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects/Echo.cpp" "CMakeFiles/AudioEditor.dir/Core/Effects/Echo.cpp.o" "gcc" "CMakeFiles/AudioEditor.dir/Core/Effects/Echo.cpp.o.d"
   "/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects/Reverb.cpp" "CMakeFiles/AudioEditor.dir/Core/Effects/Reverb.cpp.o" "gcc" "CMakeFiles/AudioEditor.dir/Core/Effects/Reverb.cpp.o.d"
+  "/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects/Speed.cpp" "CMakeFiles/AudioEditor.dir/Core/Effects/Speed.cpp.o" "gcc" "CMakeFiles/AudioEditor.dir/Core/Effects/Speed.cpp.o.d"
   "/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Logger.cpp" "CMakeFiles/AudioEditor.dir/Core/Logger.cpp.o" "gcc" "CMakeFiles/AudioEditor.dir/Core/Logger.cpp.o.d"
   "/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/main.cpp" "CMakeFiles/AudioEditor.dir/main.cpp.o" "gcc" "CMakeFiles/AudioEditor.dir/main.cpp.o.d"
   )
