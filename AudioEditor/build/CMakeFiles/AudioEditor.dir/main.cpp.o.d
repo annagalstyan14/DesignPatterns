@@ -810,13 +810,14 @@ CMakeFiles/AudioEditor.dir/main.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/path_iterator.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/recursive_directory_iterator.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/u8path.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/map \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__tree \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Logger.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/fstream \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/AudioClip.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Adapters/AudioFileAdapter.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/EffectFactory.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/map \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__tree \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects/IEffect.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects/Reverb.h \
+  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects/Echo.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects/Speed.h

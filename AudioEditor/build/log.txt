@@ -1,314 +1,95 @@
-2025-10-27 14:30:11: Program started
-2025-10-27 14:30:11: Parameters: reverbTime=100.000000ms, diffusion=75.000000%, decay=25.000000%, wet=64.000000%, dry=360.000000%, brightness=10.000000%, speed=0.950000
-2025-10-27 14:30:11: Loading MP3 file from: input.mp3
-2025-10-27 14:30:11: Loaded MP3: input.mp3 (24352768 samples, 276.108490s, 2 channels)
-2025-10-27 14:30:11: Loaded 24352768 samples from input.mp3
-2025-10-27 14:30:11: Reverb Effect Initialized
-2025-10-27 14:30:11: Effect added to clip: input.mp3
-2025-10-27 14:30:11: SpeedChangeEffect created with speed factor: 0.950000
-2025-10-27 14:30:11: Effect added to clip: input.mp3
-2025-10-27 14:30:11: Before normalization - Max sample: 1.000000, RMS: 0.229624
-2025-10-27 14:30:12: After normalization - Max sample: 0.5
-2025-10-27 14:30:14: Applying SpeedChange Effect with speed factor: 0.950000
-2025-10-27 14:34:55: Program started
-2025-10-27 14:34:55: Parameters: reverbTime=100.000000ms, diffusion=75.000000%, decay=25.000000%, wet=64.000000%, dry=360.000000%, brightness=10.000000%, speed=1.000000
-2025-10-27 14:34:55: Loading MP3 file from: input.mp3
-2025-10-27 14:34:55: Loaded MP3: input.mp3 (24352768 samples, 276.108490s, 2 channels)
-2025-10-27 14:34:55: Loaded 24352768 samples from input.mp3
-2025-10-27 14:34:55: Reverb Effect Initialized
-2025-10-27 14:34:55: Effect added to clip: input.mp3
-2025-10-27 14:34:56: Before normalization - Max sample: 1.000000, RMS: 0.229624
-2025-10-27 14:34:56: After normalization - Max sample: 0.4
-2025-10-27 14:34:59: After effects - Max sample: 0.382460, RMS: 0.082465
-2025-10-27 14:34:59: Effects applied to clip: input.mp3
-2025-10-27 14:34:59: Saving MP3: output.mp3
-2025-10-27 14:34:59: Saving samples - Max sample: 0.382460, RMS: 0.082465
-2025-10-27 14:35:04: Successfully saved MP3: output.mp3
-2025-10-27 14:35:04: Successfully saved processed MP3 with Reverb and SpeedChange to output.mp3
-2025-10-27 18:05:09: Program started
-2025-10-27 18:05:09: Parameters: reverbTime=100.000000ms, diffusion=75.000000%, decay=25.000000%, wet=64.000000%, dry=360.000000%, brightness=10.000000%, speed=1.000000
-2025-10-27 18:05:09: Loading MP3 file: input.mp3
-2025-10-27 18:05:09: Loaded 0 samples from input.mp3
-2025-10-27 18:05:09: Reverb Effect Initialized
-2025-10-27 18:05:09: Effect added to clip: input.mp3
-2025-10-27 18:05:09: Cannot apply effects: no samples loaded for input.mp3
-2025-10-27 18:05:09: Saving MP3 file: output.mp3
-2025-10-27 18:05:09: Error: Empty samples vector in save
-2025-10-27 18:05:09: Failed to save processed MP3: output.mp3
-2025-10-27 18:06:58: Program started
-2025-10-27 18:06:58: Parameters: reverbTime=100.000000ms, diffusion=75.000000%, decay=25.000000%, wet=64.000000%, dry=360.000000%, brightness=10.000000%, speed=0.900000
-2025-10-27 18:06:58: Loading MP3 file: input.mp3
-2025-10-27 18:06:58: Loaded 0 samples from input.mp3
-2025-10-27 18:06:58: Reverb Effect Initialized
-2025-10-27 18:06:58: Effect added to clip: input.mp3
-2025-10-27 18:06:58: SpeedChangeEffect created with speed factor: 0.900000
-2025-10-27 18:06:58: Effect added to clip: input.mp3
-2025-10-27 18:06:58: Cannot apply effects: no samples loaded for input.mp3
-2025-10-27 18:06:58: Saving MP3 file: output.mp3
-2025-10-27 18:06:58: Error: Empty samples vector in save
-2025-10-27 18:06:58: Failed to save processed MP3: output.mp3
-2025-10-27 18:17:02: Program started
-2025-10-27 18:17:02: Parameters: reverbTime=100.000000ms, diffusion=75.000000%, decay=25.000000%, wet=64.000000%, dry=360.000000%, brightness=10.000000%, speed=0.900000
-2025-10-27 18:17:02: Loading MP3 file: input.mp3
-2025-10-27 18:17:03: Loaded 24352768 samples from input.mp3
-2025-10-27 18:17:03: Loaded 24352768 samples from input.mp3
-2025-10-27 18:17:03: Reverb Effect Initialized
-2025-10-27 18:17:03: Effect added to clip: input.mp3
-2025-10-27 18:17:03: SpeedChangeEffect created with speed factor: 0.900000
-2025-10-27 18:17:03: Effect added to clip: input.mp3
-2025-10-27 18:17:03: Before normalization - Max sample: 1.000031, RMS: 0.229631
-2025-10-27 18:17:03: After normalization - Max sample: 0.8
-2025-10-27 18:17:07: Applying SpeedChange Effect with speed factor: 0.900000
-2025-10-27 18:17:07: Updated samples after SpeedChange: 27058632, new duration: 306.787201s
-2025-10-27 18:17:08: After effects - Max sample: 1.000000, RMS: 0.219917
-2025-10-27 18:17:08: Effects applied to clip: input.mp3
-2025-10-27 18:17:08: Saving MP3 file: output.mp3
-2025-10-27 18:17:08: Error: LAME encoding failed
-2025-10-27 18:17:08: Failed to save processed MP3: output.mp3
-2025-10-27 18:26:01: Program started
-2025-10-27 18:26:01: Parameters: reverbTime=100.000000ms, diffusion=75.000000%, decay=25.000000%, wet=64.000000%, dry=360.000000%, brightness=10.000000%, speed=0.900000
-2025-10-27 18:26:01: Loading MP3 file: input.mp3
-2025-10-27 18:26:01: Loaded 24352768 samples from input.mp3
-2025-10-27 18:26:01: Loaded 24352768 samples from input.mp3
-2025-10-27 18:26:01: Reverb Effect Initialized
-2025-10-27 18:26:01: Effect added to clip: input.mp3
-2025-10-27 18:26:01: SpeedChangeEffect created with speed factor: 0.900000
-2025-10-27 18:26:01: Effect added to clip: input.mp3
-2025-10-27 18:26:02: Before normalization - Max sample: 1.000031, RMS: 0.229631
-2025-10-27 18:26:02: After normalization - Max sample: 0.95
-2025-10-27 18:26:05: Applying SpeedChange Effect with speed factor: 0.900000
-2025-10-27 18:26:06: Updated samples after SpeedChange: 27058632, new duration: 306.787201s
-2025-10-27 18:26:06: After effects - Max sample: 1.000000, RMS: 0.259516
-2025-10-27 18:26:06: Effects applied to clip: input.mp3
-2025-10-27 18:26:06: Saving MP3 file: output.mp3
-2025-10-27 18:26:06: Error: LAME encoding failed (return code: -1)
-2025-10-27 18:26:06: Failed to save processed MP3: output.mp3
-2025-10-27 18:50:15: Program started
-2025-10-27 18:50:15: Parameters: reverbTime=100.000000ms, diffusion=75.000000%, decay=25.000000%, wet=64.000000%, dry=360.000000%, brightness=10.000000%, speed=0.900000
-2025-10-27 18:50:15: Loading MP3 file: input.mp3
-2025-10-27 18:50:15: Loaded 24352768 samples from input.mp3
-2025-10-27 18:50:15: Loaded 24352768 samples from input.mp3
-2025-10-27 18:50:15: Reverb Effect Initialized
-2025-10-27 18:50:15: Effect added to clip: input.mp3
-2025-10-27 18:50:15: SpeedChangeEffect created with speed factor: 0.900000
-2025-10-27 18:50:15: Effect added to clip: input.mp3
-2025-10-27 18:50:15: Before normalization - Max sample: 1.000031, RMS: 0.229631
-2025-10-27 18:50:16: After normalization - Max sample: 0.95
-2025-10-27 18:50:20: Applying SpeedChange Effect with speed factor: 0.900000
-2025-10-27 18:50:21: Updated samples after SpeedChange: 27058632, new duration: 306.787201s
-2025-10-27 18:50:21: After effects - Max sample: 1.000000, RMS: 0.231447
-2025-10-27 18:50:21: Effects applied to clip: input.mp3
-2025-10-27 18:50:21: Saving MP3 file: output.mp3
-2025-10-27 18:50:21: Error: LAME encoding failed (return code: -1)
-2025-10-27 18:50:21: Failed to save processed MP3: output.mp3
-2025-10-27 18:53:15: Program started
-2025-10-27 18:53:15: Parameters: reverbTime=100.000000ms, diffusion=75.000000%, decay=25.000000%, wet=64.000000%, dry=360.000000%, brightness=10.000000%, speed=0.900000
-2025-10-27 18:53:15: Loading MP3 file: input.mp3
-2025-10-27 18:53:15: Loaded 24352768 samples from input.mp3
-2025-10-27 18:53:15: Loaded 24352768 samples from input.mp3
-2025-10-27 18:53:15: Reverb Effect Initialized
-2025-10-27 18:53:15: Effect added to clip: input.mp3
-2025-10-27 18:53:15: SpeedChangeEffect created with speed factor: 0.900000
-2025-10-27 18:53:15: Effect added to clip: input.mp3
-2025-10-27 18:53:16: Before normalization - Max sample: 1.000031, RMS: 0.229631
-2025-10-27 18:53:16: After normalization - Max sample: 0.95
-2025-10-27 18:53:20: Applying SpeedChange Effect with speed factor: 0.900000
-2025-10-27 18:53:21: Updated samples after SpeedChange: 27058632, new duration: 306.787201s
-2025-10-27 18:53:21: After effects - Max sample: 1.000000, RMS: 0.231447
-2025-10-27 18:53:21: Effects applied to clip: input.mp3
-2025-10-27 18:53:21: Saving MP3 file: output.mp3
-2025-10-27 18:53:22: Encoding 13529316 frames (27058632 samples) to MP3
-2025-10-27 18:53:28: Saved 27058632 samples to output.mp3
-2025-10-27 18:53:28: Successfully saved processed MP3 with Reverb and SpeedChange to output.mp3
-2025-10-27 19:01:58: Program started
-2025-10-27 19:01:58: Parameters: reverbTime=100.000000ms, diffusion=75.000000%, decay=25.000000%, wet=64.000000%, dry=360.000000%, brightness=10.000000%, speed=0.900000
-2025-10-27 19:01:58: Loading MP3 file: input.mp3
-2025-10-27 19:01:59: Loaded 24352768 samples from input.mp3
-2025-10-27 19:01:59: Loaded 24352768 samples from input.mp3
-2025-10-27 19:01:59: Reverb Effect Initialized
-2025-10-27 19:01:59: Effect added to clip: input.mp3
-2025-10-27 19:01:59: SpeedChangeEffect created with speed factor: 0.900000
-2025-10-27 19:01:59: Effect added to clip: input.mp3
-2025-10-27 19:01:59: Before normalization - Max sample: 1.000031, RMS: 0.229631
-2025-10-27 19:01:59: After normalization - Max sample: 0.95
-2025-10-27 19:02:00: Applying SpeedChange Effect with speed factor: 0.900000
-2025-10-27 19:02:01: Updated samples after SpeedChange: 27058632, new duration: 306.787201s
-2025-10-27 19:02:01: After effects - Max sample: 1.000000, RMS: 0.222649
-2025-10-27 19:02:01: Effects applied to clip: input.mp3
-2025-10-27 19:02:01: Saving MP3 file: output.mp3
-2025-10-27 19:02:01: Encoding 13529316 frames (27058632 samples) to MP3
-2025-10-27 19:02:08: Saved 27058632 samples to output.mp3
-2025-10-27 19:02:08: Successfully saved processed MP3 with Reverb and SpeedChange to output.mp3
-2025-10-27 19:03:53: Program started
-2025-10-27 19:03:53: Parameters: reverbTime=100.000000ms, diffusion=75.000000%, decay=25.000000%, wet=64.000000%, dry=360.000000%, brightness=10.000000%, speed=0.900000
-2025-10-27 19:03:53: Loading MP3 file: input.mp3
-2025-10-27 19:03:54: Loaded 24352768 samples from input.mp3
-2025-10-27 19:03:54: Loaded 24352768 samples from input.mp3
-2025-10-27 19:03:54: Reverb Effect Initialized
-2025-10-27 19:03:54: Effect added to clip: input.mp3
-2025-10-27 19:03:54: SpeedChangeEffect created with speed factor: 0.900000
-2025-10-27 19:03:54: Effect added to clip: input.mp3
-2025-10-27 19:03:54: Before normalization - Max sample: 1.000031, RMS: 0.229631
-2025-10-27 19:03:54: After normalization - Max sample: 0.95
-2025-10-27 19:03:56: Applying SpeedChange Effect with speed factor: 0.900000
-2025-10-27 19:03:56: Updated samples after SpeedChange: 27058632, new duration: 306.787201s
-2025-10-27 19:03:56: After effects - Max sample: 1.000000, RMS: 0.222702
-2025-10-27 19:03:56: Effects applied to clip: input.mp3
-2025-10-27 19:03:56: Saving MP3 file: output.mp3
-2025-10-27 19:03:57: Encoding 13529316 frames (27058632 samples) to MP3
-2025-10-27 19:04:03: Saved 27058632 samples to output.mp3
-2025-10-27 19:04:03: Successfully saved processed MP3 with Reverb and SpeedChange to output.mp3
-2025-10-27 19:06:18: Program started
-2025-10-27 19:06:18: Parameters: reverbTime=100.000000ms, diffusion=75.000000%, decay=25.000000%, wet=64.000000%, dry=360.000000%, brightness=10.000000%, speed=0.900000
-2025-10-27 19:06:18: Loading MP3 file: input.mp3
-2025-10-27 19:06:18: Loaded 24352768 samples from input.mp3
-2025-10-27 19:06:18: Loaded 24352768 samples from input.mp3
-2025-10-27 19:06:18: Reverb Effect Initialized
-2025-10-27 19:06:18: Effect added to clip: input.mp3
-2025-10-27 19:06:18: SpeedChangeEffect created with speed factor: 0.900000
-2025-10-27 19:06:18: Effect added to clip: input.mp3
-2025-10-27 19:06:19: Before normalization - Max sample: 1.000031, RMS: 0.229631
-2025-10-27 19:06:19: After normalization - Max sample: 0.95
-2025-10-27 19:06:20: Applying SpeedChange Effect with speed factor: 0.900000
-2025-10-27 19:06:21: Updated samples after SpeedChange: 27058632, new duration: 306.787201s
-2025-10-27 19:06:21: After effects - Max sample: 0.934186, RMS: 0.178915
-2025-10-27 19:06:21: Effects applied to clip: input.mp3
-2025-10-27 19:06:21: Saving MP3 file: output.mp3
-2025-10-27 19:06:21: Encoding 13529316 frames (27058632 samples) to MP3
-2025-10-27 19:06:27: Saved 27058632 samples to output.mp3
-2025-10-27 19:06:27: Successfully saved processed MP3 with Reverb and SpeedChange to output.mp3
-2025-10-27 19:10:03: Program started
-2025-10-27 19:10:03: Parameters: reverbTime=100.000000ms, diffusion=75.000000%, decay=25.000000%, wet=16.000000%, dry=90.000000%, brightness=10.000000%, speed=0.900000
-2025-10-27 19:10:03: Loading MP3 file: input.mp3
-2025-10-27 19:10:04: Loaded 24352768 samples from input.mp3
-2025-10-27 19:10:04: Loaded 24352768 samples from input.mp3
-2025-10-27 19:10:04: Reverb Effect Initialized
-2025-10-27 19:10:04: Effect added to clip: input.mp3
-2025-10-27 19:10:04: SpeedChangeEffect created with speed factor: 0.900000
-2025-10-27 19:10:04: Effect added to clip: input.mp3
-2025-10-27 19:10:04: Before normalization - Max sample: 1.000031, RMS: 0.229631
-2025-10-27 19:10:04: After normalization - Max sample: 0.95
-2025-10-27 19:10:05: Applying SpeedChange Effect with speed factor: 0.900000
-2025-10-27 19:10:06: Updated samples after SpeedChange: 27058632, new duration: 306.787201s
-2025-10-27 19:10:06: After effects - Max sample: 0.725619, RMS: 0.157015
-2025-10-27 19:10:06: Effects applied to clip: input.mp3
-2025-10-27 19:10:06: Saving MP3 file: output.mp3
-2025-10-27 19:10:07: Encoding 13529316 frames (27058632 samples) to MP3
-2025-10-27 19:10:13: Saved 27058632 samples to output.mp3
-2025-10-27 19:10:13: Successfully saved processed MP3 with Reverb and SpeedChange to output.mp3
-2025-10-27 19:11:40: Program started
-2025-10-27 19:11:40: Parameters: reverbTime=100.000000ms, diffusion=75.000000%, decay=25.000000%, wet=5.000000%, dry=100.000000%, brightness=10.000000%, speed=0.900000
-2025-10-27 19:11:40: Loading MP3 file: input.mp3
-2025-10-27 19:11:40: Loaded 24352768 samples from input.mp3
-2025-10-27 19:11:40: Loaded 24352768 samples from input.mp3
-2025-10-27 19:11:40: Reverb Effect Initialized
-2025-10-27 19:11:40: Effect added to clip: input.mp3
-2025-10-27 19:11:40: SpeedChangeEffect created with speed factor: 0.900000
-2025-10-27 19:11:40: Effect added to clip: input.mp3
-2025-10-27 19:11:40: Before normalization - Max sample: 1.000031, RMS: 0.229631
-2025-10-27 19:11:41: After normalization - Max sample: 0.95
-2025-10-27 19:11:42: Applying SpeedChange Effect with speed factor: 0.900000
-2025-10-27 19:11:43: Updated samples after SpeedChange: 27058632, new duration: 306.787201s
-2025-10-27 19:11:43: After effects - Max sample: 0.773006, RMS: 0.174376
-2025-10-27 19:11:43: Effects applied to clip: input.mp3
-2025-10-27 19:11:43: Saving MP3 file: output.mp3
-2025-10-27 19:11:43: Encoding 13529316 frames (27058632 samples) to MP3
-2025-10-27 19:11:49: Saved 27058632 samples to output.mp3
-2025-10-27 19:11:49: Successfully saved processed MP3 with Reverb and SpeedChange to output.mp3
-2025-10-27 19:16:54: Program started
-2025-10-27 19:16:54: Parameters: reverbTime=100.000000ms, diffusion=75.000000%, decay=25.000000%, wet=5.000000%, dry=100.000000%, brightness=10.000000%, speed=0.900000
-2025-10-27 19:16:54: Loading MP3 file: input.mp3
-2025-10-27 19:16:54: Loaded 24352768 samples from input.mp3
-2025-10-27 19:16:54: Loaded 24352768 samples from input.mp3
-2025-10-27 19:16:54: Reverb Effect Initialized
-2025-10-27 19:16:54: Effect added to clip: input.mp3
-2025-10-27 19:16:54: SpeedChangeEffect created with speed factor: 0.900000
-2025-10-27 19:16:54: Effect added to clip: input.mp3
-2025-10-27 19:16:54: Before normalization - Max sample: 1.000031, RMS: 0.229631
-2025-10-27 19:16:55: After normalization - Max sample: 0.95
-2025-10-27 19:16:56: Applying SpeedChange Effect with speed factor: 0.900000
-2025-10-27 19:16:57: Updated samples after SpeedChange: 27058632, new duration: 306.787201s
-2025-10-27 19:16:57: After effects - Max sample: 0.007711, RMS: 0.001744
-2025-10-27 19:16:57: Effects applied to clip: input.mp3
-2025-10-27 19:16:57: Saving MP3 file: output.mp3
-2025-10-27 19:16:57: Encoding 13529316 frames (27058632 samples) to MP3
-2025-10-27 19:17:03: Saved 27058632 samples to output.mp3
-2025-10-27 19:17:03: Successfully saved processed MP3 with Reverb and SpeedChange to output.mp3
-2025-10-27 19:18:20: Program started
-2025-10-27 19:18:20: Parameters: reverbTime=100.000000ms, diffusion=75.000000%, decay=25.000000%, wet=16.000000%, dry=90.000000%, brightness=10.000000%, speed=0.900000
-2025-10-27 19:18:20: Loading MP3 file: input.mp3
-2025-10-27 19:18:21: Loaded 24352768 samples from input.mp3
-2025-10-27 19:18:21: Loaded 24352768 samples from input.mp3
-2025-10-27 19:18:21: Reverb Effect Initialized
-2025-10-27 19:18:21: Effect added to clip: input.mp3
-2025-10-27 19:18:21: SpeedChangeEffect created with speed factor: 0.900000
-2025-10-27 19:18:21: Effect added to clip: input.mp3
-2025-10-27 19:18:21: Before normalization - Max sample: 1.000031, RMS: 0.229631
-2025-10-27 19:18:21: After normalization - Max sample: 0.95
-2025-10-27 19:18:23: Applying SpeedChange Effect with speed factor: 0.900000
-2025-10-27 19:18:23: Updated samples after SpeedChange: 27058632, new duration: 306.787201s
-2025-10-27 19:18:23: After effects - Max sample: 0.007195, RMS: 0.001571
-2025-10-27 19:18:23: Effects applied to clip: input.mp3
-2025-10-27 19:18:23: Saving MP3 file: output.mp3
-2025-10-27 19:18:24: Encoding 13529316 frames (27058632 samples) to MP3
-2025-10-27 19:18:30: Saved 27058632 samples to output.mp3
-2025-10-27 19:18:30: Successfully saved processed MP3 with Reverb and SpeedChange to output.mp3
-2025-10-27 19:19:45: Program started
-2025-10-27 19:19:45: Parameters: reverbTime=100.000000ms, diffusion=75.000000%, decay=25.000000%, wet=16.000000%, dry=90.000000%, brightness=10.000000%, speed=0.900000
-2025-10-27 19:19:45: Loading MP3 file: input.mp3
-2025-10-27 19:19:46: Loaded 24352768 samples from input.mp3
-2025-10-27 19:19:46: Loaded 24352768 samples from input.mp3
-2025-10-27 19:19:46: Reverb Effect Initialized
-2025-10-27 19:19:46: Effect added to clip: input.mp3
-2025-10-27 19:19:46: SpeedChangeEffect created with speed factor: 0.900000
-2025-10-27 19:19:46: Effect added to clip: input.mp3
-2025-10-27 19:19:46: Before normalization - Max sample: 1.000031, RMS: 0.229631
-2025-10-27 19:19:46: After normalization - Max sample: 0.95
-2025-10-27 19:22:33: Program started
-2025-10-27 19:22:33: Parameters: reverbTime=100.000000ms, diffusion=75.000000%, decay=25.000000%, wet=16.000000%, dry=90.000000%, brightness=10.000000%, speed=0.900000
-2025-10-27 19:22:33: Loading MP3 file: input.mp3
-2025-10-27 19:22:34: Loaded 24352768 samples from input.mp3
-2025-10-27 19:22:34: Loaded 24352768 samples from input.mp3
-2025-10-27 19:22:34: Reverb Effect Initialized
-2025-10-27 19:22:34: Effect added to clip: input.mp3
-2025-10-27 19:22:34: SpeedChangeEffect created with speed factor: 0.900000
-2025-10-27 19:22:34: Effect added to clip: input.mp3
-2025-10-27 19:22:34: Before normalization - Max sample: 1.000031, RMS: 0.229631
-2025-10-27 19:22:34: After normalization - Max sample: 0.95
-2025-10-27 19:22:36: Applying SpeedChange Effect with speed factor: 0.900000
-2025-10-27 19:22:36: Updated samples after SpeedChange: 27058632, new duration: 306.787201s
-2025-10-27 19:22:36: After effects - Max sample: 0.009030, RMS: 0.001963
-2025-10-27 19:22:36: Effects applied to clip: input.mp3
-2025-10-27 19:22:36: Saving MP3 file: output.mp3
-2025-10-27 19:22:37: Encoding 13529316 frames (27058632 samples) to MP3
-2025-10-27 19:22:43: Saved 27058632 samples to output.mp3
-2025-10-27 19:22:43: Successfully saved processed MP3 with Reverb and SpeedChange to output.mp3
-2025-10-27 19:24:00: Program started
-2025-10-27 19:24:00: Parameters: reverbTime=500.000000ms, diffusion=70.000000%, decay=50.000000%, wet=30.000000%, dry=80.000000%, brightness=10.000000%, speed=1.000000
-2025-10-27 19:24:00: Loading MP3 file: input.mp3
-2025-10-27 19:24:01: Loaded 24352768 samples from input.mp3
-2025-10-27 19:24:01: Loaded 24352768 samples from input.mp3
-2025-10-27 19:24:01: Reverb Effect Initialized
-2025-10-27 19:24:01: Effect added to clip: input.mp3
-2025-10-27 19:24:01: Before normalization - Max sample: 1.000031, RMS: 0.229631
-2025-10-27 19:24:01: After normalization - Max sample: 0.95
-2025-10-27 19:24:03: After effects - Max sample: 0.008468, RMS: 0.001757
-2025-10-27 19:24:03: Effects applied to clip: input.mp3
-2025-10-27 19:24:03: Saving MP3 file: output.mp3
-2025-10-27 19:24:03: Encoding 12176384 frames (24352768 samples) to MP3
-2025-10-27 19:24:08: Saved 24352768 samples to output.mp3
-2025-10-27 19:24:08: Successfully saved processed MP3 with Reverb and SpeedChange to output.mp3
-2025-10-27 19:33:34: Program started
-2025-10-27 19:33:34: Parameters: reverbTime=600.000000ms, diffusion=70.000000%, decay=50.000000%, wet=40.000000%, dry=90.000000%, brightness=20.000000%, speed=1.000000
-2025-10-27 19:33:34: Loading MP3 file: input.mp3
-2025-10-27 19:33:34: Loaded 24352768 samples from input.mp3
-2025-10-27 19:33:34: Loaded 24352768 samples from input.mp3
-2025-10-27 19:33:34: Reverb Effect Initialized
-2025-10-27 19:33:34: Effect added to clip: input.mp3
-2025-10-27 19:33:34: Applying effects to clip: input.mp3
-2025-10-27 19:33:36: Effect applied: max abs sample = 0.010585
-2025-10-27 19:33:36: All effects applied, final sample count = 24352768
-2025-10-27 19:33:36: Saving MP3 file: output.mp3
-2025-10-27 19:33:36: Encoding 12176384 frames (24352768 samples) to MP3
-2025-10-27 19:33:42: Saved 24352768 samples to output.mp3
-2025-10-27 19:33:42: Successfully saved processed MP3 with Reverb and SpeedChange to output.mp3
+2025-10-27 19:54:35: Program started
+2025-10-27 19:54:35: Loading MP3 file from: input.mp3
+2025-10-27 19:54:36: Loaded MP3: input.mp3 (24352768 samples, 276.108490s, 2 channels)
+2025-10-27 19:54:36: Loaded 24352768 samples from input.mp3
+2025-10-27 19:54:36: Effect added to clip: input.mp3
+2025-10-27 19:54:36: Effect added to clip: input.mp3
+2025-10-27 19:54:36: Before normalization - Max sample: 1.000000, RMS: 0.229624
+2025-10-27 19:54:36: After normalization - Max sample: 0.5
+2025-10-27 19:54:36: Applying Reverb Effect
+2025-10-27 19:54:36: Applying Echo Effect
+2025-10-27 19:54:36: Applying echo 1 with gain 0.350000 and delay 6615 samples
+2025-10-27 19:54:36: Applying echo 2 with gain 0.175000 and delay 13230 samples
+2025-10-27 19:54:36: Applying echo 3 with gain 0.087500 and delay 19845 samples
+2025-10-27 19:54:37: After effects - Max sample: 0.875687, RMS: 0.137784
+2025-10-27 19:54:37: Effects applied to clip: input.mp3
+2025-10-27 19:54:37: Saving MP3: output.mp3
+2025-10-27 19:54:37: Saving samples - Max sample: 0.875687, RMS: 0.137784
+2025-10-27 19:56:08: Program started
+2025-10-27 19:56:08: Loading MP3 file from: input.mp3
+2025-10-27 19:56:08: Loaded MP3: input.mp3 (24352768 samples, 276.108490s, 2 channels)
+2025-10-27 19:56:08: Loaded 24352768 samples from input.mp3
+2025-10-27 19:56:08: Effect added to clip: input.mp3
+2025-10-27 19:56:08: Effect added to clip: input.mp3
+2025-10-27 19:56:08: Before normalization - Max sample: 1.000000, RMS: 0.229624
+2025-10-27 19:56:08: After normalization - Max sample: 0.5
+2025-10-27 19:56:08: Applying Reverb Effect
+2025-10-27 19:56:08: Applying Echo Effect
+2025-10-27 19:56:08: Applying echo 1 with gain 0.350000 and delay 6615 samples
+2025-10-27 19:56:09: After effects - Max sample: 0.805301, RMS: 0.130743
+2025-10-27 19:56:09: Effects applied to clip: input.mp3
+2025-10-27 19:56:09: Saving MP3: output.mp3
+2025-10-27 19:56:09: Saving samples - Max sample: 0.805301, RMS: 0.130743
+2025-10-27 19:56:14: Successfully saved MP3: output.mp3
+2025-10-27 19:56:14: Successfully saved processed MP3 with Reverb and Echo to output.mp3
+2025-10-27 19:57:32: Program started
+2025-10-27 19:57:32: Loading MP3 file from: input.mp3
+2025-10-27 19:57:33: Loaded MP3: input.mp3 (24352768 samples, 276.108490s, 2 channels)
+2025-10-27 19:57:33: Loaded 24352768 samples from input.mp3
+2025-10-27 19:57:33: Effect added to clip: input.mp3
+2025-10-27 19:57:33: Effect added to clip: input.mp3
+2025-10-27 19:57:33: Before normalization - Max sample: 1.000000, RMS: 0.229624
+2025-10-27 19:57:33: After normalization - Max sample: 0.5
+2025-10-27 19:57:33: Applying Reverb Effect
+2025-10-27 19:57:33: Applying Echo Effect
+2025-10-27 19:57:33: Applying echo 1 with gain 0.100000 and delay 6615 samples
+2025-10-27 19:57:34: After effects - Max sample: 0.875506, RMS: 0.140912
+2025-10-27 19:57:34: Effects applied to clip: input.mp3
+2025-10-27 19:57:34: Saving MP3: output.mp3
+2025-10-27 19:57:34: Saving samples - Max sample: 0.875506, RMS: 0.140912
+2025-10-27 19:57:39: Successfully saved MP3: output.mp3
+2025-10-27 19:57:39: Successfully saved processed MP3 with Reverb and Echo to output.mp3
+2025-10-27 20:24:20: Program started
+2025-10-27 20:24:20: Loading MP3 file from: input.mp3
+2025-10-27 20:24:20: Loaded MP3: input.mp3 (24352768 samples, 276.108490s, 2 channels)
+2025-10-27 20:24:20: Loaded 24352768 samples from input.mp3
+2025-10-27 20:24:20: Reverb intensity set to 50.000000%
+2025-10-27 20:24:20: Echo intensity set to 50.000000%
+2025-10-27 20:24:20: SpeedChangeEffect initialized with factor 1.000000
+2025-10-27 20:24:20: Speed factor set to 1.000000x
+2025-10-27 20:24:20: Effect added to clip: input.mp3
+2025-10-27 20:24:20: Effect added to clip: input.mp3
+2025-10-27 20:24:20: Effect added to clip: input.mp3
+2025-10-27 20:24:21: Before normalization - Max sample: 1.000000, RMS: 0.229624
+2025-10-27 20:24:21: After normalization - Max sample: 0.5
+2025-10-27 20:24:21: Applying Reverb Effect with gain 0.500000
+2025-10-27 20:24:21: Applying Echo Effect with gain 0.500000
+2025-10-27 20:24:21: Applying echo 1 with gain 0.500000 and delay 6615 samples
+2025-10-27 20:24:21: After effects - Max sample: 1.000000, RMS: 0.178698
+2025-10-27 20:24:21: Effects applied to clip: input.mp3
+2025-10-27 20:24:21: Saving MP3: output.mp3
+2025-10-27 20:24:21: Saving samples - Max sample: 1.000000, RMS: 0.178698
+2025-10-27 20:24:26: Successfully saved MP3: output.mp3
+2025-10-27 20:24:27: Successfully saved processed MP3 with Reverb, Echo, and Speed to output.mp3
+2025-10-27 20:26:59: Program started
+2025-10-27 20:26:59: Loading MP3 file from: input.mp3
+2025-10-27 20:27:00: Loaded MP3: input.mp3 (24352768 samples, 276.108490s, 2 channels)
+2025-10-27 20:27:00: Loaded 24352768 samples from input.mp3
+2025-10-27 20:27:00: Reverb intensity set to 50.000000%
+2025-10-27 20:27:00: Echo intensity set to 15.000000%
+2025-10-27 20:27:00: SpeedChangeEffect initialized with factor 1.000000
+2025-10-27 20:27:00: Speed factor set to 0.900000x
+2025-10-27 20:27:00: Effect added to clip: input.mp3
+2025-10-27 20:27:00: Effect added to clip: input.mp3
+2025-10-27 20:27:00: Effect added to clip: input.mp3
+2025-10-27 20:27:00: Before normalization - Max sample: 1.000000, RMS: 0.229624
+2025-10-27 20:27:00: After normalization - Max sample: 0.5
+2025-10-27 20:27:00: Applying Reverb Effect with gain 0.500000
+2025-10-27 20:27:00: Applying Echo Effect with gain 0.150000
+2025-10-27 20:27:00: Applying echo 1 with gain 0.150000 and delay 6615 samples
+2025-10-27 20:27:00: After effects - Max sample: 0.907223, RMS: 0.146359
+2025-10-27 20:27:00: Effects applied to clip: input.mp3
+2025-10-27 20:27:00: Saving MP3: output.mp3
+2025-10-27 20:27:01: Saving samples - Max sample: 0.907223, RMS: 0.146359
+2025-10-27 20:27:06: Successfully saved MP3: output.mp3
+2025-10-27 20:27:07: Successfully saved processed MP3 with Reverb, Echo, and Speed to output.mp3

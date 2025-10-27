@@ -228,9 +228,6 @@ LAME_INCLUDE_DIR:PATH=/opt/homebrew/include
 //Path to a library.
 LAME_LIBRARY:FILEPATH=/opt/homebrew/lib/libmp3lame.dylib
 
-//Path to a library.
-MPG123_LIBRARY:FILEPATH=/opt/homebrew/lib/libmpg123.dylib
-
 //Arguments to supply to pkg-config
 PKG_CONFIG_ARGN:STRING=
 
