@@ -1,34 +1,24 @@
 #pragma once
-#include <string>
-#include <vector>
 #include <memory>
-#include <mutex>
-#include "Adapters/AudioFileAdapter.h"
-#include "EffectFactory.h"
-#include "Logger.h"
+#include <vector>
+#include <string>
+#include "AudioFileAdapter.h"
+#include "IEffect.h"
+#include "Effects/Speed.h"
 
 class AudioClip {
-private:
-    std::string filePath;
-    std::shared_ptr<AudioFileAdapter> audioFile;
-    std::vector<float> samples;
-    float duration = 0.0f;
-    float startTime = 0.0f;
-    bool isLoaded = false;
-    std::vector<std::shared_ptr<IEffect>> effects;
-    std::mutex mutex_;
 public:
-    AudioClip(const std::string& path);
+    explicit AudioClip(const std::string& filePath);
     bool load();
-    void play();
-    void stop();
-    void mixToBuffer(float* outputBuffer, unsigned long framesPerBuffer);
-    void applyEffects();
     bool save(const std::string& outputPath);
-    float getDuration() const;
-    float getStartTime() const;
-    void setStartTime(float time);
     void addEffect(std::shared_ptr<IEffect> effect);
-    bool isClipLoaded() const;
+    void applyEffects();
     std::vector<float> getSamples() const;
+
+private:
+    std::string filePath_;
+    std::unique_ptr<AudioFileAdapter> audioFile_;
+    std::vector<float> samples_;
+    std::vector<std::shared_ptr<IEffect>> effects_;  // <-- ADD THIS
+    bool isLoaded_ = false;
 };

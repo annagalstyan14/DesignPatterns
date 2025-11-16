@@ -1,97 +1,105 @@
 #include "AudioClip.h"
 #include "Adapters/Mp3.h"
+#include "Logger.h"
 #include <algorithm>
+#include <cmath>
 #include <numeric>
+#include <iostream>
 
-AudioClip::AudioClip(const std::string& path) : filePath(path) {
-    if (path.size() >= 4 && path.compare(path.size() - 4, 4, ".mp3") == 0) {
-        audioFile = std::make_shared<Mp3Adapter>();
-    } else {
-        Logger::getInstance().log("Unsupported file format: " + path);
-    }
+AudioClip::AudioClip(const std::string& filePath) : filePath_(filePath) {
+    audioFile_ = std::make_unique<Mp3Adapter>();
 }
 
 bool AudioClip::load() {
-    std::lock_guard<std::mutex> lock(mutex_);
-    if (!audioFile) return false;
-    isLoaded = audioFile->load(filePath);
-    if (isLoaded) {
-        samples = audioFile->getSamples();
-        duration = audioFile->getDuration();
-        Logger::getInstance().log("Loaded " + std::to_string(samples.size()) + " samples from " + filePath);
-    }
-    return isLoaded;
-}
-
-void AudioClip::play() {
-    // Not needed for minimal version
-}
-
-void AudioClip::stop() {
-    // Not needed for minimal version
-}
-
-void AudioClip::mixToBuffer(float* outputBuffer, unsigned long framesPerBuffer) {
-    // Not needed for minimal version
-}
-
-void AudioClip::applyEffects() {
-    std::lock_guard<std::mutex> lock(mutex_);
-    if (!isLoaded || samples.empty()) {
-        Logger::getInstance().log("Cannot apply effects: no samples loaded for " + filePath);
-        return;
-    }
-n
-    float maxSampleBefore = 0.0f;
-    double sumSquaresBefore = 0.0;
-    for (const auto& sample : samples) {
-        maxSampleBefore = std::max(maxSampleBefore, std::abs(sample));
-        sumSquaresBefore += sample * sample;
-    }
-    double rmsBefore = std::sqrt(sumSquaresBefore / samples.size());
-    Logger::getInstance().log("Before normalization - Max sample: " + std::to_string(maxSampleBefore) + ", RMS: " + std::to_string(rmsBefore));
-
-    if (maxSampleBefore > 0.0f) {
-        float scale = 0.5f / maxSampleBefore; 
-        for (auto& sample : samples) {
-            sample *= scale;
-        }
-        Logger::getInstance().log("After normalization - Max sample: 0.5");
+    if (!audioFile_->load(filePath_)) {
+        Logger::getInstance().log("Failed to load file: " + filePath_);
+        return false;
     }
 
-    for (const auto& effect : effects) {
-        if (effect) {
-            effect->apply(samples.data(), samples.size());
-        }
-    }
-
-    float maxSampleAfter = 0.0f;
-    double sumSquaresAfter = 0.0;
-    for (const auto& sample : samples) {
-        maxSampleAfter = std::max(maxSampleAfter, std::abs(sample));
-        sumSquaresAfter += sample * sample;
-    }
-    double rmsAfter = std::sqrt(sumSquaresAfter / samples.size());
-    Logger::getInstance().log("After effects - Max sample: " + std::to_string(maxSampleAfter) + ", RMS: " + std::to_string(rmsAfter));
-    Logger::getInstance().log("Effects applied to clip: " + filePath);
+    samples_ = audioFile_->getSamples();  // <-- FIXED: samples_
+    isLoaded_ = true;
+    Logger::getInstance().log("Loaded " + std::to_string(samples_.size()) + " samples from " + filePath_);
+    return true;
 }
 
 bool AudioClip::save(const std::string& outputPath) {
-    std::lock_guard<std::mutex> lock(mutex_);
-    if (!isLoaded) {
-        Logger::getInstance().log("Cannot save unloaded clip: " + filePath);
+    if (!isLoaded_ || samples_.empty()) {  // <-- FIXED
+        Logger::getInstance().log("Cannot save: no samples loaded");
         return false;
     }
-    return audioFile->save(outputPath, samples);
+
+    // Log stats before save
+    double sumSquaresBefore = 0.0;
+    for (const auto& sample : samples_) {  // <-- FIXED
+        sumSquaresBefore += sample * sample;
+    }
+    double rmsBefore = std::sqrt(sumSquaresBefore / samples_.size());
+    Logger::getInstance().log("Saving samples - Max sample: " + std::to_string(*std::max_element(samples_.begin(), samples_.end())) +
+                              ", RMS: " + std::to_string(rmsBefore));
+
+    return audioFile_->save(outputPath, samples_);  // <-- FIXED
 }
 
-float AudioClip::getDuration() const { return duration; }
-float AudioClip::getStartTime() const { return startTime; }
-void AudioClip::setStartTime(float time) { startTime = time; }
 void AudioClip::addEffect(std::shared_ptr<IEffect> effect) {
-    std::lock_guard<std::mutex> lock(mutex_);
-    effects.push_back(effect);
-    Logger::getInstance().log("Effect added to clip: " + filePath);
+    if (effect) {
+        effects_.push_back(effect);  // <-- FIXED: effects_ is now a vector
+    }
 }
-bool AudioClip::isClipLoaded() const { return isLoaded; }
-std::vector<float> AudioClip::getSamples() const { return samples; }
+
+void AudioClip::applyEffects() {
+    if (!isLoaded_ || samples_.empty()) return;
+
+    // Log before
+    double sumSquaresBefore = std::accumulate(samples_.begin(), samples_.end(), 0.0,
+        [](double acc, float s) { return acc + s * s; });
+    double rmsBefore = std::sqrt(sumSquaresBefore / samples_.size());
+    Logger::getInstance().log("Before normalization - Max sample: " + std::to_string(*std::max_element(samples_.begin(), samples_.end())) +
+                              ", RMS: " + std::to_string(rmsBefore));
+
+    // Optional: normalize
+    float maxSample = *std::max_element(samples_.begin(), samples_.end(), 
+        [](float a, float b) { return std::abs(a) < std::abs(b); });
+    if (maxSample > 1.0f) {
+        for (auto& sample : samples_) {
+            sample /= maxSample;
+        }
+        Logger::getInstance().log("After normalization - Max sample: 1.0");
+    }
+
+    // Apply effects
+    for (auto& effect : effects_) {
+        // Check if this is a speed effect and pre-allocate space
+        if (auto* speed = dynamic_cast<SpeedChangeEffect*>(effect.get())) {
+            float factor = speed->getSpeedFactor();
+            size_t oldSize = samples_.size();
+            size_t newSize = static_cast<size_t>(oldSize / factor);
+            
+            // Only resize if we need MORE space (slowing down)
+            if (newSize > oldSize) {
+                samples_.resize(newSize);
+            }
+            
+            Logger::getInstance().log("Speed " + std::to_string(factor) + "x: pre-allocating from " +
+                                      std::to_string(oldSize) + " to " + std::to_string(newSize) + " samples");
+        }
+        
+        // Apply the effect and get the actual new size
+        size_t actualNewSize = effect->apply(samples_.data(), samples_.size());
+        
+        // Resize to the actual size returned by the effect
+        samples_.resize(actualNewSize);
+        
+        Logger::getInstance().log("After effect: buffer size is now " + std::to_string(actualNewSize) + " samples");
+    }
+
+    // Log after
+    double sumSquaresAfter = std::accumulate(samples_.begin(), samples_.end(), 0.0,
+        [](double acc, float s) { return acc + s * s; });
+    double rmsAfter = std::sqrt(sumSquaresAfter / samples_.size());
+    Logger::getInstance().log("After effects - Max sample: " + std::to_string(*std::max_element(samples_.begin(), samples_.end())) +
+                              ", RMS: " + std::to_string(rmsAfter));
+}
+
+std::vector<float> AudioClip::getSamples() const {
+    return samples_;  // <-- FIXED
+}

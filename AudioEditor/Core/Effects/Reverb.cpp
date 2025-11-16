@@ -1,29 +1,43 @@
 #include "Reverb.h"
 #include "../Logger.h"
+#include <vector>
+#include <algorithm>
+#include <cmath>
 
-Reverb::Reverb() : reverbGain_(0.5f), delaySamples_(3308) {
+Reverb::Reverb() : reverbGain(0.4f), decayFactor(0.6f), baseDelaySamples(1500), lowPass(0.8f) 
+{
+    int delays[] = {1493, 1733, 2111, 2333, 2579};
+    for (int d : delays)
+        delayLines.push_back({std::vector<float>(d, 0.0f), 0});
 }
 
-void Reverb::setIntensity(float intensityPercent) {
-    reverbGain_ = std::clamp(intensityPercent / 100.0f, 0.0f, 1.0f);
-    Logger::getInstance().log("Reverb intensity set to " + std::to_string(intensityPercent) + "%");
+void Reverb::setIntensity(float intensityPercent){
+    float t = std::clamp(intensityPercent / 100.0f, 0.0f, 1.0f);
+    reverbGain = 0.4f + t* 0.6f;
+    decayFactor = 0.6f + t* 0.3f;
+    lowPass = 0.8f + t * 0.15f;
 }
 
-void Reverb::apply(float* audioBuffer, size_t bufferSize) {
-    Logger::getInstance().log("Applying Reverb Effect with gain " + std::to_string(reverbGain_));
-    
-    for (size_t i = delaySamples_ * 2; i < bufferSize; i += 2) {
+size_t Reverb::apply(float* buffer, size_t bufferSize){  // Rename parameter!
+    Logger::getInstance().log("Applying Reverb: ");
 
-        audioBuffer[i] += audioBuffer[i - delaySamples_ * 2] * reverbGain_;
-        if (i + 1 < bufferSize) {
-            audioBuffer[i + 1] += audioBuffer[i + 1 - delaySamples_ * 2] * reverbGain_;
+    for (size_t i = 0; i < bufferSize; ++i){
+        float input = buffer[i];  // Use 'buffer' not 'audioBuffer'
+        float reverbOut = 0.0f;
+
+        for (auto& d : delayLines){
+            float delayed = d.audioBuffer[d.index];  // This is the struct member
+            reverbOut += delayed;
+
+            float feedback = input + delayed * decayFactor;
+            d.audioBuffer[d.index] = d.audioBuffer[d.index] * (1- lowPass) + feedback * lowPass;
+
+            d.index = (d.index + 1) % d.audioBuffer.size();
         }
-        
-        if (audioBuffer[i] > 1.0f) audioBuffer[i] = 1.0f;
-        if (audioBuffer[i] < -1.0f) audioBuffer[i] = -1.0f;
-        if (i + 1 < bufferSize) {
-            if (audioBuffer[i + 1] > 1.0f) audioBuffer[i + 1] = 1.0f;
-            if (audioBuffer[i + 1] < -1.0f) audioBuffer[i + 1] = -1.0f;
-        }
+
+        buffer[i] = input * (1.0f - reverbGain) + reverbOut * (reverbGain / delayLines.size());
+        buffer[i] = std::clamp(buffer[i], -1.0f, 1.0f);
     }
+    
+    return bufferSize;  // Add this!
 }

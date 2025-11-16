@@ -3,27 +3,67 @@
 #include <cmath>
 #include "../Logger.h"
 
-SpeedChangeEffect::SpeedChangeEffect(float speedFactor) : speedFactor_(std::max(0.1f, std::min(2.0f, speedFactor))) {
+SpeedChangeEffect::SpeedChangeEffect(float speedFactor)
+    : speedFactor_(std::clamp(speedFactor, 0.1f, 2.0f)) {
     Logger::getInstance().log("SpeedChangeEffect initialized with factor " + std::to_string(speedFactor_));
 }
 
 void SpeedChangeEffect::setSpeedFactor(float speedFactor) {
-    speedFactor_ = std::max(0.1f, std::min(2.0f, speedFactor));
+    speedFactor_ = std::clamp(speedFactor, 0.1f, 2.0f);
     Logger::getInstance().log("Speed factor set to " + std::to_string(speedFactor_) + "x");
 }
 
-void SpeedChangeEffect::apply(float* audioBuffer, size_t bufferSize) {
-    if (bufferSize == 0 || !audioBuffer || speedFactor_ == 1.0f) {
-        return;
+float SpeedChangeEffect::getSpeedFactor() const {
+    return speedFactor_;
+}
+
+size_t SpeedChangeEffect::apply(float* audioBuffer, size_t bufferSize) {
+    if (speedFactor_ == 1.0f || bufferSize == 0) return bufferSize;
+
+    const int channels = 2; // Stereo audio
+    size_t numFrames = bufferSize / channels;
+    size_t newFrames = static_cast<size_t>(numFrames / speedFactor_);
+    size_t newSize = newFrames * channels;
+    
+    std::vector<float> temp(newSize);
+
+    // Process each channel separately
+    for (int ch = 0; ch < channels; ++ch) {
+        for (size_t i = 0; i < newFrames; ++i) {
+            float srcFloat = i * speedFactor_;
+            size_t src = static_cast<size_t>(srcFloat);
+            float frac = srcFloat - src;
+
+            size_t srcIdx = src * channels + ch;
+            size_t dstIdx = i * channels + ch;
+
+            if (src > 0 && src + 2 < numFrames) {
+                // Cubic interpolation per channel
+                float y0 = audioBuffer[(src - 1) * channels + ch];
+                float y1 = audioBuffer[src * channels + ch];
+                float y2 = audioBuffer[(src + 1) * channels + ch];
+                float y3 = audioBuffer[(src + 2) * channels + ch];
+                
+                float c0 = y1;
+                float c1 = 0.5f * (y2 - y0);
+                float c2 = y0 - 2.5f * y1 + 2.0f * y2 - 0.5f * y3;
+                float c3 = 0.5f * (y3 - y0) + 1.5f * (y1 - y2);
+                
+                temp[dstIdx] = c0 + c1 * frac + c2 * frac * frac + c3 * frac * frac * frac;
+            } else if (src + 1 < numFrames) {
+                // Linear interpolation at boundaries
+                temp[dstIdx] = audioBuffer[src * channels + ch] * (1.0f - frac) + 
+                               audioBuffer[(src + 1) * channels + ch] * frac;
+            } else if (src < numFrames) {
+                temp[dstIdx] = audioBuffer[src * channels + ch];
+            } else {
+                temp[dstIdx] = 0.0f;
+            }
+            
+            temp[dstIdx] = std::clamp(temp[dstIdx], -1.0f, 1.0f);
+        }
     }
 
-    size_t newSize = static_cast<size_t>(bufferSize / speedFactor_);
-    std::vector<float> tempBuffer(newSize, 0.0f);
-
-    for (size_t i = 0; i < newSize && i * speedFactor_ < bufferSize; ++i) {
-        size_t sourceIndex = static_cast<size_t>(i * speedFactor_);
-        tempBuffer[i] = audioBuffer[sourceIndex];
-    }
-
-    std::copy(tempBuffer.begin(), tempBuffer.begin() + std::min(bufferSize, newSize), audioBuffer);
+    std::copy(temp.begin(), temp.end(), audioBuffer);
+    return newSize;
 }

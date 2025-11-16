@@ -22,21 +22,20 @@ void parseArguments(int argc, char* argv[], std::string& inputFile, std::string&
     std::map<std::string, std::string> argMap;
 
     for (size_t i = 0; i < args.size(); ++i) {
-        if (args[i].substr(0, 2) == "--") {
-            std::string key = args[i].substr(2);
-            if (i + 1 < args.size() && args[i + 1].substr(0, 2) != "--") {
-                argMap[key] = args[++i];
-            } else {
-                argMap[key] = "true";
-            }
+        std::string arg = args[i];
+        if (arg.substr(0, 2) == "--") arg = arg.substr(2);  // Strip -- if present
+        if (i + 1 < args.size() && args[i + 1].substr(0, 2) != "--") {
+            argMap[arg] = args[++i];
+        } else {
+            argMap[arg] = "true";
         }
     }
 
-    inputFile = argMap.count("input") ? argMap["input"] : "input.mp3";
+    inputFile = argMap.count("input") ? argMap["input"] : "recording.mp3";
     outputFile = argMap.count("output") ? argMap["output"] : "output.mp3";
-    reverbIntensity = argMap.count("reverb-intensity") ? std::stof(argMap["reverb-intensity"]) : 50.0f; // Default 50%
-    echoIntensity = argMap.count("echo-intensity") ? std::stof(argMap["echo-intensity"]) : 15.0f; // Default 50%
-    speed = argMap.count("speed") ? std::stof(argMap["speed"]) : 0.9f; // Default 1x
+    reverbIntensity = argMap.count("reverb") ? std::stof(argMap["reverb"]) : 0.0f; 
+    echoIntensity = argMap.count("echo") ? std::stof(argMap["echo"]) : 0.0f; 
+    speed = argMap.count("speed") ? std::stof(argMap["speed"]) : 1.0f; 
 }
 
 int main(int argc, char* argv[]) {
@@ -68,38 +67,31 @@ int main(int argc, char* argv[]) {
     }
 
     auto reverb = EffectFactory::createEffect("Reverb");
-    if (reverb) {
+    if (reverb && reverbIntensity > 0) {
         auto reverbPtr = std::dynamic_pointer_cast<Reverb>(reverb);
         if (reverbPtr) {
             reverbPtr->setIntensity(reverbIntensity);
         }
+        clip->addEffect(reverb);
     }
 
     auto echo = EffectFactory::createEffect("Echo");
-    if (echo) {
+    if (echo && echoIntensity > 0) {
         auto echoPtr = std::dynamic_pointer_cast<Echo>(echo);
         if (echoPtr) {
             echoPtr->setIntensity(echoIntensity);
         }
+        clip->addEffect(echo);
     }
 
     auto speedEffect = EffectFactory::createEffect("Speed");
-    if (speedEffect) {
+    if (speedEffect && speed != 1.0f) {
         auto speedPtr = std::dynamic_pointer_cast<SpeedChangeEffect>(speedEffect);
         if (speedPtr) {
             speedPtr->setSpeedFactor(speed);
         }
+        clip->addEffect(speedEffect);
     }
-
-    if (!reverb || !echo || !speedEffect) {
-        Logger::getInstance().log("Failed to create one or more effects");
-        std::cerr << "Error: Failed to create one or more effects" << std::endl;
-        return 1;
-    }
-
-    clip->addEffect(reverb);
-    clip->addEffect(echo);
-    clip->addEffect(speedEffect);
 
     clip->applyEffects();
 

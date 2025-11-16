@@ -7,8 +7,9 @@
 class SpeedChangeEffect : public IEffect {
 public:
     explicit SpeedChangeEffect(float speedFactor);
-    void apply(float* audioBuffer, size_t bufferSize) override;
+    size_t apply(float* audioBuffer, size_t bufferSize) override;
     void setSpeedFactor(float speedFactor);
+    float getSpeedFactor() const;
 
 private:
     float speedFactor_;
