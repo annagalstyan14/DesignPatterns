@@ -1,3 +1,8 @@
-/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/CMakeFiles/AudioEditor.dir
+/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/CMakeFiles/AudioEditorCore.dir
+/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/CMakeFiles/audio_editor.dir
 /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/CMakeFiles/edit_cache.dir
 /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/CMakeFiles/rebuild_cache.dir
+/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/CMakeFiles/list_install_components.dir
+/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/CMakeFiles/install.dir
+/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/CMakeFiles/install/local.dir
+/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/CMakeFiles/install/strip.dir

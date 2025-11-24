@@ -1,16 +1,15 @@
 #include "Speed.h"
 #include <algorithm>
 #include <cmath>
-#include "../Logger.h"
 
-SpeedChangeEffect::SpeedChangeEffect(float speedFactor)
-    : speedFactor_(std::clamp(speedFactor, 0.1f, 2.0f)) {
-    Logger::getInstance().log("SpeedChangeEffect initialized with factor " + std::to_string(speedFactor_));
+SpeedChangeEffect::SpeedChangeEffect(float speedFactor, std::shared_ptr<ILogger> logger)
+    : speedFactor_(std::clamp(speedFactor, 0.1f, 2.0f)), logger_(logger) {
+    logger_->log("SpeedChangeEffect initialized with factor " + std::to_string(speedFactor_));
 }
 
 void SpeedChangeEffect::setSpeedFactor(float speedFactor) {
     speedFactor_ = std::clamp(speedFactor, 0.1f, 2.0f);
-    Logger::getInstance().log("Speed factor set to " + std::to_string(speedFactor_) + "x");
+    logger_->log("Speed factor set to " + std::to_string(speedFactor_) + "x");
 }
 
 float SpeedChangeEffect::getSpeedFactor() const {
@@ -34,7 +33,7 @@ size_t SpeedChangeEffect::apply(float* audioBuffer, size_t bufferSize) {
             size_t src = static_cast<size_t>(srcFloat);
             float frac = srcFloat - src;
 
-            size_t srcIdx = src * channels + ch;
+            //size_t srcIdx = src * channels + ch;
             size_t dstIdx = i * channels + ch;
 
             if (src > 0 && src + 2 < numFrames) {

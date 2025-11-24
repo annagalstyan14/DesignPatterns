@@ -614,3 +614,496 @@
 2025-11-06 13:16:00: Saving samples - Max sample: 0.808330, RMS: 0.085941
 2025-11-06 13:16:01: Successfully saved MP3: output.mp3
 2025-11-06 13:16:01: Successfully saved processed MP3 with Reverb, Echo, and Speed to output.mp3
+2025-11-24 17:07:16: Program started
+2025-11-24 17:07:16: Loading MP3 file from: recording.mp3
+2025-11-24 17:07:16: Loaded MP3: recording.mp3 (7970816 samples, 166.058670s, 1 channels)
+2025-11-24 17:07:16: Loaded 7970816 samples from recording.mp3
+2025-11-24 17:07:16: SpeedChangeEffect initialized with factor 1.000000
+2025-11-24 17:07:16: Before normalization - Max sample: 0.993713, RMS: 0.137619
+2025-11-24 17:07:16: After effects - Max sample: 0.993713, RMS: 0.137619
+2025-11-24 17:07:17: Saving samples - Max sample: 0.993713, RMS: 0.137619
+2025-11-24 17:07:17: Saving MP3: output.mp3
+2025-11-24 17:07:17: Saving samples - Max sample: 0.993713, RMS: 0.137619
+2025-11-24 17:07:18: Successfully saved MP3: output.mp3
+2025-11-24 17:07:18: Successfully saved processed MP3 with Reverb, Echo, and Speed to output.mp3
+2025-11-24 17:07:42: Program started
+2025-11-24 17:07:42: Loading MP3 file from: recording.mp3
+2025-11-24 17:07:42: Loaded MP3: recording.mp3 (7970816 samples, 166.058670s, 1 channels)
+2025-11-24 17:07:42: Loaded 7970816 samples from recording.mp3
+2025-11-24 17:07:42: Echo: 25.000000% → 225.000000ms
+2025-11-24 17:07:42: SpeedChangeEffect initialized with factor 1.000000
+2025-11-24 17:07:42: Speed factor set to 0.900000x
+2025-11-24 17:07:43: Before normalization - Max sample: 0.993713, RMS: 0.137619
+2025-11-24 17:07:43: Applying Reverb: 
+2025-11-24 17:07:43: After effect: buffer size is now 7970816 samples
+2025-11-24 17:07:44: After effect: buffer size is now 7970816 samples
+2025-11-24 17:07:44: Speed 0.900000x: pre-allocating from 7970816 to 8856462 samples
+2025-11-24 17:07:44: After effect: buffer size is now 9840514 samples
+2025-11-24 17:07:44: After effects - Max sample: 0.642997, RMS: 0.067520
+2025-11-24 17:07:44: Saving samples - Max sample: 0.642997, RMS: 0.067520
+2025-11-24 17:07:44: Saving MP3: output.mp3
+2025-11-24 17:07:44: Saving samples - Max sample: 0.693468, RMS: 0.067520
+2025-11-24 17:07:46: Successfully saved MP3: output.mp3
+2025-11-24 17:07:46: Successfully saved processed MP3 with Reverb, Echo, and Speed to output.mp3
+2025-11-24 17:08:27: Program started
+2025-11-24 17:08:27: Loading MP3 file from: recording.mp3
+2025-11-24 17:08:27: Loaded MP3: recording.mp3 (7970816 samples, 166.058670s, 1 channels)
+2025-11-24 17:08:27: Loaded 7970816 samples from recording.mp3
+2025-11-24 17:08:27: Echo: 30.000000% → 250.000000ms
+2025-11-24 17:08:27: SpeedChangeEffect initialized with factor 1.000000
+2025-11-24 17:08:28: Before normalization - Max sample: 0.993713, RMS: 0.137619
+2025-11-24 17:08:28: Applying Reverb: 
+2025-11-24 17:08:28: After effect: buffer size is now 7970816 samples
+2025-11-24 17:08:28: After effect: buffer size is now 7970816 samples
+2025-11-24 17:08:29: After effects - Max sample: 0.678429, RMS: 0.071260
+2025-11-24 17:08:29: Saving samples - Max sample: 0.678429, RMS: 0.071260
+2025-11-24 17:08:29: Saving MP3: test.mp3
+2025-11-24 17:08:29: Saving samples - Max sample: 0.701544, RMS: 0.071260
+2025-11-24 17:08:30: Successfully saved MP3: test.mp3
+2025-11-24 17:08:30: Successfully saved processed MP3 with Reverb, Echo, and Speed to test.mp3
+2025-11-24 17:09:18: Program started
+2025-11-24 17:09:18: Loading MP3 file from: arctic.mp3
+2025-11-24 17:09:19: Loaded MP3: arctic.mp3 (24352768 samples, 276.108490s, 2 channels)
+2025-11-24 17:09:19: Loaded 24352768 samples from arctic.mp3
+2025-11-24 17:09:19: Echo: 30.000000% → 250.000000ms
+2025-11-24 17:09:19: SpeedChangeEffect initialized with factor 1.000000
+2025-11-24 17:09:19: Before normalization - Max sample: 0.999969, RMS: 0.229624
+2025-11-24 17:09:19: Applying Reverb: 
+2025-11-24 17:09:22: After effect: buffer size is now 24352768 samples
+2025-11-24 17:09:22: After effect: buffer size is now 24352768 samples
+2025-11-24 17:09:22: After effects - Max sample: 0.767002, RMS: 0.114967
+2025-11-24 17:09:23: Saving samples - Max sample: 0.767002, RMS: 0.114967
+2025-11-24 17:09:23: Saving MP3: test.mp3
+2025-11-24 17:09:23: Saving samples - Max sample: 0.793219, RMS: 0.114967
+2025-11-24 17:09:29: Successfully saved MP3: test.mp3
+2025-11-24 17:09:29: Successfully saved processed MP3 with Reverb, Echo, and Speed to test.mp3
+2025-11-24 17:09:52: Program started
+2025-11-24 17:09:52: Loading MP3 file from: arctic.mp3
+2025-11-24 17:09:53: Loaded MP3: arctic.mp3 (24352768 samples, 276.108490s, 2 channels)
+2025-11-24 17:09:53: Loaded 24352768 samples from arctic.mp3
+2025-11-24 17:09:53: Echo: 30.000000% → 250.000000ms
+2025-11-24 17:09:53: SpeedChangeEffect initialized with factor 1.000000
+2025-11-24 17:09:53: Speed factor set to 0.900000x
+2025-11-24 17:09:53: Before normalization - Max sample: 0.999969, RMS: 0.229624
+2025-11-24 17:09:54: Applying Reverb: 
+2025-11-24 17:09:56: After effect: buffer size is now 24352768 samples
+2025-11-24 17:09:56: After effect: buffer size is now 24352768 samples
+2025-11-24 17:09:56: Speed 0.900000x: pre-allocating from 24352768 to 27058632 samples
+2025-11-24 17:09:57: After effect: buffer size is now 30065148 samples
+2025-11-24 17:09:58: After effects - Max sample: 0.767002, RMS: 0.109058
+2025-11-24 17:09:58: Saving samples - Max sample: 0.767002, RMS: 0.109058
+2025-11-24 17:09:58: Saving MP3: test.mp3
+2025-11-24 17:09:59: Saving samples - Max sample: 0.793219, RMS: 0.109058
+2025-11-24 17:10:06: Successfully saved MP3: test.mp3
+2025-11-24 17:10:06: Successfully saved processed MP3 with Reverb, Echo, and Speed to test.mp3
+2025-11-24 17:11:12: Program started
+2025-11-24 17:11:12: Loading MP3 file from: elton.mp3
+2025-11-24 17:11:12: Loaded MP3: elton.mp3 (18505728 samples, 209.815506s, 2 channels)
+2025-11-24 17:11:12: Loaded 18505728 samples from elton.mp3
+2025-11-24 17:11:12: Echo: 50.000000% → 350.000000ms
+2025-11-24 17:11:12: SpeedChangeEffect initialized with factor 1.000000
+2025-11-24 17:11:12: Speed factor set to 0.900000x
+2025-11-24 17:11:12: Before normalization - Max sample: 0.999969, RMS: 0.240294
+2025-11-24 17:11:13: Applying Reverb: 
+2025-11-24 17:11:14: After effect: buffer size is now 18505728 samples
+2025-11-24 17:11:15: After effect: buffer size is now 18505728 samples
+2025-11-24 17:11:15: Speed 0.900000x: pre-allocating from 18505728 to 20561920 samples
+2025-11-24 17:11:15: After effect: buffer size is now 22846578 samples
+2025-11-24 17:11:16: After effects - Max sample: 0.936893, RMS: 0.127296
+2025-11-24 17:11:16: Saving samples - Max sample: 0.936893, RMS: 0.127296
+2025-11-24 17:11:16: Saving MP3: demo.mp3
+2025-11-24 17:11:16: Saving samples - Max sample: 0.971316, RMS: 0.127296
+2025-11-24 17:11:22: Successfully saved MP3: demo.mp3
+2025-11-24 17:11:22: Successfully saved processed MP3 with Reverb, Echo, and Speed to demo.mp3
+2025-11-24 17:35:48: Program started
+2025-11-24 17:35:48: Loading MP3 file from: elton.mp3
+2025-11-24 17:35:48: Loaded MP3: elton.mp3 (18505728 samples, 209.815506s, 2 channels)
+2025-11-24 17:35:48: Loaded 18505728 samples from elton.mp3
+2025-11-24 17:35:48: Echo: 50.000000% → 350.000000ms
+2025-11-24 17:35:48: SpeedChangeEffect initialized with factor 1.000000
+2025-11-24 17:35:48: Speed factor set to 0.900000x
+2025-11-24 17:35:49: Before normalization - Max sample: 0.999969, RMS: 0.240294
+2025-11-24 17:35:49: Applying Reverb: 
+2025-11-24 17:35:50: After effect: buffer size is now 18505728 samples
+2025-11-24 17:35:51: After effect: buffer size is now 18505728 samples
+2025-11-24 17:35:51: Speed 0.900000x: pre-allocating from 18505728 to 20561920 samples
+2025-11-24 17:35:52: After effect: buffer size is now 22846578 samples
+2025-11-24 17:35:52: After effects - Max sample: 0.936893, RMS: 0.127296
+2025-11-24 17:35:52: Saving samples - Max sample: 0.936893, RMS: 0.127296
+2025-11-24 17:35:52: Saving MP3: demo.mp3
+2025-11-24 17:35:53: Saving samples - Max sample: 0.971316, RMS: 0.127296
+2025-11-24 17:35:58: Successfully saved MP3: demo.mp3
+2025-11-24 17:35:58: Successfully saved processed MP3 with Reverb, Echo, and Speed to demo.mp3
+2025-11-24 17:36:19: Program started
+2025-11-24 17:36:19: Loading MP3 file from: aespa_Whiplash.mp3
+2025-11-24 17:36:19: Loaded MP3: aespa_Whiplash.mp3 (16353280 samples, 185.411331s, 2 channels)
+2025-11-24 17:36:19: Loaded 16353280 samples from aespa_Whiplash.mp3
+2025-11-24 17:36:19: Echo: 50.000000% → 350.000000ms
+2025-11-24 17:36:19: SpeedChangeEffect initialized with factor 1.000000
+2025-11-24 17:36:19: Speed factor set to 0.900000x
+2025-11-24 17:36:19: Before normalization - Max sample: 0.999969, RMS: 0.397761
+2025-11-24 17:36:19: Applying Reverb: 
+2025-11-24 17:36:21: After effect: buffer size is now 16353280 samples
+2025-11-24 17:36:21: After effect: buffer size is now 16353280 samples
+2025-11-24 17:36:21: Speed 0.900000x: pre-allocating from 16353280 to 18170312 samples
+2025-11-24 17:36:22: After effect: buffer size is now 20189236 samples
+2025-11-24 17:36:22: After effects - Max sample: 1.000000, RMS: 0.235179
+2025-11-24 17:36:23: Saving samples - Max sample: 1.000000, RMS: 0.235179
+2025-11-24 17:36:23: Saving MP3: demo.mp3
+2025-11-24 17:36:23: Saving samples - Max sample: 1.000000, RMS: 0.235179
+2025-11-24 17:36:27: Successfully saved MP3: demo.mp3
+2025-11-24 17:36:27: Successfully saved processed MP3 with Reverb, Echo, and Speed to demo.mp3
+2025-11-24 17:42:32: Program started
+2025-11-24 17:42:32: Loading MP3 file from: aespa_Whiplash.mp3
+2025-11-24 17:42:32: Loaded MP3: aespa_Whiplash.mp3 (16353280 samples, 185.411331s, 2 channels)
+2025-11-24 17:42:32: Loaded 16353280 samples from aespa_Whiplash.mp3
+2025-11-24 17:42:32: Echo: 50.000000% → 350.000000ms
+2025-11-24 17:42:32: SpeedChangeEffect initialized with factor 1.000000
+2025-11-24 17:42:32: Speed factor set to 0.900000x
+2025-11-24 17:42:33: Before normalization - Max sample: 0.999969, RMS: 0.397761
+2025-11-24 17:42:33: Applying Reverb: 
+2025-11-24 17:42:34: After effect: buffer size is now 16353280 samples
+2025-11-24 17:42:35: After effect: buffer size is now 16353280 samples
+2025-11-24 17:42:35: Speed 0.900000x: pre-allocating from 16353280 to 18170312 samples
+2025-11-24 17:42:35: After effect: buffer size is now 20189236 samples
+2025-11-24 17:42:36: After effects - Max sample: 1.000000, RMS: 0.235179
+2025-11-24 17:42:36: Saving samples - Max sample: 1.000000, RMS: 0.235179
+2025-11-24 17:42:36: Saving MP3: demo.mp3
+2025-11-24 17:42:36: Saving samples - Max sample: 1.000000, RMS: 0.235179
+2025-11-24 17:42:41: Successfully saved MP3: demo.mp3
+2025-11-24 17:42:41: Successfully saved processed MP3 with Reverb, Echo, and Speed to demo.mp3
+2025-11-24 17:43:21: Program started
+2025-11-24 17:43:21: Loading MP3 file from: aespa_Whiplash.mp3
+2025-11-24 17:43:22: Loaded MP3: aespa_Whiplash.mp3 (16353280 samples, 185.411331s, 2 channels)
+2025-11-24 17:43:22: Loaded 16353280 samples from aespa_Whiplash.mp3
+2025-11-24 17:43:22: Echo: 25.000000% → 225.000000ms
+2025-11-24 17:43:22: SpeedChangeEffect initialized with factor 1.000000
+2025-11-24 17:43:22: Speed factor set to 0.900000x
+2025-11-24 17:43:22: Before normalization - Max sample: 0.999969, RMS: 0.397761
+2025-11-24 17:43:22: Applying Reverb: 
+2025-11-24 17:43:24: After effect: buffer size is now 16353280 samples
+2025-11-24 17:43:24: After effect: buffer size is now 16353280 samples
+2025-11-24 17:43:24: Speed 0.900000x: pre-allocating from 16353280 to 18170312 samples
+2025-11-24 17:43:25: After effect: buffer size is now 20189236 samples
+2025-11-24 17:43:25: After effects - Max sample: 0.839330, RMS: 0.206476
+2025-11-24 17:43:25: Saving samples - Max sample: 0.839330, RMS: 0.206476
+2025-11-24 17:43:25: Saving MP3: demo.mp3
+2025-11-24 17:43:25: Saving samples - Max sample: 0.847716, RMS: 0.206476
+2025-11-24 17:43:30: Successfully saved MP3: demo.mp3
+2025-11-24 17:43:30: Successfully saved processed MP3 with Reverb, Echo, and Speed to demo.mp3
+2025-11-24 17:44:42: Program started
+2025-11-24 17:44:42: Loading MP3 file from: aespa_Whiplash.mp3
+2025-11-24 17:44:42: Loaded MP3: aespa_Whiplash.mp3 (16353280 samples, 185.411331s, 2 channels)
+2025-11-24 17:44:42: Loaded 16353280 samples from aespa_Whiplash.mp3
+2025-11-24 17:44:42: SpeedChangeEffect initialized with factor 1.000000
+2025-11-24 17:44:42: Speed factor set to 0.900000x
+2025-11-24 17:44:43: Before normalization - Max sample: 0.999969, RMS: 0.397761
+2025-11-24 17:44:43: Speed 0.900000x: pre-allocating from 16353280 to 18170312 samples
+2025-11-24 17:44:44: After effect: buffer size is now 20189236 samples
+2025-11-24 17:44:44: After effects - Max sample: 1.000000, RMS: 0.376808
+2025-11-24 17:44:44: Saving samples - Max sample: 1.000000, RMS: 0.376808
+2025-11-24 17:44:44: Saving MP3: demo.mp3
+2025-11-24 17:44:44: Saving samples - Max sample: 1.000000, RMS: 0.376808
+2025-11-24 17:44:49: Successfully saved MP3: demo.mp3
+2025-11-24 17:44:49: Successfully saved processed MP3 with Reverb, Echo, and Speed to demo.mp3
+2025-11-24 17:46:10: Program started
+2025-11-24 17:46:10: Loading MP3 file from: bts.mp3
+2025-11-24 17:46:10: Loaded MP3: bts.mp3 (21266432 samples, 221.529984s, 2 channels)
+2025-11-24 17:46:10: Loaded 21266432 samples from bts.mp3
+2025-11-24 17:46:10: SpeedChangeEffect initialized with factor 1.000000
+2025-11-24 17:46:10: Speed factor set to 1.500000x
+2025-11-24 17:46:10: Before normalization - Max sample: 0.999969, RMS: 0.314599
+2025-11-24 17:46:11: Speed 1.500000x: pre-allocating from 21266432 to 14177621 samples
+2025-11-24 17:46:11: After effect: buffer size is now 14177620 samples
+2025-11-24 17:46:11: After effects - Max sample: 1.000000, RMS: 0.314208
+2025-11-24 17:46:12: Saving samples - Max sample: 1.000000, RMS: 0.314208
+2025-11-24 17:46:12: Saving MP3: case.mp3
+2025-11-24 17:46:12: Saving samples - Max sample: 1.000000, RMS: 0.314208
+2025-11-24 17:46:15: Successfully saved MP3: case.mp3
+2025-11-24 17:46:15: Successfully saved processed MP3 with Reverb, Echo, and Speed to case.mp3
+2025-11-24 17:48:14: Program started
+2025-11-24 17:48:14: Loading MP3 file from: arctic.mp3
+2025-11-24 17:48:14: Loaded MP3: arctic.mp3 (24352768 samples, 276.108490s, 2 channels)
+2025-11-24 17:48:14: Loaded 24352768 samples from arctic.mp3
+2025-11-24 17:48:14: Echo: 75.000000% → 475.000000ms
+2025-11-24 17:48:14: SpeedChangeEffect initialized with factor 1.000000
+2025-11-24 17:48:15: Before normalization - Max sample: 0.999969, RMS: 0.229624
+2025-11-24 17:48:15: Applying Reverb: 
+2025-11-24 17:48:17: After effect: buffer size is now 24352768 samples
+2025-11-24 17:48:17: After effect: buffer size is now 24352768 samples
+2025-11-24 17:48:18: After effects - Max sample: 1.000000, RMS: 0.258879
+2025-11-24 17:48:18: Saving samples - Max sample: 1.000000, RMS: 0.258879
+2025-11-24 17:48:18: Saving MP3: trial.mp3
+2025-11-24 17:48:18: Saving samples - Max sample: 1.000000, RMS: 0.258879
+2025-11-24 17:48:24: Successfully saved MP3: trial.mp3
+2025-11-24 17:48:25: Successfully saved processed MP3 with Reverb, Echo, and Speed to trial.mp3
+2025-11-24 17:49:30: Program started
+2025-11-24 17:49:30: Loading MP3 file from: arctic.mp3
+2025-11-24 17:49:31: Loaded MP3: arctic.mp3 (24352768 samples, 276.108490s, 2 channels)
+2025-11-24 17:49:31: Loaded 24352768 samples from arctic.mp3
+2025-11-24 17:49:31: Echo: 100.000000% → 600.000000ms
+2025-11-24 17:49:31: SpeedChangeEffect initialized with factor 1.000000
+2025-11-24 17:49:31: Before normalization - Max sample: 0.999969, RMS: 0.229624
+2025-11-24 17:49:32: After effect: buffer size is now 24352768 samples
+2025-11-24 17:49:32: After effects - Max sample: 1.000000, RMS: 0.285188
+2025-11-24 17:49:33: Saving samples - Max sample: 1.000000, RMS: 0.285188
+2025-11-24 17:49:33: Saving MP3: trial.mp3
+2025-11-24 17:49:33: Saving samples - Max sample: 1.000000, RMS: 0.285188
+2025-11-24 17:49:39: Successfully saved MP3: trial.mp3
+2025-11-24 17:49:39: Successfully saved processed MP3 with Reverb, Echo, and Speed to trial.mp3
+2025-11-24 18:38:31: Program started
+2025-11-24 18:38:31: Loading MP3 file from: arctic.mp3
+2025-11-24 18:38:31: Loaded MP3: arctic.mp3 (24352768 samples, 276.108490s, 2 channels)
+2025-11-24 18:38:31: Loaded 24352768 samples from arctic.mp3
+2025-11-24 18:38:31: Echo: 60.000000% → 400.000000ms
+2025-11-24 18:38:31: SpeedChangeEffect initialized with factor 1.000000
+2025-11-24 18:38:32: Before normalization - Max sample: 0.999969, RMS: 0.229624
+2025-11-24 18:38:32: Applying Reverb: 
+2025-11-24 18:38:34: After effect: buffer size is now 24352768 samples
+2025-11-24 18:38:35: After effect: buffer size is now 24352768 samples
+2025-11-24 18:38:35: After effects - Max sample: 0.861105, RMS: 0.119054
+2025-11-24 18:38:35: Saving samples - Max sample: 0.861105, RMS: 0.119054
+2025-11-24 18:38:35: Saving MP3: trial.mp3
+2025-11-24 18:38:36: Saving samples - Max sample: 0.872463, RMS: 0.119054
+2025-11-24 18:38:42: Successfully saved MP3: trial.mp3
+2025-11-24 18:38:42: Successfully saved processed MP3 with Reverb, Echo, and Speed to trial.mp3
+2025-11-24 18:39:43: Program started
+2025-11-24 18:39:43: Loading MP3 file from: aespa_Whiplash.mp3
+2025-11-24 18:39:43: Loaded MP3: aespa_Whiplash.mp3 (16353280 samples, 185.411331s, 2 channels)
+2025-11-24 18:39:43: Loaded 16353280 samples from aespa_Whiplash.mp3
+2025-11-24 18:39:43: Echo: 60.000000% → 400.000000ms
+2025-11-24 18:39:43: SpeedChangeEffect initialized with factor 1.000000
+2025-11-24 18:39:43: Speed factor set to 0.950000x
+2025-11-24 18:39:43: Before normalization - Max sample: 0.999969, RMS: 0.397761
+2025-11-24 18:39:44: Applying Reverb: 
+2025-11-24 18:39:45: After effect: buffer size is now 16353280 samples
+2025-11-24 18:39:45: After effect: buffer size is now 16353280 samples
+2025-11-24 18:39:45: Speed 0.950000x: pre-allocating from 16353280 to 17213980 samples
+2025-11-24 18:39:46: After effect: buffer size is now 18119980 samples
+2025-11-24 18:39:46: After effects - Max sample: 0.980066, RMS: 0.210213
+2025-11-24 18:39:47: Saving samples - Max sample: 0.980066, RMS: 0.210213
+2025-11-24 18:39:47: Saving MP3: case.mp3
+2025-11-24 18:39:47: Saving samples - Max sample: 1.000000, RMS: 0.210213
+2025-11-24 18:39:51: Successfully saved MP3: case.mp3
+2025-11-24 18:39:51: Successfully saved processed MP3 with Reverb, Echo, and Speed to case.mp3
+2025-11-24 18:40:15: Program started
+2025-11-24 18:40:15: Loading MP3 file from: aespa_Whiplash.mp3
+2025-11-24 18:40:15: Loaded MP3: aespa_Whiplash.mp3 (16353280 samples, 185.411331s, 2 channels)
+2025-11-24 18:40:15: Loaded 16353280 samples from aespa_Whiplash.mp3
+2025-11-24 18:40:15: Echo: 60.000000% → 400.000000ms
+2025-11-24 18:40:15: SpeedChangeEffect initialized with factor 1.000000
+2025-11-24 18:40:15: Speed factor set to 0.900000x
+2025-11-24 18:40:16: Before normalization - Max sample: 0.999969, RMS: 0.397761
+2025-11-24 18:40:16: Applying Reverb: 
+2025-11-24 18:40:17: After effect: buffer size is now 16353280 samples
+2025-11-24 18:40:17: After effect: buffer size is now 16353280 samples
+2025-11-24 18:40:17: Speed 0.900000x: pre-allocating from 16353280 to 18170312 samples
+2025-11-24 18:40:18: After effect: buffer size is now 20189236 samples
+2025-11-24 18:40:18: After effects - Max sample: 0.972210, RMS: 0.204609
+2025-11-24 18:40:19: Saving samples - Max sample: 0.972210, RMS: 0.204609
+2025-11-24 18:40:19: Saving MP3: case.mp3
+2025-11-24 18:40:19: Saving samples - Max sample: 1.000000, RMS: 0.204609
+2025-11-24 18:40:23: Successfully saved MP3: case.mp3
+2025-11-24 18:40:23: Successfully saved processed MP3 with Reverb, Echo, and Speed to case.mp3
+2025-11-24 18:40:50: Program started
+2025-11-24 18:40:50: Loading MP3 file from: aespa_Whiplash.mp3
+2025-11-24 18:40:50: Loaded MP3: aespa_Whiplash.mp3 (16353280 samples, 185.411331s, 2 channels)
+2025-11-24 18:40:50: Loaded 16353280 samples from aespa_Whiplash.mp3
+2025-11-24 18:40:50: Echo: 60.000000% → 400.000000ms
+2025-11-24 18:40:50: SpeedChangeEffect initialized with factor 1.000000
+2025-11-24 18:40:50: Before normalization - Max sample: 0.999969, RMS: 0.397761
+2025-11-24 18:40:50: Applying Reverb: 
+2025-11-24 18:40:52: After effect: buffer size is now 16353280 samples
+2025-11-24 18:40:52: After effect: buffer size is now 16353280 samples
+2025-11-24 18:40:52: After effects - Max sample: 0.980066, RMS: 0.216016
+2025-11-24 18:40:53: Saving samples - Max sample: 0.980066, RMS: 0.216016
+2025-11-24 18:40:53: Saving MP3: case.mp3
+2025-11-24 18:40:53: Saving samples - Max sample: 1.000000, RMS: 0.216016
+2025-11-24 18:40:57: Successfully saved MP3: case.mp3
+2025-11-24 18:40:57: Successfully saved processed MP3 with Reverb, Echo, and Speed to case.mp3
+2025-11-24 18:41:21: Program started
+2025-11-24 18:41:21: Loading MP3 file from: aespa_Whiplash.mp3
+2025-11-24 18:41:22: Loaded MP3: aespa_Whiplash.mp3 (16353280 samples, 185.411331s, 2 channels)
+2025-11-24 18:41:22: Loaded 16353280 samples from aespa_Whiplash.mp3
+2025-11-24 18:41:22: Echo: 60.000000% → 400.000000ms
+2025-11-24 18:41:22: SpeedChangeEffect initialized with factor 1.000000
+2025-11-24 18:41:22: Before normalization - Max sample: 0.999969, RMS: 0.397761
+2025-11-24 18:41:22: After effect: buffer size is now 16353280 samples
+2025-11-24 18:41:23: After effects - Max sample: 1.000000, RMS: 0.428636
+2025-11-24 18:41:23: Saving samples - Max sample: 1.000000, RMS: 0.428636
+2025-11-24 18:41:23: Saving MP3: case.mp3
+2025-11-24 18:41:23: Saving samples - Max sample: 1.000000, RMS: 0.428636
+2025-11-24 18:41:27: Successfully saved MP3: case.mp3
+2025-11-24 18:41:27: Successfully saved processed MP3 with Reverb, Echo, and Speed to case.mp3
+2025-11-24 18:45:06: Program started
+2025-11-24 18:45:06: Loading MP3 file from: aespa_Whiplash.mp3
+2025-11-24 18:45:06: Loaded MP3: aespa_Whiplash.mp3 (16353280 samples, 185.411331s, 2 channels)
+2025-11-24 18:45:06: Loaded 16353280 samples from aespa_Whiplash.mp3
+2025-11-24 18:45:06: Echo: 60.000000% → 400.000000ms
+2025-11-24 18:45:06: SpeedChangeEffect initialized with factor 1.000000
+2025-11-24 18:45:07: Before normalization - Max sample: 0.999969, RMS: 0.397761
+2025-11-24 18:45:07: After effect: buffer size is now 16353280 samples
+2025-11-24 18:45:07: After effects - Max sample: 1.000000, RMS: 0.428636
+2025-11-24 18:45:07: Saving samples - Max sample: 1.000000, RMS: 0.428636
+2025-11-24 18:45:07: Saving MP3: case.mp3
+2025-11-24 18:45:08: Saving samples - Max sample: 1.000000, RMS: 0.428636
+2025-11-24 18:45:12: Successfully saved MP3: case.mp3
+2025-11-24 18:45:12: Successfully saved processed MP3 with Reverb, Echo, and Speed to case.mp3
+2025-11-24 18:48:17: Program started
+2025-11-24 18:48:17: Loading MP3 file from: aespa_Whiplash.mp3
+2025-11-24 18:48:17: Loaded MP3: aespa_Whiplash.mp3 (16353280 samples, 185.411331s, 2 channels)
+2025-11-24 18:48:17: Loaded 16353280 samples from aespa_Whiplash.mp3
+2025-11-24 18:48:17: Echo: 60.000000% → 400.000000ms
+2025-11-24 18:48:17: SpeedChangeEffect initialized with factor 1.000000
+2025-11-24 18:48:17: Before normalization - Max sample: 0.999969, RMS: 0.397761
+2025-11-24 18:48:18: Applying Reverb: 
+2025-11-24 18:48:19: After effect: buffer size is now 16353280 samples
+2025-11-24 18:48:19: After effect: buffer size is now 16353280 samples
+2025-11-24 18:48:20: After effects - Max sample: 0.980066, RMS: 0.216016
+2025-11-24 18:48:20: Saving samples - Max sample: 0.980066, RMS: 0.216016
+2025-11-24 18:48:20: Saving MP3: case.mp3
+2025-11-24 18:48:20: Saving samples - Max sample: 1.000000, RMS: 0.216016
+2025-11-24 18:48:24: Successfully saved MP3: case.mp3
+2025-11-24 18:48:24: Successfully saved processed MP3 with Reverb, Echo, and Speed to case.mp3
+2025-11-24 18:49:26: Program started
+2025-11-24 18:49:26: Loading MP3 file from: aespa_Whiplash.mp3
+2025-11-24 18:49:26: Loaded MP3: aespa_Whiplash.mp3 (16353280 samples, 185.411331s, 2 channels)
+2025-11-24 18:49:26: Loaded 16353280 samples from aespa_Whiplash.mp3
+2025-11-24 18:49:26: Echo: 60.000000% → 400.000000ms
+2025-11-24 18:49:26: SpeedChangeEffect initialized with factor 1.000000
+2025-11-24 18:49:26: Before normalization - Max sample: 0.999969, RMS: 0.397761
+2025-11-24 18:49:27: Applying Reverb: 
+2025-11-24 18:49:28: After effect: buffer size is now 16353280 samples
+2025-11-24 18:49:28: After effect: buffer size is now 16353280 samples
+2025-11-24 18:49:29: After effects - Max sample: 0.980066, RMS: 0.216016
+2025-11-24 18:49:29: Saving samples - Max sample: 0.980066, RMS: 0.216016
+2025-11-24 18:49:29: Saving MP3: case.mp3
+2025-11-24 18:49:29: Saving samples - Max sample: 1.000000, RMS: 0.216016
+2025-11-24 18:49:33: Successfully saved MP3: case.mp3
+2025-11-24 18:49:33: Successfully saved processed MP3 with Reverb, Echo, and Speed to case.mp3
+2025-11-24 18:50:10: Program started
+2025-11-24 18:50:10: Loading MP3 file from: aespa_Whiplash.mp3
+2025-11-24 18:50:11: Loaded MP3: aespa_Whiplash.mp3 (16353280 samples, 185.411331s, 2 channels)
+2025-11-24 18:50:11: Loaded 16353280 samples from aespa_Whiplash.mp3
+2025-11-24 18:50:11: Echo: 60.000000% → 400.000000ms
+2025-11-24 18:50:11: SpeedChangeEffect initialized with factor 1.000000
+2025-11-24 18:50:11: Before normalization - Max sample: 0.999969, RMS: 0.397761
+2025-11-24 18:50:11: Applying Reverb: 
+2025-11-24 18:50:13: After effect: buffer size is now 16353280 samples
+2025-11-24 18:50:13: After effect: buffer size is now 16353280 samples
+2025-11-24 18:50:13: After effects - Max sample: 0.980066, RMS: 0.216016
+2025-11-24 18:50:13: Saving samples - Max sample: 0.980066, RMS: 0.216016
+2025-11-24 18:50:13: Saving MP3: case.mp3
+2025-11-24 18:50:13: Saving samples - Max sample: 1.000000, RMS: 0.216016
+2025-11-24 18:50:17: Successfully saved MP3: case.mp3
+2025-11-24 18:50:17: Successfully saved processed MP3 with Reverb, Echo, and Speed to case.mp3
+2025-11-24 18:51:04: Program started
+2025-11-24 18:51:04: Loading MP3 file from: aespa_Whiplash.mp3
+2025-11-24 18:51:04: Loaded MP3: aespa_Whiplash.mp3 (16353280 samples, 185.411331s, 2 channels)
+2025-11-24 18:51:04: Loaded 16353280 samples from aespa_Whiplash.mp3
+2025-11-24 18:51:04: Echo: 60.000000% → 400.000000ms
+2025-11-24 18:51:04: SpeedChangeEffect initialized with factor 1.000000
+2025-11-24 18:51:04: Before normalization - Max sample: 0.999969, RMS: 0.397761
+2025-11-24 18:51:05: Applying Reverb: 
+2025-11-24 18:51:06: After effect: buffer size is now 16353280 samples
+2025-11-24 18:51:06: After effect: buffer size is now 16353280 samples
+2025-11-24 18:51:07: After effects - Max sample: 0.980066, RMS: 0.216016
+2025-11-24 18:51:07: Saving samples - Max sample: 0.980066, RMS: 0.216016
+2025-11-24 18:51:07: Saving MP3: case.mp3
+2025-11-24 18:51:07: Saving samples - Max sample: 1.000000, RMS: 0.216016
+2025-11-24 18:51:11: Successfully saved MP3: case.mp3
+2025-11-24 18:51:11: Successfully saved processed MP3 with Reverb, Echo, and Speed to case.mp3
+2025-11-24 18:53:36: Program started
+2025-11-24 18:53:36: Loading MP3 file from: aespa_Whiplash.mp3
+2025-11-24 18:53:36: Loaded MP3: aespa_Whiplash.mp3 (16353280 samples, 185.411331s, 2 channels)
+2025-11-24 18:53:36: Loaded 16353280 samples from aespa_Whiplash.mp3
+2025-11-24 18:53:36: Echo: 60.000000% → 400.000000ms
+2025-11-24 18:53:36: SpeedChangeEffect initialized with factor 1.000000
+2025-11-24 18:53:37: Before normalization - Max sample: 0.999969, RMS: 0.397761
+2025-11-24 18:53:37: Applying Reverb: 
+2025-11-24 18:53:38: After effect: buffer size is now 16353280 samples
+2025-11-24 18:53:39: After effect: buffer size is now 16353280 samples
+2025-11-24 18:53:39: After effects - Max sample: 0.980066, RMS: 0.216016
+2025-11-24 18:53:39: Saving samples - Max sample: 0.980066, RMS: 0.216016
+2025-11-24 18:53:39: Saving MP3: case.mp3
+2025-11-24 18:53:39: Saving samples - Max sample: 1.000000, RMS: 0.216016
+2025-11-24 18:53:43: Successfully saved MP3: case.mp3
+2025-11-24 18:53:43: Successfully saved processed MP3 with Reverb, Echo, and Speed to case.mp3
+2025-11-24 18:54:20: Program started
+2025-11-24 18:54:20: Loading MP3 file from: aespa_Whiplash.mp3
+2025-11-24 18:54:20: Loaded MP3: aespa_Whiplash.mp3 (16353280 samples, 185.411331s, 2 channels)
+2025-11-24 18:54:20: Loaded 16353280 samples from aespa_Whiplash.mp3
+2025-11-24 18:54:20: Echo: 60.000000% → 400.000000ms
+2025-11-24 18:54:20: SpeedChangeEffect initialized with factor 1.000000
+2025-11-24 18:54:20: Before normalization - Max sample: 0.999969, RMS: 0.397761
+2025-11-24 18:54:21: After effect: buffer size is now 16353280 samples
+2025-11-24 18:54:21: After effects - Max sample: 1.000000, RMS: 0.428636
+2025-11-24 18:54:21: Saving samples - Max sample: 1.000000, RMS: 0.428636
+2025-11-24 18:54:21: Saving MP3: case.mp3
+2025-11-24 18:54:21: Saving samples - Max sample: 1.000000, RMS: 0.428636
+2025-11-24 18:54:25: Successfully saved MP3: case.mp3
+2025-11-24 18:54:26: Successfully saved processed MP3 with Reverb, Echo, and Speed to case.mp3
+2025-11-24 18:55:02: Program started
+2025-11-24 18:55:02: Loading MP3 file from: aespa_Whiplash.mp3
+2025-11-24 18:55:02: Loaded MP3: aespa_Whiplash.mp3 (16353280 samples, 185.411331s, 2 channels)
+2025-11-24 18:55:02: Loaded 16353280 samples from aespa_Whiplash.mp3
+2025-11-24 18:55:02: SpeedChangeEffect initialized with factor 1.000000
+2025-11-24 18:55:02: Before normalization - Max sample: 0.999969, RMS: 0.397761
+2025-11-24 18:55:02: Applying Reverb: 
+2025-11-24 18:55:04: After effect: buffer size is now 16353280 samples
+2025-11-24 18:55:04: After effects - Max sample: 0.993767, RMS: 0.203048
+2025-11-24 18:55:04: Saving samples - Max sample: 0.993767, RMS: 0.203048
+2025-11-24 18:55:04: Saving MP3: case1.mp3
+2025-11-24 18:55:04: Saving samples - Max sample: 0.993767, RMS: 0.203048
+2025-11-24 18:55:08: Successfully saved MP3: case1.mp3
+2025-11-24 18:55:08: Successfully saved processed MP3 with Reverb, Echo, and Speed to case1.mp3
+2025-11-24 18:55:46: Program started
+2025-11-24 18:55:46: Loading MP3 file from: aespa_Whiplash.mp3
+2025-11-24 18:55:46: Loaded MP3: aespa_Whiplash.mp3 (16353280 samples, 185.411331s, 2 channels)
+2025-11-24 18:55:46: Loaded 16353280 samples from aespa_Whiplash.mp3
+2025-11-24 18:55:46: Echo: 60.000000% → 400.000000ms
+2025-11-24 18:55:46: SpeedChangeEffect initialized with factor 1.000000
+2025-11-24 18:55:46: Before normalization - Max sample: 0.999969, RMS: 0.397761
+2025-11-24 18:55:46: Applying Reverb: 
+2025-11-24 18:55:48: After effect: buffer size is now 16353280 samples
+2025-11-24 18:55:48: After effect: buffer size is now 16353280 samples
+2025-11-24 18:55:49: After effects - Max sample: 0.980066, RMS: 0.216016
+2025-11-24 18:55:49: Saving samples - Max sample: 0.980066, RMS: 0.216016
+2025-11-24 18:55:49: Saving MP3: case2.mp3
+2025-11-24 18:55:49: Saving samples - Max sample: 1.000000, RMS: 0.216016
+2025-11-24 18:55:53: Successfully saved MP3: case2.mp3
+2025-11-24 18:55:53: Successfully saved processed MP3 with Reverb, Echo, and Speed to case2.mp3
+2025-11-24 18:57:20: Program started
+2025-11-24 18:57:20: Loading MP3 file from: aespa_Whiplash.mp3
+2025-11-24 18:57:21: Loaded MP3: aespa_Whiplash.mp3 (16353280 samples, 185.411331s, 2 channels)
+2025-11-24 18:57:21: Loaded 16353280 samples from aespa_Whiplash.mp3
+2025-11-24 18:57:21: Echo: 60.000000% → 400.000000ms
+2025-11-24 18:57:21: SpeedChangeEffect initialized with factor 1.000000
+2025-11-24 18:57:21: Speed factor set to 0.900000x
+2025-11-24 18:57:21: Before normalization - Max sample: 0.999969, RMS: 0.397761
+2025-11-24 18:57:21: Applying Reverb: 
+2025-11-24 18:57:22: After effect: buffer size is now 16353280 samples
+2025-11-24 18:57:23: After effect: buffer size is now 16353280 samples
+2025-11-24 18:57:23: Speed 0.900000x: pre-allocating from 16353280 to 18170312 samples
+2025-11-24 18:57:24: After effect: buffer size is now 20189236 samples
+2025-11-24 18:57:24: After effects - Max sample: 0.972210, RMS: 0.204609
+2025-11-24 18:57:24: Saving samples - Max sample: 0.972210, RMS: 0.204609
+2025-11-24 18:57:24: Saving MP3: case2.mp3
+2025-11-24 18:57:24: Saving samples - Max sample: 1.000000, RMS: 0.204609
+2025-11-24 18:57:29: Successfully saved MP3: case2.mp3
+2025-11-24 18:57:29: Successfully saved processed MP3 with Reverb, Echo, and Speed to case2.mp3
+2025-11-24 18:58:04: Program started
+2025-11-24 18:58:04: Loading MP3 file from: aespa_Whiplash.mp3
+2025-11-24 18:58:05: Loaded MP3: aespa_Whiplash.mp3 (16353280 samples, 185.411331s, 2 channels)
+2025-11-24 18:58:05: Loaded 16353280 samples from aespa_Whiplash.mp3
+2025-11-24 18:58:05: SpeedChangeEffect initialized with factor 1.000000
+2025-11-24 18:58:05: Speed factor set to 0.900000x
+2025-11-24 18:58:05: Before normalization - Max sample: 0.999969, RMS: 0.397761
+2025-11-24 18:58:05: Speed 0.900000x: pre-allocating from 16353280 to 18170312 samples
+2025-11-24 18:58:06: After effect: buffer size is now 20189236 samples
+2025-11-24 18:58:06: After effects - Max sample: 1.000000, RMS: 0.376808
+2025-11-24 18:58:06: Saving samples - Max sample: 1.000000, RMS: 0.376808
+2025-11-24 18:58:06: Saving MP3: case4.mp3
+2025-11-24 18:58:07: Saving samples - Max sample: 1.000000, RMS: 0.376808
+2025-11-24 18:58:11: Successfully saved MP3: case4.mp3
+2025-11-24 18:58:11: Successfully saved processed MP3 with Reverb, Echo, and Speed to case4.mp3

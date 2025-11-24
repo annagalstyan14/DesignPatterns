@@ -4,8 +4,14 @@ project(AudioEditor)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Set Homebrew paths for macOS
-set(CMAKE_PREFIX_PATH "/usr/local;/opt/homebrew" ${CMAKE_PREFIX_PATH})
+# Set paths for Homebrew Qt
+set(CMAKE_PREFIX_PATH "/opt/homebrew/opt/qt@6;/usr/local;/opt/homebrew" ${CMAKE_PREFIX_PATH})
+
+# Find Qt packages
+find_package(Qt6 REQUIRED COMPONENTS Core Widgets Multimedia Network)
+set(CMAKE_AUTOMOC ON)  # Enable Qt MOC
+set(CMAKE_AUTORCC ON)
+set(CMAKE_AUTOUIC ON)
 
 # Find mpg123 using pkg-config
 find_package(PkgConfig REQUIRED)
@@ -22,25 +28,10 @@ if(NOT LAME_INCLUDE_DIR)
 endif()
 
 # Include directories
-include_directories(${MPG123_INCLUDE_DIRS} ${LAME_INCLUDE_DIR})
-include_directories(${CMAKE_SOURCE_DIR}/Core ${CMAKE_SOURCE_DIR}/Core/Adapters ${CMAKE_SOURCE_DIR}/Core/Effects)
-
-# Add executable
-add_executable(AudioEditor
-    main.cpp
-    Core/Logger.cpp
-    Core/AudioClip.cpp
-    Core/EffectFactory.cpp
-    Core/Adapters/Mp3.cpp
-    Core/Effects/Echo.cpp
-    Core/Effects/Reverb.cpp
-    Core/Effects/Speed.cpp
-)
-
-# Target-specific include directories
-target_include_directories(AudioEditor PRIVATE ${MPG123_INCLUDE_DIRS} ${LAME_INCLUDE_DIR})
-
-# Link libraries
-target_link_libraries(AudioEditor PRIVATE ${MPG123_LIBRARIES} ${LAME_LIBRARY})
-target_compile_options(AudioEditor PRIVATE ${MPG123_CFLAGS_OTHER})
-target_link_directories(AudioEditor PRIVATE ${MPG123_LIBRARY_DIRS})
+include_directories(
+    ${MPG123_INCLUDE_DIRS} 
+    ${LAME_INCLUDE_DIR}
+    ${CMAKE_SOURCE_DIR}/Core 
+    ${CMAKE_SOURCE_DIR}/Core/Adapters 
+    ${CMAKE_SOURCE_DIR}/Core/Effects
+    ${CMAKE_SOURCE_DIR}/Core/Commands
