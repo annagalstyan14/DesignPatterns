@@ -1,14 +1,14 @@
 #include "Volume.h"
-#include "../Logger.h"
 #include <algorithm>
 
-VolumeEffect::VolumeEffect(float gain) : gain_(std::clamp(gain, 0.0f, 2.0f)) {
-    Logger::getInstance().log("VolumeEffect initialized with gain " + std::to_string(gain_));
+VolumeEffect::VolumeEffect(float gain, std::shared_ptr<ILogger> logger) 
+    : gain_(std::clamp(gain, 0.0f, 2.0f)), logger_(logger) {
+    logger_->log("VolumeEffect initialized with gain " + std::to_string(gain_));
 }
 
 void VolumeEffect::setGain(float gain) {
     gain_ = std::clamp(gain, 0.0f, 2.0f);
-    Logger::getInstance().log("Volume gain set to " + std::to_string(gain_));
+    logger_->log("Volume gain set to " + std::to_string(gain_));
 }
 
 float VolumeEffect::getGain() const {

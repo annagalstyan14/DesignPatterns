@@ -69,41 +69,48 @@ include CMakeFiles/AudioEditor.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/AudioEditor.dir/flags.make
 
+AudioEditor_autogen/timestamp: /opt/homebrew/opt/qt@6/share/qt/libexec/moc
+AudioEditor_autogen/timestamp: /opt/homebrew/opt/qt@6/share/qt/libexec/uic
+AudioEditor_autogen/timestamp: CMakeFiles/AudioEditor.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target AudioEditor"
+	/opt/homebrew/bin/cmake -E cmake_autogen /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/CMakeFiles/AudioEditor_autogen.dir/AutogenInfo.json ""
+	/opt/homebrew/bin/cmake -E touch /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/AudioEditor_autogen/timestamp
+
 CMakeFiles/AudioEditor.dir/codegen:
 .PHONY : CMakeFiles/AudioEditor.dir/codegen
 
-CMakeFiles/AudioEditor.dir/main.cpp.o: CMakeFiles/AudioEditor.dir/flags.make
-CMakeFiles/AudioEditor.dir/main.cpp.o: /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/main.cpp
-CMakeFiles/AudioEditor.dir/main.cpp.o: CMakeFiles/AudioEditor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/AudioEditor.dir/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AudioEditor.dir/main.cpp.o -MF CMakeFiles/AudioEditor.dir/main.cpp.o.d -o CMakeFiles/AudioEditor.dir/main.cpp.o -c /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/main.cpp
+CMakeFiles/AudioEditor.dir/AudioEditor_autogen/mocs_compilation.cpp.o: CMakeFiles/AudioEditor.dir/flags.make
+CMakeFiles/AudioEditor.dir/AudioEditor_autogen/mocs_compilation.cpp.o: AudioEditor_autogen/mocs_compilation.cpp
+CMakeFiles/AudioEditor.dir/AudioEditor_autogen/mocs_compilation.cpp.o: CMakeFiles/AudioEditor.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/AudioEditor.dir/AudioEditor_autogen/mocs_compilation.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AudioEditor.dir/AudioEditor_autogen/mocs_compilation.cpp.o -MF CMakeFiles/AudioEditor.dir/AudioEditor_autogen/mocs_compilation.cpp.o.d -o CMakeFiles/AudioEditor.dir/AudioEditor_autogen/mocs_compilation.cpp.o -c /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/AudioEditor_autogen/mocs_compilation.cpp
 
-CMakeFiles/AudioEditor.dir/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AudioEditor.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/main.cpp > CMakeFiles/AudioEditor.dir/main.cpp.i
+CMakeFiles/AudioEditor.dir/AudioEditor_autogen/mocs_compilation.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AudioEditor.dir/AudioEditor_autogen/mocs_compilation.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/AudioEditor_autogen/mocs_compilation.cpp > CMakeFiles/AudioEditor.dir/AudioEditor_autogen/mocs_compilation.cpp.i
 
-CMakeFiles/AudioEditor.dir/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AudioEditor.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/main.cpp -o CMakeFiles/AudioEditor.dir/main.cpp.s
+CMakeFiles/AudioEditor.dir/AudioEditor_autogen/mocs_compilation.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AudioEditor.dir/AudioEditor_autogen/mocs_compilation.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/AudioEditor_autogen/mocs_compilation.cpp -o CMakeFiles/AudioEditor.dir/AudioEditor_autogen/mocs_compilation.cpp.s
 
-CMakeFiles/AudioEditor.dir/Core/Logger.cpp.o: CMakeFiles/AudioEditor.dir/flags.make
-CMakeFiles/AudioEditor.dir/Core/Logger.cpp.o: /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Logger.cpp
-CMakeFiles/AudioEditor.dir/Core/Logger.cpp.o: CMakeFiles/AudioEditor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/AudioEditor.dir/Core/Logger.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AudioEditor.dir/Core/Logger.cpp.o -MF CMakeFiles/AudioEditor.dir/Core/Logger.cpp.o.d -o CMakeFiles/AudioEditor.dir/Core/Logger.cpp.o -c /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Logger.cpp
+CMakeFiles/AudioEditor.dir/main_cli.cpp.o: CMakeFiles/AudioEditor.dir/flags.make
+CMakeFiles/AudioEditor.dir/main_cli.cpp.o: /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/main_cli.cpp
+CMakeFiles/AudioEditor.dir/main_cli.cpp.o: CMakeFiles/AudioEditor.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/AudioEditor.dir/main_cli.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AudioEditor.dir/main_cli.cpp.o -MF CMakeFiles/AudioEditor.dir/main_cli.cpp.o.d -o CMakeFiles/AudioEditor.dir/main_cli.cpp.o -c /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/main_cli.cpp
 
-CMakeFiles/AudioEditor.dir/Core/Logger.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AudioEditor.dir/Core/Logger.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Logger.cpp > CMakeFiles/AudioEditor.dir/Core/Logger.cpp.i
+CMakeFiles/AudioEditor.dir/main_cli.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AudioEditor.dir/main_cli.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/main_cli.cpp > CMakeFiles/AudioEditor.dir/main_cli.cpp.i
 
-CMakeFiles/AudioEditor.dir/Core/Logger.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AudioEditor.dir/Core/Logger.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Logger.cpp -o CMakeFiles/AudioEditor.dir/Core/Logger.cpp.s
+CMakeFiles/AudioEditor.dir/main_cli.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AudioEditor.dir/main_cli.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/main_cli.cpp -o CMakeFiles/AudioEditor.dir/main_cli.cpp.s
 
 CMakeFiles/AudioEditor.dir/Core/AudioClip.cpp.o: CMakeFiles/AudioEditor.dir/flags.make
 CMakeFiles/AudioEditor.dir/Core/AudioClip.cpp.o: /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/AudioClip.cpp
 CMakeFiles/AudioEditor.dir/Core/AudioClip.cpp.o: CMakeFiles/AudioEditor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/AudioEditor.dir/Core/AudioClip.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/AudioEditor.dir/Core/AudioClip.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AudioEditor.dir/Core/AudioClip.cpp.o -MF CMakeFiles/AudioEditor.dir/Core/AudioClip.cpp.o.d -o CMakeFiles/AudioEditor.dir/Core/AudioClip.cpp.o -c /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/AudioClip.cpp
 
 CMakeFiles/AudioEditor.dir/Core/AudioClip.cpp.i: cmake_force
@@ -117,7 +124,7 @@ CMakeFiles/AudioEditor.dir/Core/AudioClip.cpp.s: cmake_force
 CMakeFiles/AudioEditor.dir/Core/EffectFactory.cpp.o: CMakeFiles/AudioEditor.dir/flags.make
 CMakeFiles/AudioEditor.dir/Core/EffectFactory.cpp.o: /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/EffectFactory.cpp
 CMakeFiles/AudioEditor.dir/Core/EffectFactory.cpp.o: CMakeFiles/AudioEditor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/AudioEditor.dir/Core/EffectFactory.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/AudioEditor.dir/Core/EffectFactory.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AudioEditor.dir/Core/EffectFactory.cpp.o -MF CMakeFiles/AudioEditor.dir/Core/EffectFactory.cpp.o.d -o CMakeFiles/AudioEditor.dir/Core/EffectFactory.cpp.o -c /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/EffectFactory.cpp
 
 CMakeFiles/AudioEditor.dir/Core/EffectFactory.cpp.i: cmake_force
@@ -128,10 +135,52 @@ CMakeFiles/AudioEditor.dir/Core/EffectFactory.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AudioEditor.dir/Core/EffectFactory.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/EffectFactory.cpp -o CMakeFiles/AudioEditor.dir/Core/EffectFactory.cpp.s
 
+CMakeFiles/AudioEditor.dir/Core/FileLogger.cpp.o: CMakeFiles/AudioEditor.dir/flags.make
+CMakeFiles/AudioEditor.dir/Core/FileLogger.cpp.o: /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/FileLogger.cpp
+CMakeFiles/AudioEditor.dir/Core/FileLogger.cpp.o: CMakeFiles/AudioEditor.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/AudioEditor.dir/Core/FileLogger.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AudioEditor.dir/Core/FileLogger.cpp.o -MF CMakeFiles/AudioEditor.dir/Core/FileLogger.cpp.o.d -o CMakeFiles/AudioEditor.dir/Core/FileLogger.cpp.o -c /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/FileLogger.cpp
+
+CMakeFiles/AudioEditor.dir/Core/FileLogger.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AudioEditor.dir/Core/FileLogger.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/FileLogger.cpp > CMakeFiles/AudioEditor.dir/Core/FileLogger.cpp.i
+
+CMakeFiles/AudioEditor.dir/Core/FileLogger.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AudioEditor.dir/Core/FileLogger.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/FileLogger.cpp -o CMakeFiles/AudioEditor.dir/Core/FileLogger.cpp.s
+
+CMakeFiles/AudioEditor.dir/Core/ConsoleLogger.cpp.o: CMakeFiles/AudioEditor.dir/flags.make
+CMakeFiles/AudioEditor.dir/Core/ConsoleLogger.cpp.o: /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/ConsoleLogger.cpp
+CMakeFiles/AudioEditor.dir/Core/ConsoleLogger.cpp.o: CMakeFiles/AudioEditor.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/AudioEditor.dir/Core/ConsoleLogger.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AudioEditor.dir/Core/ConsoleLogger.cpp.o -MF CMakeFiles/AudioEditor.dir/Core/ConsoleLogger.cpp.o.d -o CMakeFiles/AudioEditor.dir/Core/ConsoleLogger.cpp.o -c /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/ConsoleLogger.cpp
+
+CMakeFiles/AudioEditor.dir/Core/ConsoleLogger.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AudioEditor.dir/Core/ConsoleLogger.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/ConsoleLogger.cpp > CMakeFiles/AudioEditor.dir/Core/ConsoleLogger.cpp.i
+
+CMakeFiles/AudioEditor.dir/Core/ConsoleLogger.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AudioEditor.dir/Core/ConsoleLogger.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/ConsoleLogger.cpp -o CMakeFiles/AudioEditor.dir/Core/ConsoleLogger.cpp.s
+
+CMakeFiles/AudioEditor.dir/Core/CompositeLogger.cpp.o: CMakeFiles/AudioEditor.dir/flags.make
+CMakeFiles/AudioEditor.dir/Core/CompositeLogger.cpp.o: /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/CompositeLogger.cpp
+CMakeFiles/AudioEditor.dir/Core/CompositeLogger.cpp.o: CMakeFiles/AudioEditor.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/AudioEditor.dir/Core/CompositeLogger.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AudioEditor.dir/Core/CompositeLogger.cpp.o -MF CMakeFiles/AudioEditor.dir/Core/CompositeLogger.cpp.o.d -o CMakeFiles/AudioEditor.dir/Core/CompositeLogger.cpp.o -c /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/CompositeLogger.cpp
+
+CMakeFiles/AudioEditor.dir/Core/CompositeLogger.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AudioEditor.dir/Core/CompositeLogger.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/CompositeLogger.cpp > CMakeFiles/AudioEditor.dir/Core/CompositeLogger.cpp.i
+
+CMakeFiles/AudioEditor.dir/Core/CompositeLogger.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AudioEditor.dir/Core/CompositeLogger.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/CompositeLogger.cpp -o CMakeFiles/AudioEditor.dir/Core/CompositeLogger.cpp.s
+
 CMakeFiles/AudioEditor.dir/Core/Adapters/Mp3.cpp.o: CMakeFiles/AudioEditor.dir/flags.make
 CMakeFiles/AudioEditor.dir/Core/Adapters/Mp3.cpp.o: /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Adapters/Mp3.cpp
 CMakeFiles/AudioEditor.dir/Core/Adapters/Mp3.cpp.o: CMakeFiles/AudioEditor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/AudioEditor.dir/Core/Adapters/Mp3.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/AudioEditor.dir/Core/Adapters/Mp3.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AudioEditor.dir/Core/Adapters/Mp3.cpp.o -MF CMakeFiles/AudioEditor.dir/Core/Adapters/Mp3.cpp.o.d -o CMakeFiles/AudioEditor.dir/Core/Adapters/Mp3.cpp.o -c /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Adapters/Mp3.cpp
 
 CMakeFiles/AudioEditor.dir/Core/Adapters/Mp3.cpp.i: cmake_force
@@ -145,7 +194,7 @@ CMakeFiles/AudioEditor.dir/Core/Adapters/Mp3.cpp.s: cmake_force
 CMakeFiles/AudioEditor.dir/Core/Effects/Echo.cpp.o: CMakeFiles/AudioEditor.dir/flags.make
 CMakeFiles/AudioEditor.dir/Core/Effects/Echo.cpp.o: /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects/Echo.cpp
 CMakeFiles/AudioEditor.dir/Core/Effects/Echo.cpp.o: CMakeFiles/AudioEditor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/AudioEditor.dir/Core/Effects/Echo.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/AudioEditor.dir/Core/Effects/Echo.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AudioEditor.dir/Core/Effects/Echo.cpp.o -MF CMakeFiles/AudioEditor.dir/Core/Effects/Echo.cpp.o.d -o CMakeFiles/AudioEditor.dir/Core/Effects/Echo.cpp.o -c /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects/Echo.cpp
 
 CMakeFiles/AudioEditor.dir/Core/Effects/Echo.cpp.i: cmake_force
@@ -159,7 +208,7 @@ CMakeFiles/AudioEditor.dir/Core/Effects/Echo.cpp.s: cmake_force
 CMakeFiles/AudioEditor.dir/Core/Effects/Reverb.cpp.o: CMakeFiles/AudioEditor.dir/flags.make
 CMakeFiles/AudioEditor.dir/Core/Effects/Reverb.cpp.o: /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects/Reverb.cpp
 CMakeFiles/AudioEditor.dir/Core/Effects/Reverb.cpp.o: CMakeFiles/AudioEditor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/AudioEditor.dir/Core/Effects/Reverb.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/AudioEditor.dir/Core/Effects/Reverb.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AudioEditor.dir/Core/Effects/Reverb.cpp.o -MF CMakeFiles/AudioEditor.dir/Core/Effects/Reverb.cpp.o.d -o CMakeFiles/AudioEditor.dir/Core/Effects/Reverb.cpp.o -c /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects/Reverb.cpp
 
 CMakeFiles/AudioEditor.dir/Core/Effects/Reverb.cpp.i: cmake_force
@@ -173,7 +222,7 @@ CMakeFiles/AudioEditor.dir/Core/Effects/Reverb.cpp.s: cmake_force
 CMakeFiles/AudioEditor.dir/Core/Effects/Speed.cpp.o: CMakeFiles/AudioEditor.dir/flags.make
 CMakeFiles/AudioEditor.dir/Core/Effects/Speed.cpp.o: /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects/Speed.cpp
 CMakeFiles/AudioEditor.dir/Core/Effects/Speed.cpp.o: CMakeFiles/AudioEditor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/AudioEditor.dir/Core/Effects/Speed.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/AudioEditor.dir/Core/Effects/Speed.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AudioEditor.dir/Core/Effects/Speed.cpp.o -MF CMakeFiles/AudioEditor.dir/Core/Effects/Speed.cpp.o.d -o CMakeFiles/AudioEditor.dir/Core/Effects/Speed.cpp.o -c /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects/Speed.cpp
 
 CMakeFiles/AudioEditor.dir/Core/Effects/Speed.cpp.i: cmake_force
@@ -184,32 +233,107 @@ CMakeFiles/AudioEditor.dir/Core/Effects/Speed.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AudioEditor.dir/Core/Effects/Speed.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects/Speed.cpp -o CMakeFiles/AudioEditor.dir/Core/Effects/Speed.cpp.s
 
+CMakeFiles/AudioEditor.dir/Core/Effects/Volume.cpp.o: CMakeFiles/AudioEditor.dir/flags.make
+CMakeFiles/AudioEditor.dir/Core/Effects/Volume.cpp.o: /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects/Volume.cpp
+CMakeFiles/AudioEditor.dir/Core/Effects/Volume.cpp.o: CMakeFiles/AudioEditor.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/AudioEditor.dir/Core/Effects/Volume.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AudioEditor.dir/Core/Effects/Volume.cpp.o -MF CMakeFiles/AudioEditor.dir/Core/Effects/Volume.cpp.o.d -o CMakeFiles/AudioEditor.dir/Core/Effects/Volume.cpp.o -c /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects/Volume.cpp
+
+CMakeFiles/AudioEditor.dir/Core/Effects/Volume.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AudioEditor.dir/Core/Effects/Volume.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects/Volume.cpp > CMakeFiles/AudioEditor.dir/Core/Effects/Volume.cpp.i
+
+CMakeFiles/AudioEditor.dir/Core/Effects/Volume.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AudioEditor.dir/Core/Effects/Volume.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects/Volume.cpp -o CMakeFiles/AudioEditor.dir/Core/Effects/Volume.cpp.s
+
+CMakeFiles/AudioEditor.dir/Core/Effects/Normalize.cpp.o: CMakeFiles/AudioEditor.dir/flags.make
+CMakeFiles/AudioEditor.dir/Core/Effects/Normalize.cpp.o: /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects/Normalize.cpp
+CMakeFiles/AudioEditor.dir/Core/Effects/Normalize.cpp.o: CMakeFiles/AudioEditor.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/AudioEditor.dir/Core/Effects/Normalize.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AudioEditor.dir/Core/Effects/Normalize.cpp.o -MF CMakeFiles/AudioEditor.dir/Core/Effects/Normalize.cpp.o.d -o CMakeFiles/AudioEditor.dir/Core/Effects/Normalize.cpp.o -c /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects/Normalize.cpp
+
+CMakeFiles/AudioEditor.dir/Core/Effects/Normalize.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AudioEditor.dir/Core/Effects/Normalize.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects/Normalize.cpp > CMakeFiles/AudioEditor.dir/Core/Effects/Normalize.cpp.i
+
+CMakeFiles/AudioEditor.dir/Core/Effects/Normalize.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AudioEditor.dir/Core/Effects/Normalize.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects/Normalize.cpp -o CMakeFiles/AudioEditor.dir/Core/Effects/Normalize.cpp.s
+
+CMakeFiles/AudioEditor.dir/Core/Commands/CommandHistory.cpp.o: CMakeFiles/AudioEditor.dir/flags.make
+CMakeFiles/AudioEditor.dir/Core/Commands/CommandHistory.cpp.o: /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Commands/CommandHistory.cpp
+CMakeFiles/AudioEditor.dir/Core/Commands/CommandHistory.cpp.o: CMakeFiles/AudioEditor.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/AudioEditor.dir/Core/Commands/CommandHistory.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AudioEditor.dir/Core/Commands/CommandHistory.cpp.o -MF CMakeFiles/AudioEditor.dir/Core/Commands/CommandHistory.cpp.o.d -o CMakeFiles/AudioEditor.dir/Core/Commands/CommandHistory.cpp.o -c /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Commands/CommandHistory.cpp
+
+CMakeFiles/AudioEditor.dir/Core/Commands/CommandHistory.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AudioEditor.dir/Core/Commands/CommandHistory.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Commands/CommandHistory.cpp > CMakeFiles/AudioEditor.dir/Core/Commands/CommandHistory.cpp.i
+
+CMakeFiles/AudioEditor.dir/Core/Commands/CommandHistory.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AudioEditor.dir/Core/Commands/CommandHistory.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Commands/CommandHistory.cpp -o CMakeFiles/AudioEditor.dir/Core/Commands/CommandHistory.cpp.s
+
+CMakeFiles/AudioEditor.dir/Core/Commands/ApplyEffect.cpp.o: CMakeFiles/AudioEditor.dir/flags.make
+CMakeFiles/AudioEditor.dir/Core/Commands/ApplyEffect.cpp.o: /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Commands/ApplyEffect.cpp
+CMakeFiles/AudioEditor.dir/Core/Commands/ApplyEffect.cpp.o: CMakeFiles/AudioEditor.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/AudioEditor.dir/Core/Commands/ApplyEffect.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AudioEditor.dir/Core/Commands/ApplyEffect.cpp.o -MF CMakeFiles/AudioEditor.dir/Core/Commands/ApplyEffect.cpp.o.d -o CMakeFiles/AudioEditor.dir/Core/Commands/ApplyEffect.cpp.o -c /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Commands/ApplyEffect.cpp
+
+CMakeFiles/AudioEditor.dir/Core/Commands/ApplyEffect.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AudioEditor.dir/Core/Commands/ApplyEffect.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Commands/ApplyEffect.cpp > CMakeFiles/AudioEditor.dir/Core/Commands/ApplyEffect.cpp.i
+
+CMakeFiles/AudioEditor.dir/Core/Commands/ApplyEffect.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AudioEditor.dir/Core/Commands/ApplyEffect.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Commands/ApplyEffect.cpp -o CMakeFiles/AudioEditor.dir/Core/Commands/ApplyEffect.cpp.s
+
 # Object files for target AudioEditor
 AudioEditor_OBJECTS = \
-"CMakeFiles/AudioEditor.dir/main.cpp.o" \
-"CMakeFiles/AudioEditor.dir/Core/Logger.cpp.o" \
+"CMakeFiles/AudioEditor.dir/AudioEditor_autogen/mocs_compilation.cpp.o" \
+"CMakeFiles/AudioEditor.dir/main_cli.cpp.o" \
 "CMakeFiles/AudioEditor.dir/Core/AudioClip.cpp.o" \
 "CMakeFiles/AudioEditor.dir/Core/EffectFactory.cpp.o" \
+"CMakeFiles/AudioEditor.dir/Core/FileLogger.cpp.o" \
+"CMakeFiles/AudioEditor.dir/Core/ConsoleLogger.cpp.o" \
+"CMakeFiles/AudioEditor.dir/Core/CompositeLogger.cpp.o" \
 "CMakeFiles/AudioEditor.dir/Core/Adapters/Mp3.cpp.o" \
 "CMakeFiles/AudioEditor.dir/Core/Effects/Echo.cpp.o" \
 "CMakeFiles/AudioEditor.dir/Core/Effects/Reverb.cpp.o" \
-"CMakeFiles/AudioEditor.dir/Core/Effects/Speed.cpp.o"
+"CMakeFiles/AudioEditor.dir/Core/Effects/Speed.cpp.o" \
+"CMakeFiles/AudioEditor.dir/Core/Effects/Volume.cpp.o" \
+"CMakeFiles/AudioEditor.dir/Core/Effects/Normalize.cpp.o" \
+"CMakeFiles/AudioEditor.dir/Core/Commands/CommandHistory.cpp.o" \
+"CMakeFiles/AudioEditor.dir/Core/Commands/ApplyEffect.cpp.o"
 
 # External object files for target AudioEditor
 AudioEditor_EXTERNAL_OBJECTS =
 
-AudioEditor: CMakeFiles/AudioEditor.dir/main.cpp.o
-AudioEditor: CMakeFiles/AudioEditor.dir/Core/Logger.cpp.o
+AudioEditor: CMakeFiles/AudioEditor.dir/AudioEditor_autogen/mocs_compilation.cpp.o
+AudioEditor: CMakeFiles/AudioEditor.dir/main_cli.cpp.o
 AudioEditor: CMakeFiles/AudioEditor.dir/Core/AudioClip.cpp.o
 AudioEditor: CMakeFiles/AudioEditor.dir/Core/EffectFactory.cpp.o
+AudioEditor: CMakeFiles/AudioEditor.dir/Core/FileLogger.cpp.o
+AudioEditor: CMakeFiles/AudioEditor.dir/Core/ConsoleLogger.cpp.o
+AudioEditor: CMakeFiles/AudioEditor.dir/Core/CompositeLogger.cpp.o
 AudioEditor: CMakeFiles/AudioEditor.dir/Core/Adapters/Mp3.cpp.o
 AudioEditor: CMakeFiles/AudioEditor.dir/Core/Effects/Echo.cpp.o
 AudioEditor: CMakeFiles/AudioEditor.dir/Core/Effects/Reverb.cpp.o
 AudioEditor: CMakeFiles/AudioEditor.dir/Core/Effects/Speed.cpp.o
+AudioEditor: CMakeFiles/AudioEditor.dir/Core/Effects/Volume.cpp.o
+AudioEditor: CMakeFiles/AudioEditor.dir/Core/Effects/Normalize.cpp.o
+AudioEditor: CMakeFiles/AudioEditor.dir/Core/Commands/CommandHistory.cpp.o
+AudioEditor: CMakeFiles/AudioEditor.dir/Core/Commands/ApplyEffect.cpp.o
 AudioEditor: CMakeFiles/AudioEditor.dir/build.make
+AudioEditor: /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Versions/A/QtWidgets
+AudioEditor: /opt/homebrew/opt/qt@6/lib/QtMultimedia.framework/Versions/A/QtMultimedia
+AudioEditor: /opt/homebrew/opt/qt@6/lib/QtNetwork.framework/Versions/A/QtNetwork
 AudioEditor: /opt/homebrew/lib/libmp3lame.dylib
+AudioEditor: /opt/homebrew/opt/qt@6/lib/QtGui.framework/Versions/A/QtGui
+AudioEditor: /opt/homebrew/opt/qt@6/lib/QtCore.framework/Versions/A/QtCore
 AudioEditor: CMakeFiles/AudioEditor.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable AudioEditor"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Linking CXX executable AudioEditor"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/AudioEditor.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -220,7 +344,7 @@ CMakeFiles/AudioEditor.dir/clean:
 	$(CMAKE_COMMAND) -P CMakeFiles/AudioEditor.dir/cmake_clean.cmake
 .PHONY : CMakeFiles/AudioEditor.dir/clean
 
-CMakeFiles/AudioEditor.dir/depend:
+CMakeFiles/AudioEditor.dir/depend: AudioEditor_autogen/timestamp
 	cd /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/CMakeFiles/AudioEditor.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/AudioEditor.dir/depend
 

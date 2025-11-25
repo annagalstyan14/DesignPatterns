@@ -1,5 +1,6 @@
 #include "CommandHistory.h"
-#include "../Logger.h"
+
+CommandHistory::CommandHistory(std::shared_ptr<ILogger> logger) : logger_(logger) {}
 
 void CommandHistory::executeCommand(std::shared_ptr<ICommand> command) {
     // Remove any commands after current index (redo history)
@@ -11,14 +12,18 @@ void CommandHistory::executeCommand(std::shared_ptr<ICommand> command) {
     history_.push_back(command);
     currentIndex_++;
     
-    Logger::getInstance().log("Command executed: " + std::string(command->getName()));
+    if (logger_) {
+        logger_->log("Command executed");
+    }
 }
 
 void CommandHistory::undo() {
     if (canUndo()) {
         history_[currentIndex_]->undo();
         currentIndex_--;
-        Logger::getInstance().log("Undo performed");
+        if (logger_) {
+            logger_->log("Undo performed");
+        }
     }
 }
 
@@ -26,7 +31,9 @@ void CommandHistory::redo() {
     if (canRedo()) {
         currentIndex_++;
         history_[currentIndex_]->execute();
-        Logger::getInstance().log("Redo performed");
+        if (logger_) {
+            logger_->log("Redo performed");
+        }
     }
 }
 

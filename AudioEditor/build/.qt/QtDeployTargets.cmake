@@ -1,0 +1,2 @@
+set(__QT_DEPLOY_TARGET_AudioEditor_FILE /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/AudioEditor)
+set(__QT_DEPLOY_TARGET_AudioEditor_TYPE EXECUTABLE)

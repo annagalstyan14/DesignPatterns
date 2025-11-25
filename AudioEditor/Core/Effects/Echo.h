@@ -3,6 +3,7 @@
 #include "../ILogger.h"
 #include <memory>
 #include <vector>
+#include <algorithm>
 
 class Echo : public IEffect {
 public:

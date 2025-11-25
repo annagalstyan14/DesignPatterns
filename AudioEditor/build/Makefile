@@ -48,10 +48,10 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /opt/homebrew/Cellar/cmake/4.0.1/bin/cmake
+CMAKE_COMMAND = /opt/homebrew/bin/cmake
 
 # The command to remove a file.
-RM = /opt/homebrew/Cellar/cmake/4.0.1/bin/cmake -E rm -f
+RM = /opt/homebrew/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
@@ -78,57 +78,12 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake to regenerate build system..."
-	/opt/homebrew/Cellar/cmake/4.0.1/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/opt/homebrew/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
 rebuild_cache/fast: rebuild_cache
 .PHONY : rebuild_cache/fast
-
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-.PHONY : list_install_components/fast
-
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
-	/opt/homebrew/Cellar/cmake/4.0.1/bin/cmake -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
-	/opt/homebrew/Cellar/cmake/4.0.1/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
-
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
-	/opt/homebrew/Cellar/cmake/4.0.1/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
-
-# Special rule for the target install/local
-install/local/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
-	/opt/homebrew/Cellar/cmake/4.0.1/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local/fast
-
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
-	/opt/homebrew/Cellar/cmake/4.0.1/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
-	/opt/homebrew/Cellar/cmake/4.0.1/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -162,37 +117,74 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named AudioEditorCore
+# Target rules for targets named AudioEditor
 
 # Build rule for target.
-AudioEditorCore: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 AudioEditorCore
-.PHONY : AudioEditorCore
+AudioEditor: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 AudioEditor
+.PHONY : AudioEditor
 
 # fast build rule for target.
-AudioEditorCore/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditorCore.dir/build.make CMakeFiles/AudioEditorCore.dir/build
-.PHONY : AudioEditorCore/fast
+AudioEditor/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/build
+.PHONY : AudioEditor/fast
 
 #=============================================================================
-# Target rules for targets named audio_editor
+# Target rules for targets named AudioEditor_autogen_timestamp_deps
 
 # Build rule for target.
-audio_editor: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 audio_editor
-.PHONY : audio_editor
+AudioEditor_autogen_timestamp_deps: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 AudioEditor_autogen_timestamp_deps
+.PHONY : AudioEditor_autogen_timestamp_deps
 
 # fast build rule for target.
-audio_editor/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/audio_editor.dir/build.make CMakeFiles/audio_editor.dir/build
-.PHONY : audio_editor/fast
+AudioEditor_autogen_timestamp_deps/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor_autogen_timestamp_deps.dir/build.make CMakeFiles/AudioEditor_autogen_timestamp_deps.dir/build
+.PHONY : AudioEditor_autogen_timestamp_deps/fast
+
+#=============================================================================
+# Target rules for targets named AudioEditor_autogen
+
+# Build rule for target.
+AudioEditor_autogen: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 AudioEditor_autogen
+.PHONY : AudioEditor_autogen
+
+# fast build rule for target.
+AudioEditor_autogen/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor_autogen.dir/build.make CMakeFiles/AudioEditor_autogen.dir/build
+.PHONY : AudioEditor_autogen/fast
+
+AudioEditor_autogen/mocs_compilation.o: AudioEditor_autogen/mocs_compilation.cpp.o
+.PHONY : AudioEditor_autogen/mocs_compilation.o
+
+# target to build an object file
+AudioEditor_autogen/mocs_compilation.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/AudioEditor_autogen/mocs_compilation.cpp.o
+.PHONY : AudioEditor_autogen/mocs_compilation.cpp.o
+
+AudioEditor_autogen/mocs_compilation.i: AudioEditor_autogen/mocs_compilation.cpp.i
+.PHONY : AudioEditor_autogen/mocs_compilation.i
+
+# target to preprocess a source file
+AudioEditor_autogen/mocs_compilation.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/AudioEditor_autogen/mocs_compilation.cpp.i
+.PHONY : AudioEditor_autogen/mocs_compilation.cpp.i
+
+AudioEditor_autogen/mocs_compilation.s: AudioEditor_autogen/mocs_compilation.cpp.s
+.PHONY : AudioEditor_autogen/mocs_compilation.s
+
+# target to generate assembly for a file
+AudioEditor_autogen/mocs_compilation.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/AudioEditor_autogen/mocs_compilation.cpp.s
+.PHONY : AudioEditor_autogen/mocs_compilation.cpp.s
 
 Core/Adapters/Mp3.o: Core/Adapters/Mp3.cpp.o
 .PHONY : Core/Adapters/Mp3.o
 
 # target to build an object file
 Core/Adapters/Mp3.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditorCore.dir/build.make CMakeFiles/AudioEditorCore.dir/Core/Adapters/Mp3.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Adapters/Mp3.cpp.o
 .PHONY : Core/Adapters/Mp3.cpp.o
 
 Core/Adapters/Mp3.i: Core/Adapters/Mp3.cpp.i
@@ -200,7 +192,7 @@ Core/Adapters/Mp3.i: Core/Adapters/Mp3.cpp.i
 
 # target to preprocess a source file
 Core/Adapters/Mp3.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditorCore.dir/build.make CMakeFiles/AudioEditorCore.dir/Core/Adapters/Mp3.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Adapters/Mp3.cpp.i
 .PHONY : Core/Adapters/Mp3.cpp.i
 
 Core/Adapters/Mp3.s: Core/Adapters/Mp3.cpp.s
@@ -208,7 +200,7 @@ Core/Adapters/Mp3.s: Core/Adapters/Mp3.cpp.s
 
 # target to generate assembly for a file
 Core/Adapters/Mp3.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditorCore.dir/build.make CMakeFiles/AudioEditorCore.dir/Core/Adapters/Mp3.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Adapters/Mp3.cpp.s
 .PHONY : Core/Adapters/Mp3.cpp.s
 
 Core/AudioClip.o: Core/AudioClip.cpp.o
@@ -216,7 +208,7 @@ Core/AudioClip.o: Core/AudioClip.cpp.o
 
 # target to build an object file
 Core/AudioClip.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditorCore.dir/build.make CMakeFiles/AudioEditorCore.dir/Core/AudioClip.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/AudioClip.cpp.o
 .PHONY : Core/AudioClip.cpp.o
 
 Core/AudioClip.i: Core/AudioClip.cpp.i
@@ -224,7 +216,7 @@ Core/AudioClip.i: Core/AudioClip.cpp.i
 
 # target to preprocess a source file
 Core/AudioClip.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditorCore.dir/build.make CMakeFiles/AudioEditorCore.dir/Core/AudioClip.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/AudioClip.cpp.i
 .PHONY : Core/AudioClip.cpp.i
 
 Core/AudioClip.s: Core/AudioClip.cpp.s
@@ -232,15 +224,63 @@ Core/AudioClip.s: Core/AudioClip.cpp.s
 
 # target to generate assembly for a file
 Core/AudioClip.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditorCore.dir/build.make CMakeFiles/AudioEditorCore.dir/Core/AudioClip.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/AudioClip.cpp.s
 .PHONY : Core/AudioClip.cpp.s
+
+Core/Commands/ApplyEffect.o: Core/Commands/ApplyEffect.cpp.o
+.PHONY : Core/Commands/ApplyEffect.o
+
+# target to build an object file
+Core/Commands/ApplyEffect.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Commands/ApplyEffect.cpp.o
+.PHONY : Core/Commands/ApplyEffect.cpp.o
+
+Core/Commands/ApplyEffect.i: Core/Commands/ApplyEffect.cpp.i
+.PHONY : Core/Commands/ApplyEffect.i
+
+# target to preprocess a source file
+Core/Commands/ApplyEffect.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Commands/ApplyEffect.cpp.i
+.PHONY : Core/Commands/ApplyEffect.cpp.i
+
+Core/Commands/ApplyEffect.s: Core/Commands/ApplyEffect.cpp.s
+.PHONY : Core/Commands/ApplyEffect.s
+
+# target to generate assembly for a file
+Core/Commands/ApplyEffect.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Commands/ApplyEffect.cpp.s
+.PHONY : Core/Commands/ApplyEffect.cpp.s
+
+Core/Commands/CommandHistory.o: Core/Commands/CommandHistory.cpp.o
+.PHONY : Core/Commands/CommandHistory.o
+
+# target to build an object file
+Core/Commands/CommandHistory.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Commands/CommandHistory.cpp.o
+.PHONY : Core/Commands/CommandHistory.cpp.o
+
+Core/Commands/CommandHistory.i: Core/Commands/CommandHistory.cpp.i
+.PHONY : Core/Commands/CommandHistory.i
+
+# target to preprocess a source file
+Core/Commands/CommandHistory.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Commands/CommandHistory.cpp.i
+.PHONY : Core/Commands/CommandHistory.cpp.i
+
+Core/Commands/CommandHistory.s: Core/Commands/CommandHistory.cpp.s
+.PHONY : Core/Commands/CommandHistory.s
+
+# target to generate assembly for a file
+Core/Commands/CommandHistory.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Commands/CommandHistory.cpp.s
+.PHONY : Core/Commands/CommandHistory.cpp.s
 
 Core/CompositeLogger.o: Core/CompositeLogger.cpp.o
 .PHONY : Core/CompositeLogger.o
 
 # target to build an object file
 Core/CompositeLogger.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditorCore.dir/build.make CMakeFiles/AudioEditorCore.dir/Core/CompositeLogger.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/CompositeLogger.cpp.o
 .PHONY : Core/CompositeLogger.cpp.o
 
 Core/CompositeLogger.i: Core/CompositeLogger.cpp.i
@@ -248,7 +288,7 @@ Core/CompositeLogger.i: Core/CompositeLogger.cpp.i
 
 # target to preprocess a source file
 Core/CompositeLogger.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditorCore.dir/build.make CMakeFiles/AudioEditorCore.dir/Core/CompositeLogger.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/CompositeLogger.cpp.i
 .PHONY : Core/CompositeLogger.cpp.i
 
 Core/CompositeLogger.s: Core/CompositeLogger.cpp.s
@@ -256,7 +296,7 @@ Core/CompositeLogger.s: Core/CompositeLogger.cpp.s
 
 # target to generate assembly for a file
 Core/CompositeLogger.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditorCore.dir/build.make CMakeFiles/AudioEditorCore.dir/Core/CompositeLogger.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/CompositeLogger.cpp.s
 .PHONY : Core/CompositeLogger.cpp.s
 
 Core/ConsoleLogger.o: Core/ConsoleLogger.cpp.o
@@ -264,7 +304,7 @@ Core/ConsoleLogger.o: Core/ConsoleLogger.cpp.o
 
 # target to build an object file
 Core/ConsoleLogger.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditorCore.dir/build.make CMakeFiles/AudioEditorCore.dir/Core/ConsoleLogger.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/ConsoleLogger.cpp.o
 .PHONY : Core/ConsoleLogger.cpp.o
 
 Core/ConsoleLogger.i: Core/ConsoleLogger.cpp.i
@@ -272,7 +312,7 @@ Core/ConsoleLogger.i: Core/ConsoleLogger.cpp.i
 
 # target to preprocess a source file
 Core/ConsoleLogger.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditorCore.dir/build.make CMakeFiles/AudioEditorCore.dir/Core/ConsoleLogger.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/ConsoleLogger.cpp.i
 .PHONY : Core/ConsoleLogger.cpp.i
 
 Core/ConsoleLogger.s: Core/ConsoleLogger.cpp.s
@@ -280,7 +320,7 @@ Core/ConsoleLogger.s: Core/ConsoleLogger.cpp.s
 
 # target to generate assembly for a file
 Core/ConsoleLogger.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditorCore.dir/build.make CMakeFiles/AudioEditorCore.dir/Core/ConsoleLogger.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/ConsoleLogger.cpp.s
 .PHONY : Core/ConsoleLogger.cpp.s
 
 Core/EffectFactory.o: Core/EffectFactory.cpp.o
@@ -288,7 +328,7 @@ Core/EffectFactory.o: Core/EffectFactory.cpp.o
 
 # target to build an object file
 Core/EffectFactory.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditorCore.dir/build.make CMakeFiles/AudioEditorCore.dir/Core/EffectFactory.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/EffectFactory.cpp.o
 .PHONY : Core/EffectFactory.cpp.o
 
 Core/EffectFactory.i: Core/EffectFactory.cpp.i
@@ -296,7 +336,7 @@ Core/EffectFactory.i: Core/EffectFactory.cpp.i
 
 # target to preprocess a source file
 Core/EffectFactory.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditorCore.dir/build.make CMakeFiles/AudioEditorCore.dir/Core/EffectFactory.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/EffectFactory.cpp.i
 .PHONY : Core/EffectFactory.cpp.i
 
 Core/EffectFactory.s: Core/EffectFactory.cpp.s
@@ -304,7 +344,7 @@ Core/EffectFactory.s: Core/EffectFactory.cpp.s
 
 # target to generate assembly for a file
 Core/EffectFactory.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditorCore.dir/build.make CMakeFiles/AudioEditorCore.dir/Core/EffectFactory.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/EffectFactory.cpp.s
 .PHONY : Core/EffectFactory.cpp.s
 
 Core/Effects/Echo.o: Core/Effects/Echo.cpp.o
@@ -312,7 +352,7 @@ Core/Effects/Echo.o: Core/Effects/Echo.cpp.o
 
 # target to build an object file
 Core/Effects/Echo.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditorCore.dir/build.make CMakeFiles/AudioEditorCore.dir/Core/Effects/Echo.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Effects/Echo.cpp.o
 .PHONY : Core/Effects/Echo.cpp.o
 
 Core/Effects/Echo.i: Core/Effects/Echo.cpp.i
@@ -320,7 +360,7 @@ Core/Effects/Echo.i: Core/Effects/Echo.cpp.i
 
 # target to preprocess a source file
 Core/Effects/Echo.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditorCore.dir/build.make CMakeFiles/AudioEditorCore.dir/Core/Effects/Echo.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Effects/Echo.cpp.i
 .PHONY : Core/Effects/Echo.cpp.i
 
 Core/Effects/Echo.s: Core/Effects/Echo.cpp.s
@@ -328,7 +368,7 @@ Core/Effects/Echo.s: Core/Effects/Echo.cpp.s
 
 # target to generate assembly for a file
 Core/Effects/Echo.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditorCore.dir/build.make CMakeFiles/AudioEditorCore.dir/Core/Effects/Echo.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Effects/Echo.cpp.s
 .PHONY : Core/Effects/Echo.cpp.s
 
 Core/Effects/Normalize.o: Core/Effects/Normalize.cpp.o
@@ -336,7 +376,7 @@ Core/Effects/Normalize.o: Core/Effects/Normalize.cpp.o
 
 # target to build an object file
 Core/Effects/Normalize.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditorCore.dir/build.make CMakeFiles/AudioEditorCore.dir/Core/Effects/Normalize.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Effects/Normalize.cpp.o
 .PHONY : Core/Effects/Normalize.cpp.o
 
 Core/Effects/Normalize.i: Core/Effects/Normalize.cpp.i
@@ -344,7 +384,7 @@ Core/Effects/Normalize.i: Core/Effects/Normalize.cpp.i
 
 # target to preprocess a source file
 Core/Effects/Normalize.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditorCore.dir/build.make CMakeFiles/AudioEditorCore.dir/Core/Effects/Normalize.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Effects/Normalize.cpp.i
 .PHONY : Core/Effects/Normalize.cpp.i
 
 Core/Effects/Normalize.s: Core/Effects/Normalize.cpp.s
@@ -352,7 +392,7 @@ Core/Effects/Normalize.s: Core/Effects/Normalize.cpp.s
 
 # target to generate assembly for a file
 Core/Effects/Normalize.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditorCore.dir/build.make CMakeFiles/AudioEditorCore.dir/Core/Effects/Normalize.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Effects/Normalize.cpp.s
 .PHONY : Core/Effects/Normalize.cpp.s
 
 Core/Effects/Reverb.o: Core/Effects/Reverb.cpp.o
@@ -360,7 +400,7 @@ Core/Effects/Reverb.o: Core/Effects/Reverb.cpp.o
 
 # target to build an object file
 Core/Effects/Reverb.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditorCore.dir/build.make CMakeFiles/AudioEditorCore.dir/Core/Effects/Reverb.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Effects/Reverb.cpp.o
 .PHONY : Core/Effects/Reverb.cpp.o
 
 Core/Effects/Reverb.i: Core/Effects/Reverb.cpp.i
@@ -368,7 +408,7 @@ Core/Effects/Reverb.i: Core/Effects/Reverb.cpp.i
 
 # target to preprocess a source file
 Core/Effects/Reverb.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditorCore.dir/build.make CMakeFiles/AudioEditorCore.dir/Core/Effects/Reverb.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Effects/Reverb.cpp.i
 .PHONY : Core/Effects/Reverb.cpp.i
 
 Core/Effects/Reverb.s: Core/Effects/Reverb.cpp.s
@@ -376,7 +416,7 @@ Core/Effects/Reverb.s: Core/Effects/Reverb.cpp.s
 
 # target to generate assembly for a file
 Core/Effects/Reverb.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditorCore.dir/build.make CMakeFiles/AudioEditorCore.dir/Core/Effects/Reverb.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Effects/Reverb.cpp.s
 .PHONY : Core/Effects/Reverb.cpp.s
 
 Core/Effects/Speed.o: Core/Effects/Speed.cpp.o
@@ -384,7 +424,7 @@ Core/Effects/Speed.o: Core/Effects/Speed.cpp.o
 
 # target to build an object file
 Core/Effects/Speed.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditorCore.dir/build.make CMakeFiles/AudioEditorCore.dir/Core/Effects/Speed.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Effects/Speed.cpp.o
 .PHONY : Core/Effects/Speed.cpp.o
 
 Core/Effects/Speed.i: Core/Effects/Speed.cpp.i
@@ -392,7 +432,7 @@ Core/Effects/Speed.i: Core/Effects/Speed.cpp.i
 
 # target to preprocess a source file
 Core/Effects/Speed.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditorCore.dir/build.make CMakeFiles/AudioEditorCore.dir/Core/Effects/Speed.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Effects/Speed.cpp.i
 .PHONY : Core/Effects/Speed.cpp.i
 
 Core/Effects/Speed.s: Core/Effects/Speed.cpp.s
@@ -400,15 +440,39 @@ Core/Effects/Speed.s: Core/Effects/Speed.cpp.s
 
 # target to generate assembly for a file
 Core/Effects/Speed.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditorCore.dir/build.make CMakeFiles/AudioEditorCore.dir/Core/Effects/Speed.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Effects/Speed.cpp.s
 .PHONY : Core/Effects/Speed.cpp.s
+
+Core/Effects/Volume.o: Core/Effects/Volume.cpp.o
+.PHONY : Core/Effects/Volume.o
+
+# target to build an object file
+Core/Effects/Volume.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Effects/Volume.cpp.o
+.PHONY : Core/Effects/Volume.cpp.o
+
+Core/Effects/Volume.i: Core/Effects/Volume.cpp.i
+.PHONY : Core/Effects/Volume.i
+
+# target to preprocess a source file
+Core/Effects/Volume.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Effects/Volume.cpp.i
+.PHONY : Core/Effects/Volume.cpp.i
+
+Core/Effects/Volume.s: Core/Effects/Volume.cpp.s
+.PHONY : Core/Effects/Volume.s
+
+# target to generate assembly for a file
+Core/Effects/Volume.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Effects/Volume.cpp.s
+.PHONY : Core/Effects/Volume.cpp.s
 
 Core/FileLogger.o: Core/FileLogger.cpp.o
 .PHONY : Core/FileLogger.o
 
 # target to build an object file
 Core/FileLogger.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditorCore.dir/build.make CMakeFiles/AudioEditorCore.dir/Core/FileLogger.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/FileLogger.cpp.o
 .PHONY : Core/FileLogger.cpp.o
 
 Core/FileLogger.i: Core/FileLogger.cpp.i
@@ -416,7 +480,7 @@ Core/FileLogger.i: Core/FileLogger.cpp.i
 
 # target to preprocess a source file
 Core/FileLogger.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditorCore.dir/build.make CMakeFiles/AudioEditorCore.dir/Core/FileLogger.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/FileLogger.cpp.i
 .PHONY : Core/FileLogger.cpp.i
 
 Core/FileLogger.s: Core/FileLogger.cpp.s
@@ -424,32 +488,32 @@ Core/FileLogger.s: Core/FileLogger.cpp.s
 
 # target to generate assembly for a file
 Core/FileLogger.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditorCore.dir/build.make CMakeFiles/AudioEditorCore.dir/Core/FileLogger.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/FileLogger.cpp.s
 .PHONY : Core/FileLogger.cpp.s
 
-main.o: main.cpp.o
-.PHONY : main.o
+main_cli.o: main_cli.cpp.o
+.PHONY : main_cli.o
 
 # target to build an object file
-main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/audio_editor.dir/build.make CMakeFiles/audio_editor.dir/main.cpp.o
-.PHONY : main.cpp.o
+main_cli.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/main_cli.cpp.o
+.PHONY : main_cli.cpp.o
 
-main.i: main.cpp.i
-.PHONY : main.i
+main_cli.i: main_cli.cpp.i
+.PHONY : main_cli.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/audio_editor.dir/build.make CMakeFiles/audio_editor.dir/main.cpp.i
-.PHONY : main.cpp.i
+main_cli.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/main_cli.cpp.i
+.PHONY : main_cli.cpp.i
 
-main.s: main.cpp.s
-.PHONY : main.s
+main_cli.s: main_cli.cpp.s
+.PHONY : main_cli.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/audio_editor.dir/build.make CMakeFiles/audio_editor.dir/main.cpp.s
-.PHONY : main.cpp.s
+main_cli.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/main_cli.cpp.s
+.PHONY : main_cli.cpp.s
 
 # Help Target
 help:
@@ -458,19 +522,25 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
-	@echo "... install"
-	@echo "... install/local"
-	@echo "... install/strip"
-	@echo "... list_install_components"
 	@echo "... rebuild_cache"
-	@echo "... AudioEditorCore"
-	@echo "... audio_editor"
+	@echo "... AudioEditor_autogen"
+	@echo "... AudioEditor_autogen_timestamp_deps"
+	@echo "... AudioEditor"
+	@echo "... AudioEditor_autogen/mocs_compilation.o"
+	@echo "... AudioEditor_autogen/mocs_compilation.i"
+	@echo "... AudioEditor_autogen/mocs_compilation.s"
 	@echo "... Core/Adapters/Mp3.o"
 	@echo "... Core/Adapters/Mp3.i"
 	@echo "... Core/Adapters/Mp3.s"
 	@echo "... Core/AudioClip.o"
 	@echo "... Core/AudioClip.i"
 	@echo "... Core/AudioClip.s"
+	@echo "... Core/Commands/ApplyEffect.o"
+	@echo "... Core/Commands/ApplyEffect.i"
+	@echo "... Core/Commands/ApplyEffect.s"
+	@echo "... Core/Commands/CommandHistory.o"
+	@echo "... Core/Commands/CommandHistory.i"
+	@echo "... Core/Commands/CommandHistory.s"
 	@echo "... Core/CompositeLogger.o"
 	@echo "... Core/CompositeLogger.i"
 	@echo "... Core/CompositeLogger.s"
@@ -492,12 +562,15 @@ help:
 	@echo "... Core/Effects/Speed.o"
 	@echo "... Core/Effects/Speed.i"
 	@echo "... Core/Effects/Speed.s"
+	@echo "... Core/Effects/Volume.o"
+	@echo "... Core/Effects/Volume.i"
+	@echo "... Core/Effects/Volume.s"
 	@echo "... Core/FileLogger.o"
 	@echo "... Core/FileLogger.i"
 	@echo "... Core/FileLogger.s"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
+	@echo "... main_cli.o"
+	@echo "... main_cli.i"
+	@echo "... main_cli.s"
 .PHONY : help
 
 

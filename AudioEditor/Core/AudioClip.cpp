@@ -92,5 +92,5 @@ std::vector<float> AudioClip::getSamples() const {
 
 void AudioClip::setSamples(const std::vector<float>& samples) {
     samples_ = samples;
-    Logger::getInstance().log("Samples updated: " + std::to_string(samples_.size()) + " samples");
+    logger_->log("Samples updated: " + std::to_string(samples_.size()) + " samples");
 }

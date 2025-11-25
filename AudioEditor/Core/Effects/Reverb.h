@@ -3,6 +3,8 @@
 #include "../ILogger.h"
 #include <vector>
 #include <memory>
+#include <algorithm>
+
 
 class Reverb : public IEffect {
 public:
