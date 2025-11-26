@@ -2,7 +2,7 @@
 #include "ICommand.h"
 #include "../AudioClip.h"
 #include "../Effects/IEffect.h"
-#include "../ILogger.h"
+#include "../Logging/ILogger.h"
 #include <memory>
 #include <vector>
 

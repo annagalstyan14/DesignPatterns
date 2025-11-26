@@ -755,10 +755,10 @@ CMakeFiles/AudioEditor.dir/Core/AudioClip.cpp.o: \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Adapters/AudioFileAdapter.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects/IEffect.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects/Speed.h \
-  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects/../ILogger.h \
-  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/ILogger.h \
+  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects/../Logging/ILogger.h \
+  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Logging/ILogger.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Adapters/Mp3.h \
-  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Adapters/../ILogger.h \
+  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Adapters/../Logging/ILogger.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects/Normalize.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/numeric \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__numeric/accumulate.h \

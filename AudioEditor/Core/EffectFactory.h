@@ -4,7 +4,7 @@
 #include <map>
 #include <functional>
 #include "Effects/IEffect.h"
-#include "ILogger.h"
+#include "Logging/ILogger.h"
 
 class EffectFactory {
 private:

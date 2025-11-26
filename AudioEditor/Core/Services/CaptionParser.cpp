@@ -1,6 +1,6 @@
 #include "CaptionParser.h"
-#include "CaptionPanel.h"  // For Caption struct
-#include "../Core/ILogger.h"
+#include "../GUI/CaptionPanel.h"  // For Caption struct
+#include "../Logging/ILogger.h"
 #include <QFile>
 #include <QTextStream>
 #include <QRegularExpression>

@@ -1,6 +1,6 @@
 #pragma once
 #include "ICommand.h"
-#include "../ILogger.h"
+#include "../Logging/ILogger.h"
 #include <memory>
 #include <vector>
 

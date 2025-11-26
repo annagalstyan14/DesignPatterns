@@ -2,7 +2,7 @@
 #define MP3_H
 
 #include "AudioFileAdapter.h"
-#include "../ILogger.h"
+#include "../Logging/ILogger.h"
 #include <vector>
 #include <string>
 #include <memory>

@@ -7,47 +7,99 @@
 	"CMAKE_LIST_FILES" : 
 	[
 		"/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/CMakeLists.txt",
+		"/opt/homebrew/share/cmake/Modules/CMakeDetermineSystem.cmake",
+		"/opt/homebrew/share/cmake/Modules/CMakeSystem.cmake.in",
 		"/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/CMakeFiles/4.0.1/CMakeSystem.cmake",
+		"/opt/homebrew/share/cmake/Modules/CMakeUnixFindMake.cmake",
 		"/opt/homebrew/share/cmake/Modules/CMakeSystemSpecificInitialize.cmake",
 		"/opt/homebrew/share/cmake/Modules/Platform/Darwin-Initialize.cmake",
-		"/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/CMakeFiles/4.0.1/CMakeCCompiler.cmake",
+		"/opt/homebrew/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake",
+		"/opt/homebrew/share/cmake/Modules/CMakeDetermineCompiler.cmake",
+		"/opt/homebrew/share/cmake/Modules/Platform/Darwin-Determine-CXX.cmake",
+		"/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerId.cmake",
+		"/opt/homebrew/share/cmake/Modules/CMakeCompilerIdDetection.cmake",
+		"/opt/homebrew/share/cmake/Modules/Compiler/ADSP-DetermineCompiler.cmake",
+		"/opt/homebrew/share/cmake/Modules/Compiler/ARMCC-DetermineCompiler.cmake",
+		"/opt/homebrew/share/cmake/Modules/Compiler/ARMClang-DetermineCompiler.cmake",
+		"/opt/homebrew/share/cmake/Modules/Compiler/AppleClang-DetermineCompiler.cmake",
+		"/opt/homebrew/share/cmake/Modules/Compiler/Clang-DetermineCompilerInternal.cmake",
+		"/opt/homebrew/share/cmake/Modules/Compiler/Borland-DetermineCompiler.cmake",
+		"/opt/homebrew/share/cmake/Modules/Compiler/Clang-DetermineCompiler.cmake",
+		"/opt/homebrew/share/cmake/Modules/Compiler/Clang-DetermineCompilerInternal.cmake",
+		"/opt/homebrew/share/cmake/Modules/Compiler/Compaq-CXX-DetermineCompiler.cmake",
+		"/opt/homebrew/share/cmake/Modules/Compiler/Cray-DetermineCompiler.cmake",
+		"/opt/homebrew/share/cmake/Modules/Compiler/CrayClang-DetermineCompiler.cmake",
+		"/opt/homebrew/share/cmake/Modules/Compiler/Embarcadero-DetermineCompiler.cmake",
+		"/opt/homebrew/share/cmake/Modules/Compiler/Fujitsu-DetermineCompiler.cmake",
+		"/opt/homebrew/share/cmake/Modules/Compiler/FujitsuClang-DetermineCompiler.cmake",
+		"/opt/homebrew/share/cmake/Modules/Compiler/GHS-DetermineCompiler.cmake",
+		"/opt/homebrew/share/cmake/Modules/Compiler/GNU-CXX-DetermineCompiler.cmake",
+		"/opt/homebrew/share/cmake/Modules/Compiler/HP-CXX-DetermineCompiler.cmake",
+		"/opt/homebrew/share/cmake/Modules/Compiler/IAR-DetermineCompiler.cmake",
+		"/opt/homebrew/share/cmake/Modules/Compiler/IBMClang-CXX-DetermineCompiler.cmake",
+		"/opt/homebrew/share/cmake/Modules/Compiler/Intel-DetermineCompiler.cmake",
+		"/opt/homebrew/share/cmake/Modules/Compiler/IntelLLVM-DetermineCompiler.cmake",
+		"/opt/homebrew/share/cmake/Modules/Compiler/LCC-CXX-DetermineCompiler.cmake",
+		"/opt/homebrew/share/cmake/Modules/Compiler/MSVC-DetermineCompiler.cmake",
+		"/opt/homebrew/share/cmake/Modules/Compiler/NVHPC-DetermineCompiler.cmake",
+		"/opt/homebrew/share/cmake/Modules/Compiler/NVIDIA-DetermineCompiler.cmake",
+		"/opt/homebrew/share/cmake/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake",
+		"/opt/homebrew/share/cmake/Modules/Compiler/OrangeC-DetermineCompiler.cmake",
+		"/opt/homebrew/share/cmake/Modules/Compiler/PGI-DetermineCompiler.cmake",
+		"/opt/homebrew/share/cmake/Modules/Compiler/PathScale-DetermineCompiler.cmake",
+		"/opt/homebrew/share/cmake/Modules/Compiler/SCO-DetermineCompiler.cmake",
+		"/opt/homebrew/share/cmake/Modules/Compiler/SunPro-CXX-DetermineCompiler.cmake",
+		"/opt/homebrew/share/cmake/Modules/Compiler/TI-DetermineCompiler.cmake",
+		"/opt/homebrew/share/cmake/Modules/Compiler/TIClang-DetermineCompiler.cmake",
+		"/opt/homebrew/share/cmake/Modules/Compiler/Tasking-DetermineCompiler.cmake",
+		"/opt/homebrew/share/cmake/Modules/Compiler/VisualAge-CXX-DetermineCompiler.cmake",
+		"/opt/homebrew/share/cmake/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake",
+		"/opt/homebrew/share/cmake/Modules/Compiler/Watcom-DetermineCompiler.cmake",
+		"/opt/homebrew/share/cmake/Modules/Compiler/XL-CXX-DetermineCompiler.cmake",
+		"/opt/homebrew/share/cmake/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake",
+		"/opt/homebrew/share/cmake/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake",
+		"/opt/homebrew/share/cmake/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake",
+		"/opt/homebrew/share/cmake/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake",
+		"/opt/homebrew/share/cmake/Modules/CMakeFindBinUtils.cmake",
+		"/opt/homebrew/share/cmake/Modules/CMakeCXXCompiler.cmake.in",
 		"/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/CMakeFiles/4.0.1/CMakeCXXCompiler.cmake",
 		"/opt/homebrew/share/cmake/Modules/CMakeSystemSpecificInformation.cmake",
 		"/opt/homebrew/share/cmake/Modules/CMakeGenericSystem.cmake",
 		"/opt/homebrew/share/cmake/Modules/CMakeInitializeConfigs.cmake",
 		"/opt/homebrew/share/cmake/Modules/Platform/Darwin.cmake",
 		"/opt/homebrew/share/cmake/Modules/Platform/UnixPaths.cmake",
-		"/opt/homebrew/share/cmake/Modules/CMakeCInformation.cmake",
-		"/opt/homebrew/share/cmake/Modules/CMakeLanguageInformation.cmake",
-		"/opt/homebrew/share/cmake/Modules/Compiler/AppleClang-C.cmake",
-		"/opt/homebrew/share/cmake/Modules/Compiler/Clang.cmake",
-		"/opt/homebrew/share/cmake/Modules/Compiler/CMakeCommonCompilerMacros.cmake",
-		"/opt/homebrew/share/cmake/Modules/Compiler/GNU.cmake",
-		"/opt/homebrew/share/cmake/Modules/Compiler/CMakeCommonCompilerMacros.cmake",
-		"/opt/homebrew/share/cmake/Modules/Platform/Apple-AppleClang-C.cmake",
-		"/opt/homebrew/share/cmake/Modules/Platform/Apple-Clang-C.cmake",
-		"/opt/homebrew/share/cmake/Modules/Platform/Apple-Clang.cmake",
-		"/opt/homebrew/share/cmake/Modules/CMakeCommonLanguageInclude.cmake",
-		"/opt/homebrew/share/cmake/Modules/Internal/CMakeCLinkerInformation.cmake",
-		"/opt/homebrew/share/cmake/Modules/Internal/CMakeCommonLinkerInformation.cmake",
-		"/opt/homebrew/share/cmake/Modules/Linker/AppleClang-C.cmake",
-		"/opt/homebrew/share/cmake/Modules/Linker/AppleClang.cmake",
-		"/opt/homebrew/share/cmake/Modules/Platform/Linker/Apple-AppleClang-C.cmake",
-		"/opt/homebrew/share/cmake/Modules/Platform/Linker/Apple-AppleClang.cmake",
 		"/opt/homebrew/share/cmake/Modules/CMakeCXXInformation.cmake",
 		"/opt/homebrew/share/cmake/Modules/CMakeLanguageInformation.cmake",
 		"/opt/homebrew/share/cmake/Modules/Compiler/AppleClang-CXX.cmake",
 		"/opt/homebrew/share/cmake/Modules/Compiler/Clang.cmake",
+		"/opt/homebrew/share/cmake/Modules/Compiler/CMakeCommonCompilerMacros.cmake",
+		"/opt/homebrew/share/cmake/Modules/Compiler/GNU.cmake",
+		"/opt/homebrew/share/cmake/Modules/Compiler/CMakeCommonCompilerMacros.cmake",
 		"/opt/homebrew/share/cmake/Modules/Platform/Apple-AppleClang-CXX.cmake",
 		"/opt/homebrew/share/cmake/Modules/Platform/Apple-Clang-CXX.cmake",
 		"/opt/homebrew/share/cmake/Modules/Platform/Apple-Clang.cmake",
 		"/opt/homebrew/share/cmake/Modules/CMakeCommonLanguageInclude.cmake",
+		"/opt/homebrew/share/cmake/Modules/CMakeTestCXXCompiler.cmake",
+		"/opt/homebrew/share/cmake/Modules/CMakeTestCompilerCommon.cmake",
+		"/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerABI.cmake",
+		"/opt/homebrew/share/cmake/Modules/Internal/CMakeDetermineLinkerId.cmake",
+		"/opt/homebrew/share/cmake/Modules/CMakeParseImplicitIncludeInfo.cmake",
+		"/opt/homebrew/share/cmake/Modules/CMakeParseImplicitLinkInfo.cmake",
+		"/opt/homebrew/share/cmake/Modules/CMakeParseLibraryArchitecture.cmake",
+		"/opt/homebrew/share/cmake/Modules/CMakeTestCompilerCommon.cmake",
+		"/opt/homebrew/share/cmake/Modules/CMakeCXXCompilerABI.cpp",
+		"/opt/homebrew/share/cmake/Modules/CMakeDetermineCompilerSupport.cmake",
+		"/opt/homebrew/share/cmake/Modules/Internal/FeatureTesting.cmake",
+		"/opt/homebrew/share/cmake/Modules/CMakeCXXCompiler.cmake.in",
+		"/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/CMakeFiles/4.0.1/CMakeCXXCompiler.cmake",
 		"/opt/homebrew/share/cmake/Modules/Internal/CMakeCXXLinkerInformation.cmake",
 		"/opt/homebrew/share/cmake/Modules/Internal/CMakeCommonLinkerInformation.cmake",
 		"/opt/homebrew/share/cmake/Modules/Linker/AppleClang-CXX.cmake",
 		"/opt/homebrew/share/cmake/Modules/Linker/AppleClang.cmake",
 		"/opt/homebrew/share/cmake/Modules/Platform/Linker/Apple-AppleClang-CXX.cmake",
 		"/opt/homebrew/share/cmake/Modules/Platform/Linker/Apple-AppleClang.cmake",
+		"/opt/homebrew/share/cmake/Modules/Internal/CMakeInspectCXXLinker.cmake",
+		"/opt/homebrew/share/cmake/Modules/CMakeCXXCompiler.cmake.in",
 		"/opt/homebrew/opt/qt@6/lib/cmake/Qt6/Qt6ConfigVersion.cmake",
 		"/opt/homebrew/opt/qt@6/lib/cmake/Qt6/Qt6ConfigVersionImpl.cmake",
 		"/opt/homebrew/opt/qt@6/lib/cmake/Qt6/Qt6Config.cmake",
@@ -99,9 +151,8 @@
 		"/opt/homebrew/opt/qt@6/lib/cmake/Qt6/Qt6Dependencies.cmake",
 		"/opt/homebrew/share/cmake/Modules/FindThreads.cmake",
 		"/opt/homebrew/share/cmake/Modules/CheckLibraryExists.cmake",
-		"/opt/homebrew/share/cmake/Modules/CheckIncludeFile.cmake",
-		"/opt/homebrew/share/cmake/Modules/CheckCSourceCompiles.cmake",
-		"/opt/homebrew/share/cmake/Modules/Internal/CheckSourceCompiles.cmake",
+		"/opt/homebrew/share/cmake/Modules/CheckIncludeFileCXX.cmake",
+		"/opt/homebrew/share/cmake/Modules/CheckCXXSourceCompiles.cmake",
 		"/opt/homebrew/share/cmake/Modules/FindPackageHandleStandardArgs.cmake",
 		"/opt/homebrew/share/cmake/Modules/FindPackageMessage.cmake",
 		"/opt/homebrew/opt/qt@6/lib/cmake/Qt6Core/Qt6CoreConfigVersion.cmake",
@@ -511,18 +562,6 @@
 			null
 		],
 		[
-			"/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/CompositeLogger.h",
-			"MU",
-			"4VKJKCZPXG/moc_CompositeLogger.cpp",
-			null
-		],
-		[
-			"/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/ConsoleLogger.h",
-			"MU",
-			"4VKJKCZPXG/moc_ConsoleLogger.cpp",
-			null
-		],
-		[
 			"/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/EffectFactory.h",
 			"MU",
 			"4VKJKCZPXG/moc_EffectFactory.cpp",
@@ -559,9 +598,69 @@
 			null
 		],
 		[
-			"/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/FileLogger.h",
+			"/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Logging/CompositeLogger.h",
 			"MU",
-			"4VKJKCZPXG/moc_FileLogger.cpp",
+			"UFTPJG2PK7/moc_CompositeLogger.cpp",
+			null
+		],
+		[
+			"/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Logging/ConsoleLogger.h",
+			"MU",
+			"UFTPJG2PK7/moc_ConsoleLogger.cpp",
+			null
+		],
+		[
+			"/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Logging/FileLogger.h",
+			"MU",
+			"UFTPJG2PK7/moc_FileLogger.cpp",
+			null
+		],
+		[
+			"/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Services/CaptionParser.h",
+			"MU",
+			"G2KBG6V2WI/moc_CaptionParser.cpp",
+			null
+		],
+		[
+			"/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/AudioEngine.h",
+			"MU",
+			"2LCCYRVYXB/moc_AudioEngine.cpp",
+			null
+		],
+		[
+			"/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/CaptionPanel.h",
+			"MU",
+			"2LCCYRVYXB/moc_CaptionPanel.cpp",
+			null
+		],
+		[
+			"/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/EffectWidget.h",
+			"MU",
+			"2LCCYRVYXB/moc_EffectWidget.cpp",
+			null
+		],
+		[
+			"/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/EffectsPanel.h",
+			"MU",
+			"2LCCYRVYXB/moc_EffectsPanel.cpp",
+			null
+		],
+		[
+			"/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/MainWindow.h",
+			"MU",
+			"2LCCYRVYXB/moc_MainWindow.cpp",
+			null
+		],
+		[
+			"/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/TransportBar.h",
+			"MU",
+			"2LCCYRVYXB/moc_TransportBar.cpp",
+			null
+		],
+		[
+			"/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/WaveformWidget.h",
+			"MU",
+			"2LCCYRVYXB/moc_WaveformWidget.cpp",
 			null
 		]
 	],
@@ -586,13 +685,16 @@
 	],
 	"MOC_INCLUDES" : 
 	[
-		"/opt/homebrew/Cellar/mpg123/1.33.3/include",
-		"/opt/homebrew/include",
+		"/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor",
 		"/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core",
 		"/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Adapters",
 		"/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects",
 		"/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Commands",
+		"/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Logging",
+		"/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Services",
 		"/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI",
+		"/opt/homebrew/Cellar/mpg123/1.33.3/include",
+		"/opt/homebrew/include",
 		"/opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers",
 		"/opt/homebrew/opt/qt@6/lib/QtCore.framework",
 		"/opt/homebrew/opt/qt@6/share/qt/mkspecs/macx-clang",
@@ -664,16 +766,6 @@
 			null
 		],
 		[
-			"/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/CompositeLogger.cpp",
-			"MU",
-			null
-		],
-		[
-			"/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/ConsoleLogger.cpp",
-			"MU",
-			null
-		],
-		[
 			"/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/EffectFactory.cpp",
 			"MU",
 			null
@@ -704,12 +796,62 @@
 			null
 		],
 		[
-			"/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/FileLogger.cpp",
+			"/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Logging/CompositeLogger.cpp",
 			"MU",
 			null
 		],
 		[
-			"/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/main_cli.cpp",
+			"/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Logging/ConsoleLogger.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Logging/FileLogger.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Services/CaptionParser.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/AudioEngine.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/CaptionPanel.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/EffectWidget.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/EffectsPanel.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/MainWindow.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/TransportBar.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/WaveformWidget.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/main.cpp",
 			"MU",
 			null
 		]

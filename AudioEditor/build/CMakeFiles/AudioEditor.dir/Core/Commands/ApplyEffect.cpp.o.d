@@ -757,5 +757,6 @@ CMakeFiles/AudioEditor.dir/Core/Commands/ApplyEffect.cpp.o: \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Commands/../Adapters/AudioFileAdapter.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Commands/../Effects/IEffect.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Commands/../Effects/Speed.h \
-  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Commands/../Effects/../ILogger.h \
-  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Commands/../ILogger.h
+  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Commands/../Effects/../Logging/ILogger.h \
+  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Logging/ILogger.h \
+  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Commands/../Logging/ILogger.h

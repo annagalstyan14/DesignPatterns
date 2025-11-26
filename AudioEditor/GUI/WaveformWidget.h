@@ -92,3 +92,5 @@ private:
     QColor playheadColor_;
     QColor centerLineColor_;
 };
+
+#endif // WAVEFORM_WIDGET_H

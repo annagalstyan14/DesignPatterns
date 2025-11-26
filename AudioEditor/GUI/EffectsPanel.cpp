@@ -2,7 +2,7 @@
 #include "EffectWidget.h"
 #include "../Core/Effects/IEffect.h"
 #include "../Core/EffectFactory.h"
-#include "../Core/ILogger.h"
+#include "../Core/Logging/ILogger.h"
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QScrollArea>

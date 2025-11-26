@@ -38,10 +38,17 @@ template <> constexpr inline auto WaveformWidget::qt_create_metaobjectdata<qt_me
 {
     namespace QMC = QtMocConstants;
     QtMocHelpers::StringRefStorage qt_stringData {
-        "WaveformWidget"
+        "WaveformWidget",
+        "seekRequested",
+        "",
+        "positionMs"
     };
 
     QtMocHelpers::UintData qt_methods {
+        // Signal 'seekRequested'
+        QtMocHelpers::SignalData<void(qint64)>(1, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::LongLong, 3 },
+        }}),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -63,10 +70,16 @@ Q_CONSTINIT const QMetaObject WaveformWidget::staticMetaObject = { {
 void WaveformWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     auto *_t = static_cast<WaveformWidget *>(_o);
-    (void)_t;
-    (void)_c;
-    (void)_id;
-    (void)_a;
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        switch (_id) {
+        case 0: _t->seekRequested((*reinterpret_cast< std::add_pointer_t<qint64>>(_a[1]))); break;
+        default: ;
+        }
+    }
+    if (_c == QMetaObject::IndexOfMethod) {
+        if (QtMocHelpers::indexOfMethod<void (WaveformWidget::*)(qint64 )>(_a, &WaveformWidget::seekRequested, 0))
+            return;
+    }
 }
 
 const QMetaObject *WaveformWidget::metaObject() const
@@ -85,6 +98,24 @@ void *WaveformWidget::qt_metacast(const char *_clname)
 int WaveformWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QWidget::qt_metacall(_c, _id, _a);
+    if (_id < 0)
+        return _id;
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        if (_id < 1)
+            qt_static_metacall(this, _c, _id, _a);
+        _id -= 1;
+    }
+    if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        if (_id < 1)
+            *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
+        _id -= 1;
+    }
     return _id;
+}
+
+// SIGNAL 0
+void WaveformWidget::seekRequested(qint64 _t1)
+{
+    QMetaObject::activate<void>(this, &staticMetaObject, 0, nullptr, _t1);
 }
 QT_WARNING_POP

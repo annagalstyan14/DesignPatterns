@@ -4,7 +4,7 @@
 #include "../Core/Effects/Reverb.h"
 #include "../Core/Effects/Speed.h"
 #include "../Core/Effects/Volume.h"
-#include "../Core/ILogger.h"
+#include "../Core/Logging/ILogger.h"
 #include <QHBoxLayout>
 
 EffectWidget::EffectWidget(const QString& effectType, 

@@ -1,5 +1,5 @@
 #include "AudioEngine.h"
-#include "AudioClip.h"
+#include "../Core/AudioClip.h"
 #include <QMediaDevices>
 #include <QAudioDevice>
 #include <QtEndian>

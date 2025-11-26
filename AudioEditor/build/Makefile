@@ -275,54 +275,6 @@ Core/Commands/CommandHistory.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Commands/CommandHistory.cpp.s
 .PHONY : Core/Commands/CommandHistory.cpp.s
 
-Core/CompositeLogger.o: Core/CompositeLogger.cpp.o
-.PHONY : Core/CompositeLogger.o
-
-# target to build an object file
-Core/CompositeLogger.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/CompositeLogger.cpp.o
-.PHONY : Core/CompositeLogger.cpp.o
-
-Core/CompositeLogger.i: Core/CompositeLogger.cpp.i
-.PHONY : Core/CompositeLogger.i
-
-# target to preprocess a source file
-Core/CompositeLogger.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/CompositeLogger.cpp.i
-.PHONY : Core/CompositeLogger.cpp.i
-
-Core/CompositeLogger.s: Core/CompositeLogger.cpp.s
-.PHONY : Core/CompositeLogger.s
-
-# target to generate assembly for a file
-Core/CompositeLogger.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/CompositeLogger.cpp.s
-.PHONY : Core/CompositeLogger.cpp.s
-
-Core/ConsoleLogger.o: Core/ConsoleLogger.cpp.o
-.PHONY : Core/ConsoleLogger.o
-
-# target to build an object file
-Core/ConsoleLogger.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/ConsoleLogger.cpp.o
-.PHONY : Core/ConsoleLogger.cpp.o
-
-Core/ConsoleLogger.i: Core/ConsoleLogger.cpp.i
-.PHONY : Core/ConsoleLogger.i
-
-# target to preprocess a source file
-Core/ConsoleLogger.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/ConsoleLogger.cpp.i
-.PHONY : Core/ConsoleLogger.cpp.i
-
-Core/ConsoleLogger.s: Core/ConsoleLogger.cpp.s
-.PHONY : Core/ConsoleLogger.s
-
-# target to generate assembly for a file
-Core/ConsoleLogger.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/ConsoleLogger.cpp.s
-.PHONY : Core/ConsoleLogger.cpp.s
-
 Core/EffectFactory.o: Core/EffectFactory.cpp.o
 .PHONY : Core/EffectFactory.o
 
@@ -467,53 +419,293 @@ Core/Effects/Volume.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Effects/Volume.cpp.s
 .PHONY : Core/Effects/Volume.cpp.s
 
-Core/FileLogger.o: Core/FileLogger.cpp.o
-.PHONY : Core/FileLogger.o
+Core/Logging/CompositeLogger.o: Core/Logging/CompositeLogger.cpp.o
+.PHONY : Core/Logging/CompositeLogger.o
 
 # target to build an object file
-Core/FileLogger.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/FileLogger.cpp.o
-.PHONY : Core/FileLogger.cpp.o
+Core/Logging/CompositeLogger.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Logging/CompositeLogger.cpp.o
+.PHONY : Core/Logging/CompositeLogger.cpp.o
 
-Core/FileLogger.i: Core/FileLogger.cpp.i
-.PHONY : Core/FileLogger.i
+Core/Logging/CompositeLogger.i: Core/Logging/CompositeLogger.cpp.i
+.PHONY : Core/Logging/CompositeLogger.i
 
 # target to preprocess a source file
-Core/FileLogger.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/FileLogger.cpp.i
-.PHONY : Core/FileLogger.cpp.i
+Core/Logging/CompositeLogger.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Logging/CompositeLogger.cpp.i
+.PHONY : Core/Logging/CompositeLogger.cpp.i
 
-Core/FileLogger.s: Core/FileLogger.cpp.s
-.PHONY : Core/FileLogger.s
+Core/Logging/CompositeLogger.s: Core/Logging/CompositeLogger.cpp.s
+.PHONY : Core/Logging/CompositeLogger.s
 
 # target to generate assembly for a file
-Core/FileLogger.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/FileLogger.cpp.s
-.PHONY : Core/FileLogger.cpp.s
+Core/Logging/CompositeLogger.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Logging/CompositeLogger.cpp.s
+.PHONY : Core/Logging/CompositeLogger.cpp.s
 
-main_cli.o: main_cli.cpp.o
-.PHONY : main_cli.o
+Core/Logging/ConsoleLogger.o: Core/Logging/ConsoleLogger.cpp.o
+.PHONY : Core/Logging/ConsoleLogger.o
 
 # target to build an object file
-main_cli.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/main_cli.cpp.o
-.PHONY : main_cli.cpp.o
+Core/Logging/ConsoleLogger.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Logging/ConsoleLogger.cpp.o
+.PHONY : Core/Logging/ConsoleLogger.cpp.o
 
-main_cli.i: main_cli.cpp.i
-.PHONY : main_cli.i
+Core/Logging/ConsoleLogger.i: Core/Logging/ConsoleLogger.cpp.i
+.PHONY : Core/Logging/ConsoleLogger.i
 
 # target to preprocess a source file
-main_cli.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/main_cli.cpp.i
-.PHONY : main_cli.cpp.i
+Core/Logging/ConsoleLogger.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Logging/ConsoleLogger.cpp.i
+.PHONY : Core/Logging/ConsoleLogger.cpp.i
 
-main_cli.s: main_cli.cpp.s
-.PHONY : main_cli.s
+Core/Logging/ConsoleLogger.s: Core/Logging/ConsoleLogger.cpp.s
+.PHONY : Core/Logging/ConsoleLogger.s
 
 # target to generate assembly for a file
-main_cli.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/main_cli.cpp.s
-.PHONY : main_cli.cpp.s
+Core/Logging/ConsoleLogger.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Logging/ConsoleLogger.cpp.s
+.PHONY : Core/Logging/ConsoleLogger.cpp.s
+
+Core/Logging/FileLogger.o: Core/Logging/FileLogger.cpp.o
+.PHONY : Core/Logging/FileLogger.o
+
+# target to build an object file
+Core/Logging/FileLogger.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Logging/FileLogger.cpp.o
+.PHONY : Core/Logging/FileLogger.cpp.o
+
+Core/Logging/FileLogger.i: Core/Logging/FileLogger.cpp.i
+.PHONY : Core/Logging/FileLogger.i
+
+# target to preprocess a source file
+Core/Logging/FileLogger.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Logging/FileLogger.cpp.i
+.PHONY : Core/Logging/FileLogger.cpp.i
+
+Core/Logging/FileLogger.s: Core/Logging/FileLogger.cpp.s
+.PHONY : Core/Logging/FileLogger.s
+
+# target to generate assembly for a file
+Core/Logging/FileLogger.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Logging/FileLogger.cpp.s
+.PHONY : Core/Logging/FileLogger.cpp.s
+
+Core/Services/CaptionParser.o: Core/Services/CaptionParser.cpp.o
+.PHONY : Core/Services/CaptionParser.o
+
+# target to build an object file
+Core/Services/CaptionParser.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Services/CaptionParser.cpp.o
+.PHONY : Core/Services/CaptionParser.cpp.o
+
+Core/Services/CaptionParser.i: Core/Services/CaptionParser.cpp.i
+.PHONY : Core/Services/CaptionParser.i
+
+# target to preprocess a source file
+Core/Services/CaptionParser.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Services/CaptionParser.cpp.i
+.PHONY : Core/Services/CaptionParser.cpp.i
+
+Core/Services/CaptionParser.s: Core/Services/CaptionParser.cpp.s
+.PHONY : Core/Services/CaptionParser.s
+
+# target to generate assembly for a file
+Core/Services/CaptionParser.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Services/CaptionParser.cpp.s
+.PHONY : Core/Services/CaptionParser.cpp.s
+
+GUI/AudioEngine.o: GUI/AudioEngine.cpp.o
+.PHONY : GUI/AudioEngine.o
+
+# target to build an object file
+GUI/AudioEngine.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/GUI/AudioEngine.cpp.o
+.PHONY : GUI/AudioEngine.cpp.o
+
+GUI/AudioEngine.i: GUI/AudioEngine.cpp.i
+.PHONY : GUI/AudioEngine.i
+
+# target to preprocess a source file
+GUI/AudioEngine.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/GUI/AudioEngine.cpp.i
+.PHONY : GUI/AudioEngine.cpp.i
+
+GUI/AudioEngine.s: GUI/AudioEngine.cpp.s
+.PHONY : GUI/AudioEngine.s
+
+# target to generate assembly for a file
+GUI/AudioEngine.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/GUI/AudioEngine.cpp.s
+.PHONY : GUI/AudioEngine.cpp.s
+
+GUI/CaptionPanel.o: GUI/CaptionPanel.cpp.o
+.PHONY : GUI/CaptionPanel.o
+
+# target to build an object file
+GUI/CaptionPanel.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/GUI/CaptionPanel.cpp.o
+.PHONY : GUI/CaptionPanel.cpp.o
+
+GUI/CaptionPanel.i: GUI/CaptionPanel.cpp.i
+.PHONY : GUI/CaptionPanel.i
+
+# target to preprocess a source file
+GUI/CaptionPanel.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/GUI/CaptionPanel.cpp.i
+.PHONY : GUI/CaptionPanel.cpp.i
+
+GUI/CaptionPanel.s: GUI/CaptionPanel.cpp.s
+.PHONY : GUI/CaptionPanel.s
+
+# target to generate assembly for a file
+GUI/CaptionPanel.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/GUI/CaptionPanel.cpp.s
+.PHONY : GUI/CaptionPanel.cpp.s
+
+GUI/EffectWidget.o: GUI/EffectWidget.cpp.o
+.PHONY : GUI/EffectWidget.o
+
+# target to build an object file
+GUI/EffectWidget.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/GUI/EffectWidget.cpp.o
+.PHONY : GUI/EffectWidget.cpp.o
+
+GUI/EffectWidget.i: GUI/EffectWidget.cpp.i
+.PHONY : GUI/EffectWidget.i
+
+# target to preprocess a source file
+GUI/EffectWidget.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/GUI/EffectWidget.cpp.i
+.PHONY : GUI/EffectWidget.cpp.i
+
+GUI/EffectWidget.s: GUI/EffectWidget.cpp.s
+.PHONY : GUI/EffectWidget.s
+
+# target to generate assembly for a file
+GUI/EffectWidget.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/GUI/EffectWidget.cpp.s
+.PHONY : GUI/EffectWidget.cpp.s
+
+GUI/EffectsPanel.o: GUI/EffectsPanel.cpp.o
+.PHONY : GUI/EffectsPanel.o
+
+# target to build an object file
+GUI/EffectsPanel.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/GUI/EffectsPanel.cpp.o
+.PHONY : GUI/EffectsPanel.cpp.o
+
+GUI/EffectsPanel.i: GUI/EffectsPanel.cpp.i
+.PHONY : GUI/EffectsPanel.i
+
+# target to preprocess a source file
+GUI/EffectsPanel.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/GUI/EffectsPanel.cpp.i
+.PHONY : GUI/EffectsPanel.cpp.i
+
+GUI/EffectsPanel.s: GUI/EffectsPanel.cpp.s
+.PHONY : GUI/EffectsPanel.s
+
+# target to generate assembly for a file
+GUI/EffectsPanel.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/GUI/EffectsPanel.cpp.s
+.PHONY : GUI/EffectsPanel.cpp.s
+
+GUI/MainWindow.o: GUI/MainWindow.cpp.o
+.PHONY : GUI/MainWindow.o
+
+# target to build an object file
+GUI/MainWindow.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/GUI/MainWindow.cpp.o
+.PHONY : GUI/MainWindow.cpp.o
+
+GUI/MainWindow.i: GUI/MainWindow.cpp.i
+.PHONY : GUI/MainWindow.i
+
+# target to preprocess a source file
+GUI/MainWindow.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/GUI/MainWindow.cpp.i
+.PHONY : GUI/MainWindow.cpp.i
+
+GUI/MainWindow.s: GUI/MainWindow.cpp.s
+.PHONY : GUI/MainWindow.s
+
+# target to generate assembly for a file
+GUI/MainWindow.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/GUI/MainWindow.cpp.s
+.PHONY : GUI/MainWindow.cpp.s
+
+GUI/TransportBar.o: GUI/TransportBar.cpp.o
+.PHONY : GUI/TransportBar.o
+
+# target to build an object file
+GUI/TransportBar.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/GUI/TransportBar.cpp.o
+.PHONY : GUI/TransportBar.cpp.o
+
+GUI/TransportBar.i: GUI/TransportBar.cpp.i
+.PHONY : GUI/TransportBar.i
+
+# target to preprocess a source file
+GUI/TransportBar.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/GUI/TransportBar.cpp.i
+.PHONY : GUI/TransportBar.cpp.i
+
+GUI/TransportBar.s: GUI/TransportBar.cpp.s
+.PHONY : GUI/TransportBar.s
+
+# target to generate assembly for a file
+GUI/TransportBar.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/GUI/TransportBar.cpp.s
+.PHONY : GUI/TransportBar.cpp.s
+
+GUI/WaveformWidget.o: GUI/WaveformWidget.cpp.o
+.PHONY : GUI/WaveformWidget.o
+
+# target to build an object file
+GUI/WaveformWidget.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/GUI/WaveformWidget.cpp.o
+.PHONY : GUI/WaveformWidget.cpp.o
+
+GUI/WaveformWidget.i: GUI/WaveformWidget.cpp.i
+.PHONY : GUI/WaveformWidget.i
+
+# target to preprocess a source file
+GUI/WaveformWidget.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/GUI/WaveformWidget.cpp.i
+.PHONY : GUI/WaveformWidget.cpp.i
+
+GUI/WaveformWidget.s: GUI/WaveformWidget.cpp.s
+.PHONY : GUI/WaveformWidget.s
+
+# target to generate assembly for a file
+GUI/WaveformWidget.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/GUI/WaveformWidget.cpp.s
+.PHONY : GUI/WaveformWidget.cpp.s
+
+main.o: main.cpp.o
+.PHONY : main.o
+
+# target to build an object file
+main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/main.cpp.o
+.PHONY : main.cpp.o
+
+main.i: main.cpp.i
+.PHONY : main.i
+
+# target to preprocess a source file
+main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/main.cpp.i
+.PHONY : main.cpp.i
+
+main.s: main.cpp.s
+.PHONY : main.s
+
+# target to generate assembly for a file
+main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/main.cpp.s
+.PHONY : main.cpp.s
 
 # Help Target
 help:
@@ -541,12 +733,6 @@ help:
 	@echo "... Core/Commands/CommandHistory.o"
 	@echo "... Core/Commands/CommandHistory.i"
 	@echo "... Core/Commands/CommandHistory.s"
-	@echo "... Core/CompositeLogger.o"
-	@echo "... Core/CompositeLogger.i"
-	@echo "... Core/CompositeLogger.s"
-	@echo "... Core/ConsoleLogger.o"
-	@echo "... Core/ConsoleLogger.i"
-	@echo "... Core/ConsoleLogger.s"
 	@echo "... Core/EffectFactory.o"
 	@echo "... Core/EffectFactory.i"
 	@echo "... Core/EffectFactory.s"
@@ -565,12 +751,42 @@ help:
 	@echo "... Core/Effects/Volume.o"
 	@echo "... Core/Effects/Volume.i"
 	@echo "... Core/Effects/Volume.s"
-	@echo "... Core/FileLogger.o"
-	@echo "... Core/FileLogger.i"
-	@echo "... Core/FileLogger.s"
-	@echo "... main_cli.o"
-	@echo "... main_cli.i"
-	@echo "... main_cli.s"
+	@echo "... Core/Logging/CompositeLogger.o"
+	@echo "... Core/Logging/CompositeLogger.i"
+	@echo "... Core/Logging/CompositeLogger.s"
+	@echo "... Core/Logging/ConsoleLogger.o"
+	@echo "... Core/Logging/ConsoleLogger.i"
+	@echo "... Core/Logging/ConsoleLogger.s"
+	@echo "... Core/Logging/FileLogger.o"
+	@echo "... Core/Logging/FileLogger.i"
+	@echo "... Core/Logging/FileLogger.s"
+	@echo "... Core/Services/CaptionParser.o"
+	@echo "... Core/Services/CaptionParser.i"
+	@echo "... Core/Services/CaptionParser.s"
+	@echo "... GUI/AudioEngine.o"
+	@echo "... GUI/AudioEngine.i"
+	@echo "... GUI/AudioEngine.s"
+	@echo "... GUI/CaptionPanel.o"
+	@echo "... GUI/CaptionPanel.i"
+	@echo "... GUI/CaptionPanel.s"
+	@echo "... GUI/EffectWidget.o"
+	@echo "... GUI/EffectWidget.i"
+	@echo "... GUI/EffectWidget.s"
+	@echo "... GUI/EffectsPanel.o"
+	@echo "... GUI/EffectsPanel.i"
+	@echo "... GUI/EffectsPanel.s"
+	@echo "... GUI/MainWindow.o"
+	@echo "... GUI/MainWindow.i"
+	@echo "... GUI/MainWindow.s"
+	@echo "... GUI/TransportBar.o"
+	@echo "... GUI/TransportBar.i"
+	@echo "... GUI/TransportBar.s"
+	@echo "... GUI/WaveformWidget.o"
+	@echo "... GUI/WaveformWidget.i"
+	@echo "... GUI/WaveformWidget.s"
+	@echo "... main.o"
+	@echo "... main.i"
+	@echo "... main.s"
 .PHONY : help
 
 

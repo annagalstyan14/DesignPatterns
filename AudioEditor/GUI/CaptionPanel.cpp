@@ -1,5 +1,5 @@
 #include "CaptionPanel.h"
-#include "../Core/ILogger.h"
+#include "../Core/Logging/ILogger.h"
 #include <QHBoxLayout>
 #include <QHeaderView>
 #include <QScrollBar>

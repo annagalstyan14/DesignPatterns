@@ -19,51 +19,51 @@ pkg_check_modules(MPG123 REQUIRED libmpg123)
 find_library(LAME_LIBRARY NAMES mp3lame lame)
 find_path(LAME_INCLUDE_DIR lame/lame.h)
 
-# Source files
+# Source files (no src/ prefix - files are directly in Core/ and GUI/)
 set(CORE_SOURCES
-    src/Core/AudioClip.cpp
-    src/Core/EffectFactory.cpp
-    src/Core/Logging/FileLogger.cpp
-    src/Core/Logging/ConsoleLogger.cpp
-    src/Core/Logging/CompositeLogger.cpp
-    src/Core/Adapters/Mp3Adapter.cpp
-    src/Core/Effects/Echo.cpp
-    src/Core/Effects/Reverb.cpp
-    src/Core/Effects/Speed.cpp
-    src/Core/Effects/Volume.cpp
-    src/Core/Effects/Normalize.cpp
-    src/Core/Commands/CommandHistory.cpp
-    src/Core/Commands/ApplyEffectCommand.cpp
-    src/Core/Services/CaptionParser.cpp
+    Core/AudioClip.cpp
+    Core/EffectFactory.cpp
+    Core/Logging/FileLogger.cpp
+    Core/Logging/ConsoleLogger.cpp
+    Core/Logging/CompositeLogger.cpp
+    Core/Adapters/Mp3.cpp
+    Core/Effects/Echo.cpp
+    Core/Effects/Reverb.cpp
+    Core/Effects/Speed.cpp
+    Core/Effects/Volume.cpp
+    Core/Effects/Normalize.cpp
+    Core/Commands/CommandHistory.cpp
+    Core/Commands/ApplyEffect.cpp
+    Core/Services/CaptionParser.cpp
 )
 
 set(GUI_SOURCES
-    src/GUI/MainWindow.cpp
-    src/GUI/AudioEngine.cpp
-    src/GUI/TransportBar.cpp
-    src/GUI/WaveformWidget.cpp
-    src/GUI/EffectsPanel.cpp
-    src/GUI/EffectWidget.cpp
-    src/GUI/CaptionPanel.cpp
+    GUI/MainWindow.cpp
+    GUI/AudioEngine.cpp
+    GUI/TransportBar.cpp
+    GUI/WaveformWidget.cpp
+    GUI/EffectsPanel.cpp
+    GUI/EffectWidget.cpp
+    GUI/CaptionPanel.cpp
 )
 
-# Include directories
+# Include directories (no src/ prefix)
 include_directories(
-    ${CMAKE_SOURCE_DIR}/src
-    ${CMAKE_SOURCE_DIR}/src/Core
-    ${CMAKE_SOURCE_DIR}/src/Core/Adapters
-    ${CMAKE_SOURCE_DIR}/src/Core/Effects
-    ${CMAKE_SOURCE_DIR}/src/Core/Commands
-    ${CMAKE_SOURCE_DIR}/src/Core/Logging
-    ${CMAKE_SOURCE_DIR}/src/Core/Services
-    ${CMAKE_SOURCE_DIR}/src/GUI
+    ${CMAKE_SOURCE_DIR}
+    ${CMAKE_SOURCE_DIR}/Core
+    ${CMAKE_SOURCE_DIR}/Core/Adapters
+    ${CMAKE_SOURCE_DIR}/Core/Effects
+    ${CMAKE_SOURCE_DIR}/Core/Commands
+    ${CMAKE_SOURCE_DIR}/Core/Logging
+    ${CMAKE_SOURCE_DIR}/Core/Services
+    ${CMAKE_SOURCE_DIR}/GUI
     ${MPG123_INCLUDE_DIRS}
     ${LAME_INCLUDE_DIR}
 )
 
-# Executable
+# Executable (main.cpp is in root, not src/)
 add_executable(AudioEditor 
-    src/main.cpp
+    main.cpp
     ${CORE_SOURCES}
     ${GUI_SOURCES}
 )
@@ -92,63 +92,3 @@ if(APPLE)
         MACOSX_BUNDLE_SHORT_VERSION_STRING "1.0"
     )
 endif()
-```
-
----
-
-## Final File Structure
-```
-AudioEditor/
-├── CMakeLists.txt
-├── src/
-│   ├── main.cpp
-│   │
-│   ├── Core/
-│   │   ├── AudioClip.h
-│   │   ├── AudioClip.cpp
-│   │   ├── EffectFactory.h
-│   │   ├── EffectFactory.cpp
-│   │   │
-│   │   ├── Adapters/
-│   │   │   ├── AudioFileAdapter.h
-│   │   │   ├── Mp3Adapter.h
-│   │   │   └── Mp3Adapter.cpp
-│   │   │
-│   │   ├── Effects/
-│   │   │   ├── IEffect.h
-│   │   │   ├── Echo.h / Echo.cpp
-│   │   │   ├── Reverb.h / Reverb.cpp
-│   │   │   ├── Speed.h / Speed.cpp
-│   │   │   ├── Volume.h / Volume.cpp
-│   │   │   └── Normalize.h / Normalize.cpp
-│   │   │
-│   │   ├── Commands/
-│   │   │   ├── ICommand.h
-│   │   │   ├── CommandHistory.h / CommandHistory.cpp
-│   │   │   └── ApplyEffectCommand.h / ApplyEffectCommand.cpp
-│   │   │
-│   │   ├── Logging/
-│   │   │   ├── ILogger.h
-│   │   │   ├── ConsoleLogger.h / ConsoleLogger.cpp
-│   │   │   ├── FileLogger.h / FileLogger.cpp
-│   │   │   └── CompositeLogger.h / CompositeLogger.cpp
-│   │   │
-│   │   └── Services/
-│   │       ├── CaptionParser.h
-│   │       └── CaptionParser.cpp
-│   │
-│   └── GUI/
-│       ├── MainWindow.h
-│       ├── MainWindow.cpp
-│       ├── AudioEngine.h
-│       ├── AudioEngine.cpp
-│       ├── TransportBar.h
-│       ├── TransportBar.cpp
-│       ├── WaveformWidget.h
-│       ├── WaveformWidget.cpp
-│       ├── EffectsPanel.h
-│       ├── EffectsPanel.cpp
-│       ├── EffectWidget.h
-│       ├── EffectWidget.cpp
-│       ├── CaptionPanel.h
-│       └── CaptionPanel.cpp

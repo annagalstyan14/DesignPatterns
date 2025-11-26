@@ -2,7 +2,7 @@ CMakeFiles/AudioEditor.dir/Core/Commands/CommandHistory.cpp.o: \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Commands/CommandHistory.cpp \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Commands/CommandHistory.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Commands/ICommand.h \
-  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Commands/../ILogger.h \
+  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Commands/../Logging/ILogger.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/string \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/max.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/comp.h \

@@ -2,7 +2,7 @@
 #define SPEED_H
 
 #include "IEffect.h"
-#include "../ILogger.h"
+#include "../Logging/ILogger.h"
 #include <vector>
 #include <memory>
 
