@@ -1,0 +1,761 @@
+#include "MainWindow.h"
+#include "AudioEngine.h"
+#include "TransportBar.h"
+#include "WaveformWidget.h"
+#include "EffectsPanel.h"
+#include "CaptionPanel.h"
+#include "CaptionParser.h"
+#include "../Core/AudioClip.h"
+#include "../Core/Commands/CommandHistory.h"
+#include "../Core/Logging/CompositeLogger.h"
+#include "../Core/Logging/ConsoleLogger.h"
+#include "../Core/Logging/FileLogger.h"
+#include "../Core/EffectFactory.h"
+#include "../Core/Effects/Echo.h"
+#include "../Core/Effects/Reverb.h"
+#include "../Core/Effects/Speed.h"
+#include "../Core/Effects/Volume.h"
+#include <QApplication>
+#include <QScreen>
+#include <QDragEnterEvent>
+#include <QDropEvent>
+#include <QMimeData>
+
+MainWindow::MainWindow(QWidget* parent)
+    : QMainWindow(parent)
+    , audioClip_(nullptr)
+    , audioEngine_(nullptr)
+    , commandHistory_(nullptr)
+    , captionParser_(nullptr)
+    , centralWidget_(nullptr)
+    , transportBar_(nullptr)
+    , waveformWidget_(nullptr)
+    , effectsPanel_(nullptr)
+    , captionPanel_(nullptr)
+    , hasUnsavedChanges_(false)
+{
+    // Setup logger
+    auto compositeLogger = std::make_shared<CompositeLogger>();
+    compositeLogger->addLogger(std::make_shared<ConsoleLogger>());
+    compositeLogger->addLogger(std::make_shared<FileLogger>("audioeditor.log"));
+    logger_ = compositeLogger;
+    
+    logger_->log("Application starting...");
+    
+    // Register effects with factory
+    EffectFactory::registerEffect("Echo", [](std::shared_ptr<ILogger> log) {
+        return std::make_shared<Echo>(log);
+    });
+    EffectFactory::registerEffect("Reverb", [](std::shared_ptr<ILogger> log) {
+        return std::make_shared<Reverb>(log);
+    });
+    EffectFactory::registerEffect("Speed", [](std::shared_ptr<ILogger> log) {
+        return std::make_shared<SpeedChangeEffect>(1.0f, log);
+    });
+    EffectFactory::registerEffect("Volume", [](std::shared_ptr<ILogger> log) {
+        return std::make_shared<VolumeEffect>(1.0f, log);
+    });
+    
+    // Initialize components
+    audioEngine_ = new AudioEngine(this);
+    commandHistory_ = new CommandHistory(logger_);
+    captionParser_ = new CaptionParser(logger_);
+    
+    // Setup UI
+    setupUI();
+    setupMenuBar();
+    setupStatusBar();
+    setupConnections();
+    applyTheme();
+    
+    // Window properties
+    setWindowTitle("Audio Editor");
+    setMinimumSize(1000, 600);
+    
+    // Center on screen
+    QScreen* screen = QApplication::primaryScreen();
+    QRect screenGeometry = screen->availableGeometry();
+    int x = (screenGeometry.width() - 1200) / 2;
+    int y = (screenGeometry.height() - 700) / 2;
+    setGeometry(x, y, 1200, 700);
+    
+    // Enable drag and drop
+    setAcceptDrops(true);
+    
+    // Initial UI state
+    updateUIState();
+    
+    logger_->log("Application ready");
+}
+
+MainWindow::~MainWindow() {
+    logger_->log("Application closing...");
+    delete commandHistory_;
+    delete captionParser_;
+}
+
+void MainWindow::setupUI() {
+    centralWidget_ = new QWidget(this);
+    setCentralWidget(centralWidget_);
+    
+    // Main layout
+    QVBoxLayout* mainLayout = new QVBoxLayout(centralWidget_);
+    mainLayout->setContentsMargins(0, 0, 0, 0);
+    mainLayout->setSpacing(0);
+    
+    // Content area (waveform + side panels)
+    QHBoxLayout* contentLayout = new QHBoxLayout();
+    contentLayout->setContentsMargins(0, 0, 0, 0);
+    contentLayout->setSpacing(0);
+    
+    // --- Waveform (center, expandable) ---
+    waveformWidget_ = new WaveformWidget(this);
+    
+    // --- Right panel with effects and captions ---
+    QWidget* rightPanel = new QWidget(this);
+    rightPanel->setFixedWidth(300);
+    rightPanel->setStyleSheet("background-color: #252525;");
+    
+    QVBoxLayout* rightLayout = new QVBoxLayout(rightPanel);
+    rightLayout->setContentsMargins(0, 0, 0, 0);
+    rightLayout->setSpacing(0);
+    
+    // Effects panel
+    effectsPanel_ = new EffectsPanel(logger_, this);
+    
+    // Caption panel
+    captionPanel_ = new CaptionPanel(logger_, this);
+    
+    // Splitter for effects/captions
+    QSplitter* rightSplitter = new QSplitter(Qt::Vertical, this);
+    rightSplitter->addWidget(effectsPanel_);
+    rightSplitter->addWidget(captionPanel_);
+    rightSplitter->setSizes({300, 300});
+    rightSplitter->setStyleSheet(R"(
+        QSplitter::handle {
+            background-color: #3d3d3d;
+            height: 2px;
+        }
+    )");
+    
+    rightLayout->addWidget(rightSplitter);
+    
+    // Add to content layout
+    contentLayout->addWidget(waveformWidget_, 1);  // Stretch
+    contentLayout->addWidget(rightPanel);
+    
+    // --- Transport bar (bottom) ---
+    transportBar_ = new TransportBar(this);
+    
+    // Assemble main layout
+    mainLayout->addLayout(contentLayout, 1);  // Stretch
+    mainLayout->addWidget(transportBar_);
+}
+
+void MainWindow::setupMenuBar() {
+    QMenuBar* menuBar = new QMenuBar(this);
+    setMenuBar(menuBar);
+    
+    // --- File Menu ---
+    fileMenu_ = menuBar->addMenu("&File");
+    
+    newAction_ = fileMenu_->addAction("&New Project");
+    newAction_->setShortcut(QKeySequence::New);
+    connect(newAction_, &QAction::triggered, this, &MainWindow::onNewProject);
+    
+    openAction_ = fileMenu_->addAction("&Open Audio...");
+    openAction_->setShortcut(QKeySequence::Open);
+    connect(openAction_, &QAction::triggered, this, &MainWindow::onOpenAudio);
+    
+    fileMenu_->addSeparator();
+    
+    saveAction_ = fileMenu_->addAction("&Save");
+    saveAction_->setShortcut(QKeySequence::Save);
+    saveAction_->setEnabled(false);
+    connect(saveAction_, &QAction::triggered, this, &MainWindow::onSaveAudio);
+    
+    exportAction_ = fileMenu_->addAction("&Export As...");
+    exportAction_->setShortcut(QKeySequence(Qt::CTRL | Qt::SHIFT | Qt::Key_E));
+    exportAction_->setEnabled(false);
+    connect(exportAction_, &QAction::triggered, this, &MainWindow::onExportAudio);
+    
+    fileMenu_->addSeparator();
+    
+    importCaptionsAction_ = fileMenu_->addAction("Import &Captions...");
+    connect(importCaptionsAction_, &QAction::triggered, this, &MainWindow::onImportCaptions);
+    
+    exportCaptionsAction_ = fileMenu_->addAction("Export Captions...");
+    exportCaptionsAction_->setEnabled(false);
+    connect(exportCaptionsAction_, &QAction::triggered, this, &MainWindow::onExportCaptions);
+    
+    fileMenu_->addSeparator();
+    
+    exitAction_ = fileMenu_->addAction("E&xit");
+    exitAction_->setShortcut(QKeySequence::Quit);
+    connect(exitAction_, &QAction::triggered, this, &MainWindow::onExit);
+    
+    // --- Edit Menu ---
+    editMenu_ = menuBar->addMenu("&Edit");
+    
+    undoAction_ = editMenu_->addAction("&Undo");
+    undoAction_->setShortcut(QKeySequence::Undo);
+    undoAction_->setEnabled(false);
+    connect(undoAction_, &QAction::triggered, this, &MainWindow::onUndo);
+    
+    redoAction_ = editMenu_->addAction("&Redo");
+    redoAction_->setShortcut(QKeySequence::Redo);
+    redoAction_->setEnabled(false);
+    connect(redoAction_, &QAction::triggered, this, &MainWindow::onRedo);
+    
+    // --- Help Menu ---
+    helpMenu_ = menuBar->addMenu("&Help");
+    
+    aboutAction_ = helpMenu_->addAction("&About");
+    connect(aboutAction_, &QAction::triggered, this, [this]() {
+        QMessageBox::about(this, "About Audio Editor",
+            "<h2>Audio Editor</h2>"
+            "<p>Version 1.0</p>"
+            "<p>A simple audio effects application.</p>"
+            "<p>Supports MP3 and WAV files with effects like "
+            "Echo, Reverb, Speed, and Volume.</p>"
+        );
+    });
+    
+    // Style menu bar
+    menuBar->setStyleSheet(R"(
+        QMenuBar {
+            background-color: #1e1e1e;
+            color: #e0e0e0;
+            padding: 5px;
+        }
+        QMenuBar::item {
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+        QMenuBar::item:selected {
+            background-color: #3d3d3d;
+        }
+        QMenu {
+            background-color: #2d2d2d;
+            color: #e0e0e0;
+            border: 1px solid #3d3d3d;
+            padding: 5px;
+        }
+        QMenu::item {
+            padding: 8px 30px 8px 20px;
+            border-radius: 4px;
+        }
+        QMenu::item:selected {
+            background-color: #00bcd4;
+            color: #000000;
+        }
+        QMenu::separator {
+            height: 1px;
+            background-color: #3d3d3d;
+            margin: 5px 10px;
+        }
+    )");
+}
+
+void MainWindow::setupStatusBar() {
+    QStatusBar* status = new QStatusBar(this);
+    setStatusBar(status);
+    
+    status->setStyleSheet(R"(
+        QStatusBar {
+            background-color: #1e1e1e;
+            color: #808080;
+            border-top: 1px solid #3d3d3d;
+            padding: 5px;
+        }
+    )");
+    
+    status->showMessage("Ready");
+}
+
+void MainWindow::setupConnections() {
+    // --- TransportBar <-> AudioEngine ---
+    connect(transportBar_, &TransportBar::playClicked,
+            audioEngine_, &AudioEngine::play);
+    connect(transportBar_, &TransportBar::pauseClicked,
+            audioEngine_, &AudioEngine::pause);
+    connect(transportBar_, &TransportBar::stopClicked,
+            audioEngine_, &AudioEngine::stop);
+    connect(transportBar_, &TransportBar::seekRequested,
+            audioEngine_, &AudioEngine::seek);
+    connect(transportBar_, &TransportBar::volumeChanged,
+            audioEngine_, &AudioEngine::setVolume);
+    
+    connect(audioEngine_, &AudioEngine::positionChanged,
+            transportBar_, &TransportBar::setPosition);
+    connect(audioEngine_, &AudioEngine::durationChanged,
+            transportBar_, &TransportBar::setDuration);
+    connect(audioEngine_, &AudioEngine::stateChanged,
+            transportBar_, &TransportBar::setState);
+    connect(audioEngine_, &AudioEngine::audioFinished,
+            this, &MainWindow::onPlaybackFinished);
+    
+    // --- WaveformWidget <-> AudioEngine ---
+    connect(waveformWidget_, &WaveformWidget::seekRequested,
+            audioEngine_, &AudioEngine::seek);
+    connect(audioEngine_, &AudioEngine::positionChanged,
+            waveformWidget_, &WaveformWidget::setPlayheadPosition);
+    
+    // --- CaptionPanel <-> AudioEngine ---
+    connect(captionPanel_, &CaptionPanel::seekRequested,
+            audioEngine_, &AudioEngine::seek);
+    connect(audioEngine_, &AudioEngine::positionChanged,
+            captionPanel_, &CaptionPanel::setCurrentTime);
+    
+    // --- CaptionPanel buttons ---
+    connect(captionPanel_, &CaptionPanel::importRequested,
+            this, &MainWindow::onImportCaptions);
+    connect(captionPanel_, &CaptionPanel::exportRequested,
+            this, &MainWindow::onExportCaptions);
+    
+    // --- EffectsPanel ---
+    connect(effectsPanel_, &EffectsPanel::applyEffectsRequested,
+            this, &MainWindow::onApplyEffects);
+    connect(effectsPanel_, &EffectsPanel::effectsChanged,
+            this, [this]() {
+                hasUnsavedChanges_ = true;
+                updateWindowTitle();
+            });
+}
+
+void MainWindow::applyTheme() {
+    // Global application style
+    setStyleSheet(R"(
+        QMainWindow {
+            background-color: #1e1e1e;
+        }
+        QWidget {
+            background-color: #1e1e1e;
+            color: #e0e0e0;
+        }
+        QToolTip {
+            background-color: #2d2d2d;
+            color: #e0e0e0;
+            border: 1px solid #3d3d3d;
+            padding: 5px;
+            border-radius: 4px;
+        }
+    )");
+}
+
+void MainWindow::onNewProject() {
+    if (!confirmUnsavedChanges()) {
+        return;
+    }
+    
+    // Stop playback
+    audioEngine_->stop();
+    
+    // Clear everything
+    audioClip_.reset();
+    audioEngine_->setAudioClip(nullptr);
+    waveformWidget_->clear();
+    effectsPanel_->clearEffects();
+    captionPanel_->clearCaptions();
+    commandHistory_->clear();
+    
+    currentFilePath_.clear();
+    hasUnsavedChanges_ = false;
+    
+    updateUIState();
+    updateWindowTitle();
+    
+    statusBar()->showMessage("New project created", 3000);
+    logger_->log("New project created");
+}
+
+void MainWindow::onOpenAudio() {
+    if (!confirmUnsavedChanges()) {
+        return;
+    }
+    
+    QString filePath = QFileDialog::getOpenFileName(
+        this,
+        "Open Audio File",
+        QString(),
+        "Audio Files (*.mp3 *.wav);;MP3 Files (*.mp3);;WAV Files (*.wav);;All Files (*)"
+    );
+    
+    if (!filePath.isEmpty()) {
+        loadAudioFile(filePath);
+    }
+}
+
+void MainWindow::loadAudioFile(const QString& filePath) {
+    logger_->log("Loading audio file: " + filePath.toStdString());
+    
+    // Stop current playback
+    audioEngine_->stop();
+    
+    // Show loading status
+    statusBar()->showMessage("Loading " + filePath + "...");
+    QApplication::processEvents();
+    
+    // Create and load audio clip
+    audioClip_ = std::make_shared<AudioClip>(filePath.toStdString(), logger_);
+    
+    if (!audioClip_->load()) {
+        QMessageBox::critical(this, "Error", 
+            "Failed to load audio file:\n" + filePath);
+        audioClip_.reset();
+        statusBar()->showMessage("Failed to load file", 3000);
+        return;
+    }
+    
+    // Set audio in engine
+    audioEngine_->setAudioClip(audioClip_);
+    
+    // Update waveform
+    waveformWidget_->setSamples(
+        audioClip_->getSamples(),
+        44100,  // Default sample rate
+        2       // Default stereo
+    );
+    
+    // Clear effects and captions
+    effectsPanel_->clearEffects();
+    captionPanel_->clearCaptions();
+    commandHistory_->clear();
+    
+    // Update state
+    currentFilePath_ = filePath;
+    hasUnsavedChanges_ = false;
+    
+    updateUIState();
+    updateWindowTitle();
+    onAudioLoaded();
+    
+    statusBar()->showMessage("Loaded: " + filePath, 5000);
+    logger_->log("Audio loaded successfully: " + filePath.toStdString());
+}
+
+void MainWindow::onSaveAudio() {
+    if (!audioClip_) {
+        return;
+    }
+    
+    QString savePath = currentFilePath_;
+    
+    // If original was loaded, ask for new name to avoid overwriting
+    if (!savePath.isEmpty()) {
+        QFileInfo fileInfo(savePath);
+        QString defaultName = fileInfo.baseName() + "_edited." + fileInfo.suffix();
+        QString defaultPath = fileInfo.absolutePath() + "/" + defaultName;
+        
+        savePath = QFileDialog::getSaveFileName(
+            this,
+            "Save Audio File",
+            defaultPath,
+            "MP3 Files (*.mp3);;WAV Files (*.wav)"
+        );
+    } else {
+        savePath = QFileDialog::getSaveFileName(
+            this,
+            "Save Audio File",
+            "output.mp3",
+            "MP3 Files (*.mp3);;WAV Files (*.wav)"
+        );
+    }
+    
+    if (savePath.isEmpty()) {
+        return;
+    }
+    
+    statusBar()->showMessage("Saving...");
+    QApplication::processEvents();
+    
+    if (audioClip_->save(savePath.toStdString())) {
+        hasUnsavedChanges_ = false;
+        updateWindowTitle();
+        statusBar()->showMessage("Saved: " + savePath, 5000);
+        logger_->log("Audio saved: " + savePath.toStdString());
+    } else {
+        QMessageBox::critical(this, "Error", "Failed to save audio file.");
+        statusBar()->showMessage("Save failed", 3000);
+    }
+}
+
+void MainWindow::onExportAudio() {
+    if (!audioClip_) {
+        return;
+    }
+    
+    QString filePath = QFileDialog::getSaveFileName(
+        this,
+        "Export Audio",
+        "exported_audio.mp3",
+        "MP3 Files (*.mp3);;WAV Files (*.wav)"
+    );
+    
+    if (filePath.isEmpty()) {
+        return;
+    }
+    
+    statusBar()->showMessage("Exporting...");
+    QApplication::processEvents();
+    
+    if (audioClip_->save(filePath.toStdString())) {
+        statusBar()->showMessage("Exported: " + filePath, 5000);
+        logger_->log("Audio exported: " + filePath.toStdString());
+        
+        QMessageBox::information(this, "Export Complete",
+            "Audio exported successfully to:\n" + filePath);
+    } else {
+        QMessageBox::critical(this, "Error", "Failed to export audio file.");
+        statusBar()->showMessage("Export failed", 3000);
+    }
+}
+
+void MainWindow::onExit() {
+    close();
+}
+
+void MainWindow::onUndo() {
+    if (commandHistory_->canUndo()) {
+        audioEngine_->stop();
+        commandHistory_->undo();
+        
+        // Refresh waveform
+        if (audioClip_) {
+            waveformWidget_->setSamples(audioClip_->getSamples(), 44100, 2);
+            audioEngine_->setAudioClip(audioClip_);
+        }
+        
+        updateUIState();
+        statusBar()->showMessage("Undo", 2000);
+    }
+}
+
+void MainWindow::onRedo() {
+    if (commandHistory_->canRedo()) {
+        audioEngine_->stop();
+        commandHistory_->redo();
+        
+        // Refresh waveform
+        if (audioClip_) {
+            waveformWidget_->setSamples(audioClip_->getSamples(), 44100, 2);
+            audioEngine_->setAudioClip(audioClip_);
+        }
+        
+        updateUIState();
+        statusBar()->showMessage("Redo", 2000);
+    }
+}
+
+void MainWindow::onApplyEffects() {
+    if (!audioClip_) {
+        QMessageBox::warning(this, "No Audio", 
+            "Please load an audio file first.");
+        return;
+    }
+    
+    auto effects = effectsPanel_->getEffects();
+    
+    if (effects.empty()) {
+        QMessageBox::information(this, "No Effects",
+            "No effects are enabled. Please add and enable at least one effect.");
+        return;
+    }
+    
+    // Stop playback
+    audioEngine_->stop();
+    
+    statusBar()->showMessage("Applying effects...");
+    QApplication::processEvents();
+    
+    // Store original samples for undo (simplified - in real app use Command pattern)
+    std::vector<float> originalSamples = audioClip_->getSamples();
+    
+    // Apply each effect
+    for (const auto& effect : effects) {
+        audioClip_->addEffect(effect);
+    }
+    audioClip_->applyEffects();
+    
+    // Reload in engine
+    audioEngine_->setAudioClip(audioClip_);
+    
+    // Update waveform
+    waveformWidget_->setSamples(audioClip_->getSamples(), 44100, 2);
+    
+    // Mark as modified
+    hasUnsavedChanges_ = true;
+    updateWindowTitle();
+    
+    statusBar()->showMessage("Effects applied successfully", 3000);
+    logger_->log("Effects applied: " + std::to_string(effects.size()) + " effect(s)");
+}
+
+void MainWindow::onImportCaptions() {
+    QString filePath = QFileDialog::getOpenFileName(
+        this,
+        "Import Captions",
+        QString(),
+        "SubRip Files (*.srt);;All Files (*)"
+    );
+    
+    if (filePath.isEmpty()) {
+        return;
+    }
+    
+    std::vector<Caption> captions = captionParser_->parseSRT(filePath);
+    
+    if (captions.empty()) {
+        QMessageBox::warning(this, "Import Failed",
+            "No captions found in the file.\n"
+            "Please make sure it's a valid SRT file.");
+        return;
+    }
+    
+    captionPanel_->setCaptions(captions);
+    exportCaptionsAction_->setEnabled(true);
+    
+    statusBar()->showMessage("Imported " + QString::number(captions.size()) + " captions", 3000);
+}
+
+void MainWindow::onExportCaptions() {
+    std::vector<Caption> captions = captionPanel_->getCaptions();
+    
+    if (captions.empty()) {
+        QMessageBox::warning(this, "No Captions",
+            "There are no captions to export.");
+        return;
+    }
+    
+    QString filePath = QFileDialog::getSaveFileName(
+        this,
+        "Export Captions",
+        "captions.txt",
+        "Text Files (*.txt);;SubRip Files (*.srt)"
+    );
+    
+    if (filePath.isEmpty()) {
+        return;
+    }
+    
+    bool success = false;
+    
+    if (filePath.endsWith(".srt", Qt::CaseInsensitive)) {
+        success = captionParser_->exportSRT(filePath, captions);
+    } else {
+        success = captionParser_->exportTXT(filePath, captions);
+    }
+    
+    if (success) {
+        statusBar()->showMessage("Captions exported: " + filePath, 3000);
+        QMessageBox::information(this, "Export Complete",
+            "Captions exported successfully.");
+    } else {
+        QMessageBox::critical(this, "Export Failed",
+            "Failed to export captions.");
+    }
+}
+
+void MainWindow::onPlaybackFinished() {
+    statusBar()->showMessage("Playback finished", 2000);
+}
+
+void MainWindow::onAudioLoaded() {
+    statusBar()->showMessage("Ready", 2000);
+}
+
+void MainWindow::updateUIState() {
+    bool hasAudio = (audioClip_ != nullptr);
+    
+    // Menu actions
+    saveAction_->setEnabled(hasAudio);
+    exportAction_->setEnabled(hasAudio);
+    
+    // Undo/Redo
+    undoAction_->setEnabled(commandHistory_->canUndo());
+    redoAction_->setEnabled(commandHistory_->canRedo());
+    
+    // Panels
+    effectsPanel_->setEnabled(hasAudio);
+}
+
+void MainWindow::updateWindowTitle() {
+    QString title = "Audio Editor";
+    
+    if (!currentFilePath_.isEmpty()) {
+        QFileInfo fileInfo(currentFilePath_);
+        title += " - " + fileInfo.fileName();
+    }
+    
+    if (hasUnsavedChanges_) {
+        title += " *";
+    }
+    
+    setWindowTitle(title);
+}
+
+bool MainWindow::confirmUnsavedChanges() {
+    if (!hasUnsavedChanges_) {
+        return true;
+    }
+    
+    QMessageBox::StandardButton reply = QMessageBox::question(
+        this,
+        "Unsaved Changes",
+        "You have unsaved changes. Do you want to continue and discard them?",
+        QMessageBox::Yes | QMessageBox::No,
+        QMessageBox::No
+    );
+    
+    return (reply == QMessageBox::Yes);
+}
+
+void MainWindow::closeEvent(QCloseEvent* event) {
+    if (confirmUnsavedChanges()) {
+        audioEngine_->stop();
+        event->accept();
+    } else {
+        event->ignore();
+    }
+}
+
+void MainWindow::dragEnterEvent(QDragEnterEvent* event) {
+    if (event->mimeData()->hasUrls()) {
+        QList<QUrl> urls = event->mimeData()->urls();
+        if (!urls.isEmpty()) {
+            QString filePath = urls.first().toLocalFile();
+            if (filePath.endsWith(".mp3", Qt::CaseInsensitive) ||
+                filePath.endsWith(".wav", Qt::CaseInsensitive) ||
+                filePath.endsWith(".srt", Qt::CaseInsensitive)) {
+                event->acceptProposedAction();
+                return;
+            }
+        }
+    }
+    event->ignore();
+}
+
+void MainWindow::dropEvent(QDropEvent* event) {
+    QList<QUrl> urls = event->mimeData()->urls();
+    if (urls.isEmpty()) {
+        return;
+    }
+    
+    QString filePath = urls.first().toLocalFile();
+    
+    if (filePath.endsWith(".srt", Qt::CaseInsensitive)) {
+        // Import captions
+        std::vector<Caption> captions = captionParser_->parseSRT(filePath);
+        if (!captions.empty()) {
+            captionPanel_->setCaptions(captions);
+            exportCaptionsAction_->setEnabled(true);
+            statusBar()->showMessage("Imported " + QString::number(captions.size()) + " captions", 3000);
+        }
+    } else if (filePath.endsWith(".mp3", Qt::CaseInsensitive) ||
+               filePath.endsWith(".wav", Qt::CaseInsensitive)) {
+        // Load audio
+        if (confirmUnsavedChanges()) {
+            loadAudioFile(filePath);
+        }
+    }
+}
