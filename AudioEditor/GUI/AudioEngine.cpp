@@ -3,6 +3,7 @@
 #include <QMediaDevices>
 #include <QAudioDevice>
 #include <QtEndian>
+#include <QDebug>
 #include <cmath>
 #include <algorithm>
 
