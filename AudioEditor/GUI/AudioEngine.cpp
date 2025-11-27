@@ -306,7 +306,6 @@ void AudioEngine::setOriginalSamples(const std::vector<float>& samples) {
 }
 
 void AudioEngine::previewWithEffects(const std::vector<std::shared_ptr<IEffect>>& effects) {
-    // Safety checks
     if (originalSamples_.empty()) {
         qWarning() << "previewWithEffects: No original samples loaded";
         return;
@@ -317,37 +316,38 @@ void AudioEngine::previewWithEffects(const std::vector<std::shared_ptr<IEffect>>
         return;
     }
     
-    // Always start from original samples
+    // Start from original samples
     previewSamples_ = originalSamples_;
+    size_t dataSize = previewSamples_.size();  // Track actual audio data size
     
-    // Apply all effects to the copy
+    // Apply all effects
     for (const auto& effect : effects) {
-        if (!effect) {
-            qWarning() << "previewWithEffects: Null effect in list";
-            continue;
-        }
+        if (!effect) continue;
         
-        // Reset effect state before applying
+        // Reset effect state
         if (auto* reverb = dynamic_cast<Reverb*>(effect.get())) {
             reverb->reset();
         }
         
-        // Handle speed effect which changes buffer size
+        // For speed effect, ensure buffer is large enough BEFORE applying
         if (auto* speed = dynamic_cast<SpeedChangeEffect*>(effect.get())) {
             float factor = speed->getSpeedFactor();
-            size_t newSize = static_cast<size_t>(previewSamples_.size() / factor);
-            if (newSize > previewSamples_.size()) {
-                previewSamples_.resize(newSize);
+            size_t neededSize = static_cast<size_t>(dataSize / factor) + 1024; // Extra padding
+            if (neededSize > previewSamples_.size()) {
+                previewSamples_.resize(neededSize, 0.0f);
             }
         }
         
-        size_t newSize = effect->apply(previewSamples_.data(), previewSamples_.size());
-        previewSamples_.resize(newSize);
+        // Apply effect - pass actual data size, not buffer size
+        size_t newSize = effect->apply(previewSamples_.data(), dataSize);
+        dataSize = newSize;
     }
     
+    // Trim to actual data size
+    previewSamples_.resize(dataSize);
     hasPreview_ = true;
     
-    // Update audio buffer with preview
+    // Update audio buffer
     audioData_.resize(previewSamples_.size() * sizeof(qint16));
     qint16* dataPtr = reinterpret_cast<qint16*>(audioData_.data());
     for (size_t i = 0; i < previewSamples_.size(); ++i) {

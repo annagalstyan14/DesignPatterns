@@ -705,6 +705,8 @@ void MainWindow::startPreviewComputation(const std::vector<std::shared_ptr<IEffe
 
     auto future = QtConcurrent::run([baseSamples = std::move(baseSamples), effectCopies]() mutable {
         auto processed = baseSamples;
+        size_t dataSize = processed.size();  // Track actual data size
+        
         for (const auto& effect : effectCopies) {
             if (!effect) continue;
 
@@ -712,18 +714,22 @@ void MainWindow::startPreviewComputation(const std::vector<std::shared_ptr<IEffe
                 reverb->reset();
             }
 
+            // Ensure buffer is large enough for speed changes
             if (auto* speed = dynamic_cast<SpeedChangeEffect*>(effect.get())) {
                 float factor = speed->getSpeedFactor();
-                size_t newSize = static_cast<size_t>(processed.size() / factor);
-                if (newSize > processed.size()) {
-                    processed.resize(newSize);
+                size_t neededSize = static_cast<size_t>(dataSize / factor) + 1024;
+                if (neededSize > processed.size()) {
+                    processed.resize(neededSize, 0.0f);
                 }
             }
 
-            size_t newSize = effect->apply(processed.data(), processed.size());
-            processed.resize(newSize);
+            // Pass actual data size, not buffer size
+            size_t newSize = effect->apply(processed.data(), dataSize);
+            dataSize = newSize;
         }
 
+        // Trim to actual size
+        processed.resize(dataSize);
         return processed;
     });
 

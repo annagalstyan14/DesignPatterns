@@ -1,183 +1,64 @@
-[2025-11-27 20:26:26] [INFO] Application starting...
-[2025-11-27 20:26:26] [INFO] Application ready
-[2025-11-27 20:26:41] [INFO] Loading audio file: /Users/annagalstyan/Music/Music/Media.localized/Music/The Kid LAROI/Unknown Album/The Kid LAROI - NIGHTS LIKE THIS (Official Audio).mp3
-[2025-11-27 20:26:41] [INFO] Loading MP3 file from: /Users/annagalstyan/Music/Music/Media.localized/Music/The Kid LAROI/Unknown Album/The Kid LAROI - NIGHTS LIKE THIS (Official Audio).mp3
-[2025-11-27 20:26:41] [INFO] Loaded MP3: /Users/annagalstyan/Music/Music/Media.localized/Music/The Kid LAROI/Unknown Album/The Kid LAROI - NIGHTS LIKE THIS (Official Audio).mp3 (7686144 samples, 87.144493s, 2 channels)
-[2025-11-27 20:26:41] [INFO] Loaded 7686144 samples from /Users/annagalstyan/Music/Music/Media.localized/Music/The Kid LAROI/Unknown Album/The Kid LAROI - NIGHTS LIKE THIS (Official Audio).mp3
-[2025-11-27 20:26:44] [INFO] EffectStateCommand: Effect state changed
-[2025-11-27 20:26:44] [INFO] Command executed
-[2025-11-27 20:26:44] [INFO] Effect state change recorded for undo/redo
-[2025-11-27 20:26:44] [INFO] EffectStateCommand: Effect state changed
-[2025-11-27 20:26:44] [INFO] Command executed
-[2025-11-27 20:26:44] [INFO] Effect state change recorded for undo/redo
-[2025-11-27 20:26:44] [INFO] Reverb intensity set to 50.000000% (wet: 0.650000)
-[2025-11-27 20:26:53] [INFO] EffectStateCommand: Effect state changed
-[2025-11-27 20:26:53] [INFO] Command executed
-[2025-11-27 20:26:53] [INFO] Effect state change recorded for undo/redo
-[2025-11-27 20:26:53] [INFO] Reverb intensity set to 100.000000% (wet: 1.000000)
-[2025-11-27 20:28:20] [INFO] EffectStateCommand: Effect state changed
-[2025-11-27 20:28:20] [INFO] Command executed
-[2025-11-27 20:28:20] [INFO] Effect state change recorded for undo/redo
-[2025-11-27 20:28:20] [INFO] Reverb intensity set to 90.000000% (wet: 0.930000)
-[2025-11-27 20:28:21] [INFO] EffectStateCommand: Effect state changed
-[2025-11-27 20:28:21] [INFO] Command executed
-[2025-11-27 20:28:21] [INFO] Effect state change recorded for undo/redo
-[2025-11-27 20:28:21] [INFO] Reverb intensity set to 93.000000% (wet: 0.951000)
-[2025-11-27 20:28:24] [INFO] EffectStateCommand: Effect state changed
-[2025-11-27 20:28:24] [INFO] Command executed
-[2025-11-27 20:28:24] [INFO] Effect state change recorded for undo/redo
-[2025-11-27 20:28:25] [INFO] Reverb intensity set to 50.000000% (wet: 0.650000)
-[2025-11-27 20:35:50] [INFO] Application closing...
-[2025-11-27 20:37:53] [INFO] Application starting...
-[2025-11-27 20:37:53] [INFO] Application ready
-[2025-11-27 20:38:01] [INFO] Loading audio file: /Users/annagalstyan/Downloads/aespa_Whiplash.mp3
-[2025-11-27 20:38:01] [INFO] Loading MP3 file from: /Users/annagalstyan/Downloads/aespa_Whiplash.mp3
-[2025-11-27 20:38:02] [INFO] Loaded MP3: /Users/annagalstyan/Downloads/aespa_Whiplash.mp3 (16353280 samples, 185.411331s, 2 channels)
-[2025-11-27 20:38:02] [INFO] Loaded 16353280 samples from /Users/annagalstyan/Downloads/aespa_Whiplash.mp3
-[2025-11-27 20:38:04] [INFO] EffectStateCommand: Effect state changed
-[2025-11-27 20:38:04] [INFO] Command executed
-[2025-11-27 20:38:04] [INFO] Effect state change recorded for undo/redo
-[2025-11-27 20:38:04] [INFO] EffectStateCommand: Effect state changed
-[2025-11-27 20:38:04] [INFO] Command executed
-[2025-11-27 20:38:04] [INFO] Effect state change recorded for undo/redo
-[2025-11-27 20:38:04] [INFO] Reverb intensity set to 50.000000% (wet: 0.650000)
-[2025-11-27 20:38:20] [INFO] Reverb intensity set to 50.000000% (wet: 0.650000)
-[2025-11-27 20:38:20] [INFO] Reverb intensity set to 50.000000% (wet: 0.650000)
-[2025-11-27 20:38:25] [INFO] EffectStateCommand: Effect state changed
-[2025-11-27 20:38:25] [INFO] Command executed
-[2025-11-27 20:38:25] [INFO] Effect state change recorded for undo/redo
-[2025-11-27 20:38:26] [INFO] Reverb intensity set to 100.000000% (wet: 1.000000)
-[2025-11-27 20:38:50] [INFO] EffectStateCommand: Effect state changed
-[2025-11-27 20:38:50] [INFO] Command executed
-[2025-11-27 20:38:50] [INFO] Effect state change recorded for undo/redo
-[2025-11-27 20:38:51] [INFO] Reverb intensity set to 74.000000% (wet: 0.818000)
-[2025-11-27 20:38:55] [INFO] EffectStateCommand: Effect state changed
-[2025-11-27 20:38:55] [INFO] Command executed
-[2025-11-27 20:38:55] [INFO] Effect state change recorded for undo/redo
-[2025-11-27 20:38:56] [INFO] Reverb intensity set to 50.000000% (wet: 0.650000)
-[2025-11-27 20:39:01] [INFO] Reverb intensity set to 50.000000% (wet: 0.650000)
-[2025-11-27 20:39:02] [INFO] Reverb intensity set to 50.000000% (wet: 0.650000)
-[2025-11-27 20:39:06] [INFO] EffectStateCommand: Effect state changed
-[2025-11-27 20:39:06] [INFO] Command executed
-[2025-11-27 20:39:06] [INFO] Effect state change recorded for undo/redo
-[2025-11-27 20:39:09] [INFO] EffectStateCommand: Effect state changed
-[2025-11-27 20:39:09] [INFO] Command executed
-[2025-11-27 20:39:09] [INFO] Effect state change recorded for undo/redo
-[2025-11-27 20:39:09] [INFO] EffectStateCommand: Effect state changed
-[2025-11-27 20:39:09] [INFO] Command executed
-[2025-11-27 20:39:09] [INFO] Effect state change recorded for undo/redo
-[2025-11-27 20:39:09] [INFO] SpeedChangeEffect initialized with factor 1.000000
-[2025-11-27 20:39:12] [INFO] EffectStateCommand: Effect state changed
-[2025-11-27 20:39:12] [INFO] Command executed
-[2025-11-27 20:39:12] [INFO] Effect state change recorded for undo/redo
-[2025-11-27 20:39:12] [INFO] SpeedChangeEffect initialized with factor 0.910000
-[2025-11-27 20:39:21] [INFO] EffectStateCommand: Effect state changed
-[2025-11-27 20:39:21] [INFO] Command executed
-[2025-11-27 20:39:21] [INFO] Effect state change recorded for undo/redo
-[2025-11-27 20:39:21] [INFO] EffectStateCommand: Effect state changed
-[2025-11-27 20:39:21] [INFO] Command executed
-[2025-11-27 20:39:21] [INFO] Effect state change recorded for undo/redo
-[2025-11-27 20:39:21] [INFO] SpeedChangeEffect initialized with factor 0.910000
-[2025-11-27 20:39:21] [INFO] Reverb intensity set to 50.000000% (wet: 0.650000)
-[2025-11-27 20:39:26] [INFO] EffectStateCommand: Effect state changed
-[2025-11-27 20:39:26] [INFO] Command executed
-[2025-11-27 20:39:26] [INFO] Effect state change recorded for undo/redo
-[2025-11-27 20:39:26] [INFO] SpeedChangeEffect initialized with factor 0.910000
-[2025-11-27 20:39:26] [INFO] Reverb intensity set to 39.000000% (wet: 0.573000)
-[2025-11-27 20:39:31] [INFO] EffectStateCommand: Effect state changed
-[2025-11-27 20:39:31] [INFO] Command executed
-[2025-11-27 20:39:31] [INFO] Effect state change recorded for undo/redo
-[2025-11-27 20:39:31] [INFO] SpeedChangeEffect initialized with factor 0.910000
-[2025-11-27 20:39:31] [INFO] Reverb intensity set to 25.000000% (wet: 0.475000)
-[2025-11-27 20:40:21] [INFO] EffectStateCommand: Effect state changed
-[2025-11-27 20:40:21] [INFO] Command executed
-[2025-11-27 20:40:21] [INFO] Effect state change recorded for undo/redo
-[2025-11-27 20:40:21] [INFO] SpeedChangeEffect initialized with factor 0.910000
-[2025-11-27 20:40:37] [INFO] SpeedChangeEffect initialized with factor 0.910000
-[2025-11-27 20:40:46] [INFO] EffectStateCommand: Effect state changed
-[2025-11-27 20:40:46] [INFO] Command executed
-[2025-11-27 20:40:46] [INFO] Effect state change recorded for undo/redo
-[2025-11-27 20:40:46] [INFO] EffectStateCommand: Effect state changed
-[2025-11-27 20:40:46] [INFO] Command executed
-[2025-11-27 20:40:46] [INFO] Effect state change recorded for undo/redo
-[2025-11-27 20:40:46] [INFO] SpeedChangeEffect initialized with factor 0.910000
-[2025-11-27 20:40:46] [INFO] Reverb intensity set to 50.000000% (wet: 0.650000)
-[2025-11-27 20:41:20] [INFO] EffectStateCommand: Undoing effect state change
-[2025-11-27 20:41:20] [INFO] Undo performed
-[2025-11-27 20:41:21] [INFO] SpeedChangeEffect initialized with factor 0.910000
-[2025-11-27 20:41:21] [INFO] EffectStateCommand: Undoing effect state change
-[2025-11-27 20:41:21] [INFO] Undo performed
-[2025-11-27 20:41:22] [INFO] SpeedChangeEffect initialized with factor 0.910000
-[2025-11-27 20:41:22] [INFO] EffectStateCommand: Undoing effect state change
-[2025-11-27 20:41:22] [INFO] Undo performed
-[2025-11-27 20:41:23] [INFO] SpeedChangeEffect initialized with factor 0.910000
-[2025-11-27 20:41:23] [INFO] Reverb intensity set to 25.000000% (wet: 0.475000)
-[2025-11-27 20:41:23] [INFO] EffectStateCommand: Undoing effect state change
-[2025-11-27 20:41:23] [INFO] Undo performed
-[2025-11-27 20:41:24] [INFO] SpeedChangeEffect initialized with factor 0.910000
-[2025-11-27 20:41:24] [INFO] Reverb intensity set to 39.000000% (wet: 0.573000)
-[2025-11-27 20:41:24] [INFO] EffectStateCommand: Undoing effect state change
-[2025-11-27 20:41:24] [INFO] Undo performed
-[2025-11-27 20:41:24] [INFO] SpeedChangeEffect initialized with factor 0.910000
-[2025-11-27 20:41:24] [INFO] Reverb intensity set to 50.000000% (wet: 0.650000)
-[2025-11-27 20:41:25] [INFO] EffectStateCommand: Undoing effect state change
-[2025-11-27 20:41:25] [INFO] Undo performed
-[2025-11-27 20:41:25] [INFO] EffectStateCommand: Undoing effect state change
-[2025-11-27 20:41:25] [INFO] Undo performed
-[2025-11-27 20:41:26] [INFO] SpeedChangeEffect initialized with factor 0.910000
-[2025-11-27 20:41:26] [INFO] EffectStateCommand: Undoing effect state change
-[2025-11-27 20:41:26] [INFO] Undo performed
-[2025-11-27 20:41:26] [INFO] SpeedChangeEffect initialized with factor 1.000000
-[2025-11-27 20:41:26] [INFO] EffectStateCommand: Undoing effect state change
-[2025-11-27 20:41:26] [INFO] Undo performed
-[2025-11-27 20:41:28] [INFO] EffectStateCommand: Undoing effect state change
-[2025-11-27 20:41:28] [INFO] Undo performed
-[2025-11-27 20:41:30] [INFO] EffectStateCommand: Undoing effect state change
-[2025-11-27 20:41:30] [INFO] Undo performed
-[2025-11-27 20:41:31] [INFO] Reverb intensity set to 50.000000% (wet: 0.650000)
-[2025-11-27 20:41:33] [INFO] EffectStateCommand: Effect state changed
-[2025-11-27 20:41:33] [INFO] Command executed
-[2025-11-27 20:41:33] [INFO] Effect state change recorded for undo/redo
-[2025-11-27 20:41:55] [INFO] Loading audio file: /Users/annagalstyan/Music/Music/Media.localized/Music/Unknown Artist/Unknown Album/The White Stripes - 'Seven Nation Army (Lyrics).mp3
-[2025-11-27 20:41:55] [INFO] Loading MP3 file from: /Users/annagalstyan/Music/Music/Media.localized/Music/Unknown Artist/Unknown Album/The White Stripes - 'Seven Nation Army (Lyrics).mp3
-[2025-11-27 20:41:55] [INFO] Loaded MP3: /Users/annagalstyan/Music/Music/Media.localized/Music/Unknown Artist/Unknown Album/The White Stripes - 'Seven Nation Army (Lyrics).mp3 (20334592 samples, 230.550934s, 2 channels)
-[2025-11-27 20:41:55] [INFO] Loaded 20334592 samples from /Users/annagalstyan/Music/Music/Media.localized/Music/Unknown Artist/Unknown Album/The White Stripes - 'Seven Nation Army (Lyrics).mp3
-[2025-11-27 20:41:57] [INFO] EffectStateCommand: Effect state changed
-[2025-11-27 20:41:57] [INFO] Command executed
-[2025-11-27 20:41:57] [INFO] Effect state change recorded for undo/redo
-[2025-11-27 20:41:57] [INFO] EffectStateCommand: Effect state changed
-[2025-11-27 20:41:57] [INFO] Command executed
-[2025-11-27 20:41:57] [INFO] Effect state change recorded for undo/redo
-[2025-11-27 20:41:57] [INFO] Reverb intensity set to 50.000000% (wet: 0.650000)
-[2025-11-27 20:42:07] [INFO] Reverb intensity set to 50.000000% (wet: 0.650000)
-[2025-11-27 20:42:07] [INFO] Reverb intensity set to 50.000000% (wet: 0.650000)
-[2025-11-27 20:42:24] [INFO] EffectStateCommand: Effect state changed
-[2025-11-27 20:42:24] [INFO] Command executed
-[2025-11-27 20:42:24] [INFO] Effect state change recorded for undo/redo
-[2025-11-27 20:42:24] [INFO] Reverb intensity set to 75.000000% (wet: 0.825000)
-[2025-11-27 20:42:30] [INFO] EffectStateCommand: Effect state changed
-[2025-11-27 20:42:30] [INFO] Command executed
-[2025-11-27 20:42:30] [INFO] Effect state change recorded for undo/redo
-[2025-11-27 20:42:30] [INFO] EffectStateCommand: Effect state changed
-[2025-11-27 20:42:30] [INFO] Command executed
-[2025-11-27 20:42:30] [INFO] Effect state change recorded for undo/redo
-[2025-11-27 20:42:31] [INFO] Reverb intensity set to 75.000000% (wet: 0.825000)
-[2025-11-27 20:42:31] [INFO] SpeedChangeEffect initialized with factor 1.000000
-[2025-11-27 20:42:34] [INFO] EffectStateCommand: Effect state changed
-[2025-11-27 20:42:34] [INFO] Command executed
-[2025-11-27 20:42:34] [INFO] Effect state change recorded for undo/redo
-[2025-11-27 20:42:34] [INFO] Reverb intensity set to 75.000000% (wet: 0.825000)
-[2025-11-27 20:42:34] [INFO] SpeedChangeEffect initialized with factor 0.890000
-[2025-11-27 20:43:02] [INFO] EffectStateCommand: Effect state changed
-[2025-11-27 20:43:02] [INFO] Command executed
-[2025-11-27 20:43:02] [INFO] Effect state change recorded for undo/redo
-[2025-11-27 20:43:02] [INFO] Reverb intensity set to 100.000000% (wet: 1.000000)
-[2025-11-27 20:43:02] [INFO] SpeedChangeEffect initialized with factor 0.890000
-[2025-11-27 20:45:15] [INFO] EffectStateCommand: Effect state changed
-[2025-11-27 20:45:15] [INFO] Command executed
-[2025-11-27 20:45:15] [INFO] Effect state change recorded for undo/redo
-[2025-11-27 20:45:15] [INFO] Reverb intensity set to 100.000000% (wet: 1.000000)
-[2025-11-27 20:45:16] [INFO] EffectStateCommand: Effect state changed
-[2025-11-27 20:45:16] [INFO] Command executed
-[2025-11-27 20:45:16] [INFO] Effect state change recorded for undo/redo
-[2025-11-27 20:45:41] [INFO] Application closing...
+[2025-11-27 22:38:55] [INFO] Application starting...
+[2025-11-27 22:38:55] [INFO] Application ready
+[2025-11-27 22:39:05] [INFO] Loading audio file: /Users/annagalstyan/Music/Music/Media.localized/Music/Unknown Artist/Unknown Album/The Weeknd - House Of Balloons  Glass Table Girls.mp3
+[2025-11-27 22:39:05] [INFO] Loading MP3 file from: /Users/annagalstyan/Music/Music/Media.localized/Music/Unknown Artist/Unknown Album/The Weeknd - House Of Balloons  Glass Table Girls.mp3
+[2025-11-27 22:39:06] [INFO] Loaded MP3: /Users/annagalstyan/Music/Music/Media.localized/Music/Unknown Artist/Unknown Album/The Weeknd - House Of Balloons  Glass Table Girls.mp3 (36376576 samples, 412.432831s, 2 channels)
+[2025-11-27 22:39:06] [INFO] Loaded 36376576 samples from /Users/annagalstyan/Music/Music/Media.localized/Music/Unknown Artist/Unknown Album/The Weeknd - House Of Balloons  Glass Table Girls.mp3
+[2025-11-27 22:39:08] [INFO] EffectStateCommand: Effect state changed
+[2025-11-27 22:39:08] [INFO] Command executed
+[2025-11-27 22:39:08] [INFO] Effect state change recorded for undo/redo
+[2025-11-27 22:39:08] [INFO] EffectStateCommand: Effect state changed
+[2025-11-27 22:39:08] [INFO] Command executed
+[2025-11-27 22:39:08] [INFO] Effect state change recorded for undo/redo
+[2025-11-27 22:39:08] [INFO] Reverb intensity: 50.000000% (wet: 0.900000, room: 0.625000)
+[2025-11-27 22:39:38] [INFO] Reverb intensity: 50.000000% (wet: 0.900000, room: 0.625000)
+[2025-11-27 22:39:39] [INFO] Reverb intensity: 50.000000% (wet: 0.900000, room: 0.625000)
+[2025-11-27 22:39:55] [INFO] EffectStateCommand: Effect state changed
+[2025-11-27 22:39:55] [INFO] Command executed
+[2025-11-27 22:39:55] [INFO] Effect state change recorded for undo/redo
+[2025-11-27 22:39:56] [INFO] Reverb intensity: 100.000000% (wet: 1.400000, room: 0.850000)
+[2025-11-27 22:55:44] [INFO] EffectStateCommand: Effect state changed
+[2025-11-27 22:55:44] [INFO] Command executed
+[2025-11-27 22:55:44] [INFO] Effect state change recorded for undo/redo
+[2025-11-27 22:55:44] [INFO] EffectStateCommand: Effect state changed
+[2025-11-27 22:55:44] [INFO] Command executed
+[2025-11-27 22:55:44] [INFO] Effect state change recorded for undo/redo
+[2025-11-27 22:55:44] [INFO] Reverb intensity: 100.000000% (wet: 1.400000, room: 0.850000)
+[2025-11-27 22:55:44] [INFO] SpeedChangeEffect initialized with factor 1.000000
+[2025-11-27 22:55:49] [INFO] EffectStateCommand: Effect state changed
+[2025-11-27 22:55:49] [INFO] Command executed
+[2025-11-27 22:55:49] [INFO] Effect state change recorded for undo/redo
+[2025-11-27 22:55:49] [INFO] Reverb intensity: 100.000000% (wet: 1.400000, room: 0.850000)
+[2025-11-27 22:55:49] [INFO] SpeedChangeEffect initialized with factor 0.890000
+[2025-11-27 22:56:29] [INFO] Application closing...
+[2025-11-27 22:56:41] [INFO] Application starting...
+[2025-11-27 22:56:41] [INFO] Application ready
+[2025-11-27 22:57:34] [INFO] Loading audio file: /Users/annagalstyan/Music/Music/Media.localized/Music/The Kid LAROI/Unknown Album/The Kid LAROI - NIGHTS LIKE THIS (Official Audio).mp3
+[2025-11-27 22:57:34] [INFO] Loading MP3 file from: /Users/annagalstyan/Music/Music/Media.localized/Music/The Kid LAROI/Unknown Album/The Kid LAROI - NIGHTS LIKE THIS (Official Audio).mp3
+[2025-11-27 22:57:34] [INFO] Loaded MP3: /Users/annagalstyan/Music/Music/Media.localized/Music/The Kid LAROI/Unknown Album/The Kid LAROI - NIGHTS LIKE THIS (Official Audio).mp3 (7686144 samples, 87.144493s, 2 channels)
+[2025-11-27 22:57:34] [INFO] Loaded 7686144 samples from /Users/annagalstyan/Music/Music/Media.localized/Music/The Kid LAROI/Unknown Album/The Kid LAROI - NIGHTS LIKE THIS (Official Audio).mp3
+[2025-11-27 22:57:45] [INFO] EffectStateCommand: Effect state changed
+[2025-11-27 22:57:45] [INFO] Command executed
+[2025-11-27 22:57:45] [INFO] Effect state change recorded for undo/redo
+[2025-11-27 22:57:45] [INFO] EffectStateCommand: Effect state changed
+[2025-11-27 22:57:45] [INFO] Command executed
+[2025-11-27 22:57:45] [INFO] Effect state change recorded for undo/redo
+[2025-11-27 22:57:45] [INFO] Reverb intensity: 50.000000% (wet: 0.900000, room: 0.625000)
+[2025-11-27 22:57:48] [INFO] EffectStateCommand: Effect state changed
+[2025-11-27 22:57:48] [INFO] Command executed
+[2025-11-27 22:57:48] [INFO] Effect state change recorded for undo/redo
+[2025-11-27 22:57:48] [INFO] Reverb intensity: 76.000000% (wet: 1.160000, room: 0.742000)
+[2025-11-27 22:57:54] [INFO] EffectStateCommand: Effect state changed
+[2025-11-27 22:57:54] [INFO] Command executed
+[2025-11-27 22:57:54] [INFO] Effect state change recorded for undo/redo
+[2025-11-27 22:57:54] [INFO] EffectStateCommand: Effect state changed
+[2025-11-27 22:57:54] [INFO] Command executed
+[2025-11-27 22:57:54] [INFO] Effect state change recorded for undo/redo
+[2025-11-27 22:57:54] [INFO] Reverb intensity: 76.000000% (wet: 1.160000, room: 0.742000)
+[2025-11-27 22:57:54] [INFO] SpeedChangeEffect initialized with factor 1.000000
+[2025-11-27 22:57:57] [INFO] EffectStateCommand: Effect state changed
+[2025-11-27 22:57:57] [INFO] Command executed
+[2025-11-27 22:57:57] [INFO] Effect state change recorded for undo/redo
+[2025-11-27 22:57:57] [INFO] Reverb intensity: 76.000000% (wet: 1.160000, room: 0.742000)
+[2025-11-27 22:57:57] [INFO] SpeedChangeEffect initialized with factor 0.870000
+[2025-11-27 23:01:17] [INFO] Application closing...
