@@ -1,46 +1,82 @@
 #include "Normalize.h"
 #include <cmath>
 #include <algorithm>
+#include <numeric>
+
 NormalizeEffect::NormalizeEffect(std::shared_ptr<ILogger> logger, float targetRMS)
-: logger_(logger), targetRMS_(targetRMS), targetPeak_(0.95f) {
+    : logger_(std::move(logger))
+    , targetRMS_(targetRMS)
+    , targetPeak_(audio::normalize::kDefaultTargetPeak)
+{
 }
-float NormalizeEffect::calculateRMS(const float* buffer, size_t size) {
-double sumSquares = 0.0;
-for (size_t i = 0; i < size; ++i) {
-sumSquares += buffer[i] * buffer[i];
+
+void NormalizeEffect::setParameter(const std::string& name, float value) {
+    if (name == "targetRMS") {
+        setTargetRMS(value);
+    } else if (name == "targetPeak") {
+        setTargetPeak(value);
+    }
 }
-return std::sqrt(sumSquares / size);
+
+float NormalizeEffect::calculateRMS(const std::vector<float>& buffer) {
+    if (buffer.empty()) return 0.0f;
+    
+    const double sumSquares = std::accumulate(buffer.begin(), buffer.end(), 0.0,
+        [](double acc, float sample) { return acc + sample * sample; });
+    
+    return static_cast<float>(std::sqrt(sumSquares / buffer.size()));
 }
-float NormalizeEffect::calculatePeak(const float* buffer, size_t size) {
-float peak = 0.0f;
-for (size_t i = 0; i < size; ++i) {
-peak = std::max(peak, std::abs(buffer[i]));
+
+float NormalizeEffect::calculatePeak(const std::vector<float>& buffer) {
+    if (buffer.empty()) return 0.0f;
+    
+    float peak = 0.0f;
+    for (const float sample : buffer) {
+        peak = std::max(peak, std::abs(sample));
+    }
+    return peak;
 }
-return peak;
-}
-size_t NormalizeEffect::apply(float* audioBuffer, size_t bufferSize) {
-if (bufferSize == 0) return 0;
-float currentRMS = calculateRMS(audioBuffer, bufferSize);
-float currentPeak = calculatePeak(audioBuffer, bufferSize);
-logger_->log("Before normalize - RMS: " + std::to_string(currentRMS) +
-", Peak: " + std::to_string(currentPeak));
-float rmsGain = (currentRMS > 0.0001f) ? (targetRMS_ / currentRMS) : 1.0f;
-for (size_t i = 0; i < bufferSize; ++i) {
-audioBuffer[i] *= rmsGain;
-}
-float newPeak = calculatePeak(audioBuffer, bufferSize);
-if (newPeak > targetPeak_) {
-float peakGain = targetPeak_ / newPeak;
-for (size_t i = 0; i < bufferSize; ++i) {
-audioBuffer[i] *= peakGain;
-}
-logger_->log("Clipping prevented - applied limiter (gain: " +
-std::to_string(peakGain) + "x)");
-}
-float finalRMS = calculateRMS(audioBuffer, bufferSize);
-float finalPeak = calculatePeak(audioBuffer, bufferSize);
-logger_->log("After normalize - RMS: " + std::to_string(finalRMS) +
-", Peak: " + std::to_string(finalPeak) +
-", Gain applied: " + std::to_string(rmsGain));
-return bufferSize;
+
+void NormalizeEffect::apply(std::vector<float>& buffer) {
+    if (buffer.empty()) return;
+    
+    const float currentRMS = calculateRMS(buffer);
+    const float currentPeak = calculatePeak(buffer);
+    
+    if (logger_) {
+        logger_->log("Before normalize - RMS: " + std::to_string(currentRMS) +
+                     ", Peak: " + std::to_string(currentPeak));
+    }
+    
+    // Calculate gain to achieve target RMS
+    const float rmsGain = (currentRMS > audio::normalize::kMinRMSThreshold) 
+                         ? (targetRMS_ / currentRMS) 
+                         : 1.0f;
+    
+    // Apply RMS gain
+    for (float& sample : buffer) {
+        sample *= rmsGain;
+    }
+    
+    // Apply peak limiter to prevent clipping
+    const float newPeak = calculatePeak(buffer);
+    if (newPeak > targetPeak_) {
+        const float peakGain = targetPeak_ / newPeak;
+        for (float& sample : buffer) {
+            sample *= peakGain;
+        }
+        
+        if (logger_) {
+            logger_->log("Clipping prevented - applied limiter (gain: " +
+                         std::to_string(peakGain) + "x)");
+        }
+    }
+    
+    if (logger_) {
+        const float finalRMS = calculateRMS(buffer);
+        const float finalPeak = calculatePeak(buffer);
+        logger_->log("After normalize - RMS: " + std::to_string(finalRMS) +
+                     ", Peak: " + std::to_string(finalPeak) +
+                     ", Gain applied: " + std::to_string(rmsGain));
+    }
 }

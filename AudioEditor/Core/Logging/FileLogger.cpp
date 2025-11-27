@@ -30,15 +30,15 @@ void FileLogger::warning(const std::string& message) {
 
 void FileLogger::writeLog(const std::string& level, const std::string& message) {
     std::lock_guard<std::mutex> lock(mutex_);
-    if (file_.is_open()) {
-        auto now = std::chrono::system_clock::now();
-        auto time = std::chrono::system_clock::to_time_t(now);
+    
+    if (!file_.is_open()) return;
+    
+    const auto now = std::chrono::system_clock::now();
+    const auto time = std::chrono::system_clock::to_time_t(now);
 
-        file_ << "[" << std::put_time(std::localtime(&time), "%Y-%m-%d %H:%M:%S") << "] "
-              << "[" << level << "] " 
-              << message << std::endl;
+    file_ << "[" << std::put_time(std::localtime(&time), "%Y-%m-%d %H:%M:%S") << "] "
+          << "[" << level << "] " 
+          << message << '\n';  // Use '\n' instead of std::endl for performance
 
-        file_.flush();
-    }
+    file_.flush();  // Explicit flush when we want it
 }
-
