@@ -56,7 +56,3 @@ void ApplyEffectCommand::undo() {
         logger_->log("Effects undone - restored " + std::to_string(beforeState_.size()) + " samples");
     }
 }
-
-const char* ApplyEffectCommand::getName() const {
-    return "Apply Effect";
-}
