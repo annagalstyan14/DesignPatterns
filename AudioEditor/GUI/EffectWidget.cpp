@@ -125,7 +125,7 @@ void EffectWidget::setupSpeedControls() {
 }
 
 void EffectWidget::setupVolumeControls() {
-    addSlider("Gain", "gain", 0, 400, 100, "%");
+    addSlider("Gain", "gain", 0, 800, 100, "%");
 }
 
 void EffectWidget::addSlider(const QString& name, const QString& paramKey,
@@ -288,4 +288,33 @@ void EffectWidget::setSliderDragging(const QString& paramKey, bool dragging) {
     if (it != sliders_.end()) {
         it->second.isDragging = dragging;
     }
+}
+
+QMap<QString, int> EffectWidget::getParameterState() const {
+    QMap<QString, int> state;
+    for (auto it = sliders_.begin(); it != sliders_.end(); ++it) {
+        state[it->first] = it->second.slider->value();
+    }
+    return state;
+}
+
+void EffectWidget::setParameterState(const QMap<QString, int>& state) {
+    // Block signals during restore to prevent triggering parameter changed
+    for (auto it = state.begin(); it != state.end(); ++it) {
+        auto sliderIt = sliders_.find(it.key());
+        if (sliderIt != sliders_.end()) {
+            sliderIt->second.slider->blockSignals(true);
+            sliderIt->second.slider->setValue(it.value());
+            sliderIt->second.valueLabel->setText(QString::number(it.value()) + sliderIt->second.suffix);
+            sliderIt->second.slider->blockSignals(false);
+        }
+    }
+}
+
+int EffectWidget::getPreviousSliderValue(const QString& paramKey) const {
+    auto it = sliders_.find(paramKey);
+    if (it != sliders_.end()) {
+        return it->second.previousValue;
+    }
+    return 0;
 }

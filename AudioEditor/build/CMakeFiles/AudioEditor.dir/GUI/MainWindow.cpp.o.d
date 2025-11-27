@@ -1082,6 +1082,33 @@ CMakeFiles/AudioEditor.dir/GUI/MainWindow.cpp.o: \
   /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qrunnable.h \
   /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qexception.h \
   /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qpromise.h \
+  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/EffectsPanel.h \
+  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/QWidget \
+  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/QScrollArea \
+  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qscrollarea.h \
+  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qabstractscrollarea.h \
+  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/QPushButton \
+  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qpushbutton.h \
+  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qabstractbutton.h \
+  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/QComboBox \
+  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qcombobox.h \
+  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qabstractitemdelegate.h \
+  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qstyleoption.h \
+  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qabstractspinbox.h \
+  /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/qvalidator.h \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qregularexpression.h \
+  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qslider.h \
+  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qabstractslider.h \
+  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qstyle.h \
+  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qtabbar.h \
+  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qrubberband.h \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qabstractitemmodel.h \
+  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/QLabel \
+  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qlabel.h \
+  /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/qpicture.h \
+  /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/qtextdocument.h \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/QMap \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/QString \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/AudioEngine.h \
   /opt/homebrew/opt/qt@6/lib/QtMultimedia.framework/Headers/QAudioSink \
   /opt/homebrew/opt/qt@6/lib/QtMultimedia.framework/Headers/qaudiosink.h \
@@ -1098,36 +1125,11 @@ CMakeFiles/AudioEditor.dir/GUI/MainWindow.cpp.o: \
   /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/QByteArray \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Effects/IEffect.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/TransportBar.h \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/QWidget \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/QPushButton \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qpushbutton.h \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qabstractbutton.h \
   /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/QSlider \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qslider.h \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qabstractslider.h \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/QLabel \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qlabel.h \
-  /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/qpicture.h \
-  /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/qtextdocument.h \
   /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/QToolButton \
   /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qtoolbutton.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/WaveformWidget.h \
   /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/QPixmap \
-  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/EffectsPanel.h \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/QScrollArea \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qscrollarea.h \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qabstractscrollarea.h \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/QComboBox \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qcombobox.h \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qabstractitemdelegate.h \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qstyleoption.h \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qabstractspinbox.h \
-  /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/qvalidator.h \
-  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qregularexpression.h \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qstyle.h \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qtabbar.h \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qrubberband.h \
-  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qabstractitemmodel.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/CaptionPanel.h \
   /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/QTableWidget \
   /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qtablewidget.h \
@@ -1135,26 +1137,27 @@ CMakeFiles/AudioEditor.dir/GUI/MainWindow.cpp.o: \
   /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qabstractitemview.h \
   /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qitemselectionmodel.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Services/CaptionParser.h \
-  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/QString \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/AudioClip.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Adapters/AudioFileAdapter.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Effects/Speed.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Effects/../Logging/ILogger.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Logging/ILogger.h \
+  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/EffectFactory.h \
+  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Logging/ILogger.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Commands/CommandHistory.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Commands/ICommand.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Commands/../Logging/ILogger.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Logging/CompositeLogger.h \
-  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Logging/ILogger.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Logging/ConsoleLogger.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Logging/FileLogger.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/fstream \
-  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/EffectFactory.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Effects/Reverb.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Effects/Volume.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Commands/ApplyEffect.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Commands/../AudioClip.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Commands/../Effects/IEffect.h \
+  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Commands/EffectStateCommand.h \
+  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Commands/../../GUI/EffectsPanel.h \
   /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/QApplication \
   /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qapplication.h \
   /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/QScreen \

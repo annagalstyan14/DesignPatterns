@@ -6,6 +6,7 @@
 #include "CaptionPanel.h"
 #include "CaptionParser.h"
 #include "../Core/AudioClip.h"
+#include "../Core/EffectFactory.h"
 #include "../Core/Commands/CommandHistory.h"
 #include "../Core/Logging/CompositeLogger.h"
 #include "../Core/Logging/ConsoleLogger.h"
@@ -15,6 +16,7 @@
 #include "../Core/Effects/Speed.h"
 #include "../Core/Effects/Volume.h"
 #include "../Core/Commands/ApplyEffect.h"
+#include "../Core/Commands/EffectStateCommand.h"
 #include <QApplication>
 #include <QScreen>
 #include <QDragEnterEvent>
@@ -318,8 +320,9 @@ void MainWindow::setupConnections() {
     connect(effectsPanel_, &EffectsPanel::effectsChanged,
             this, &MainWindow::updatePreview);
     
-    connect(effectsPanel_, &EffectsPanel::applyEffectsRequested,
-            this, &MainWindow::onApplyEffects);
+    // Connect to state changes for undo/redo
+    connect(effectsPanel_, &EffectsPanel::stateChangeCompleted,
+            this, &MainWindow::onEffectStateChanged);
 
     connect(effectsPanel_, &EffectsPanel::compareToggled,
             this, [this](bool enabled) {
@@ -762,30 +765,32 @@ void MainWindow::cancelPendingPreview() {
     queuedEffects_.clear();
 }
 
-void MainWindow::onApplyEffects() {
-    if (!audioClip_ || audioClip_->getSamples().empty()) {
-        statusBar()->showMessage("No audio loaded", 2000);
-        return;
-    }
-
-    auto effects = effectsPanel_->getEffectsForExport();
-    if (effects.empty()) {
-        statusBar()->showMessage("No effects to apply", 2000);
-        return;
-    }
-
-    auto command = std::make_shared<ApplyEffectCommand>(audioClip_, effects, logger_);
-    commandHistory_->executeCommand(command);
-
-    effectsPanel_->clearEffects();
-
-    audioEngine_->setAudioClip(audioClip_);
-    waveformWidget_->setSamples(audioClip_->getSamples(), 44100, 2);
+void MainWindow::onEffectStateChanged(const EffectsPanelState& oldState, 
+                                       const EffectsPanelState& newState) {
+    // Create and execute command for undo/redo
+    auto command = std::make_shared<EffectStateCommand>(
+        effectsPanel_, oldState, newState, logger_);
     
-    isPreviewMode_ = false;
-    hasUnsavedChanges_ = true;
-
+    // Execute command (execute is a no-op since change already happened)
+    commandHistory_->executeCommand(command);
+    
     updateUIState();
+    logger_->log("Effect state change recorded for undo/redo");
+}
+
+void MainWindow::onApplyEffects() {
+    if (!audioClip_) return;
+
+    // Example: Apply all effects from the EffectsPanel to the audioClip
+    auto effects = effectsPanel_->getEffects();
+    for (auto& effect : effects) {
+        if (effect) {
+            effect->apply(audioClip_->getSamples().data(), audioClip_->getSamples().size());
+        }
+    }
+
+    // Mark unsaved changes
+    hasUnsavedChanges_ = true;
     updateWindowTitle();
-    statusBar()->showMessage("Effects applied (Ctrl+Z to undo)", 3000);
+    statusBar()->showMessage("Effects applied", 2000);
 }

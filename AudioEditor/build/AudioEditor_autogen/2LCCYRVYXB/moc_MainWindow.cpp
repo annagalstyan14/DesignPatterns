@@ -7,6 +7,7 @@
 *****************************************************************************/
 
 #include "../../../GUI/MainWindow.h"
+#include <QtGui/qtextcursor.h>
 #include <QtCore/qmetatype.h>
 
 #include <QtCore/qtmochelpers.h>
@@ -56,7 +57,11 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         "updateWindowTitle",
         "onApplyEffects",
         "onPreviewTimerTimeout",
-        "onPreviewComputationFinished"
+        "onPreviewComputationFinished",
+        "onEffectStateChanged",
+        "EffectsPanelState",
+        "oldState",
+        "newState"
     };
 
     QtMocHelpers::UintData qt_methods {
@@ -94,6 +99,10 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         QtMocHelpers::SlotData<void()>(17, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onPreviewComputationFinished'
         QtMocHelpers::SlotData<void()>(18, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onEffectStateChanged'
+        QtMocHelpers::SlotData<void(const EffectsPanelState &, const EffectsPanelState &)>(19, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { 0x80000000 | 20, 21 }, { 0x80000000 | 20, 22 },
+        }}),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -134,10 +143,10 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 14: _t->onApplyEffects(); break;
         case 15: _t->onPreviewTimerTimeout(); break;
         case 16: _t->onPreviewComputationFinished(); break;
+        case 17: _t->onEffectStateChanged((*reinterpret_cast< std::add_pointer_t<EffectsPanelState>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<EffectsPanelState>>(_a[2]))); break;
         default: ;
         }
     }
-    (void)_a;
 }
 
 const QMetaObject *MainWindow::metaObject() const
@@ -159,14 +168,14 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 17)
+        if (_id < 18)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 17;
+        _id -= 18;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 17)
+        if (_id < 18)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 17;
+        _id -= 18;
     }
     return _id;
 }

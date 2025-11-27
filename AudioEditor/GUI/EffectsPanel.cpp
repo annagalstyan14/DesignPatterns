@@ -4,10 +4,13 @@
 #include "../Core/Effects/Speed.h"
 #include "../Core/Effects/Volume.h"
 #include <QHBoxLayout>
+#include "../Core/EffectFactory.h"
 
 EffectsPanel::EffectsPanel(std::shared_ptr<ILogger> logger, QWidget* parent)
     : QWidget(parent), logger_(logger) {
     setupUI();
+    // Initialize saved state
+    lastSavedState_ = saveState();
 }
 
 void EffectsPanel::setupUI() {
@@ -112,13 +115,13 @@ void EffectsPanel::setupUI() {
     noEffectsLabel_->setStyleSheet("color: #808080; font-size: 12px; padding: 20px;");
     mainLayout_->addWidget(noEffectsLabel_);
 
-    // Button row
+    // Compare button (no Apply button - effects are non-destructive)
     QHBoxLayout* buttonLayout = new QHBoxLayout();
     
-    // Compare button
     compareButton_ = new QPushButton("Compare On/Off", this);
     compareButton_->setCheckable(true);
     compareButton_->setChecked(true);
+    compareButton_->setToolTip("Toggle effects on/off to compare with original");
     compareButton_->setStyleSheet(R"(
         QPushButton {
             background-color: #3d3d3d;
@@ -137,32 +140,8 @@ void EffectsPanel::setupUI() {
     )");
     connect(compareButton_, &QPushButton::toggled, this, &EffectsPanel::onCompareToggled);
     
-    // Apply button
-    applyButton_ = new QPushButton("Apply Effects", this);
-    applyButton_->setStyleSheet(R"(
-        QPushButton {
-            background-color: #ff9800;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            padding: 8px 15px;
-            font-weight: bold;
-        }
-        QPushButton:hover {
-            background-color: #ffa726;
-        }
-        QPushButton:pressed {
-            background-color: #f57c00;
-        }
-        QPushButton:disabled {
-            background-color: #2a2a2a;
-            color: #555555;
-        }
-    )");
-    connect(applyButton_, &QPushButton::clicked, this, &EffectsPanel::onApplyClicked);
-    
     buttonLayout->addWidget(compareButton_);
-    buttonLayout->addWidget(applyButton_);
+    buttonLayout->addStretch();
     mainLayout_->addLayout(buttonLayout);
     
     // Panel styling
@@ -174,17 +153,28 @@ void EffectsPanel::setupUI() {
 }
 
 void EffectsPanel::onAddEffectClicked() {
+    // Save state before change
+    EffectsPanelState oldState = saveState();
+    
     QString type = effectTypeCombo_->currentText();
     addEffectWidget(type);
+    
+    // Emit state change for undo/redo
+    EffectsPanelState newState = saveState();
+    emit stateChangeCompleted(oldState, newState);
+    lastSavedState_ = newState;
+    
     emit effectsChanged();
 }
 
-void EffectsPanel::onApplyClicked() {
-    emit applyEffectsRequested();
-}
-
-void EffectsPanel::addEffectWidget(const QString& effectType) {
+void EffectsPanel::addEffectWidget(const QString& effectType, const QMap<QString, int>& params) {
     EffectWidget* widget = new EffectWidget(effectType, logger_, this);
+    
+    // Set parameters if provided (for state restore)
+    if (!params.isEmpty()) {
+        widget->setParameterState(params);
+    }
+    
     connect(widget, &EffectWidget::removeRequested, this, &EffectsPanel::onEffectRemoved);
     connect(widget, &EffectWidget::parameterChanged, this, &EffectsPanel::onEffectParameterChanged);
     
@@ -196,6 +186,9 @@ void EffectsPanel::addEffectWidget(const QString& effectType) {
 }
 
 void EffectsPanel::onEffectRemoved(EffectWidget* widget) {
+    // Save state before change
+    EffectsPanelState oldState = saveState();
+    
     auto it = std::find(effectWidgets_.begin(), effectWidgets_.end(), widget);
     if (it != effectWidgets_.end()) {
         effectWidgets_.erase(it);
@@ -205,10 +198,46 @@ void EffectsPanel::onEffectRemoved(EffectWidget* widget) {
     if (effectWidgets_.empty()) {
         noEffectsLabel_->setVisible(true);
     }
+    
+    // Emit state change for undo/redo (only if not restoring)
+    if (!isRestoringState_) {
+        EffectsPanelState newState = saveState();
+        emit stateChangeCompleted(oldState, newState);
+        lastSavedState_ = newState;
+    }
+    
     emit effectsChanged();
 }
 
 void EffectsPanel::onEffectParameterChanged() {
+    // Don't create undo entries while restoring state
+    if (isRestoringState_) {
+        emit effectsChanged();
+        return;
+    }
+    
+    // Check if state actually changed
+    EffectsPanelState currentState = saveState();
+    
+    // Compare states to see if something actually changed
+    bool stateChanged = false;
+    if (currentState.effects.size() != lastSavedState_.effects.size()) {
+        stateChanged = true;
+    } else {
+        for (size_t i = 0; i < currentState.effects.size(); ++i) {
+            if (currentState.effects[i].parameters != lastSavedState_.effects[i].parameters ||
+                currentState.effects[i].enabled != lastSavedState_.effects[i].enabled) {
+                stateChanged = true;
+                break;
+            }
+        }
+    }
+    
+    if (stateChanged) {
+        emit stateChangeCompleted(lastSavedState_, currentState);
+        lastSavedState_ = currentState;
+    }
+    
     emit effectsChanged();
 }
 
@@ -238,20 +267,99 @@ std::vector<std::shared_ptr<IEffect>> EffectsPanel::getEffectsForExport() const 
     return effects;
 }
 
+EffectsPanelState EffectsPanel::saveState() const {
+    EffectsPanelState state;
+    state.effectsEnabled = effectsEnabled_;
+    
+    for (auto widget : effectWidgets_) {
+        EffectState effectState;
+        effectState.effectType = widget->getEffectType();
+        effectState.enabled = widget->isEffectEnabled();
+        effectState.parameters = widget->getParameterState();
+        state.effects.push_back(effectState);
+    }
+    
+    return state;
+}
+
+void EffectsPanel::restoreState(const EffectsPanelState& state) {
+    isRestoringState_ = true;
+    
+    // Clear existing effects
+    while (!effectWidgets_.empty()) {
+        auto widget = effectWidgets_.back();
+        effectWidgets_.pop_back();
+        effectsLayout_->removeWidget(widget);
+        delete widget;
+    }
+    
+    // Restore effects
+    for (const auto& effectState : state.effects) {
+        addEffectWidget(effectState.effectType, effectState.parameters);
+        // Note: enabled state would need additional handling if we want to restore it
+    }
+    
+    // Update no effects label visibility
+    noEffectsLabel_->setVisible(effectWidgets_.empty());
+    
+    // Update compare button
+    compareButton_->setChecked(state.effectsEnabled);
+    effectsEnabled_ = state.effectsEnabled;
+    
+    // Update saved state
+    lastSavedState_ = state;
+    
+    isRestoringState_ = false;
+    
+    emit effectsChanged();
+}
+
 void EffectsPanel::clearEffects() {
+    isRestoringState_ = true;
+    
     for (auto widget : effectWidgets_) {
         widget->deleteLater();
     }
     effectWidgets_.clear();
     noEffectsLabel_->setVisible(true);
+    
+    lastSavedState_ = saveState();
+    isRestoringState_ = false;
 }
 
 void EffectsPanel::setEnabled(bool enabled) {
     addButton_->setEnabled(enabled);
     compareButton_->setEnabled(enabled);
-    applyButton_->setEnabled(enabled);
     effectTypeCombo_->setEnabled(enabled);
     for (auto widget : effectWidgets_) {
         widget->setEnabled(enabled);
     }
+}
+
+void EffectsPanel::onApplyClicked() {
+    // Example: emit a signal that MainWindow can connect to
+    emit effectsChanged();
+}
+
+void EffectsPanel::addEffectWidget(const QString &effectName) {
+    // Create a new EffectWidget and add it to the layout
+    EffectWidget* widget = new EffectWidget(effectName, logger_, this);
+
+    connect(widget, &EffectWidget::removeRequested, this, &EffectsPanel::onEffectRemoved);
+    connect(widget, &EffectWidget::parameterChanged, this, &EffectsPanel::onEffectParameterChanged);
+
+    // Insert the widget before the stretch
+    effectsLayout_->insertWidget(effectsLayout_->count() - 1, widget);
+    effectWidgets_.push_back(widget);
+
+    // Hide the "No effects" label and show the scroll area
+    noEffectsLabel_->setVisible(false);
+    scrollArea_->setVisible(true);
+
+    // Save the state after adding the effect
+    EffectsPanelState newState = saveState();
+    emit stateChangeCompleted(lastSavedState_, newState);
+    lastSavedState_ = newState;
+
+    emit effectsChanged();
 }

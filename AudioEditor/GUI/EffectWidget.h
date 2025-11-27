@@ -10,6 +10,7 @@
 #include <QCheckBox>
 #include <QFrame>
 #include <QTimer>
+#include <QMap>
 #include <memory>
 #include <map>
 
@@ -38,6 +39,11 @@ public:
     
     // Create the actual effect with current parameters
     std::shared_ptr<IEffect> createEffect() const;
+    
+    // Get/set parameter state for undo/redo
+    QMap<QString, int> getParameterState() const;
+    void setParameterState(const QMap<QString, int>& state);
+    int getPreviousSliderValue(const QString& paramKey) const;
 
 signals:
     void removeRequested(EffectWidget* widget);

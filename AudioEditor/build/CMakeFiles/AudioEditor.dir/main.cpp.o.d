@@ -1086,4 +1086,31 @@ CMakeFiles/AudioEditor.dir/main.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__thread/this_thread.h \
   /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qrunnable.h \
   /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qexception.h \
-  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qpromise.h
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qpromise.h \
+  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/EffectsPanel.h \
+  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/QWidget \
+  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/QScrollArea \
+  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qscrollarea.h \
+  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qabstractscrollarea.h \
+  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/QPushButton \
+  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qpushbutton.h \
+  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qabstractbutton.h \
+  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/QComboBox \
+  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qcombobox.h \
+  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qabstractitemdelegate.h \
+  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qstyleoption.h \
+  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qabstractspinbox.h \
+  /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/qvalidator.h \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qregularexpression.h \
+  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qslider.h \
+  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qabstractslider.h \
+  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qstyle.h \
+  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qtabbar.h \
+  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qrubberband.h \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qabstractitemmodel.h \
+  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/QLabel \
+  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qlabel.h \
+  /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/qpicture.h \
+  /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/qtextdocument.h \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/QMap \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/QString

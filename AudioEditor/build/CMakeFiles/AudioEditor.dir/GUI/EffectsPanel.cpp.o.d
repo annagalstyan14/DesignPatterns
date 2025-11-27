@@ -996,6 +996,8 @@ CMakeFiles/AudioEditor.dir/GUI/EffectsPanel.cpp.o: \
   /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qiodevice.h \
   /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/qtextdocument.h \
   /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qurl.h \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/QMap \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/QString \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/EffectWidget.h \
   /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/QHBoxLayout \
   /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/QSlider \
@@ -1013,4 +1015,6 @@ CMakeFiles/AudioEditor.dir/GUI/EffectsPanel.cpp.o: \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Effects/IEffect.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Effects/../Logging/ILogger.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Effects/Speed.h \
-  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Effects/Volume.h
+  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Effects/Volume.h \
+  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/EffectFactory.h \
+  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Logging/ILogger.h

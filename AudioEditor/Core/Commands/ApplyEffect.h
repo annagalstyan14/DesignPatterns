@@ -20,7 +20,7 @@ public:
     
     void execute() override;
     void undo() override;
-    const char* getName() const override;
+    const char* getName() const;
 
 private:
     std::shared_ptr<AudioClip> clip_;

@@ -992,6 +992,7 @@ CMakeFiles/AudioEditor.dir/GUI/EffectWidget.cpp.o: \
   /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qeventloop.h \
   /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qdeadlinetimer.h \
   /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qelapsedtimer.h \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/QMap \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Effects/IEffect.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Effects/Reverb.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Effects/../Logging/ILogger.h \

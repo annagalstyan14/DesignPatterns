@@ -24,19 +24,18 @@ Reverb::Reverb(std::shared_ptr<ILogger> logger)
 
 void Reverb::setIntensity(float intensityPercent) {
     float intensity = std::clamp(intensityPercent / 100.0f, 0.0f, 1.0f);
-    
-    // Keep wet mix moderate to avoid muddiness
-    wetMix_ = intensity * 0.35f;  // Max 35% wet
-    roomSize_ = 0.3f + intensity * 0.4f;  // 0.3 to 0.7
-    damping_ = 0.4f + (1.0f - intensity) * 0.3f;  // Higher damping = less harsh
-    
+
+    wetMix_ = 0.3f + intensity * 0.7f;  // Start at 30% wet mix and scale to 100%
+    roomSize_ = 0.5f + intensity * 0.5f;  // 0.5 to 1.0 for noticeable space scaling
+    damping_ = 0.2f + (1.0f - intensity) * 0.2f;  // Smooth decay with less harshness
+
     updateParameters();
     logger_->log("Reverb intensity set to " + std::to_string(intensityPercent) + 
                  "% (wet: " + std::to_string(wetMix_) + ")");
 }
 
 void Reverb::updateParameters() {
-    feedback_ = 0.5f + roomSize_ * 0.35f;  // Keep feedback moderate (0.5 to 0.85)
+    feedback_ = 0.6f + roomSize_ * 0.4f;  // Extend reverb tail more dramatically
 }
 
 size_t Reverb::apply(float* buffer, size_t bufferSize) {
