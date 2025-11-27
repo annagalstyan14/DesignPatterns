@@ -15,61 +15,196 @@ void EffectsPanel::setupUI() {
     mainLayout_->setContentsMargins(10, 10, 10, 10);
     mainLayout_->setSpacing(10);
 
-    // Header or other UI...
+    // Header
+    QLabel* headerLabel = new QLabel("Effects", this);
+    headerLabel->setStyleSheet(R"(
+        QLabel {
+            color: #00bcd4;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 5px 0;
+        }
+    )");
+    mainLayout_->addWidget(headerLabel);
 
-    // Add effect
+    // Add effect row
     QHBoxLayout* addLayout = new QHBoxLayout();
     effectTypeCombo_ = new QComboBox(this);
     effectTypeCombo_->addItems({"Reverb", "Speed", "Volume"});
-    addButton_ = new QPushButton("Add Effect", this);
+    effectTypeCombo_->setStyleSheet(R"(
+        QComboBox {
+            background-color: #3d3d3d;
+            color: #e0e0e0;
+            border: 1px solid #555555;
+            border-radius: 4px;
+            padding: 5px 10px;
+        }
+        QComboBox::drop-down {
+            border: none;
+        }
+        QComboBox QAbstractItemView {
+            background-color: #3d3d3d;
+            color: #e0e0e0;
+            selection-background-color: #00bcd4;
+        }
+    )");
+    
+    addButton_ = new QPushButton("Add", this);
+    addButton_->setStyleSheet(R"(
+        QPushButton {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 6px 15px;
+            font-weight: bold;
+        }
+        QPushButton:hover {
+            background-color: #66bb6a;
+        }
+        QPushButton:pressed {
+            background-color: #388e3c;
+        }
+        QPushButton:disabled {
+            background-color: #2a2a2a;
+            color: #555555;
+        }
+    )");
     connect(addButton_, &QPushButton::clicked, this, &EffectsPanel::onAddEffectClicked);
-    addLayout->addWidget(effectTypeCombo_);
+    
+    addLayout->addWidget(effectTypeCombo_, 1);
     addLayout->addWidget(addButton_);
     mainLayout_->addLayout(addLayout);
 
     // Scroll area for effects
     scrollArea_ = new QScrollArea(this);
-    effectsContainer_ = new QWidget();
-    effectsLayout_ = new QVBoxLayout(effectsContainer_);
-    effectsLayout_->setSpacing(8);
-    scrollArea_->setWidget(effectsContainer_);
     scrollArea_->setWidgetResizable(true);
-    mainLayout_->addWidget(scrollArea_);
+    scrollArea_->setStyleSheet(R"(
+        QScrollArea {
+            border: none;
+            background-color: transparent;
+        }
+        QScrollBar:vertical {
+            background-color: #1e1e1e;
+            width: 8px;
+            border-radius: 4px;
+        }
+        QScrollBar::handle:vertical {
+            background-color: #555555;
+            border-radius: 4px;
+            min-height: 30px;
+        }
+    )");
+    
+    effectsContainer_ = new QWidget();
+    effectsContainer_->setStyleSheet("background-color: transparent;");
+    effectsLayout_ = new QVBoxLayout(effectsContainer_);
+    effectsLayout_->setContentsMargins(0, 0, 0, 0);
+    effectsLayout_->setSpacing(8);
+    effectsLayout_->addStretch();
+    
+    scrollArea_->setWidget(effectsContainer_);
+    mainLayout_->addWidget(scrollArea_, 1);
 
     // No effects label
-    noEffectsLabel_ = new QLabel("No effects added", this);
+    noEffectsLabel_ = new QLabel("No effects added.\nUse the dropdown above to add effects.", this);
+    noEffectsLabel_->setAlignment(Qt::AlignCenter);
+    noEffectsLabel_->setStyleSheet("color: #808080; font-size: 12px; padding: 20px;");
     mainLayout_->addWidget(noEffectsLabel_);
 
+    // Button row
+    QHBoxLayout* buttonLayout = new QHBoxLayout();
+    
     // Compare button
     compareButton_ = new QPushButton("Compare On/Off", this);
     compareButton_->setCheckable(true);
     compareButton_->setChecked(true);
+    compareButton_->setStyleSheet(R"(
+        QPushButton {
+            background-color: #3d3d3d;
+            color: #e0e0e0;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 12px;
+        }
+        QPushButton:hover {
+            background-color: #4d4d4d;
+        }
+        QPushButton:checked {
+            background-color: #00bcd4;
+            color: #000000;
+        }
+    )");
     connect(compareButton_, &QPushButton::toggled, this, &EffectsPanel::onCompareToggled);
-    mainLayout_->addWidget(compareButton_);
+    
+    // Apply button
+    applyButton_ = new QPushButton("Apply Effects", this);
+    applyButton_->setStyleSheet(R"(
+        QPushButton {
+            background-color: #ff9800;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 15px;
+            font-weight: bold;
+        }
+        QPushButton:hover {
+            background-color: #ffa726;
+        }
+        QPushButton:pressed {
+            background-color: #f57c00;
+        }
+        QPushButton:disabled {
+            background-color: #2a2a2a;
+            color: #555555;
+        }
+    )");
+    connect(applyButton_, &QPushButton::clicked, this, &EffectsPanel::onApplyClicked);
+    
+    buttonLayout->addWidget(compareButton_);
+    buttonLayout->addWidget(applyButton_);
+    mainLayout_->addLayout(buttonLayout);
+    
+    // Panel styling
+    setStyleSheet(R"(
+        EffectsPanel {
+            background-color: #252525;
+        }
+    )");
 }
 
 void EffectsPanel::onAddEffectClicked() {
     QString type = effectTypeCombo_->currentText();
-    emit addEffectRequested(type);  // Bubble to MainWindow for command
+    addEffectWidget(type);
+    emit effectsChanged();
+}
+
+void EffectsPanel::onApplyClicked() {
+    emit applyEffectsRequested();
 }
 
 void EffectsPanel::addEffectWidget(const QString& effectType) {
     EffectWidget* widget = new EffectWidget(effectType, logger_, this);
     connect(widget, &EffectWidget::removeRequested, this, &EffectsPanel::onEffectRemoved);
     connect(widget, &EffectWidget::parameterChanged, this, &EffectsPanel::onEffectParameterChanged);
-    // NEW: Connect param changed for undo (but actual command in widget on release)
-    effectsLayout_->addWidget(widget);
+    
+    // Insert before the stretch
+    effectsLayout_->insertWidget(effectsLayout_->count() - 1, widget);
     effectWidgets_.push_back(widget);
     noEffectsLabel_->setVisible(false);
-    emit effectsChanged();
+    scrollArea_->setVisible(true);
 }
 
 void EffectsPanel::onEffectRemoved(EffectWidget* widget) {
-    size_t index = std::find(effectWidgets_.begin(), effectWidgets_.end(), widget) - effectWidgets_.begin();
-    emit removeEffectRequested(index);  // Bubble for command
+    auto it = std::find(effectWidgets_.begin(), effectWidgets_.end(), widget);
+    if (it != effectWidgets_.end()) {
+        effectWidgets_.erase(it);
+    }
     widget->deleteLater();
-    effectWidgets_.erase(effectWidgets_.begin() + index);
-    if (effectWidgets_.empty()) noEffectsLabel_->setVisible(true);
+    
+    if (effectWidgets_.empty()) {
+        noEffectsLabel_->setVisible(true);
+    }
     emit effectsChanged();
 }
 
@@ -85,6 +220,7 @@ void EffectsPanel::onCompareToggled(bool enabled) {
 
 std::vector<std::shared_ptr<IEffect>> EffectsPanel::getEffects() const {
     if (!effectsEnabled_) return {};
+    
     std::vector<std::shared_ptr<IEffect>> effects;
     for (auto widget : effectWidgets_) {
         auto effect = widget->createEffect();
@@ -113,35 +249,9 @@ void EffectsPanel::clearEffects() {
 void EffectsPanel::setEnabled(bool enabled) {
     addButton_->setEnabled(enabled);
     compareButton_->setEnabled(enabled);
+    applyButton_->setEnabled(enabled);
+    effectTypeCombo_->setEnabled(enabled);
     for (auto widget : effectWidgets_) {
         widget->setEnabled(enabled);
-    }
-}
-
-void EffectsPanel::syncFromChain(const std::vector<std::shared_ptr<IEffect>>& chain) {
-    clearEffects();
-    for (auto effect : chain) {
-        QString type;
-        if (dynamic_cast<Reverb*>(effect.get())) type = "Reverb";
-        else if (dynamic_cast<SpeedChangeEffect*>(effect.get())) type = "Speed";
-        else if (dynamic_cast<VolumeEffect*>(effect.get())) type = "Volume";
-        addEffectWidget(type);
-        // Sync sliders from effect params
-        auto widget = effectWidgets_.back();
-        // Example for Reverb
-        if (type == "Reverb") {
-            auto reverb = std::dynamic_pointer_cast<Reverb>(effect);
-            widget->sliders_["intensity"].slider->setValue(static_cast<int>(reverb->wetMix_ * 200.0f));  // Adjust scaling
-            // Similar for other params
-        }
-        // Repeat for Speed and Volume
-        if (type == "Speed") {
-            auto speed = std::dynamic_pointer_cast<SpeedChangeEffect>(effect);
-            widget->sliders_["speed"].slider->setValue(static_cast<int>(speed->getSpeedFactor() * 100.0f));
-        }
-        if (type == "Volume") {
-            auto volume = std::dynamic_pointer_cast<VolumeEffect>(effect);
-            widget->sliders_["gain"].slider->setValue(static_cast<int>(volume->getGain() * 100.0f));
-        }
     }
 }

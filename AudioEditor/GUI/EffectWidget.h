@@ -9,9 +9,9 @@
 #include <QPushButton>
 #include <QCheckBox>
 #include <QFrame>
+#include <QTimer>
 #include <memory>
 #include <map>
-#include <QTimer>
 
 // Forward declarations
 class IEffect;
@@ -59,6 +59,7 @@ private:
     void addSlider(const QString& name, const QString& paramKey,
                    int min, int max, int defaultValue, const QString& suffix = "");
     void scheduleParameterChange();
+    void setSliderDragging(const QString& paramKey, bool dragging);
 
     QString effectType_;
     std::shared_ptr<ILogger> logger_;
@@ -81,7 +82,6 @@ private:
     std::map<QString, SliderData> sliders_;
 
     QTimer* parameterDebounceTimer_;
-    void setSliderDragging(const QString& paramKey, bool dragging);
 };
 
 #endif // EFFECT_WIDGET_H

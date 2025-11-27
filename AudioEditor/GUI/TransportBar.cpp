@@ -1,8 +1,33 @@
 #include "TransportBar.h"
-#include "AudioEngine.h"  // For PlaybackState enum
+#include "AudioEngine.h"
 #include <QHBoxLayout>
 #include <QStyle>
 #include <QApplication>
+#include <QMouseEvent>
+
+// Custom slider that supports click-to-seek
+class ClickableSlider : public QSlider {
+public:
+    ClickableSlider(Qt::Orientation orientation, QWidget* parent = nullptr)
+        : QSlider(orientation, parent) {}
+
+protected:
+    void mousePressEvent(QMouseEvent* event) override {
+        if (event->button() == Qt::LeftButton) {
+            // Calculate position from click
+            int value;
+            if (orientation() == Qt::Horizontal) {
+                value = minimum() + ((maximum() - minimum()) * event->pos().x()) / width();
+            } else {
+                value = minimum() + ((maximum() - minimum()) * (height() - event->pos().y())) / height();
+            }
+            setValue(value);
+            emit sliderMoved(value);
+            event->accept();
+        }
+        QSlider::mousePressEvent(event);
+    }
+};
 
 TransportBar::TransportBar(QWidget* parent)
     : QWidget(parent)
@@ -25,7 +50,7 @@ void TransportBar::setupUI() {
     layout->setContentsMargins(10, 5, 10, 5);
     layout->setSpacing(10);
 
-    // --- Play/Pause Button ---
+    // Play/Pause Button
     playPauseButton_ = new QPushButton(this);
     playPauseButton_->setFixedSize(40, 40);
     playPauseButton_->setIcon(style()->standardIcon(QStyle::SP_MediaPlay));
@@ -50,7 +75,7 @@ void TransportBar::setupUI() {
     connect(playPauseButton_, &QPushButton::clicked, 
             this, &TransportBar::onPlayPauseClicked);
 
-    // --- Stop Button ---
+    // Stop Button
     stopButton_ = new QPushButton(this);
     stopButton_->setFixedSize(36, 36);
     stopButton_->setIcon(style()->standardIcon(QStyle::SP_MediaStop));
@@ -75,12 +100,12 @@ void TransportBar::setupUI() {
     connect(stopButton_, &QPushButton::clicked, 
             this, &TransportBar::onStopClicked);
 
-    // --- Time Slider ---
-    timeSlider_ = new QSlider(Qt::Horizontal, this);
+    // Time Slider - using custom clickable slider
+    timeSlider_ = new ClickableSlider(Qt::Horizontal, this);
     timeSlider_->setMinimum(0);
-    timeSlider_->setMaximum(1000);  // We'll use 0-1000 and scale to duration
+    timeSlider_->setMaximum(1000);
     timeSlider_->setValue(0);
-    timeSlider_->setToolTip("Seek");
+    timeSlider_->setToolTip("Click or drag to seek");
     timeSlider_->setStyleSheet(R"(
         QSlider::groove:horizontal {
             height: 6px;
@@ -109,22 +134,18 @@ void TransportBar::setupUI() {
     connect(timeSlider_, &QSlider::sliderMoved, 
             this, &TransportBar::onSliderMoved);
 
-    // --- Time Label ---
+    // Time Label
     timeLabel_ = new QLabel("00:00 / 00:00", this);
     timeLabel_->setFixedWidth(100);
     timeLabel_->setAlignment(Qt::AlignCenter);
-    timeLabel_->setStyleSheet(R"(
-        QLabel {
-            color: #e0e0e0;
-        }
-    )");
+    timeLabel_->setStyleSheet("QLabel { color: #e0e0e0; }");
 
-    // --- Volume Icon ---
+    // Volume Icon
     volumeIcon_ = new QLabel(this);
     volumeIcon_->setPixmap(style()->standardIcon(QStyle::SP_MediaVolume).pixmap(18, 18));
     volumeIcon_->setFixedSize(18, 18);
 
-    // --- Volume Slider ---
+    // Volume Slider
     volumeSlider_ = new QSlider(Qt::Horizontal, this);
     volumeSlider_->setMinimum(0);
     volumeSlider_->setMaximum(100);
@@ -155,16 +176,14 @@ void TransportBar::setupUI() {
     // Add to layout
     layout->addWidget(playPauseButton_);
     layout->addWidget(stopButton_);
-    layout->addWidget(timeSlider_, 1);  // Stretch
+    layout->addWidget(timeSlider_, 1);
     layout->addWidget(timeLabel_);
     layout->addSpacing(10);
     layout->addWidget(volumeIcon_);
     layout->addWidget(volumeSlider_);
 
-    // Set fixed height for the bar
     setFixedHeight(60);
     
-    // Background style
     setStyleSheet(R"(
         TransportBar {
             background-color: #252525;
@@ -176,10 +195,9 @@ void TransportBar::setupUI() {
 void TransportBar::setPosition(qint64 positionMs) {
     currentPositionMs_ = positionMs;
     
-    // Only update slider if user is not dragging it
     if (!isSliderBeingDragged_ && totalDurationMs_ > 0) {
         int sliderValue = static_cast<int>((positionMs * 1000) / totalDurationMs_);
-        timeSlider_->blockSignals(true);  // Prevent signal loop
+        timeSlider_->blockSignals(true);
         timeSlider_->setValue(sliderValue);
         timeSlider_->blockSignals(false);
     }
@@ -191,7 +209,6 @@ void TransportBar::setDuration(qint64 durationMs) {
     totalDurationMs_ = durationMs;
     updateTimeLabel();
     
-    // Enable/disable controls based on whether we have audio
     bool hasAudio = durationMs > 0;
     playPauseButton_->setEnabled(hasAudio);
     stopButton_->setEnabled(hasAudio);
@@ -245,7 +262,6 @@ void TransportBar::onSliderPressed() {
 void TransportBar::onSliderReleased() {
     isSliderBeingDragged_ = false;
     
-    // Calculate position in milliseconds from slider value (0-1000)
     if (totalDurationMs_ > 0) {
         qint64 seekPosition = (timeSlider_->value() * totalDurationMs_) / 1000;
         emit seekRequested(seekPosition);
@@ -253,11 +269,13 @@ void TransportBar::onSliderReleased() {
 }
 
 void TransportBar::onSliderMoved(int value) {
-    // Update time label while dragging to show preview
+    // Seek immediately when clicking or dragging
     if (totalDurationMs_ > 0) {
-        qint64 previewPosition = (value * totalDurationMs_) / 1000;
-        timeLabel_->setText(formatTime(previewPosition) + " / " + 
-                           formatTime(totalDurationMs_));
+        qint64 seekPosition = (value * totalDurationMs_) / 1000;
+        emit seekRequested(seekPosition);
+        
+        // Update time label preview
+        timeLabel_->setText(formatTime(seekPosition) + " / " + formatTime(totalDurationMs_));
     }
 }
 
@@ -265,19 +283,15 @@ void TransportBar::onVolumeSliderChanged(int value) {
     float volume = value / 100.0f;
     emit volumeChanged(volume);
     
-    // Update volume icon based on level
     if (value == 0) {
-        volumeIcon_->setPixmap(style()->standardIcon(QStyle::SP_MediaVolumeMuted)
-                              .pixmap(18, 18));
+        volumeIcon_->setPixmap(style()->standardIcon(QStyle::SP_MediaVolumeMuted).pixmap(18, 18));
     } else {
-        volumeIcon_->setPixmap(style()->standardIcon(QStyle::SP_MediaVolume)
-                              .pixmap(18, 18));
+        volumeIcon_->setPixmap(style()->standardIcon(QStyle::SP_MediaVolume).pixmap(18, 18));
     }
 }
 
 void TransportBar::updateTimeLabel() {
-    timeLabel_->setText(formatTime(currentPositionMs_) + " / " + 
-                       formatTime(totalDurationMs_));
+    timeLabel_->setText(formatTime(currentPositionMs_) + " / " + formatTime(totalDurationMs_));
 }
 
 QString TransportBar::formatTime(qint64 ms) {

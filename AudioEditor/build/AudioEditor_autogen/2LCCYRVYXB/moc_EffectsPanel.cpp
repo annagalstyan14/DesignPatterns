@@ -44,16 +44,9 @@ template <> constexpr inline auto EffectsPanel::qt_create_metaobjectdata<qt_meta
         "",
         "compareToggled",
         "effectsEnabled",
-        "addEffectRequested",
-        "effectType",
-        "removeEffectRequested",
-        "size_t",
-        "index",
-        "paramChangedRequested",
-        "param",
-        "oldValue",
-        "newValue",
+        "applyEffectsRequested",
         "onAddEffectClicked",
+        "onApplyClicked",
         "onEffectRemoved",
         "EffectWidget*",
         "widget",
@@ -69,29 +62,21 @@ template <> constexpr inline auto EffectsPanel::qt_create_metaobjectdata<qt_meta
         QtMocHelpers::SignalData<void(bool)>(3, 2, QMC::AccessPublic, QMetaType::Void, {{
             { QMetaType::Bool, 4 },
         }}),
-        // Signal 'addEffectRequested'
-        QtMocHelpers::SignalData<void(const QString &)>(5, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::QString, 6 },
-        }}),
-        // Signal 'removeEffectRequested'
-        QtMocHelpers::SignalData<void(size_t)>(7, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 8, 9 },
-        }}),
-        // Signal 'paramChangedRequested'
-        QtMocHelpers::SignalData<void(size_t, const QString &, float, float)>(10, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { 0x80000000 | 8, 9 }, { QMetaType::QString, 11 }, { QMetaType::Float, 12 }, { QMetaType::Float, 13 },
-        }}),
+        // Signal 'applyEffectsRequested'
+        QtMocHelpers::SignalData<void()>(5, 2, QMC::AccessPublic, QMetaType::Void),
         // Slot 'onAddEffectClicked'
-        QtMocHelpers::SlotData<void()>(14, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(6, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onApplyClicked'
+        QtMocHelpers::SlotData<void()>(7, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onEffectRemoved'
-        QtMocHelpers::SlotData<void(EffectWidget *)>(15, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { 0x80000000 | 16, 17 },
+        QtMocHelpers::SlotData<void(EffectWidget *)>(8, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { 0x80000000 | 9, 10 },
         }}),
         // Slot 'onEffectParameterChanged'
-        QtMocHelpers::SlotData<void()>(18, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(11, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onCompareToggled'
-        QtMocHelpers::SlotData<void(bool)>(19, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::Bool, 20 },
+        QtMocHelpers::SlotData<void(bool)>(12, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Bool, 13 },
         }}),
     };
     QtMocHelpers::UintData qt_properties {
@@ -118,13 +103,12 @@ void EffectsPanel::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
         switch (_id) {
         case 0: _t->effectsChanged(); break;
         case 1: _t->compareToggled((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
-        case 2: _t->addEffectRequested((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 3: _t->removeEffectRequested((*reinterpret_cast< std::add_pointer_t<size_t>>(_a[1]))); break;
-        case 4: _t->paramChangedRequested((*reinterpret_cast< std::add_pointer_t<size_t>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<float>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<float>>(_a[4]))); break;
-        case 5: _t->onAddEffectClicked(); break;
-        case 6: _t->onEffectRemoved((*reinterpret_cast< std::add_pointer_t<EffectWidget*>>(_a[1]))); break;
-        case 7: _t->onEffectParameterChanged(); break;
-        case 8: _t->onCompareToggled((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
+        case 2: _t->applyEffectsRequested(); break;
+        case 3: _t->onAddEffectClicked(); break;
+        case 4: _t->onApplyClicked(); break;
+        case 5: _t->onEffectRemoved((*reinterpret_cast< std::add_pointer_t<EffectWidget*>>(_a[1]))); break;
+        case 6: _t->onEffectParameterChanged(); break;
+        case 7: _t->onCompareToggled((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
         default: ;
         }
     }
@@ -133,11 +117,7 @@ void EffectsPanel::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
             return;
         if (QtMocHelpers::indexOfMethod<void (EffectsPanel::*)(bool )>(_a, &EffectsPanel::compareToggled, 1))
             return;
-        if (QtMocHelpers::indexOfMethod<void (EffectsPanel::*)(const QString & )>(_a, &EffectsPanel::addEffectRequested, 2))
-            return;
-        if (QtMocHelpers::indexOfMethod<void (EffectsPanel::*)(size_t )>(_a, &EffectsPanel::removeEffectRequested, 3))
-            return;
-        if (QtMocHelpers::indexOfMethod<void (EffectsPanel::*)(size_t , const QString & , float , float )>(_a, &EffectsPanel::paramChangedRequested, 4))
+        if (QtMocHelpers::indexOfMethod<void (EffectsPanel::*)()>(_a, &EffectsPanel::applyEffectsRequested, 2))
             return;
     }
 }
@@ -161,14 +141,14 @@ int EffectsPanel::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 9)
+        if (_id < 8)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 9;
+        _id -= 8;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 9)
+        if (_id < 8)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 9;
+        _id -= 8;
     }
     return _id;
 }
@@ -186,20 +166,8 @@ void EffectsPanel::compareToggled(bool _t1)
 }
 
 // SIGNAL 2
-void EffectsPanel::addEffectRequested(const QString & _t1)
+void EffectsPanel::applyEffectsRequested()
 {
-    QMetaObject::activate<void>(this, &staticMetaObject, 2, nullptr, _t1);
-}
-
-// SIGNAL 3
-void EffectsPanel::removeEffectRequested(size_t _t1)
-{
-    QMetaObject::activate<void>(this, &staticMetaObject, 3, nullptr, _t1);
-}
-
-// SIGNAL 4
-void EffectsPanel::paramChangedRequested(size_t _t1, const QString & _t2, float _t3, float _t4)
-{
-    QMetaObject::activate<void>(this, &staticMetaObject, 4, nullptr, _t1, _t2, _t3, _t4);
+    QMetaObject::activate(this, &staticMetaObject, 2, nullptr);
 }
 QT_WARNING_POP

@@ -1067,6 +1067,7 @@ CMakeFiles/AudioEditor.dir/main.cpp.o: \
   /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/qscreen_platform.h \
   /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/QTimer \
   /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qtimer.h \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/QFileInfo \
   /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/QFutureWatcher \
   /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qfuturewatcher.h \
   /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qfuture.h \

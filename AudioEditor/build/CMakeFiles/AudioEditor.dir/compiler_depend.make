@@ -811,6 +811,7 @@ AudioEditor_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platfo
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/main.cpp \
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/QBuffer \
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/QByteArray \
+  /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/QFileInfo \
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/QFutureWatcher \
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/QList \
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/QObject \
@@ -1725,8 +1726,6 @@ AudioEditor_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platfo
 
 /opt/homebrew/opt/qt@6/lib/cmake/Qt6Gui/Qt6QPdfPluginConfig.cmake:
 
-/opt/homebrew/opt/qt@6/lib/cmake/Qt6Gui/Qt6QPdfPluginAdditionalTargetInfo.cmake:
-
 /opt/homebrew/opt/qt@6/lib/cmake/Qt6Gui/Qt6QOffscreenIntegrationPluginTargets.cmake:
 
 /opt/homebrew/opt/qt@6/lib/cmake/Qt6Gui/Qt6QOffscreenIntegrationPluginTargets-release.cmake:
@@ -2366,6 +2365,10 @@ AudioEditor_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platfo
 /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qvariant.h:
 
 /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/QList:
+
+/opt/homebrew/opt/qt@6/lib/cmake/Qt6Gui/Qt6QPdfPluginAdditionalTargetInfo.cmake:
+
+/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/QFileInfo:
 
 /opt/homebrew/share/cmake/Modules/Compiler/Embarcadero-DetermineCompiler.cmake:
 

@@ -47,21 +47,14 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         "onExit",
         "onUndo",
         "onRedo",
+        "onTogglePlayPause",
         "onImportCaptions",
         "onExportCaptions",
         "onPlaybackFinished",
         "onRefreshAudioDevice",
         "onAudioLoaded",
         "updateWindowTitle",
-        "onAddEffect",
-        "effectType",
-        "onRemoveEffect",
-        "size_t",
-        "index",
-        "onParamChanged",
-        "param",
-        "oldValue",
-        "newValue",
+        "onApplyEffects",
         "onPreviewTimerTimeout",
         "onPreviewComputationFinished"
     };
@@ -81,34 +74,26 @@ template <> constexpr inline auto MainWindow::qt_create_metaobjectdata<qt_meta_t
         QtMocHelpers::SlotData<void()>(7, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onRedo'
         QtMocHelpers::SlotData<void()>(8, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'onImportCaptions'
+        // Slot 'onTogglePlayPause'
         QtMocHelpers::SlotData<void()>(9, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'onExportCaptions'
+        // Slot 'onImportCaptions'
         QtMocHelpers::SlotData<void()>(10, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'onPlaybackFinished'
+        // Slot 'onExportCaptions'
         QtMocHelpers::SlotData<void()>(11, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'onRefreshAudioDevice'
+        // Slot 'onPlaybackFinished'
         QtMocHelpers::SlotData<void()>(12, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'onAudioLoaded'
+        // Slot 'onRefreshAudioDevice'
         QtMocHelpers::SlotData<void()>(13, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'updateWindowTitle'
+        // Slot 'onAudioLoaded'
         QtMocHelpers::SlotData<void()>(14, 2, QMC::AccessPrivate, QMetaType::Void),
-        // Slot 'onAddEffect'
-        QtMocHelpers::SlotData<void(const QString &)>(15, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::QString, 16 },
-        }}),
-        // Slot 'onRemoveEffect'
-        QtMocHelpers::SlotData<void(size_t)>(17, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { 0x80000000 | 18, 19 },
-        }}),
-        // Slot 'onParamChanged'
-        QtMocHelpers::SlotData<void(size_t, const QString &, float, float)>(20, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { 0x80000000 | 18, 19 }, { QMetaType::QString, 21 }, { QMetaType::Float, 22 }, { QMetaType::Float, 23 },
-        }}),
+        // Slot 'updateWindowTitle'
+        QtMocHelpers::SlotData<void()>(15, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onApplyEffects'
+        QtMocHelpers::SlotData<void()>(16, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onPreviewTimerTimeout'
-        QtMocHelpers::SlotData<void()>(24, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(17, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onPreviewComputationFinished'
-        QtMocHelpers::SlotData<void()>(25, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(18, 2, QMC::AccessPrivate, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -139,20 +124,20 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 4: _t->onExit(); break;
         case 5: _t->onUndo(); break;
         case 6: _t->onRedo(); break;
-        case 7: _t->onImportCaptions(); break;
-        case 8: _t->onExportCaptions(); break;
-        case 9: _t->onPlaybackFinished(); break;
-        case 10: _t->onRefreshAudioDevice(); break;
-        case 11: _t->onAudioLoaded(); break;
-        case 12: _t->updateWindowTitle(); break;
-        case 13: _t->onAddEffect((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 14: _t->onRemoveEffect((*reinterpret_cast< std::add_pointer_t<size_t>>(_a[1]))); break;
-        case 15: _t->onParamChanged((*reinterpret_cast< std::add_pointer_t<size_t>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<float>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<float>>(_a[4]))); break;
-        case 16: _t->onPreviewTimerTimeout(); break;
-        case 17: _t->onPreviewComputationFinished(); break;
+        case 7: _t->onTogglePlayPause(); break;
+        case 8: _t->onImportCaptions(); break;
+        case 9: _t->onExportCaptions(); break;
+        case 10: _t->onPlaybackFinished(); break;
+        case 11: _t->onRefreshAudioDevice(); break;
+        case 12: _t->onAudioLoaded(); break;
+        case 13: _t->updateWindowTitle(); break;
+        case 14: _t->onApplyEffects(); break;
+        case 15: _t->onPreviewTimerTimeout(); break;
+        case 16: _t->onPreviewComputationFinished(); break;
         default: ;
         }
     }
+    (void)_a;
 }
 
 const QMetaObject *MainWindow::metaObject() const
@@ -174,14 +159,14 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 18)
+        if (_id < 17)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 18;
+        _id -= 17;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 18)
+        if (_id < 17)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 18;
+        _id -= 17;
     }
     return _id;
 }

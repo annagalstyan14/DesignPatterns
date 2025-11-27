@@ -63,13 +63,36 @@ void EffectWidget::setupUI() {
         QCheckBox::indicator {
             width: 16px;
             height: 16px;
-            border-radiu...(truncated as per original)...
+            border-radius: 3px;
+            border: 1px solid #555555;
+            background-color: #3d3d3d;
+        }
+        QCheckBox::indicator:checked {
+            background-color: #00bcd4;
+            border-color: #00bcd4;
+        }
     )");
     connect(enableCheckbox_, &QCheckBox::toggled, this, &EffectWidget::onEnabledToggled);
     headerLayout->addWidget(enableCheckbox_);
 
     // Remove button
     removeButton_ = new QPushButton("Remove", this);
+    removeButton_->setStyleSheet(R"(
+        QPushButton {
+            background-color: #d32f2f;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 5px 10px;
+            font-size: 11px;
+        }
+        QPushButton:hover {
+            background-color: #f44336;
+        }
+        QPushButton:pressed {
+            background-color: #b71c1c;
+        }
+    )");
     connect(removeButton_, &QPushButton::clicked, this, &EffectWidget::onRemoveClicked);
     headerLayout->addStretch();
     headerLayout->addWidget(removeButton_);
@@ -95,7 +118,6 @@ void EffectWidget::setupUI() {
 
 void EffectWidget::setupReverbControls() {
     addSlider("Intensity", "intensity", 0, 100, 50, "%");
-    // Add more if needed
 }
 
 void EffectWidget::setupSpeedControls() {
@@ -113,6 +135,7 @@ void EffectWidget::addSlider(const QString& name, const QString& paramKey,
 
     QLabel* label = new QLabel(name + ":", this);
     label->setStyleSheet("color: #e0e0e0; font-size: 12px;");
+    label->setMinimumWidth(60);
     sliderLayout->addWidget(label);
 
     QSlider* slider = new QSlider(Qt::Horizontal, this);
@@ -128,20 +151,30 @@ void EffectWidget::addSlider(const QString& name, const QString& paramKey,
             background: #00bcd4;
             width: 14px;
             height: 14px;
+            margin: -5px 0;
             border-radius: 7px;
         }
+        QSlider::handle:horizontal:hover {
+            background: #00e5ff;
+        }
+        QSlider::sub-page:horizontal {
+            background: #00bcd4;
+            border-radius: 2px;
+        }
     )");
-    sliderLayout->addWidget(slider);
+    sliderLayout->addWidget(slider, 1);
 
     QLabel* valueLabel = new QLabel(QString::number(defaultValue) + suffix, this);
-    valueLabel->setStyleSheet("color: #00bcd4; font-size: 12px; min-width: 40px;");
+    valueLabel->setStyleSheet("color: #00bcd4; font-size: 12px; min-width: 50px;");
+    valueLabel->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
     sliderLayout->addWidget(valueLabel);
 
-    sliders_[paramKey] = {slider, valueLabel, suffix};
+    sliders_[paramKey] = {slider, valueLabel, suffix, false, defaultValue};
 
     connect(slider, &QSlider::valueChanged, this, &EffectWidget::onSliderChanged);
     connect(slider, &QSlider::sliderPressed, this, &EffectWidget::onSliderPressed);
     connect(slider, &QSlider::sliderReleased, this, &EffectWidget::onSliderReleased);
+    
     parametersLayout_->addLayout(sliderLayout);
 }
 
@@ -150,50 +183,41 @@ void EffectWidget::onRemoveClicked() {
 }
 
 void EffectWidget::onSliderChanged(int value) {
-    auto paramKey = sender()->property("paramKey").toString();  // Set property in addSlider if needed
-    if (paramKey.isEmpty()) {
-        // Find key
-        for (auto& entry : sliders_) {
-            if (entry.second.slider == sender()) {
-                paramKey = entry.first;
-                break;
-            }
+    // Find which slider changed
+    QString paramKey;
+    for (auto& entry : sliders_) {
+        if (entry.second.slider == sender()) {
+            paramKey = entry.first;
+            break;
         }
     }
-    sliders_[paramKey].valueLabel->setText(QString::number(value) + sliders_[paramKey].suffix);
+    
+    if (!paramKey.isEmpty()) {
+        sliders_[paramKey].valueLabel->setText(QString::number(value) + sliders_[paramKey].suffix);
+        scheduleParameterChange();
+    }
 }
 
 void EffectWidget::onSliderPressed() {
-    auto paramKey = sender()->property("paramKey").toString();
-    if (paramKey.isEmpty()) {
-        for (auto& entry : sliders_) {
-            if (entry.second.slider == sender()) {
-                paramKey = entry.first;
-                break;
-            }
+    // Find which slider was pressed
+    for (auto& entry : sliders_) {
+        if (entry.second.slider == sender()) {
+            entry.second.previousValue = entry.second.slider->value();
+            setSliderDragging(entry.first, true);
+            break;
         }
     }
-    sliders_[paramKey].previousValue = sliders_[paramKey].slider->value();
-    setSliderDragging(paramKey, true);
 }
 
 void EffectWidget::onSliderReleased() {
-    auto paramKey = sender()->property("paramKey").toString();
-    if (paramKey.isEmpty()) {
-        for (auto& entry : sliders_) {
-            if (entry.second.slider == sender()) {
-                paramKey = entry.first;
-                break;
-            }
+    // Find which slider was released
+    for (auto& entry : sliders_) {
+        if (entry.second.slider == sender()) {
+            setSliderDragging(entry.first, false);
+            // Emit parameter changed on release
+            emit parameterChanged();
+            break;
         }
-    }
-    setSliderDragging(paramKey, false);
-    int newValue = sliders_[paramKey].slider->value();
-    int oldValue = sliders_[paramKey].previousValue;
-    if (newValue != oldValue) {
-        // Emit for command (scale to float, e.g., /100.0f)
-        emit parameterChanged();  // Immediate preview
-        emit paramChangedRequested(effectIndex_, paramKey, oldValue / 100.0f, newValue / 100.0f);  // Bubble for undo, assume effectIndex_ member set by EffectsPanel
     }
 }
 
@@ -261,8 +285,7 @@ void EffectWidget::scheduleParameterChange() {
 
 void EffectWidget::setSliderDragging(const QString& paramKey, bool dragging) {
     auto it = sliders_.find(paramKey);
-    if (it == sliders_.end()) {
-        return;
+    if (it != sliders_.end()) {
+        it->second.isDragging = dragging;
     }
-    it->second.isDragging = dragging;
 }

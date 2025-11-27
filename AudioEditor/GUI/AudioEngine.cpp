@@ -402,20 +402,3 @@ void AudioEngine::revertToOriginal() {
     
     emit durationChanged(getDurationMs());
 }
-
-void AudioEngine::previewWithEffects(const std::vector<std::shared_ptr<IEffect>>& effects) {
-    previewSamples_ = originalSamples_;  // Start from original
-    hasPreview_ = !effects.empty();
-
-    for (auto& effect : effects) {
-        size_t newSize = effect->apply(previewSamples_.data(), previewSamples_.size());
-        previewSamples_.resize(newSize);
-    }
-
-    // NEW: Normalize to prevent distortion
-    auto normalize = std::make_shared<NormalizeEffect>(logger_);
-    normalize->apply(previewSamples_.data(), previewSamples_.size());
-
-    // Update buffer etc. (existing)
-    convertSamplesToBytes();
-}

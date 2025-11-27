@@ -14,6 +14,7 @@
 #include <QMessageBox>
 #include <QCloseEvent>
 #include <QTimer>
+#include <QFileInfo>
 #include <memory>
 #include <QFutureWatcher>
 
@@ -29,20 +30,6 @@ class ILogger;
 class CommandHistory;
 class IEffect;
 
-/**
- * @brief Main application window
- * 
- * Manages the overall layout and coordinates all components:
- * - Menu bar with File, Edit, Effects, Help menus
- * - Transport bar for playback controls
- * - Waveform display
- * - Effects panel
- * - Caption panel
- * 
- * Design patterns:
- * - Mediator: Coordinates between all components
- * - Observer: Qt signals/slots for event handling
- */
 class MainWindow : public QMainWindow {
     Q_OBJECT
 
@@ -67,6 +54,9 @@ private slots:
     void onUndo();
     void onRedo();
     
+    // Playback
+    void onTogglePlayPause();
+    
     // Captions
     void onImportCaptions();
     void onExportCaptions();
@@ -80,16 +70,18 @@ private slots:
     void onAudioLoaded();
     void updateWindowTitle();
 
-    // Effects slots (NEW)
-    void onAddEffect(const QString& effectType);
-    void onRemoveEffect(size_t index);
-    void onParamChanged(size_t index, const QString& param, float oldValue, float newValue);
+    // Effects
+    void onApplyEffects();
+
+    void onPreviewTimerTimeout();
+    void onPreviewComputationFinished();
 
 private:
     void setupUI();
     void setupMenuBar();
     void setupStatusBar();
     void setupConnections();
+    void setupShortcuts();
     void applyTheme();
     
     void loadAudioFile(const QString& filePath);
@@ -103,6 +95,9 @@ private:
     AudioEngine* audioEngine_;
     CommandHistory* commandHistory_;
     CaptionParser* captionParser_;
+    
+    // Original samples for undo
+    std::vector<float> originalSamples_;
     
     // UI Widgets
     QWidget* centralWidget_;
@@ -129,11 +124,6 @@ private:
     QAction* exportCaptionsAction_;
     QAction* aboutAction_;
 
-private slots:
-    void onPreviewTimerTimeout();
-    void onPreviewComputationFinished();
-
-private:
     QTimer* previewDebounceTimer_;
     QFutureWatcher<std::vector<float>>* previewWatcher_ = nullptr;
     bool previewComputationQueued_ = false;
@@ -148,10 +138,6 @@ private:
     void updatePreview();
     void startPreviewComputation(const std::vector<std::shared_ptr<IEffect>>& effects);
     void cancelPendingPreview();
-
-    // NEW: Effect chain management
-    std::vector<std::shared_ptr<IEffect>> effectChain_;
-    void syncEffectsPanel();
 };
 
 #endif // MAIN_WINDOW_H

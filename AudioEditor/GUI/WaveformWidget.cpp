@@ -18,16 +18,15 @@ WaveformWidget::WaveformWidget(QWidget* parent)
     , isDragging_(false)
     , lastMouseX_(0)
     , backgroundColor_(QColor(0x1e, 0x1e, 0x1e))
-    , waveformColor_(QColor(0x4c, 0xaf, 0x50))        // Green
-    , waveformPeakColor_(QColor(0x81, 0xc7, 0x84))    // Light green
-    , playheadColor_(QColor(0x00, 0xbc, 0xd4))        // Cyan
-    , centerLineColor_(QColor(0x3d, 0x3d, 0x3d))      // Dark gray
+    , waveformColor_(QColor(0x4c, 0xaf, 0x50))
+    , waveformPeakColor_(QColor(0x81, 0xc7, 0x84))
+    , playheadColor_(QColor(0x00, 0xbc, 0xd4))
+    , centerLineColor_(QColor(0x3d, 0x3d, 0x3d))
 {
     setMinimumHeight(100);
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     setMouseTracking(true);
     
-    // Set background
     setAutoFillBackground(true);
     QPalette pal = palette();
     pal.setColor(QPalette::Window, backgroundColor_);
@@ -40,20 +39,22 @@ void WaveformWidget::setSamples(const std::vector<float>& samples,
     sampleRate_ = sampleRate;
     channels_ = channels;
     
-    // Calculate duration in milliseconds
-    if (sampleRate_ > 0 && channels_ > 0) {
+    if (sampleRate_ > 0 && channels_ > 0 && !samples_.empty()) {
         qint64 totalFrames = samples_.size() / channels_;
         durationMs_ = (totalFrames * 1000) / sampleRate_;
     } else {
         durationMs_ = 0;
     }
     
-    // Reset view
+    // Reset view when samples change
     zoom_ = 1.0f;
     scrollOffsetMs_ = 0;
-    playheadPositionMs_ = 0;
     
-    // Recompute peaks
+    // Clamp playhead to valid range
+    if (playheadPositionMs_ > durationMs_) {
+        playheadPositionMs_ = 0;
+    }
+    
     cacheValid_ = false;
     computePeaks();
     
@@ -74,13 +75,15 @@ void WaveformWidget::clear() {
 }
 
 void WaveformWidget::setPlayheadPosition(qint64 positionMs) {
+    // Clamp to valid range
+    positionMs = std::clamp(positionMs, qint64(0), durationMs_);
+    
     if (playheadPositionMs_ != positionMs) {
         playheadPositionMs_ = positionMs;
         
         // Auto-scroll to keep playhead visible when zoomed in
-        if (zoom_ > 1.0f) {
+        if (zoom_ > 1.0f && durationMs_ > 0) {
             qint64 visibleDuration = durationMs_ / zoom_;
-            qint64 visibleEnd = scrollOffsetMs_ + visibleDuration;
             
             // If playhead is past 80% of visible area, scroll
             qint64 scrollThreshold = scrollOffsetMs_ + (visibleDuration * 0.8);
@@ -126,12 +129,10 @@ void WaveformWidget::computePeaks() {
     int widgetWidth = width();
     peaks_.resize(widgetWidth);
     
-    // Calculate how many samples per pixel
     qint64 visibleDuration = durationMs_ / zoom_;
     qint64 visibleSamples = (visibleDuration * sampleRate_ * channels_) / 1000;
     double samplesPerPixel = static_cast<double>(visibleSamples) / widgetWidth;
     
-    // Starting sample based on scroll offset
     qint64 startSample = (scrollOffsetMs_ * sampleRate_ * channels_) / 1000;
     
     float maxAbsValue = 0.0f;
@@ -141,17 +142,16 @@ void WaveformWidget::computePeaks() {
         qint64 sampleEnd = startSample + static_cast<qint64>((x + 1) * samplesPerPixel);
         
         // Clamp to valid range
-        sampleStart = std::max(qint64(0), sampleStart);
-        sampleEnd = std::min(static_cast<qint64>(samples_.size()), sampleEnd);
+        sampleStart = std::clamp(sampleStart, qint64(0), static_cast<qint64>(samples_.size()));
+        sampleEnd = std::clamp(sampleEnd, qint64(0), static_cast<qint64>(samples_.size()));
         
         float minVal = 0.0f;
         float maxVal = 0.0f;
         
-        if (sampleStart < sampleEnd && sampleStart < static_cast<qint64>(samples_.size())) {
+        if (sampleStart < sampleEnd) {
             minVal = samples_[sampleStart];
             maxVal = samples_[sampleStart];
             
-            // Find min/max in this range (step through to avoid processing every sample)
             qint64 step = std::max(qint64(1), (sampleEnd - sampleStart) / 100);
             for (qint64 i = sampleStart; i < sampleEnd; i += step) {
                 float sample = samples_[i];
@@ -161,17 +161,12 @@ void WaveformWidget::computePeaks() {
         }
         
         peaks_[x] = {minVal, maxVal};
-
         maxAbsValue = std::max(maxAbsValue, std::max(std::abs(minVal), std::abs(maxVal)));
     }
 
     const float padding = 0.9f;
     if (maxAbsValue > 0.0f) {
-        if (maxAbsValue < 1.0f) {
-            displayScale_ = padding;
-        } else {
-            displayScale_ = (padding / maxAbsValue);
-        }
+        displayScale_ = (maxAbsValue < 1.0f) ? padding : (padding / maxAbsValue);
     } else {
         displayScale_ = 1.0f;
     }
@@ -200,29 +195,28 @@ void WaveformWidget::renderWaveform() {
         return;
     }
     
-    // Draw waveform
     int peakCount = static_cast<int>(peaks_.size());
     
     for (int x = 0; x < peakCount && x < width(); ++x) {
         const Peak& peak = peaks_[x];
         
-        // Convert sample values (-1 to 1) to pixel coordinates with scaling to keep waveform in view
         float scaledMax = peak.max * displayScale_;
         float scaledMin = peak.min * displayScale_;
 
         int minY = centerY - static_cast<int>(scaledMax * (centerY - 4));
         int maxY = centerY - static_cast<int>(scaledMin * (centerY - 4));
         
-        // Ensure we draw at least 1 pixel
+        // Clamp to widget bounds
+        minY = std::clamp(minY, 0, widgetHeight);
+        maxY = std::clamp(maxY, 0, widgetHeight);
+        
         if (minY == maxY) {
             maxY = minY + 1;
         }
         
-        // Draw main waveform bar
         painter.setPen(QPen(waveformColor_, 1));
         painter.drawLine(x, minY, x, maxY);
         
-        // Draw peak highlights (outer edges)
         if (maxY - minY > 4) {
             painter.setPen(QPen(waveformPeakColor_, 1));
             painter.drawPoint(x, minY);
@@ -237,14 +231,13 @@ void WaveformWidget::paintEvent(QPaintEvent* event) {
     Q_UNUSED(event);
     
     QPainter painter(this);
+    painter.setClipRect(rect());  // Ensure we don't draw outside bounds
     
-    // Render waveform cache if needed
     if (!cacheValid_ || waveformCache_.size() != size()) {
         computePeaks();
         renderWaveform();
     }
     
-    // Draw cached waveform
     painter.drawPixmap(0, 0, waveformCache_);
     
     // Draw playhead
@@ -255,7 +248,6 @@ void WaveformWidget::paintEvent(QPaintEvent* event) {
             painter.setPen(QPen(playheadColor_, 2));
             painter.drawLine(playheadX, 0, playheadX, height());
             
-            // Draw small triangle at top
             QPolygon triangle;
             triangle << QPoint(playheadX - 5, 0)
                      << QPoint(playheadX + 5, 0)
@@ -275,7 +267,6 @@ void WaveformWidget::paintEvent(QPaintEvent* event) {
 void WaveformWidget::resizeEvent(QResizeEvent* event) {
     Q_UNUSED(event);
     cacheValid_ = false;
-    // Peaks will be recomputed on next paint
 }
 
 void WaveformWidget::mousePressEvent(QMouseEvent* event) {
@@ -283,26 +274,20 @@ void WaveformWidget::mousePressEvent(QMouseEvent* event) {
         isDragging_ = true;
         lastMouseX_ = event->pos().x();
         
-        // Seek to clicked position
         qint64 clickedPosition = xToPosition(event->pos().x());
+        clickedPosition = std::clamp(clickedPosition, qint64(0), durationMs_);
         emit seekRequested(clickedPosition);
     }
 }
 
 void WaveformWidget::mouseMoveEvent(QMouseEvent* event) {
     if (isDragging_ && durationMs_ > 0) {
-        // Seek while dragging
         qint64 dragPosition = xToPosition(event->pos().x());
         dragPosition = std::clamp(dragPosition, qint64(0), durationMs_);
         emit seekRequested(dragPosition);
     }
     
-    // Update cursor
-    if (durationMs_ > 0) {
-        setCursor(Qt::PointingHandCursor);
-    } else {
-        setCursor(Qt::ArrowCursor);
-    }
+    setCursor(durationMs_ > 0 ? Qt::PointingHandCursor : Qt::ArrowCursor);
 }
 
 void WaveformWidget::mouseReleaseEvent(QMouseEvent* event) {
@@ -315,26 +300,22 @@ void WaveformWidget::wheelEvent(QWheelEvent* event) {
         return;
     }
     
-    // Zoom with mouse wheel
     float zoomFactor = 1.2f;
     float oldZoom = zoom_;
     
     if (event->angleDelta().y() > 0) {
-        // Zoom in
         zoom_ = std::min(zoom_ * zoomFactor, 50.0f);
     } else {
-        // Zoom out
         zoom_ = std::max(zoom_ / zoomFactor, 1.0f);
     }
     
     if (zoom_ != oldZoom) {
-        // Adjust scroll to zoom towards mouse position
         if (zoom_ > 1.0f) {
             qint64 mousePositionMs = xToPosition(event->position().x());
             qint64 visibleDuration = durationMs_ / zoom_;
             scrollOffsetMs_ = mousePositionMs - (visibleDuration / 2);
             scrollOffsetMs_ = std::clamp(scrollOffsetMs_, qint64(0), 
-                                          durationMs_ - visibleDuration);
+                                          std::max(qint64(0), durationMs_ - visibleDuration));
         } else {
             scrollOffsetMs_ = 0;
         }
@@ -352,6 +333,8 @@ int WaveformWidget::positionToX(qint64 positionMs) const {
     }
     
     qint64 visibleDuration = durationMs_ / zoom_;
+    if (visibleDuration <= 0) return 0;
+    
     qint64 relativePosition = positionMs - scrollOffsetMs_;
     
     return static_cast<int>((relativePosition * width()) / visibleDuration);

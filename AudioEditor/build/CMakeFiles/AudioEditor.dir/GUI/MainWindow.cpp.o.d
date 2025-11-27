@@ -1062,6 +1062,7 @@ CMakeFiles/AudioEditor.dir/GUI/MainWindow.cpp.o: \
   /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/qguiapplication_platform.h \
   /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/QTimer \
   /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qtimer.h \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/QFileInfo \
   /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/QFutureWatcher \
   /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qfuturewatcher.h \
   /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qfuture.h \
@@ -1161,6 +1162,9 @@ CMakeFiles/AudioEditor.dir/GUI/MainWindow.cpp.o: \
   /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/QDropEvent \
   /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/QMimeData \
   /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qmimedata.h \
+  /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/QShortcut \
+  /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/qshortcut.h \
+  /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/QKeySequence \
   /opt/homebrew/opt/qt@6/lib/QtConcurrent.framework/Headers/QtConcurrentRun \
   /opt/homebrew/opt/qt@6/lib/QtConcurrent.framework/Headers/qtconcurrentrun.h \
   /opt/homebrew/opt/qt@6/lib/QtConcurrent.framework/Headers/qtconcurrentcompilertest.h \
