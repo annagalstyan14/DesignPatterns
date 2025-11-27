@@ -15,7 +15,6 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Commands/ApplyEffect.cpp" "CMakeFiles/AudioEditor.dir/Core/Commands/ApplyEffect.cpp.o" "gcc" "CMakeFiles/AudioEditor.dir/Core/Commands/ApplyEffect.cpp.o.d"
   "/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Commands/CommandHistory.cpp" "CMakeFiles/AudioEditor.dir/Core/Commands/CommandHistory.cpp.o" "gcc" "CMakeFiles/AudioEditor.dir/Core/Commands/CommandHistory.cpp.o.d"
   "/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/EffectFactory.cpp" "CMakeFiles/AudioEditor.dir/Core/EffectFactory.cpp.o" "gcc" "CMakeFiles/AudioEditor.dir/Core/EffectFactory.cpp.o.d"
-  "/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects/Echo.cpp" "CMakeFiles/AudioEditor.dir/Core/Effects/Echo.cpp.o" "gcc" "CMakeFiles/AudioEditor.dir/Core/Effects/Echo.cpp.o.d"
   "/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects/Normalize.cpp" "CMakeFiles/AudioEditor.dir/Core/Effects/Normalize.cpp.o" "gcc" "CMakeFiles/AudioEditor.dir/Core/Effects/Normalize.cpp.o.d"
   "/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects/Reverb.cpp" "CMakeFiles/AudioEditor.dir/Core/Effects/Reverb.cpp.o" "gcc" "CMakeFiles/AudioEditor.dir/Core/Effects/Reverb.cpp.o.d"
   "/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects/Speed.cpp" "CMakeFiles/AudioEditor.dir/Core/Effects/Speed.cpp.o" "gcc" "CMakeFiles/AudioEditor.dir/Core/Effects/Speed.cpp.o.d"

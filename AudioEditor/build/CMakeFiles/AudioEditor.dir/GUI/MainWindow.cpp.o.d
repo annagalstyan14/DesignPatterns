@@ -1060,6 +1060,27 @@ CMakeFiles/AudioEditor.dir/GUI/MainWindow.cpp.o: \
   /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qcoreapplication_platform.h \
   /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/qinputmethod.h \
   /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/qguiapplication_platform.h \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/QTimer \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qtimer.h \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/QFutureWatcher \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qfuturewatcher.h \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qfuture.h \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qfutureinterface.h \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qmutex.h \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qtsan_impl.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/sanitizer/tsan_interface.h \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qresultstore.h \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qfuture_impl.h \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qthreadpool.h \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qthread.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/future \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__thread/thread.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/sstream \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/thread \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__thread/this_thread.h \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qrunnable.h \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qexception.h \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qpromise.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/AudioEngine.h \
   /opt/homebrew/opt/qt@6/lib/QtMultimedia.framework/Headers/QAudioSink \
   /opt/homebrew/opt/qt@6/lib/QtMultimedia.framework/Headers/qaudiosink.h \
@@ -1073,9 +1094,8 @@ CMakeFiles/AudioEditor.dir/GUI/MainWindow.cpp.o: \
   /opt/homebrew/opt/qt@6/lib/QtMultimedia.framework/Headers/QAudioFormat \
   /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/QBuffer \
   /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qbuffer.h \
-  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/QTimer \
-  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qtimer.h \
   /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/QByteArray \
+  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Effects/IEffect.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/TransportBar.h \
   /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/QWidget \
   /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/QPushButton \
@@ -1088,6 +1108,8 @@ CMakeFiles/AudioEditor.dir/GUI/MainWindow.cpp.o: \
   /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qlabel.h \
   /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/qpicture.h \
   /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/qtextdocument.h \
+  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/QToolButton \
+  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qtoolbutton.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/WaveformWidget.h \
   /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/QPixmap \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/EffectsPanel.h \
@@ -1115,7 +1137,6 @@ CMakeFiles/AudioEditor.dir/GUI/MainWindow.cpp.o: \
   /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/QString \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/AudioClip.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Adapters/AudioFileAdapter.h \
-  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Effects/IEffect.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Effects/Speed.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Effects/../Logging/ILogger.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Logging/ILogger.h \
@@ -1128,13 +1149,22 @@ CMakeFiles/AudioEditor.dir/GUI/MainWindow.cpp.o: \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Logging/FileLogger.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/fstream \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/EffectFactory.h \
-  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Effects/Echo.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Effects/Reverb.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Effects/Volume.h \
+  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Commands/ApplyEffect.h \
+  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Commands/../AudioClip.h \
+  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Commands/../Effects/IEffect.h \
   /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/QApplication \
   /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qapplication.h \
   /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/QScreen \
   /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/QDragEnterEvent \
   /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/QDropEvent \
   /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/QMimeData \
-  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qmimedata.h
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qmimedata.h \
+  /opt/homebrew/opt/qt@6/lib/QtConcurrent.framework/Headers/QtConcurrentRun \
+  /opt/homebrew/opt/qt@6/lib/QtConcurrent.framework/Headers/qtconcurrentrun.h \
+  /opt/homebrew/opt/qt@6/lib/QtConcurrent.framework/Headers/qtconcurrentcompilertest.h \
+  /opt/homebrew/opt/qt@6/lib/QtConcurrent.framework/Headers/qtconcurrent_global.h \
+  /opt/homebrew/opt/qt@6/lib/QtConcurrent.framework/Headers/qtconcurrentexports.h \
+  /opt/homebrew/opt/qt@6/lib/QtConcurrent.framework/Headers/qtconcurrentrunbase.h \
+  /opt/homebrew/opt/qt@6/lib/QtConcurrent.framework/Headers/qtconcurrentstoredfunctioncall.h

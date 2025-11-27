@@ -13,7 +13,9 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QCloseEvent>
+#include <QTimer>
 #include <memory>
+#include <QFutureWatcher>
 
 // Forward declarations
 class AudioEngine;
@@ -25,6 +27,7 @@ class CaptionPanel;
 class CaptionParser;
 class ILogger;
 class CommandHistory;
+class IEffect;
 
 /**
  * @brief Main application window
@@ -64,19 +67,23 @@ private slots:
     void onUndo();
     void onRedo();
     
-    // Effects
-    void onApplyEffects();
-    
     // Captions
     void onImportCaptions();
     void onExportCaptions();
     
     // Playback finished
     void onPlaybackFinished();
+
+    void onRefreshAudioDevice();
     
     // State updates
     void onAudioLoaded();
     void updateWindowTitle();
+
+    // Effects slots (NEW)
+    void onAddEffect(const QString& effectType);
+    void onRemoveEffect(size_t index);
+    void onParamChanged(size_t index, const QString& param, float oldValue, float newValue);
 
 private:
     void setupUI();
@@ -121,10 +128,30 @@ private:
     QAction* importCaptionsAction_;
     QAction* exportCaptionsAction_;
     QAction* aboutAction_;
+
+private slots:
+    void onPreviewTimerTimeout();
+    void onPreviewComputationFinished();
+
+private:
+    QTimer* previewDebounceTimer_;
+    QFutureWatcher<std::vector<float>>* previewWatcher_ = nullptr;
+    bool previewComputationQueued_ = false;
+    std::vector<std::shared_ptr<IEffect>> queuedEffects_;
+    bool discardPreviewResult_ = false;
     
     // State
     QString currentFilePath_;
     bool hasUnsavedChanges_;
+
+    bool isPreviewMode_ = false;
+    void updatePreview();
+    void startPreviewComputation(const std::vector<std::shared_ptr<IEffect>>& effects);
+    void cancelPendingPreview();
+
+    // NEW: Effect chain management
+    std::vector<std::shared_ptr<IEffect>> effectChain_;
+    void syncEffectsPanel();
 };
 
 #endif // MAIN_WINDOW_H

@@ -63,6 +63,7 @@ void WaveformWidget::setSamples(const std::vector<float>& samples,
 void WaveformWidget::clear() {
     samples_.clear();
     peaks_.clear();
+    displayScale_ = 1.0f;
     durationMs_ = 0;
     playheadPositionMs_ = 0;
     scrollOffsetMs_ = 0;
@@ -133,6 +134,8 @@ void WaveformWidget::computePeaks() {
     // Starting sample based on scroll offset
     qint64 startSample = (scrollOffsetMs_ * sampleRate_ * channels_) / 1000;
     
+    float maxAbsValue = 0.0f;
+
     for (int x = 0; x < widgetWidth; ++x) {
         qint64 sampleStart = startSample + static_cast<qint64>(x * samplesPerPixel);
         qint64 sampleEnd = startSample + static_cast<qint64>((x + 1) * samplesPerPixel);
@@ -158,6 +161,19 @@ void WaveformWidget::computePeaks() {
         }
         
         peaks_[x] = {minVal, maxVal};
+
+        maxAbsValue = std::max(maxAbsValue, std::max(std::abs(minVal), std::abs(maxVal)));
+    }
+
+    const float padding = 0.9f;
+    if (maxAbsValue > 0.0f) {
+        if (maxAbsValue < 1.0f) {
+            displayScale_ = padding;
+        } else {
+            displayScale_ = (padding / maxAbsValue);
+        }
+    } else {
+        displayScale_ = 1.0f;
     }
 }
 
@@ -190,9 +206,12 @@ void WaveformWidget::renderWaveform() {
     for (int x = 0; x < peakCount && x < width(); ++x) {
         const Peak& peak = peaks_[x];
         
-        // Convert sample values (-1 to 1) to pixel coordinates
-        int minY = centerY - static_cast<int>(peak.max * (centerY - 2));
-        int maxY = centerY - static_cast<int>(peak.min * (centerY - 2));
+        // Convert sample values (-1 to 1) to pixel coordinates with scaling to keep waveform in view
+        float scaledMax = peak.max * displayScale_;
+        float scaledMin = peak.min * displayScale_;
+
+        int minY = centerY - static_cast<int>(scaledMax * (centerY - 4));
+        int maxY = centerY - static_cast<int>(scaledMin * (centerY - 4));
         
         // Ensure we draw at least 1 pixel
         if (minY == maxY) {

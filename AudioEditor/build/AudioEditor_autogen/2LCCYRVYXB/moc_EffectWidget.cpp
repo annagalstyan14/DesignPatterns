@@ -48,6 +48,8 @@ template <> constexpr inline auto EffectWidget::qt_create_metaobjectdata<qt_meta
         "onRemoveClicked",
         "onSliderChanged",
         "value",
+        "onSliderPressed",
+        "onSliderReleased",
         "onEnabledToggled",
         "enabled"
     };
@@ -65,9 +67,13 @@ template <> constexpr inline auto EffectWidget::qt_create_metaobjectdata<qt_meta
         QtMocHelpers::SlotData<void(int)>(7, 2, QMC::AccessPrivate, QMetaType::Void, {{
             { QMetaType::Int, 8 },
         }}),
+        // Slot 'onSliderPressed'
+        QtMocHelpers::SlotData<void()>(9, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onSliderReleased'
+        QtMocHelpers::SlotData<void()>(10, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onEnabledToggled'
-        QtMocHelpers::SlotData<void(bool)>(9, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { QMetaType::Bool, 10 },
+        QtMocHelpers::SlotData<void(bool)>(11, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Bool, 12 },
         }}),
     };
     QtMocHelpers::UintData qt_properties {
@@ -96,7 +102,9 @@ void EffectWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
         case 1: _t->parameterChanged(); break;
         case 2: _t->onRemoveClicked(); break;
         case 3: _t->onSliderChanged((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
-        case 4: _t->onEnabledToggled((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
+        case 4: _t->onSliderPressed(); break;
+        case 5: _t->onSliderReleased(); break;
+        case 6: _t->onEnabledToggled((*reinterpret_cast< std::add_pointer_t<bool>>(_a[1]))); break;
         default: ;
         }
     }
@@ -139,14 +147,14 @@ int EffectWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 5)
+        if (_id < 7)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 5;
+        _id -= 7;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 5)
+        if (_id < 7)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 5;
+        _id -= 7;
     }
     return _id;
 }

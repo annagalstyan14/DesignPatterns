@@ -9,7 +9,7 @@ set(CMAKE_AUTOUIC ON)
 
 # Find Qt
 set(CMAKE_PREFIX_PATH "/opt/homebrew/opt/qt@6" ${CMAKE_PREFIX_PATH})
-find_package(Qt6 REQUIRED COMPONENTS Core Widgets Multimedia)
+find_package(Qt6 REQUIRED COMPONENTS Core Widgets Multimedia Concurrent)
 
 # Find mpg123
 find_package(PkgConfig REQUIRED)
@@ -27,7 +27,6 @@ set(CORE_SOURCES
     Core/Logging/ConsoleLogger.cpp
     Core/Logging/CompositeLogger.cpp
     Core/Adapters/Mp3.cpp
-    Core/Effects/Echo.cpp
     Core/Effects/Reverb.cpp
     Core/Effects/Speed.cpp
     Core/Effects/Volume.cpp
@@ -74,6 +73,7 @@ target_link_libraries(AudioEditor
     Qt6::Core
     Qt6::Widgets
     Qt6::Multimedia
+    Qt6::Concurrent
     ${MPG123_LIBRARIES}
     ${LAME_LIBRARY}
 )

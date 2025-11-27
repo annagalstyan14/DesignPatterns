@@ -18,8 +18,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/AudioEditor.dir/Core/Commands/CommandHistory.cpp.o.d"
   "CMakeFiles/AudioEditor.dir/Core/EffectFactory.cpp.o"
   "CMakeFiles/AudioEditor.dir/Core/EffectFactory.cpp.o.d"
-  "CMakeFiles/AudioEditor.dir/Core/Effects/Echo.cpp.o"
-  "CMakeFiles/AudioEditor.dir/Core/Effects/Echo.cpp.o.d"
   "CMakeFiles/AudioEditor.dir/Core/Effects/Normalize.cpp.o"
   "CMakeFiles/AudioEditor.dir/Core/Effects/Normalize.cpp.o.d"
   "CMakeFiles/AudioEditor.dir/Core/Effects/Reverb.cpp.o"

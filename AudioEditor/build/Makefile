@@ -299,30 +299,6 @@ Core/EffectFactory.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/EffectFactory.cpp.s
 .PHONY : Core/EffectFactory.cpp.s
 
-Core/Effects/Echo.o: Core/Effects/Echo.cpp.o
-.PHONY : Core/Effects/Echo.o
-
-# target to build an object file
-Core/Effects/Echo.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Effects/Echo.cpp.o
-.PHONY : Core/Effects/Echo.cpp.o
-
-Core/Effects/Echo.i: Core/Effects/Echo.cpp.i
-.PHONY : Core/Effects/Echo.i
-
-# target to preprocess a source file
-Core/Effects/Echo.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Effects/Echo.cpp.i
-.PHONY : Core/Effects/Echo.cpp.i
-
-Core/Effects/Echo.s: Core/Effects/Echo.cpp.s
-.PHONY : Core/Effects/Echo.s
-
-# target to generate assembly for a file
-Core/Effects/Echo.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Effects/Echo.cpp.s
-.PHONY : Core/Effects/Echo.cpp.s
-
 Core/Effects/Normalize.o: Core/Effects/Normalize.cpp.o
 .PHONY : Core/Effects/Normalize.o
 
@@ -736,9 +712,6 @@ help:
 	@echo "... Core/EffectFactory.o"
 	@echo "... Core/EffectFactory.i"
 	@echo "... Core/EffectFactory.s"
-	@echo "... Core/Effects/Echo.o"
-	@echo "... Core/Effects/Echo.i"
-	@echo "... Core/Effects/Echo.s"
 	@echo "... Core/Effects/Normalize.o"
 	@echo "... Core/Effects/Normalize.i"
 	@echo "... Core/Effects/Normalize.s"

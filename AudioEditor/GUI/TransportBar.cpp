@@ -116,16 +116,13 @@ void TransportBar::setupUI() {
     timeLabel_->setStyleSheet(R"(
         QLabel {
             color: #e0e0e0;
-            font-family: 'Consolas', 'Monaco', monospace;
-            font-size: 12px;
         }
     )");
 
     // --- Volume Icon ---
     volumeIcon_ = new QLabel(this);
-    volumeIcon_->setPixmap(style()->standardIcon(QStyle::SP_MediaVolume)
-                          .pixmap(18, 18));
-    volumeIcon_->setFixedSize(20, 20);
+    volumeIcon_->setPixmap(style()->standardIcon(QStyle::SP_MediaVolume).pixmap(18, 18));
+    volumeIcon_->setFixedSize(18, 18);
 
     // --- Volume Slider ---
     volumeSlider_ = new QSlider(Qt::Horizontal, this);
@@ -141,27 +138,23 @@ void TransportBar::setupUI() {
             border-radius: 2px;
         }
         QSlider::handle:horizontal {
-            background: #808080;
-            width: 12px;
-            height: 12px;
-            margin: -4px 0;
-            border-radius: 6px;
-        }
-        QSlider::handle:horizontal:hover {
-            background: #a0a0a0;
+            background: #e0e0e0;
+            width: 10px;
+            height: 10px;
+            margin: -3px 0;
+            border-radius: 5px;
         }
         QSlider::sub-page:horizontal {
-            background: #808080;
+            background: #00bcd4;
             border-radius: 2px;
         }
     )");
     connect(volumeSlider_, &QSlider::valueChanged, 
             this, &TransportBar::onVolumeSliderChanged);
 
-    // --- Layout ---
+    // Add to layout
     layout->addWidget(playPauseButton_);
     layout->addWidget(stopButton_);
-    layout->addSpacing(10);
     layout->addWidget(timeSlider_, 1);  // Stretch
     layout->addWidget(timeLabel_);
     layout->addSpacing(10);

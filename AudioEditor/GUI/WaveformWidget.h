@@ -73,6 +73,7 @@ private:
     // Cached waveform image
     QPixmap waveformCache_;
     bool cacheValid_;
+    float displayScale_ = 1.0f;
 
     // View state
     float zoom_;           // 1.0 = fit all, 2.0 = 2x zoom, etc.

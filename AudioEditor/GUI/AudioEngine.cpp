@@ -1,5 +1,7 @@
 #include "AudioEngine.h"
 #include "../Core/AudioClip.h"
+#include "../Core/Effects/Reverb.h"
+#include "../Core/Effects/Speed.h"
 #include <QMediaDevices>
 #include <QAudioDevice>
 #include <QtEndian>
@@ -30,20 +32,20 @@ AudioEngine::~AudioEngine() {
 }
 
 void AudioEngine::setAudioClip(std::shared_ptr<AudioClip> clip) {
-    // Stop current playback
     stop();
     
     audioClip_ = clip;
     
     if (audioClip_) {
-        // Get sample rate and channels from clip (you may need to add these getters)
-        sampleRate_ = 44100;  // Default, or get from clip
-        channels_ = 2;        // Default stereo
+        sampleRate_ = 44100;
+        channels_ = 2;
         
-        // Convert float samples to PCM bytes
+        // THIS LINE IS CRITICAL
+        originalSamples_ = audioClip_->getSamples();
+        previewSamples_.clear();
+        hasPreview_ = false;
+        
         convertSamplesToBytes();
-        
-        // Setup audio output
         setupAudio();
         
         emit durationChanged(getDurationMs());
@@ -295,4 +297,125 @@ void AudioEngine::updatePosition() {
     if (state_ == PlaybackState::Playing) {
         emit positionChanged(getPositionMs());
     }
+}
+
+void AudioEngine::setOriginalSamples(const std::vector<float>& samples) {
+    originalSamples_ = samples;
+    previewSamples_.clear();
+    hasPreview_ = false;
+}
+
+void AudioEngine::previewWithEffects(const std::vector<std::shared_ptr<IEffect>>& effects) {
+    // Safety checks
+    if (originalSamples_.empty()) {
+        qWarning() << "previewWithEffects: No original samples loaded";
+        return;
+    }
+    
+    if (effects.empty()) {
+        revertToOriginal();
+        return;
+    }
+    
+    // Always start from original samples
+    previewSamples_ = originalSamples_;
+    
+    // Apply all effects to the copy
+    for (const auto& effect : effects) {
+        if (!effect) {
+            qWarning() << "previewWithEffects: Null effect in list";
+            continue;
+        }
+        
+        // Reset effect state before applying
+        if (auto* reverb = dynamic_cast<Reverb*>(effect.get())) {
+            reverb->reset();
+        }
+        
+        // Handle speed effect which changes buffer size
+        if (auto* speed = dynamic_cast<SpeedChangeEffect*>(effect.get())) {
+            float factor = speed->getSpeedFactor();
+            size_t newSize = static_cast<size_t>(previewSamples_.size() / factor);
+            if (newSize > previewSamples_.size()) {
+                previewSamples_.resize(newSize);
+            }
+        }
+        
+        size_t newSize = effect->apply(previewSamples_.data(), previewSamples_.size());
+        previewSamples_.resize(newSize);
+    }
+    
+    hasPreview_ = true;
+    
+    // Update audio buffer with preview
+    audioData_.resize(previewSamples_.size() * sizeof(qint16));
+    qint16* dataPtr = reinterpret_cast<qint16*>(audioData_.data());
+    for (size_t i = 0; i < previewSamples_.size(); ++i) {
+        float sample = std::clamp(previewSamples_[i], -1.0f, 1.0f);
+        dataPtr[i] = static_cast<qint16>(sample * 32767.0f);
+    }
+    
+    emit durationChanged(getDurationMs());
+}
+
+void AudioEngine::previewWithSamples(const std::vector<float>& samples) {
+    if (samples.empty()) {
+        revertToOriginal();
+        return;
+    }
+
+    previewSamples_ = samples;
+    hasPreview_ = true;
+
+    audioData_.resize(previewSamples_.size() * sizeof(qint16));
+    qint16* dataPtr = reinterpret_cast<qint16*>(audioData_.data());
+    for (size_t i = 0; i < previewSamples_.size(); ++i) {
+        float sample = std::clamp(previewSamples_[i], -1.0f, 1.0f);
+        dataPtr[i] = static_cast<qint16>(sample * 32767.0f);
+    }
+
+    emit durationChanged(getDurationMs());
+}
+
+void AudioEngine::commitEffects() {
+    if (hasPreview_ && !previewSamples_.empty()) {
+        originalSamples_ = previewSamples_;
+        hasPreview_ = false;
+    }
+}
+
+void AudioEngine::revertToOriginal() {
+    if (originalSamples_.empty()) {
+        return;
+    }
+    
+    previewSamples_.clear();
+    hasPreview_ = false;
+    
+    // Restore original audio
+    audioData_.resize(originalSamples_.size() * sizeof(qint16));
+    qint16* dataPtr = reinterpret_cast<qint16*>(audioData_.data());
+    for (size_t i = 0; i < originalSamples_.size(); ++i) {
+        float sample = std::clamp(originalSamples_[i], -1.0f, 1.0f);
+        dataPtr[i] = static_cast<qint16>(sample * 32767.0f);
+    }
+    
+    emit durationChanged(getDurationMs());
+}
+
+void AudioEngine::previewWithEffects(const std::vector<std::shared_ptr<IEffect>>& effects) {
+    previewSamples_ = originalSamples_;  // Start from original
+    hasPreview_ = !effects.empty();
+
+    for (auto& effect : effects) {
+        size_t newSize = effect->apply(previewSamples_.data(), previewSamples_.size());
+        previewSamples_.resize(newSize);
+    }
+
+    // NEW: Normalize to prevent distortion
+    auto normalize = std::make_shared<NormalizeEffect>(logger_);
+    normalize->apply(previewSamples_.data(), previewSamples_.size());
+
+    // Update buffer etc. (existing)
+    convertSamplesToBytes();
 }

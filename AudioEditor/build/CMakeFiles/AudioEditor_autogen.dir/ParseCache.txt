@@ -9,8 +9,10 @@
 /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Logging/ConsoleLogger.cpp
 /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Logging/CompositeLogger.cpp
 /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects/Volume.cpp
-/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects/Echo.cpp
 /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Commands/CommandHistory.cpp
+/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects/Reverb.cpp
+/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Adapters/Mp3.h
+/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Commands/ApplyEffect.cpp
 /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects/Reverb.h
 /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/AudioClip.cpp
 /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/MainWindow.cpp
@@ -903,6 +905,7 @@
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtWidgets.framework/Versions/A/Headers/QLabel
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtWidgets.framework/Versions/A/Headers/QPushButton
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtWidgets.framework/Versions/A/Headers/QSlider
+ mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtWidgets.framework/Versions/A/Headers/QToolButton
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtWidgets.framework/Versions/A/Headers/QWidget
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtWidgets.framework/Versions/A/Headers/qabstractbutton.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtWidgets.framework/Versions/A/Headers/qabstractslider.h
@@ -915,6 +918,7 @@
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtWidgets.framework/Versions/A/Headers/qpushbutton.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtWidgets.framework/Versions/A/Headers/qsizepolicy.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtWidgets.framework/Versions/A/Headers/qslider.h
+ mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtWidgets.framework/Versions/A/Headers/qtoolbutton.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtWidgets.framework/Versions/A/Headers/qtwidgets-config.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtWidgets.framework/Versions/A/Headers/qtwidgetsexports.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtWidgets.framework/Versions/A/Headers/qtwidgetsglobal.h
@@ -2563,6 +2567,7 @@
  mdp:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/limits.h
  mdp:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/ptrcheck.h
  mdp:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdarg.h
+ mdp:/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects/IEffect.h
  mdp:/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/AudioEngine.h
  mdp:/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/AudioEditor_autogen/moc_predefs.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/QBuffer
@@ -4936,6 +4941,8 @@
  mdp:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__thread/poll_with_backoff.h
  mdp:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__thread/support.h
  mdp:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__thread/support/pthread.h
+ mdp:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__thread/this_thread.h
+ mdp:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__thread/thread.h
  mdp:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__tree
  mdp:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__tuple/find_index.h
  mdp:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__tuple/ignore.h
@@ -5127,6 +5134,7 @@
  mdp:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/format
  mdp:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/forward_list
  mdp:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/functional
+ mdp:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/future
  mdp:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/initializer_list
  mdp:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/iomanip
  mdp:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/ios
@@ -5148,6 +5156,7 @@
  mdp:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/queue
  mdp:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/ratio
  mdp:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/set
+ mdp:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/sstream
  mdp:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/stack
  mdp:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/stdbool.h
  mdp:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/stddef.h
@@ -5160,6 +5169,7 @@
  mdp:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/string.h
  mdp:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/string_view
  mdp:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/system_error
+ mdp:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/thread
  mdp:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/tuple
  mdp:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/type_traits
  mdp:/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/typeinfo
@@ -5268,11 +5278,13 @@
  mdp:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdarg.h
  mdp:/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/MainWindow.h
  mdp:/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/AudioEditor_autogen/moc_predefs.h
+ mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/QFutureWatcher
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/QList
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/QObject
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/QRect
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/QSize
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/QSizeF
+ mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/QTimer
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/q17memory.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/q20functional.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/q20iterator.h
@@ -5321,6 +5333,7 @@
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qelapsedtimer.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qendian.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qeventloop.h
+ mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qexception.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qexceptionhandling.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qfile.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qfiledevice.h
@@ -5330,6 +5343,10 @@
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qforeach.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qfunctionaltools_impl.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qfunctionpointer.h
+ mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qfuture.h
+ mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qfuture_impl.h
+ mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qfutureinterface.h
+ mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qfuturewatcher.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qgenericatomic.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qglobal.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qglobalstatic.h
@@ -5351,6 +5368,7 @@
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qmetacontainer.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qmetatype.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qminmax.h
+ mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qmutex.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qnamespace.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qnativeinterface.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qnumeric.h
@@ -5362,8 +5380,11 @@
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qpair.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qpoint.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qprocessordetection.h
+ mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qpromise.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qrect.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qrefcount.h
+ mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qresultstore.h
+ mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qrunnable.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qscopedpointer.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qscopeguard.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qset.h
@@ -5400,11 +5421,15 @@
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qtenvironmentvariables.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qtextstream.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qtformat_impl.h
+ mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qthread.h
+ mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qthreadpool.h
+ mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qtimer.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qtimezone.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qtmetamacros.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qtnoop.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qtpreprocessorsupport.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qtresource.h
+ mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qtsan_impl.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qttranslation.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qttypetraits.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qtversion.h
@@ -5490,9 +5515,8 @@
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtWidgets.framework/Versions/A/Headers/qwidget.h
 /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/AudioClip.h
 /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/EffectFactory.cpp
-/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects/Volume.h
 /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Commands/ApplyEffect.h
-/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects/Echo.h
+/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects/Volume.h
 /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects/Speed.cpp
 /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Commands/CommandHistory.h
 /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/TransportBar.cpp
@@ -6226,6 +6250,7 @@
  mdp:/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdarg.h
  mdp:/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/EffectWidget.h
  mdp:/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/AudioEditor_autogen/moc_predefs.h
+ mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/QTimer
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/q17memory.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/q20functional.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/q20iterator.h
@@ -6233,6 +6258,7 @@
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/q20type_traits.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/q20utility.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/q23utility.h
+ mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qabstracteventdispatcher.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qalgorithms.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qanystringview.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qarraydata.h
@@ -6242,6 +6268,7 @@
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qatomic.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qatomic_cxx11.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qbasicatomic.h
+ mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qbasictimer.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qbindingstorage.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qbytearray.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qbytearrayalgorithms.h
@@ -6260,8 +6287,11 @@
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qcontiguouscache.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qdarwinhelpers.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qdatastream.h
+ mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qdeadlinetimer.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qdebug.h
+ mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qelapsedtimer.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qendian.h
+ mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qeventloop.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qexceptionhandling.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qflags.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qfloat16.h
@@ -6336,6 +6366,7 @@
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qtenvironmentvariables.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qtextstream.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qtformat_impl.h
+ mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qtimer.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qtmetamacros.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qtnoop.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qtpreprocessorsupport.h
@@ -6404,6 +6435,3 @@
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtWidgets.framework/Versions/A/Headers/qtwidgetsexports.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtWidgets.framework/Versions/A/Headers/qtwidgetsglobal.h
  mdp:/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtWidgets.framework/Versions/A/Headers/qwidget.h
-/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects/Reverb.cpp
-/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Commands/ApplyEffect.cpp
-/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Adapters/Mp3.h

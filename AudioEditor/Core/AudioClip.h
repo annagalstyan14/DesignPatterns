@@ -16,6 +16,7 @@ public:
     void applyEffects();
     std::vector<float> getSamples() const;
     void setSamples(const std::vector<float>& samples);
+    void clearEffects() { effects_.clear(); }
 
 private:
     std::string filePath_;

@@ -937,6 +937,7 @@ CMakeFiles/AudioEditor.dir/AudioEditor_autogen/mocs_compilation.cpp.o: \
   /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qdeadlinetimer.h \
   /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qelapsedtimer.h \
   /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/QByteArray \
+  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/AudioEditor_autogen/2LCCYRVYXB/../../../GUI/../Core/Effects/IEffect.h \
   /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qtmochelpers.h \
   /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qtmocconstants.h \
   /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/q20algorithm.h \
@@ -1125,8 +1126,29 @@ CMakeFiles/AudioEditor.dir/AudioEditor_autogen/mocs_compilation.cpp.o: \
   /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qcoreapplication_platform.h \
   /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/qinputmethod.h \
   /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/qguiapplication_platform.h \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/QFutureWatcher \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qfuturewatcher.h \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qfuture.h \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qfutureinterface.h \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qmutex.h \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qtsan_impl.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/sanitizer/tsan_interface.h \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qresultstore.h \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qfuture_impl.h \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qthreadpool.h \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qthread.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/future \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__thread/thread.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/sstream \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/thread \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__thread/this_thread.h \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qrunnable.h \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qexception.h \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qpromise.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/AudioEditor_autogen/2LCCYRVYXB/moc_TransportBar.cpp \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/AudioEditor_autogen/2LCCYRVYXB/../../../GUI/TransportBar.h \
+  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/QToolButton \
+  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qtoolbutton.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/AudioEditor_autogen/2LCCYRVYXB/moc_WaveformWidget.cpp \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/AudioEditor_autogen/2LCCYRVYXB/../../../GUI/WaveformWidget.h \
   /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/QPixmap

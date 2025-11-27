@@ -11,15 +11,16 @@
 #include "../Core/Logging/ConsoleLogger.h"
 #include "../Core/Logging/FileLogger.h"
 #include "../Core/EffectFactory.h"
-#include "../Core/Effects/Echo.h"
 #include "../Core/Effects/Reverb.h"
 #include "../Core/Effects/Speed.h"
 #include "../Core/Effects/Volume.h"
+#include "../Core/Commands/ApplyEffect.h"
 #include <QApplication>
 #include <QScreen>
 #include <QDragEnterEvent>
 #include <QDropEvent>
 #include <QMimeData>
+#include <QtConcurrent/QtConcurrentRun>
 
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent)
@@ -32,6 +33,7 @@ MainWindow::MainWindow(QWidget* parent)
     , waveformWidget_(nullptr)
     , effectsPanel_(nullptr)
     , captionPanel_(nullptr)
+    , previewDebounceTimer_(nullptr)
     , hasUnsavedChanges_(false)
 {
     // Setup logger
@@ -43,9 +45,6 @@ MainWindow::MainWindow(QWidget* parent)
     logger_->log("Application starting...");
     
     // Register effects with factory
-    EffectFactory::registerEffect("Echo", [](std::shared_ptr<ILogger> log) {
-        return std::make_shared<Echo>(log);
-    });
     EffectFactory::registerEffect("Reverb", [](std::shared_ptr<ILogger> log) {
         return std::make_shared<Reverb>(log);
     });
@@ -60,6 +59,16 @@ MainWindow::MainWindow(QWidget* parent)
     audioEngine_ = new AudioEngine(this);
     commandHistory_ = new CommandHistory(logger_);
     captionParser_ = new CaptionParser(logger_);
+    
+    // Debounce timer for smooth slider preview
+    previewDebounceTimer_ = new QTimer(this);
+    previewDebounceTimer_->setSingleShot(true);
+    previewDebounceTimer_->setInterval(150);
+    connect(previewDebounceTimer_, &QTimer::timeout, this, &MainWindow::onPreviewTimerTimeout);
+
+    previewWatcher_ = new QFutureWatcher<std::vector<float>>(this);
+    connect(previewWatcher_, &QFutureWatcher<std::vector<float>>::finished,
+            this, &MainWindow::onPreviewComputationFinished);
     
     // Setup UI
     setupUI();
@@ -197,15 +206,17 @@ void MainWindow::setupMenuBar() {
     // --- Edit Menu ---
     editMenu_ = menuBar->addMenu("&Edit");
     
-    undoAction_ = editMenu_->addAction("&Undo");
-    undoAction_->setShortcut(QKeySequence::Undo);
+    undoAction_ = new QAction("Undo", this);
+    undoAction_->setShortcut(QKeySequence::Undo);  // Ctrl+Z
     undoAction_->setEnabled(false);
-    connect(undoAction_, &QAction::triggered, this, &MainWindow::onUndo);
-    
-    redoAction_ = editMenu_->addAction("&Redo");
-    redoAction_->setShortcut(QKeySequence::Redo);
+    editMenu_->addAction(undoAction_);
+
+    redoAction_ = new QAction("Redo", this);
+    redoAction_->setShortcut(QKeySequence::Redo);  // Ctrl+Shift+Z or Ctrl+Y
     redoAction_->setEnabled(false);
-    connect(redoAction_, &QAction::triggered, this, &MainWindow::onRedo);
+    editMenu_->addAction(redoAction_);
+
+    
     
     // --- Help Menu ---
     helpMenu_ = menuBar->addMenu("&Help");
@@ -217,7 +228,7 @@ void MainWindow::setupMenuBar() {
             "<p>Version 1.0</p>"
             "<p>A simple audio effects application.</p>"
             "<p>Supports MP3 and WAV files with effects like "
-            "Echo, Reverb, Speed, and Volume.</p>"
+            "Reverb, Speed, and Volume.</p>"
         );
     });
     
@@ -275,6 +286,7 @@ void MainWindow::setupStatusBar() {
 
 void MainWindow::setupConnections() {
     // --- TransportBar <-> AudioEngine ---
+    connect(effectsPanel_, &EffectsPanel::applyRequested, this, &MainWindow::onApplyEffects);
     connect(transportBar_, &TransportBar::playClicked,
             audioEngine_, &AudioEngine::play);
     connect(transportBar_, &TransportBar::pauseClicked,
@@ -314,13 +326,15 @@ void MainWindow::setupConnections() {
             this, &MainWindow::onExportCaptions);
     
     // --- EffectsPanel ---
-    connect(effectsPanel_, &EffectsPanel::applyEffectsRequested,
-            this, &MainWindow::onApplyEffects);
     connect(effectsPanel_, &EffectsPanel::effectsChanged,
-            this, [this]() {
-                hasUnsavedChanges_ = true;
-                updateWindowTitle();
-            });
+        this, &MainWindow::updatePreview);
+
+// Compare toggle - switch between original and effected audio
+connect(effectsPanel_, &EffectsPanel::compareToggled,
+        this, [this](bool enabled) {
+            Q_UNUSED(enabled);
+            onPreviewTimerTimeout();  // Immediately update (no debounce for toggle)
+        });
 }
 
 void MainWindow::applyTheme() {
@@ -347,6 +361,8 @@ void MainWindow::onNewProject() {
     if (!confirmUnsavedChanges()) {
         return;
     }
+
+    cancelPendingPreview();
     
     // Stop playback
     audioEngine_->stop();
@@ -388,6 +404,8 @@ void MainWindow::onOpenAudio() {
 
 void MainWindow::loadAudioFile(const QString& filePath) {
     logger_->log("Loading audio file: " + filePath.toStdString());
+    
+    cancelPendingPreview();
     
     // Stop current playback
     audioEngine_->stop();
@@ -462,6 +480,8 @@ void MainWindow::onSaveAudio() {
         );
     }
     
+    ApplyEffectsForExport();
+
     if (savePath.isEmpty()) {
         return;
     }
@@ -492,6 +512,8 @@ void MainWindow::onExportAudio() {
         "MP3 Files (*.mp3);;WAV Files (*.wav)"
     );
     
+    ApplyEffectsForExport();
+
     if (filePath.isEmpty()) {
         return;
     }
@@ -511,84 +533,72 @@ void MainWindow::onExportAudio() {
     }
 }
 
+void MainWindow::ApplyEffectsForExport() {
+    if (!audioClip_) {
+        return;
+    }
+
+    auto exportEffects = effectsPanel_->getEffectsForExport();
+
+    if (exportEffects.empty() || !effectsPanel_->areEffectsEnabled()) {
+        audioClip_->clearEffects();
+        audioEngine_->setAudioClip(audioClip_);
+        waveformWidget_->setSamples(audioClip_->getSamples(), 44100, 2);
+        logger_->log("No export effects applied (effects disabled or none configured).");
+        return;
+    }
+
+    audioClip_->clearEffects();
+    for (const auto& effect : exportEffects) {
+        audioClip_->addEffect(effect);
+    }
+
+    audioClip_->applyEffects();
+
+    audioEngine_->setAudioClip(audioClip_);
+    waveformWidget_->setSamples(audioClip_->getSamples(), 44100, 2);
+
+    logger_->log("Applied " + std::to_string(exportEffects.size()) + " effect(s) for export.");
+}
+
 void MainWindow::onExit() {
     close();
 }
 
-void MainWindow::onUndo() {
+void MainWindow::onUndo()
+{
     if (commandHistory_->canUndo()) {
-        audioEngine_->stop();
         commandHistory_->undo();
-        
-        // Refresh waveform
-        if (audioClip_) {
-            waveformWidget_->setSamples(audioClip_->getSamples(), 44100, 2);
-            audioEngine_->setAudioClip(audioClip_);
-        }
-        
-        updateUIState();
-        statusBar()->showMessage("Undo", 2000);
+
+        audioEngine_->revertToOriginal();
+        waveformWidget_->setSamples(audioClip_->getSamples(), 44100, 2);
+        isPreviewMode_ = false;
+
+        hasUnsavedChanges_ = commandHistory_->canUndo();
+        undoAction_->setEnabled(commandHistory_->canUndo());
+        redoAction_->setEnabled(commandHistory_->canRedo());
+
+        updateWindowTitle();
+        statusBar()->showMessage("Undo", 1500);
     }
 }
 
-void MainWindow::onRedo() {
+void MainWindow::onRedo()
+{
     if (commandHistory_->canRedo()) {
-        audioEngine_->stop();
         commandHistory_->redo();
-        
-        // Refresh waveform
-        if (audioClip_) {
-            waveformWidget_->setSamples(audioClip_->getSamples(), 44100, 2);
-            audioEngine_->setAudioClip(audioClip_);
-        }
-        
-        updateUIState();
-        statusBar()->showMessage("Redo", 2000);
-    }
-}
 
-void MainWindow::onApplyEffects() {
-    if (!audioClip_) {
-        QMessageBox::warning(this, "No Audio", 
-            "Please load an audio file first.");
-        return;
+        audioEngine_->revertToOriginal();
+        waveformWidget_->setSamples(audioClip_->getSamples(), 44100, 2);
+        isPreviewMode_ = false;
+
+        hasUnsavedChanges_ = commandHistory_->canUndo();  // still unsaved if we can undo
+        undoAction_->setEnabled(commandHistory_->canUndo());
+        redoAction_->setEnabled(commandHistory_->canRedo());
+
+        updateWindowTitle();
+        statusBar()->showMessage("Redo", 1500);
     }
-    
-    auto effects = effectsPanel_->getEffects();
-    
-    if (effects.empty()) {
-        QMessageBox::information(this, "No Effects",
-            "No effects are enabled. Please add and enable at least one effect.");
-        return;
-    }
-    
-    // Stop playback
-    audioEngine_->stop();
-    
-    statusBar()->showMessage("Applying effects...");
-    QApplication::processEvents();
-    
-    // Store original samples for undo (simplified - in real app use Command pattern)
-    std::vector<float> originalSamples = audioClip_->getSamples();
-    
-    // Apply each effect
-    for (const auto& effect : effects) {
-        audioClip_->addEffect(effect);
-    }
-    audioClip_->applyEffects();
-    
-    // Reload in engine
-    audioEngine_->setAudioClip(audioClip_);
-    
-    // Update waveform
-    waveformWidget_->setSamples(audioClip_->getSamples(), 44100, 2);
-    
-    // Mark as modified
-    hasUnsavedChanges_ = true;
-    updateWindowTitle();
-    
-    statusBar()->showMessage("Effects applied successfully", 3000);
-    logger_->log("Effects applied: " + std::to_string(effects.size()) + " effect(s)");
 }
 
 void MainWindow::onImportCaptions() {
@@ -674,6 +684,7 @@ void MainWindow::updateUIState() {
     // Undo/Redo
     undoAction_->setEnabled(commandHistory_->canUndo());
     redoAction_->setEnabled(commandHistory_->canRedo());
+
     
     // Panels
     effectsPanel_->setEnabled(hasAudio);
@@ -758,4 +769,166 @@ void MainWindow::dropEvent(QDropEvent* event) {
             loadAudioFile(filePath);
         }
     }
+}
+
+void MainWindow::onRefreshAudioDevice() {
+    if (audioClip_) {
+        qint64 pos = audioEngine_->getPositionMs();
+        bool wasPlaying = (audioEngine_->getState() == PlaybackState::Playing);
+        
+        audioEngine_->stop();
+        audioEngine_->setAudioClip(audioClip_);  // This recreates the audio sink
+        audioEngine_->seek(pos);
+        
+        if (wasPlaying) {
+            audioEngine_->play();
+        }
+        
+        statusBar()->showMessage("Audio device refreshed", 2000);
+    }
+}
+
+void MainWindow::updatePreview() {
+    // Just restart the timer - actual preview happens when timer fires
+    // This prevents lag when dragging sliders
+    previewDebounceTimer_->start();
+}
+
+void MainWindow::onPreviewTimerTimeout() {
+    // Safety check - must have audio loaded
+    if (!audioClip_ || audioClip_->getSamples().empty()) {
+        return;
+    }
+    
+    auto effects = effectsPanel_->getEffects();
+    startPreviewComputation(effects);
+}
+
+void MainWindow::startPreviewComputation(const std::vector<std::shared_ptr<IEffect>>& effects) {
+    if (!audioClip_) {
+        return;
+    }
+
+    if (effects.empty()) {
+        cancelPendingPreview();
+        audioEngine_->revertToOriginal();
+        waveformWidget_->setSamples(audioClip_->getSamples(), 44100, 2);
+        isPreviewMode_ = false;
+        statusBar()->showMessage("Original audio", 1500);
+        return;
+    }
+
+    if (previewWatcher_->isRunning()) {
+        queuedEffects_ = effects;
+        previewComputationQueued_ = true;
+        return;
+    }
+
+    discardPreviewResult_ = false;
+    statusBar()->showMessage("Rendering preview...");
+
+    auto baseSamples = audioClip_->getSamples();
+    std::vector<std::shared_ptr<IEffect>> effectCopies = effects;
+
+    auto future = QtConcurrent::run([baseSamples = std::move(baseSamples), effectCopies]() mutable {
+        auto processed = baseSamples;
+        for (const auto& effect : effectCopies) {
+            if (!effect) {
+                continue;
+            }
+
+        if (auto* reverb = dynamic_cast<Reverb*>(effect.get())) {
+                reverb->reset();
+            }
+
+            if (auto* speed = dynamic_cast<SpeedChangeEffect*>(effect.get())) {
+                float factor = speed->getSpeedFactor();
+                size_t newSize = static_cast<size_t>(processed.size() / factor);
+                if (newSize > processed.size()) {
+                    processed.resize(newSize);
+                }
+            }
+
+            size_t newSize = effect->apply(processed.data(), processed.size());
+            processed.resize(newSize);
+        }
+
+        return processed;
+    });
+
+    previewWatcher_->setFuture(future);
+}
+
+void MainWindow::onPreviewComputationFinished() {
+    if (!previewWatcher_) {
+        return;
+    }
+
+    if (discardPreviewResult_) {
+        discardPreviewResult_ = false;
+    } else {
+        std::vector<float> processed = previewWatcher_->result();
+        audioEngine_->previewWithSamples(processed);
+        waveformWidget_->setSamples(processed, 44100, 2);
+        isPreviewMode_ = true;
+        statusBar()->showMessage("Preview ready", 1000);
+    }
+
+    if (previewComputationQueued_ && !queuedEffects_.empty()) {
+        previewComputationQueued_ = false;
+        auto pending = queuedEffects_;
+        queuedEffects_.clear();
+        startPreviewComputation(pending);
+    } else {
+        queuedEffects_.clear();
+    }
+}
+
+void MainWindow::cancelPendingPreview() {
+    if (!previewWatcher_) {
+        return;
+    }
+
+    if (previewWatcher_->isRunning()) {
+        discardPreviewResult_ = true;
+        previewWatcher_->cancel();
+    }
+
+    previewComputationQueued_ = false;
+    queuedEffects_.clear();
+}
+
+void MainWindow::onApplyEffects()
+{
+    if (!audioClip_ || audioClip_->getSamples().empty()) {
+        statusBar()->showMessage("No audio loaded", 2000);
+        return;
+    }
+
+    auto effects = effectsPanel_->getEffectsForExport();
+    if (effects.empty()) {
+        statusBar()->showMessage("No active effects to apply", 2000);
+        return;
+    }
+
+    // Create the command
+    auto command = std::make_shared<ApplyEffectCommand>(audioClip_, effects, logger_);
+
+    // CORRECT METHOD (from your CommandHistory.h):
+    commandHistory_->executeCommand(command);
+
+    // Clear effects panel
+    effectsPanel_->clearEffects();
+
+    // Update preview/audio
+    audioEngine_->revertToOriginal();
+    waveformWidget_->setSamples(audioClip_->getSamples(), 44100, 2);
+    isPreviewMode_ = false;
+
+    // Unsaved changes = we have something to undo
+    hasUnsavedChanges_ = commandHistory_->canUndo();
+
+    updateUIState();
+    updateWindowTitle();
+    statusBar()->showMessage("Effects applied permanently", 3000);
 }

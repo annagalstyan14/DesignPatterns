@@ -7,8 +7,11 @@ class VolumeEffect : public IEffect {
 public:
     VolumeEffect(float gain, std::shared_ptr<ILogger> logger);
     size_t apply(float* audioBuffer, size_t bufferSize) override;
-    void setGain(float gain);  // 0.0 to 2.0
+    void setGain(float gain);  // 0.0 to 4.0
     float getGain() const;
+    void setParameter(const std::string& name, float value) override {
+        if (name == "gain") setGain(value);
+    }
 
 private:
     float gain_;

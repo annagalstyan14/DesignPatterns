@@ -11,6 +11,7 @@
 #include <QFrame>
 #include <memory>
 #include <map>
+#include <QTimer>
 
 // Forward declarations
 class IEffect;
@@ -45,17 +46,19 @@ signals:
 private slots:
     void onRemoveClicked();
     void onSliderChanged(int value);
+    void onSliderPressed();
+    void onSliderReleased();
     void onEnabledToggled(bool enabled);
 
 private:
     void setupUI();
-    void setupEchoControls();
     void setupReverbControls();
     void setupSpeedControls();
     void setupVolumeControls();
     
     void addSlider(const QString& name, const QString& paramKey,
                    int min, int max, int defaultValue, const QString& suffix = "");
+    void scheduleParameterChange();
 
     QString effectType_;
     std::shared_ptr<ILogger> logger_;
@@ -72,8 +75,13 @@ private:
         QSlider* slider;
         QLabel* valueLabel;
         QString suffix;
+        bool isDragging = false;
+        int previousValue = 0;
     };
     std::map<QString, SliderData> sliders_;
+
+    QTimer* parameterDebounceTimer_;
+    void setSliderDragging(const QString& paramKey, bool dragging);
 };
 
 #endif // EFFECT_WIDGET_H

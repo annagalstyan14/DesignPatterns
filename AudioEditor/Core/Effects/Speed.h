@@ -12,6 +12,9 @@ public:
     size_t apply(float* audioBuffer, size_t bufferSize) override;
     void setSpeedFactor(float speedFactor);
     float getSpeedFactor() const;
+    void setParameter(const std::string& name, float value) override {
+        if (name == "speed") setSpeedFactor(value);
+    }
 
 private:
     float speedFactor_;

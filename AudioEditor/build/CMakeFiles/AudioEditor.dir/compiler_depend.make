@@ -428,6 +428,8 @@ AudioEditor_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platfo
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__thread/poll_with_backoff.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__thread/support.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__thread/support/pthread.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__thread/this_thread.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__thread/thread.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__tree \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__tuple/find_index.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__tuple/ignore.h \
@@ -619,6 +621,7 @@ AudioEditor_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platfo
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/format \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/forward_list \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/functional \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/future \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/initializer_list \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/iomanip \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/ios \
@@ -640,6 +643,7 @@ AudioEditor_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platfo
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/queue \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/ratio \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/set \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/sstream \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/stack \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/stdbool.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/stddef.h \
@@ -652,6 +656,7 @@ AudioEditor_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platfo
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/string.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/string_view \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/system_error \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/thread \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/tuple \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/type_traits \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/typeinfo \
@@ -769,8 +774,7 @@ AudioEditor_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platfo
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Commands/CommandHistory.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/EffectFactory.cpp \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/EffectFactory.h \
-  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects/Echo.cpp \
-  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects/Echo.h \
+  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects/IEffect.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects/Normalize.cpp \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects/Normalize.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects/Reverb.cpp \
@@ -807,6 +811,7 @@ AudioEditor_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platfo
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/main.cpp \
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/QBuffer \
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/QByteArray \
+  /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/QFutureWatcher \
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/QList \
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/QObject \
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/QRect \
@@ -863,6 +868,7 @@ AudioEditor_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platfo
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qelapsedtimer.h \
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qendian.h \
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qeventloop.h \
+  /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qexception.h \
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qexceptionhandling.h \
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qfile.h \
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qfiledevice.h \
@@ -872,6 +878,10 @@ AudioEditor_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platfo
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qforeach.h \
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qfunctionaltools_impl.h \
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qfunctionpointer.h \
+  /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qfuture.h \
+  /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qfuture_impl.h \
+  /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qfutureinterface.h \
+  /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qfuturewatcher.h \
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qgenericatomic.h \
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qglobal.h \
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qglobalstatic.h \
@@ -894,6 +904,7 @@ AudioEditor_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platfo
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qmetacontainer.h \
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qmetatype.h \
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qminmax.h \
+  /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qmutex.h \
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qnamespace.h \
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qnativeinterface.h \
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qnumeric.h \
@@ -905,9 +916,12 @@ AudioEditor_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platfo
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qpair.h \
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qpoint.h \
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qprocessordetection.h \
+  /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qpromise.h \
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qrect.h \
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qrefcount.h \
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qregularexpression.h \
+  /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qresultstore.h \
+  /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qrunnable.h \
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qscopedpointer.h \
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qscopeguard.h \
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qset.h \
@@ -944,12 +958,15 @@ AudioEditor_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platfo
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qtenvironmentvariables.h \
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qtextstream.h \
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qtformat_impl.h \
+  /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qthread.h \
+  /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qthreadpool.h \
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qtimer.h \
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qtimezone.h \
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qtmetamacros.h \
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qtnoop.h \
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qtpreprocessorsupport.h \
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qtresource.h \
+  /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qtsan_impl.h \
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qttranslation.h \
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qttypetraits.h \
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qtversion.h \
@@ -1023,6 +1040,7 @@ AudioEditor_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platfo
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtWidgets.framework/Versions/A/Headers/QStatusBar \
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtWidgets.framework/Versions/A/Headers/QTableWidget \
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtWidgets.framework/Versions/A/Headers/QToolBar \
+  /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtWidgets.framework/Versions/A/Headers/QToolButton \
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtWidgets.framework/Versions/A/Headers/QVBoxLayout \
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtWidgets.framework/Versions/A/Headers/QWidget \
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtWidgets.framework/Versions/A/Headers/qabstractbutton.h \
@@ -1060,6 +1078,7 @@ AudioEditor_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platfo
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtWidgets.framework/Versions/A/Headers/qtablewidget.h \
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtWidgets.framework/Versions/A/Headers/qtabwidget.h \
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtWidgets.framework/Versions/A/Headers/qtoolbar.h \
+  /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtWidgets.framework/Versions/A/Headers/qtoolbutton.h \
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtWidgets.framework/Versions/A/Headers/qtwidgets-config.h \
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtWidgets.framework/Versions/A/Headers/qtwidgetsexports.h \
   /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtWidgets.framework/Versions/A/Headers/qtwidgetsglobal.h \
@@ -1119,6 +1138,21 @@ AudioEditor_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platfo
   /opt/homebrew/opt/qt@6/lib/cmake/Qt6/QtPublicCMakeEarlyPolicyHelpers.cmake \
   /opt/homebrew/opt/qt@6/lib/cmake/Qt6/QtPublicCMakeHelpers.cmake \
   /opt/homebrew/opt/qt@6/lib/cmake/Qt6/QtPublicCMakeVersionHelpers.cmake \
+  /opt/homebrew/opt/qt@6/lib/cmake/Qt6Concurrent/Qt6ConcurrentAdditionalTargetInfo.cmake \
+  /opt/homebrew/opt/qt@6/lib/cmake/Qt6Concurrent/Qt6ConcurrentConfig.cmake \
+  /opt/homebrew/opt/qt@6/lib/cmake/Qt6Concurrent/Qt6ConcurrentConfigVersion.cmake \
+  /opt/homebrew/opt/qt@6/lib/cmake/Qt6Concurrent/Qt6ConcurrentConfigVersionImpl.cmake \
+  /opt/homebrew/opt/qt@6/lib/cmake/Qt6Concurrent/Qt6ConcurrentDependencies.cmake \
+  /opt/homebrew/opt/qt@6/lib/cmake/Qt6Concurrent/Qt6ConcurrentTargets-release.cmake \
+  /opt/homebrew/opt/qt@6/lib/cmake/Qt6Concurrent/Qt6ConcurrentTargets.cmake \
+  /opt/homebrew/opt/qt@6/lib/cmake/Qt6Concurrent/Qt6ConcurrentVersionlessAliasTargets.cmake \
+  /opt/homebrew/opt/qt@6/lib/cmake/Qt6ConcurrentPrivate/Qt6ConcurrentPrivateAdditionalTargetInfo.cmake \
+  /opt/homebrew/opt/qt@6/lib/cmake/Qt6ConcurrentPrivate/Qt6ConcurrentPrivateConfig.cmake \
+  /opt/homebrew/opt/qt@6/lib/cmake/Qt6ConcurrentPrivate/Qt6ConcurrentPrivateConfigVersion.cmake \
+  /opt/homebrew/opt/qt@6/lib/cmake/Qt6ConcurrentPrivate/Qt6ConcurrentPrivateConfigVersionImpl.cmake \
+  /opt/homebrew/opt/qt@6/lib/cmake/Qt6ConcurrentPrivate/Qt6ConcurrentPrivateDependencies.cmake \
+  /opt/homebrew/opt/qt@6/lib/cmake/Qt6ConcurrentPrivate/Qt6ConcurrentPrivateTargets.cmake \
+  /opt/homebrew/opt/qt@6/lib/cmake/Qt6ConcurrentPrivate/Qt6ConcurrentPrivateVersionlessAliasTargets.cmake \
   /opt/homebrew/opt/qt@6/lib/cmake/Qt6Core/Qt6CoreAdditionalTargetInfo.cmake \
   /opt/homebrew/opt/qt@6/lib/cmake/Qt6Core/Qt6CoreConfig.cmake \
   /opt/homebrew/opt/qt@6/lib/cmake/Qt6Core/Qt6CoreConfigExtras.cmake \
@@ -1521,6 +1555,8 @@ AudioEditor_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platfo
 
 /opt/homebrew/share/cmake/Modules/Compiler/HP-CXX-DetermineCompiler.cmake:
 
+/opt/homebrew/share/cmake/Modules/Compiler/GNU.cmake:
+
 /opt/homebrew/share/cmake/Modules/Compiler/GHS-DetermineCompiler.cmake:
 
 /opt/homebrew/share/cmake/Modules/Compiler/CrayClang-DetermineCompiler.cmake:
@@ -1725,8 +1761,6 @@ AudioEditor_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platfo
 
 /opt/homebrew/opt/qt@6/lib/cmake/Qt6Gui/Qt6QJp2PluginTargets.cmake:
 
-/opt/homebrew/opt/qt@6/lib/cmake/Qt6Gui/Qt6QICOPluginTargets-release.cmake:
-
 /opt/homebrew/share/cmake/Modules/Compiler/ADSP-DetermineCompiler.cmake:
 
 /opt/homebrew/opt/qt@6/lib/cmake/Qt6Gui/Qt6QICOPluginConfig.cmake:
@@ -1779,8 +1813,6 @@ AudioEditor_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platfo
 
 /opt/homebrew/opt/qt@6/lib/cmake/Qt6DBus/Qt6DBusVersionlessAliasTargets.cmake:
 
-/opt/homebrew/opt/qt@6/lib/cmake/Qt6DBus/Qt6DBusTargets.cmake:
-
 /opt/homebrew/opt/qt@6/lib/cmake/Qt6DBus/Qt6DBusTargets-release.cmake:
 
 /opt/homebrew/opt/qt@6/lib/cmake/Qt6DBus/Qt6DBusMacros.cmake:
@@ -1795,13 +1827,9 @@ AudioEditor_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platfo
 
 /opt/homebrew/opt/qt@6/lib/cmake/Qt6CoreTools/Qt6CoreToolsConfigVersionImpl.cmake:
 
-/opt/homebrew/opt/qt@6/lib/cmake/Qt6CoreTools/Qt6CoreToolsConfigVersion.cmake:
-
 /opt/homebrew/opt/qt@6/lib/cmake/Qt6CoreTools/Qt6CoreToolsConfig.cmake:
 
 /opt/homebrew/opt/qt@6/lib/cmake/Qt6CorePrivate/Qt6CorePrivateVersionlessAliasTargets.cmake:
-
-/opt/homebrew/opt/qt@6/lib/cmake/Qt6CorePrivate/Qt6CorePrivateTargets.cmake:
 
 /opt/homebrew/opt/qt@6/lib/cmake/Qt6CorePrivate/Qt6CorePrivateConfigVersionImpl.cmake:
 
@@ -1829,8 +1857,6 @@ AudioEditor_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platfo
 
 /opt/homebrew/opt/qt@6/lib/cmake/Qt6Core/Qt6QDarwinLocationPermissionPluginAdditionalTargetInfo.cmake:
 
-/opt/homebrew/opt/qt@6/lib/cmake/Qt6Core/Qt6QDarwinContactsPermissionPluginTargets-release.cmake:
-
 /opt/homebrew/opt/qt@6/lib/cmake/Qt6Core/Qt6QDarwinCameraPermissionPluginDependencies.cmake:
 
 /opt/homebrew/opt/qt@6/lib/cmake/Qt6Core/Qt6QDarwinCameraPermissionPluginConfig.cmake:
@@ -1850,6 +1876,22 @@ AudioEditor_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platfo
 /opt/homebrew/share/cmake/Modules/CMakeSystem.cmake.in:
 
 /opt/homebrew/opt/qt@6/lib/cmake/Qt6Core/Qt6CoreAdditionalTargetInfo.cmake:
+
+/opt/homebrew/opt/qt@6/lib/cmake/Qt6ConcurrentPrivate/Qt6ConcurrentPrivateVersionlessAliasTargets.cmake:
+
+/opt/homebrew/opt/qt@6/lib/cmake/Qt6ConcurrentPrivate/Qt6ConcurrentPrivateTargets.cmake:
+
+/opt/homebrew/opt/qt@6/lib/cmake/Qt6Gui/Qt6QICOPluginTargets-release.cmake:
+
+/opt/homebrew/opt/qt@6/lib/cmake/Qt6ConcurrentPrivate/Qt6ConcurrentPrivateConfigVersionImpl.cmake:
+
+/opt/homebrew/opt/qt@6/lib/cmake/Qt6ConcurrentPrivate/Qt6ConcurrentPrivateConfig.cmake:
+
+/opt/homebrew/opt/qt@6/lib/cmake/Qt6Concurrent/Qt6ConcurrentConfigVersionImpl.cmake:
+
+/opt/homebrew/opt/qt@6/lib/cmake/Qt6Concurrent/Qt6ConcurrentConfigVersion.cmake:
+
+/opt/homebrew/opt/qt@6/lib/cmake/Qt6Concurrent/Qt6ConcurrentConfig.cmake:
 
 /opt/homebrew/opt/qt@6/lib/cmake/Qt6/QtPublicCMakeHelpers.cmake:
 
@@ -1897,8 +1939,6 @@ AudioEditor_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platfo
 
 /opt/homebrew/lib/cmake/Qt6/QtPublicAndroidHelpers.cmake:
 
-/opt/homebrew/lib/cmake/Qt6/QtFeatureCommon.cmake:
-
 /opt/homebrew/lib/cmake/Qt6/QtFeature.cmake:
 
 /opt/homebrew/lib/cmake/Qt6/FindWrapOpenGL.cmake:
@@ -1906,8 +1946,6 @@ AudioEditor_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platfo
 /opt/homebrew/opt/qt@6/lib/cmake/Qt6Widgets/Qt6QMacStylePluginAdditionalTargetInfo.cmake:
 
 /opt/homebrew/bin/cmake:
-
-/opt/homebrew/Cellar/qtmultimedia/6.9.3/lib/QtMultimedia.framework/Versions/A/Headers/qtmultimediaglobal.h:
 
 /opt/homebrew/Cellar/qtmultimedia/6.9.3/lib/QtMultimedia.framework/Versions/A/Headers/qtmultimediaexports.h:
 
@@ -1970,6 +2008,10 @@ AudioEditor_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platfo
 /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtWidgets.framework/Versions/A/Headers/qabstractitemdelegate.h:
 
 /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtWidgets.framework/Versions/A/Headers/QVBoxLayout:
+
+/opt/homebrew/opt/qt@6/lib/cmake/Qt6CorePrivate/Qt6CorePrivateTargets.cmake:
+
+/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtWidgets.framework/Versions/A/Headers/QToolButton:
 
 /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtWidgets.framework/Versions/A/Headers/QTableWidget:
 
@@ -2075,11 +2117,17 @@ AudioEditor_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platfo
 
 /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qttypetraits.h:
 
+/opt/homebrew/opt/qt@6/lib/cmake/Qt6CoreTools/Qt6CoreToolsConfigVersion.cmake:
+
+/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qtsan_impl.h:
+
 /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtGui.framework/Versions/A/Headers/qguiapplication.h:
 
 /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qtresource.h:
 
 /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qtimer.h:
+
+/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qthreadpool.h:
 
 /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qtformat_impl.h:
 
@@ -2099,6 +2147,8 @@ AudioEditor_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platfo
 
 /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qtclasshelpermacros.h:
 
+/opt/homebrew/opt/qt@6/lib/cmake/Qt6ConcurrentPrivate/Qt6ConcurrentPrivateConfigVersion.cmake:
+
 /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qtaggedpointer.h:
 
 /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qsystemdetection.h:
@@ -2114,6 +2164,8 @@ AudioEditor_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platfo
 /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qstringlist.h:
 
 /opt/homebrew/opt/qt@6/lib/cmake/Qt6Core/Qt6QDarwinContactsPermissionPluginAdditionalTargetInfo.cmake:
+
+/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qthread.h:
 
 /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qstringfwd.h:
 
@@ -2187,6 +2239,12 @@ AudioEditor_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platfo
 
 /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qgenericatomic.h:
 
+/opt/homebrew/opt/qt@6/lib/cmake/Qt6Core/Qt6QDarwinContactsPermissionPluginTargets-release.cmake:
+
+/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qfuturewatcher.h:
+
+/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qfuture.h:
+
 /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qfunctionpointer.h:
 
 /opt/homebrew/share/cmake/Modules/Compiler/AppleClang-CXX.cmake:
@@ -2205,6 +2263,10 @@ AudioEditor_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platfo
 
 /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qfile.h:
 
+/opt/homebrew/lib/cmake/Qt6/QtFeatureCommon.cmake:
+
+/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qexception.h:
+
 /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qstringalgorithms.h:
 
 /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qeventloop.h:
@@ -2214,8 +2276,6 @@ AudioEditor_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platfo
 /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qdirlisting.h:
 
 /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qdebug.h:
-
-/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qdarwinhelpers.h:
 
 /opt/homebrew/share/cmake/Modules/Internal/CMakeInspectCXXLinker.cmake:
 
@@ -2317,25 +2377,13 @@ AudioEditor_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platfo
 
 /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/WaveformWidget.h:
 
-/opt/homebrew/share/cmake/Modules/Compiler/Clang.cmake:
-
-/opt/homebrew/opt/qt@6/lib/cmake/Qt6Gui/Qt6QMacHeifPluginAdditionalTargetInfo.cmake:
-
-/opt/homebrew/opt/qt@6/lib/cmake/Qt6Gui/Qt6QJp2PluginConfig.cmake:
-
-/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtGui.framework/Versions/A/Headers/qimage.h:
-
-/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/q20functional.h:
-
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/hash.h:
-
-/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/TransportBar.cpp:
-
 /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/MainWindow.h:
 
 /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/MainWindow.cpp:
 
 /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/CaptionPanel.h:
+
+/opt/homebrew/opt/qt@6/lib/cmake/Qt6Concurrent/Qt6ConcurrentTargets-release.cmake:
 
 /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/CaptionPanel.cpp:
 
@@ -2355,8 +2403,6 @@ AudioEditor_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platfo
 
 /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects/Normalize.cpp:
 
-/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects/Echo.cpp:
-
 /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtGui.framework/Versions/A/Headers/qrgb.h:
 
 /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/EffectFactory.cpp:
@@ -2364,6 +2410,8 @@ AudioEditor_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platfo
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/fill_n.h:
 
 /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Commands/CommandHistory.cpp:
+
+/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qrunnable.h:
 
 /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Logging/FileLogger.h:
 
@@ -2442,6 +2490,8 @@ AudioEditor_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platfo
 /opt/homebrew/share/cmake/Modules/Compiler/Watcom-DetermineCompiler.cmake:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/_types/_off_t.h:
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/thread:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/_types/_nlink_t.h:
 
@@ -2545,6 +2595,8 @@ AudioEditor_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platfo
 
 /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects/Speed.cpp:
 
+/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects/IEffect.h:
+
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__iterator/unreachable_sentinel.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/string_view:
@@ -2573,6 +2625,8 @@ AudioEditor_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platfo
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/ostream:
 
+/opt/homebrew/opt/qt@6/lib/cmake/Qt6ConcurrentPrivate/Qt6ConcurrentPrivateDependencies.cmake:
+
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__system_error/system_error.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/map:
@@ -2590,6 +2644,10 @@ AudioEditor_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platfo
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__cstddef/max_align_t.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/iomanip:
+
+/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qdarwinhelpers.h:
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/future:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/_types/_fsblkcnt_t.h:
 
@@ -2683,10 +2741,6 @@ AudioEditor_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platfo
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__utility/private_constructor_tag.h:
 
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/math.h:
-
-/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/EffectsPanel.h:
-
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/_types/_dev_t.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__utility/no_destroy.h:
@@ -2708,6 +2762,8 @@ AudioEditor_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platfo
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__utility/exception_guard.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__utility/element_count.h:
+
+/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qfutureinterface.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/pointer_to_binary_function.h:
 
@@ -2825,6 +2881,10 @@ AudioEditor_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platfo
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/is_unbounded_array.h:
 
+/opt/homebrew/opt/qt@6/lib/cmake/Qt6DBus/Qt6DBusTargets.cmake:
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/sstream:
+
 /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qdeadlinetimer.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/is_trivially_lexicographically_comparable.h:
@@ -2844,6 +2904,8 @@ AudioEditor_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platfo
 /opt/homebrew/lib/cmake/Qt6/QtPublicGitHelpers.cmake:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/is_trivial.h:
+
+/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/QFutureWatcher:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__string/char_traits.h:
 
@@ -2993,6 +3055,8 @@ AudioEditor_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platfo
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/detected_or.h:
 
+/opt/homebrew/opt/qt@6/lib/cmake/Qt6Concurrent/Qt6ConcurrentAdditionalTargetInfo.cmake:
+
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/datasizeof.h:
 
 /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtGui.framework/Versions/A/Headers/qfont.h:
@@ -3067,6 +3131,14 @@ AudioEditor_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platfo
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__tree:
 
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__thread/thread.h:
+
+/opt/homebrew/Cellar/qtmultimedia/6.9.3/lib/QtMultimedia.framework/Versions/A/Headers/qtmultimediaglobal.h:
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__thread/this_thread.h:
+
+/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qmutex.h:
+
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/equal_range.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__mutex/unique_lock.h:
@@ -3084,6 +3156,8 @@ AudioEditor_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platfo
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__system_error/error_category.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__string/extern_template_lists.h:
+
+/opt/homebrew/opt/qt@6/lib/cmake/Qt6Concurrent/Qt6ConcurrentVersionlessAliasTargets.cmake:
 
 /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qconfig.h:
 
@@ -3599,10 +3673,6 @@ AudioEditor_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platfo
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__format/enable_insertable.h:
 
-/opt/homebrew/share/cmake/Modules/Compiler/GNU.cmake:
-
-/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects/Echo.h:
-
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/queue:
 
 /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtWidgets.framework/Versions/A/Headers/qdialog.h:
@@ -3712,6 +3782,8 @@ AudioEditor_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platfo
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/cerrno:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/stdbool.h:
+
+/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qfuture_impl.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/maybe_const.h:
 
@@ -3831,6 +3903,8 @@ CMakeFiles/4.0.1/CMakeCXXCompiler.cmake:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/path.h:
 
+/opt/homebrew/opt/qt@6/lib/cmake/Qt6Concurrent/Qt6ConcurrentDependencies.cmake:
+
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__compare/common_comparison_category.h:
 
 /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/EffectsPanel.cpp:
@@ -3896,6 +3970,8 @@ CMakeFiles/4.0.1/CMakeCXXCompiler.cmake:
 /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtWidgets.framework/Versions/A/Headers/QComboBox:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__atomic/kill_dependency.h:
+
+/opt/homebrew/opt/qt@6/lib/cmake/Qt6ConcurrentPrivate/Qt6ConcurrentPrivateAdditionalTargetInfo.cmake:
 
 CMakeFiles/4.0.1/CMakeSystem.cmake:
 
@@ -4008,6 +4084,8 @@ CMakeFiles/4.0.1/CMakeSystem.cmake:
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/swap_ranges.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/assert.h:
+
+/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qpromise.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/simd_utils.h:
 
@@ -4205,6 +4283,10 @@ CMakeFiles/4.0.1/CMakeSystem.cmake:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/search.h:
 
+/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/EffectsPanel.h:
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/math.h:
+
 /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtWidgets.framework/Versions/A/Headers/qtabwidget.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__exception/exception.h:
@@ -4227,6 +4309,8 @@ CMakeFiles/4.0.1/CMakeSystem.cmake:
 
 /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qtpreprocessorsupport.h:
 
+/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qresultstore.h:
+
 /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qmetacontainer.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/_assert.h:
@@ -4248,6 +4332,8 @@ CMakeFiles/4.0.1/CMakeSystem.cmake:
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/_mb_cur_max.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/common_reference.h:
+
+/opt/homebrew/opt/qt@6/lib/cmake/Qt6Concurrent/Qt6ConcurrentTargets.cmake:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/reverse.h:
 
@@ -4316,6 +4402,20 @@ CMakeFiles/4.0.1/CMakeSystem.cmake:
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/copy_n.h:
 
 /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects/Volume.h:
+
+/opt/homebrew/share/cmake/Modules/Compiler/Clang.cmake:
+
+/opt/homebrew/opt/qt@6/lib/cmake/Qt6Gui/Qt6QMacHeifPluginAdditionalTargetInfo.cmake:
+
+/opt/homebrew/opt/qt@6/lib/cmake/Qt6Gui/Qt6QJp2PluginConfig.cmake:
+
+/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtGui.framework/Versions/A/Headers/qimage.h:
+
+/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/q20functional.h:
+
+/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/TransportBar.cpp:
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__functional/hash.h:
 
 /opt/homebrew/opt/qt@6/lib/cmake/Qt6Gui/Qt6QVirtualKeyboardPluginAdditionalTargetInfo.cmake:
 
@@ -4398,6 +4498,8 @@ AudioEditor_autogen/moc_predefs.h:
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/invoke.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__config:
+
+/opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtWidgets.framework/Versions/A/Headers/qtoolbutton.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__math/hypot.h:
 

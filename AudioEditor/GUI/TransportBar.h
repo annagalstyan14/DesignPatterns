@@ -6,6 +6,7 @@
 #include <QSlider>
 #include <QLabel>
 #include <QHBoxLayout>
+#include <QToolButton>
 
 // Forward declaration
 enum class PlaybackState;

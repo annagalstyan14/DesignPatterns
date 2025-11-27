@@ -1064,4 +1064,25 @@ CMakeFiles/AudioEditor.dir/main.cpp.o: \
   /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/QSize \
   /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/QSizeF \
   /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/QTransform \
-  /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/qscreen_platform.h
+  /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/qscreen_platform.h \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/QTimer \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qtimer.h \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/QFutureWatcher \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qfuturewatcher.h \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qfuture.h \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qfutureinterface.h \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qmutex.h \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qtsan_impl.h \
+  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/sanitizer/tsan_interface.h \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qresultstore.h \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qfuture_impl.h \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qthreadpool.h \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qthread.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/future \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__thread/thread.h \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/sstream \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/thread \
+  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__thread/this_thread.h \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qrunnable.h \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qexception.h \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qpromise.h

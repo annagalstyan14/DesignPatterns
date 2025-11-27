@@ -9,6 +9,7 @@
 #include <QByteArray>
 #include <memory>
 #include <vector>
+#include "../Core/Effects/IEffect.h"
 
 // Forward declaration
 class AudioClip;
@@ -55,6 +56,14 @@ public:
     qint64 getDurationMs() const;
     float getVolume() const;
 
+    void setOriginalSamples(const std::vector<float>& samples);
+    void previewWithEffects(const std::vector<std::shared_ptr<IEffect>>& effects);
+    void previewWithSamples(const std::vector<float>& samples);
+    void commitEffects();  // Make preview permanent
+    void revertToOriginal();  // Discard preview
+    bool hasPreview() const { return hasPreview_; }
+
+
     // Setters
     void setVolume(float volume);  // 0.0 to 1.0
 
@@ -72,6 +81,10 @@ private:
     void setupAudio();
     void convertSamplesToBytes();
     void applyVolume(QByteArray& buffer);
+
+    std::vector<float> originalSamples_;  // Unmodified original
+    std::vector<float> previewSamples_;   // Current preview with effects
+    bool hasPreview_ = false;
 
     std::shared_ptr<AudioClip> audioClip_;
     

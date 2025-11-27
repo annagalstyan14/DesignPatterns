@@ -9,15 +9,11 @@
 #include "Core/AudioClip.h"
 #include "Core/EffectFactory.h"
 #include "Core/Effects/Reverb.h"
-#include "Core/Effects/Echo.h"
 #include "Core/Effects/Speed.h"
 
 void initializeRegistry() {
     EffectFactory::registerEffect("Reverb", [](std::shared_ptr<ILogger> logger) {
         return std::make_shared<Reverb>(logger);
-    });
-    EffectFactory::registerEffect("Echo", [](std::shared_ptr<ILogger> logger) {
-        return std::make_shared<Echo>(logger);
     });
     EffectFactory::registerEffect("Speed", [](std::shared_ptr<ILogger> logger) {
         return std::make_shared<SpeedChangeEffect>(1.0f, logger);
@@ -25,7 +21,7 @@ void initializeRegistry() {
 }
 
 void parseArguments(int argc, char* argv[], std::string& inputFile, std::string& outputFile, 
-                   float& reverbIntensity, float& echoIntensity, float& speed) {
+                   float& reverbIntensity, float& speed) {
     std::vector<std::string> args(argv + 1, argv + argc);
     std::map<std::string, std::string> argMap;
 
@@ -42,7 +38,6 @@ void parseArguments(int argc, char* argv[], std::string& inputFile, std::string&
     inputFile = argMap.count("input") ? argMap["input"] : "arctic.mp3";
     outputFile = argMap.count("output") ? argMap["output"] : "output.mp3";
     reverbIntensity = argMap.count("reverb") ? std::stof(argMap["reverb"]) : 0.0f; 
-    echoIntensity = argMap.count("echo") ? std::stof(argMap["echo"]) : 0.0f; 
     speed = argMap.count("speed") ? std::stof(argMap["speed"]) : 1.0f; 
 }
 
@@ -57,8 +52,8 @@ int main(int argc, char* argv[]) {
     initializeRegistry();
 
     std::string inputFile, outputFile;
-    float reverbIntensity, echoIntensity, speed;
-    parseArguments(argc, argv, inputFile, outputFile, reverbIntensity, echoIntensity, speed);
+    float reverbIntensity, speed;
+    parseArguments(argc, argv, inputFile, outputFile, reverbIntensity, speed);
 
     if (!std::filesystem::exists(inputFile)) {
         composite->error("Input file does not exist: " + inputFile);
@@ -82,17 +77,6 @@ int main(int argc, char* argv[]) {
                 reverbPtr->setIntensity(reverbIntensity);
             }
             clip->addEffect(reverb);
-        }
-    }
-
-    if (echoIntensity > 0) {
-        auto echo = EffectFactory::createEffect("Echo", composite);
-        if (echo) {
-            auto echoPtr = std::dynamic_pointer_cast<Echo>(echo);
-            if (echoPtr) {
-                echoPtr->setIntensity(echoIntensity);
-            }
-            clip->addEffect(echo);
         }
     }
 

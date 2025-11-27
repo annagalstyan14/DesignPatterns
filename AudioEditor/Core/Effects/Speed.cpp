@@ -33,7 +33,6 @@ size_t SpeedChangeEffect::apply(float* audioBuffer, size_t bufferSize) {
             size_t src = static_cast<size_t>(srcFloat);
             float frac = srcFloat - src;
 
-            //size_t srcIdx = src * channels + ch;
             size_t dstIdx = i * channels + ch;
 
             if (src > 0 && src + 2 < numFrames) {

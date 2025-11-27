@@ -35,8 +35,14 @@ public:
     explicit EffectsPanel(std::shared_ptr<ILogger> logger, QWidget* parent = nullptr);
     ~EffectsPanel() = default;
 
-    // Get all effects for applying to audio
+    // Get all effects for preview (returns empty if effects disabled)
     std::vector<std::shared_ptr<IEffect>> getEffects() const;
+
+    // Get effects regardless of toggle state (for saving)
+    std::vector<std::shared_ptr<IEffect>> getEffectsForExport() const;
+
+    // Check if effects are enabled
+    bool areEffectsEnabled() const { return effectsEnabled_; }
     
     // Clear all effects
     void clearEffects();
@@ -44,23 +50,33 @@ public:
     // Enable/disable the panel
     void setEnabled(bool enabled);
 
+    // NEW: Add method to sync widgets from external chain (for undo/redo)
+    void syncFromChain(const std::vector<std::shared_ptr<IEffect>>& chain);
+
 signals:
-    // Emitted when user clicks Apply
-    void applyEffectsRequested();
-    
-    // Emitted when any effect parameter changes
+    // Emitted when effects list or parameters change (for preview)
     void effectsChanged();
+    
+    // Emitted when user wants to compare (toggle effects on/off)
+    void compareToggled(bool effectsEnabled);
+
+    // NEW: Signals for commands (bubble to MainWindow)
+    void addEffectRequested(const QString& effectType);
+    void removeEffectRequested(size_t index);
+    void paramChangedRequested(size_t index, const QString& param, float oldValue, float newValue);
 
 private slots:
     void onAddEffectClicked();
-    void onApplyClicked();
     void onEffectRemoved(EffectWidget* widget);
     void onEffectParameterChanged();
+    void onCompareToggled(bool enabled);
 
 private:
     void setupUI();
     void addEffectWidget(const QString& effectType);
-    void updateApplyButton();
+
+    QPushButton* compareButton_;
+    bool effectsEnabled_ = true;
 
     std::shared_ptr<ILogger> logger_;
     
@@ -71,7 +87,6 @@ private:
     QScrollArea* scrollArea_;
     QWidget* effectsContainer_;
     QVBoxLayout* effectsLayout_;
-    QPushButton* applyButton_;
     QLabel* noEffectsLabel_;
     
     // Effect widgets
