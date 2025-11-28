@@ -1,8 +1,8 @@
-CMakeFiles/AudioEditor.dir/GUI/MainWindow.cpp.o: \
-  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/MainWindow.cpp \
-  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/MainWindow.h \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/QMainWindow \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qmainwindow.h \
+CMakeFiles/AudioEditor.dir/GUI/WaveformWidget.cpp.o: \
+  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/WaveformWidget.cpp \
+  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/WaveformWidget.h \
+  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/QWidget \
+  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qwidget.h \
   /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qtwidgetsglobal.h \
   /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/qtguiglobal.h \
   /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qglobal.h \
@@ -707,7 +707,6 @@ CMakeFiles/AudioEditor.dir/GUI/MainWindow.cpp.o: \
   /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/qtguiexports.h \
   /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qtwidgets-config.h \
   /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qtwidgetsexports.h \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qwidget.h \
   /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/qwindowdefs.h \
   /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qobjectdefs.h \
   /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qnamespace.h \
@@ -964,76 +963,12 @@ CMakeFiles/AudioEditor.dir/GUI/MainWindow.cpp.o: \
   /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qsizepolicy.h \
   /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/qcursor.h \
   /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/qbitmap.h \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qtabwidget.h \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/QMenuBar \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qmenubar.h \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qmenu.h \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/QMenu \
-  /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/QAction \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/QToolBar \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qtoolbar.h \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/QStatusBar \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qstatusbar.h \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/QSplitter \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qsplitter.h \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qframe.h \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/QVBoxLayout \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qboxlayout.h \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qlayout.h \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qlayoutitem.h \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qgridlayout.h \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/QHBoxLayout \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/QFileDialog \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qfiledialog.h \
-  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qdir.h \
-  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qdirlisting.h \
-  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qfiledevice.h \
-  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qiodevice.h \
-  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qdatetime.h \
-  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qcalendar.h \
-  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qlocale.h \
-  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qfile.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/filesystem \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/copy_options.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/directory_entry.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/file_status.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/file_type.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/perms.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/file_time_type.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/filesystem_error.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/path.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/iomanip \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__ostream/put_character_sequence.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/bitset \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/is_char_like_type.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/deque \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__fwd/deque.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/format \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/queue \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__fwd/queue.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/stack \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__fwd/stack.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/istream \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__ostream/basic_ostream.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/ostream \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/print \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/unistd.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/operations.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/perm_options.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/space_info.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/directory_iterator.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/directory_options.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/path_iterator.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/recursive_directory_iterator.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__filesystem/u8path.h \
-  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qfileinfo.h \
-  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qtimezone.h \
-  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qurl.h \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qdialog.h \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/QMessageBox \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qmessagebox.h \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qdialogbuttonbox.h \
-  /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/QCloseEvent \
+  /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/QPixmap \
+  /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/QPainter \
+  /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/qpainter.h \
+  /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/qtextoption.h \
+  /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/qpen.h \
+  /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/QPaintEvent \
   /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/qevent.h \
   /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qcoreevent.h \
   /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qbasictimer.h \
@@ -1041,6 +976,8 @@ CMakeFiles/AudioEditor.dir/GUI/MainWindow.cpp.o: \
   /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qeventloop.h \
   /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qdeadlinetimer.h \
   /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qelapsedtimer.h \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qiodevice.h \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qurl.h \
   /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/qeventpoint.h \
   /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/qvector2d.h \
   /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/qvectornd.h \
@@ -1059,119 +996,7 @@ CMakeFiles/AudioEditor.dir/GUI/MainWindow.cpp.o: \
   /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qcoreapplication.h \
   /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qcoreapplication_platform.h \
   /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/qinputmethod.h \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qlocale.h \
   /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/qguiapplication_platform.h \
-  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/QTimer \
-  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qtimer.h \
-  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/QFileInfo \
-  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/QFutureWatcher \
-  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qfuturewatcher.h \
-  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qfuture.h \
-  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qfutureinterface.h \
-  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qmutex.h \
-  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qtsan_impl.h \
-  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/sanitizer/tsan_interface.h \
-  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qresultstore.h \
-  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qfuture_impl.h \
-  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qthreadpool.h \
-  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qthread.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/future \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__thread/thread.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/sstream \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/thread \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__thread/this_thread.h \
-  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qrunnable.h \
-  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qexception.h \
-  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qpromise.h \
-  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/EffectsPanel.h \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/QWidget \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/QScrollArea \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qscrollarea.h \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qabstractscrollarea.h \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/QPushButton \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qpushbutton.h \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qabstractbutton.h \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/QComboBox \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qcombobox.h \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qabstractitemdelegate.h \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qstyleoption.h \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qabstractspinbox.h \
-  /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/qvalidator.h \
-  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qregularexpression.h \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qslider.h \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qabstractslider.h \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qstyle.h \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qtabbar.h \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qrubberband.h \
-  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qabstractitemmodel.h \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/QLabel \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qlabel.h \
-  /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/qpicture.h \
-  /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/qtextdocument.h \
-  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Commands/EffectState.h \
-  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/QString \
-  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/QMap \
-  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/AudioEngine.h \
-  /opt/homebrew/opt/qt@6/lib/QtMultimedia.framework/Headers/QAudioSink \
-  /opt/homebrew/opt/qt@6/lib/QtMultimedia.framework/Headers/qaudiosink.h \
-  /opt/homebrew/opt/qt@6/lib/QtMultimedia.framework/Headers/qtmultimediaglobal.h \
-  /opt/homebrew/opt/qt@6/lib/QtMultimedia.framework/Headers/qtmultimedia-config.h \
-  /opt/homebrew/opt/qt@6/lib/QtMultimedia.framework/Headers/qtmultimediaexports.h \
-  /opt/homebrew/opt/qt@6/lib/QtMultimedia.framework/Headers/qtaudio.h \
-  /opt/homebrew/opt/qt@6/lib/QtMultimedia.framework/Headers/qaudio.h \
-  /opt/homebrew/opt/qt@6/lib/QtMultimedia.framework/Headers/qaudioformat.h \
-  /opt/homebrew/opt/qt@6/lib/QtMultimedia.framework/Headers/qaudiodevice.h \
-  /opt/homebrew/opt/qt@6/lib/QtMultimedia.framework/Headers/QAudioFormat \
-  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/QBuffer \
-  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qbuffer.h \
-  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/QByteArray \
-  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Effects/IEffect.h \
-  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/TransportBar.h \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/QSlider \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/QToolButton \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qtoolbutton.h \
-  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/WaveformWidget.h \
-  /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/QPixmap \
-  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/CaptionPanel.h \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/QTableWidget \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qtablewidget.h \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qtableview.h \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qabstractitemview.h \
-  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qitemselectionmodel.h \
-  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Services/CaptionParser.h \
-  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/AudioClip.h \
-  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Adapters/AudioFileAdapter.h \
-  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Logging/ILogger.h \
-  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/EffectFactory.h \
-  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Commands/CommandHistory.h \
-  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Commands/ICommand.h \
-  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Commands/../Logging/ILogger.h \
-  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Logging/CompositeLogger.h \
-  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Logging/ConsoleLogger.h \
-  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Logging/FileLogger.h \
-  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/fstream \
-  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Effects/Reverb.h \
-  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Effects/../Logging/ILogger.h \
-  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Effects/Speed.h \
-  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Effects/../Constants.h \
-  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Effects/Volume.h \
-  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Commands/ApplyEffect.h \
-  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Commands/../AudioClip.h \
-  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Commands/../Effects/IEffect.h \
-  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Commands/EffectStateCommand.h \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/QApplication \
-  /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qapplication.h \
-  /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/QScreen \
-  /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/QDragEnterEvent \
-  /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/QDropEvent \
-  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/QMimeData \
-  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/qmimedata.h \
-  /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/QShortcut \
-  /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/qshortcut.h \
-  /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/QKeySequence \
-  /opt/homebrew/opt/qt@6/lib/QtConcurrent.framework/Headers/QtConcurrentRun \
-  /opt/homebrew/opt/qt@6/lib/QtConcurrent.framework/Headers/qtconcurrentrun.h \
-  /opt/homebrew/opt/qt@6/lib/QtConcurrent.framework/Headers/qtconcurrentcompilertest.h \
-  /opt/homebrew/opt/qt@6/lib/QtConcurrent.framework/Headers/qtconcurrent_global.h \
-  /opt/homebrew/opt/qt@6/lib/QtConcurrent.framework/Headers/qtconcurrentexports.h \
-  /opt/homebrew/opt/qt@6/lib/QtConcurrent.framework/Headers/qtconcurrentrunbase.h \
-  /opt/homebrew/opt/qt@6/lib/QtConcurrent.framework/Headers/qtconcurrentstoredfunctioncall.h
+  /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/QMouseEvent \
+  /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/QWheelEvent

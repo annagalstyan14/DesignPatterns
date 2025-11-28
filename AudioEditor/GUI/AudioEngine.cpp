@@ -318,9 +318,8 @@ void AudioEngine::previewWithEffects(const std::vector<std::shared_ptr<IEffect>>
     
     // Start from original samples
     previewSamples_ = originalSamples_;
-    size_t dataSize = previewSamples_.size();  // Track actual audio data size
     
-    // Apply all effects
+    // Apply all effects using new vector interface
     for (const auto& effect : effects) {
         if (!effect) continue;
         
@@ -329,22 +328,10 @@ void AudioEngine::previewWithEffects(const std::vector<std::shared_ptr<IEffect>>
             reverb->reset();
         }
         
-        // For speed effect, ensure buffer is large enough BEFORE applying
-        if (auto* speed = dynamic_cast<SpeedChangeEffect*>(effect.get())) {
-            float factor = speed->getSpeedFactor();
-            size_t neededSize = static_cast<size_t>(dataSize / factor) + 1024; // Extra padding
-            if (neededSize > previewSamples_.size()) {
-                previewSamples_.resize(neededSize, 0.0f);
-            }
-        }
-        
-        // Apply effect - pass actual data size, not buffer size
-        size_t newSize = effect->apply(previewSamples_.data(), dataSize);
-        dataSize = newSize;
+        // Apply effect - modifies vector in place, may resize
+        effect->apply(previewSamples_);
     }
     
-    // Trim to actual data size
-    previewSamples_.resize(dataSize);
     hasPreview_ = true;
     
     // Update audio buffer

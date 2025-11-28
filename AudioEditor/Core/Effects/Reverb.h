@@ -2,18 +2,12 @@
 
 #include "IEffect.h"
 #include "../Logging/ILogger.h"
-#include "../Constants.h"
 #include <vector>
 #include <memory>
-#include <algorithm>
+#include <array>
 
 /**
- * @brief Reverb effect using multiple delay lines
- * 
- * Simulates room acoustics by combining delayed copies
- * of the signal with feedback and damping.
- * 
- * Design Pattern: Strategy (ConcreteStrategy)
+ * @brief Classic Schroeder reverb - smooth diffuse wash
  */
 class Reverb : public IEffect {
 public:
@@ -25,38 +19,18 @@ public:
     
     void setIntensity(float intensityPercent);
     void reset();
-    
-    void setWetMix(float wet) noexcept { 
-        wetMix_ = std::clamp(wet, 0.0f, audio::reverb::kMaxWetMix); 
-    }
-    void setRoomSize(float size) noexcept { 
-        roomSize_ = std::clamp(size, 0.0f, 1.0f); 
-        updateParameters(); 
-    }
-    void setDamping(float damp) noexcept { 
-        damping_ = std::clamp(damp, 0.0f, 1.0f); 
-    }
-    
-    [[nodiscard]] float getWetMix() const noexcept { return wetMix_; }
-    [[nodiscard]] float getRoomSize() const noexcept { return roomSize_; }
-    [[nodiscard]] float getDamping() const noexcept { return damping_; }
 
 private:
-    void updateParameters();
-
-    // Delay lines
-    std::vector<std::vector<float>> delayBuffers_;
-    std::vector<size_t> delayIndices_;
+    std::array<std::vector<float>, 4> combBuffers_;
+    std::array<size_t, 4> combIndices_;
+    std::array<float, 4> combFilterState_;
     
-    // Pre-delay buffer
-    std::vector<float> preDelayBuffer_;
-    size_t preDelayIndex_ = 0;
+    std::array<std::vector<float>, 2> allpassBuffers_;
+    std::array<size_t, 2> allpassIndices_;
     
-    // Parameters
-    float wetMix_;
-    float roomSize_;
-    float damping_;
-    float feedback_;
+    float wetMix_ = 0.5f;
+    float feedback_ = 0.7f;
+    float damping_ = 0.3f;
     
     std::shared_ptr<ILogger> logger_;
 };

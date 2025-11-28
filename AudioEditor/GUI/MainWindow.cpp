@@ -282,6 +282,8 @@ void MainWindow::setupStatusBar() {
 }
 
 void MainWindow::setupConnections() {
+    connect(effectsPanel_, &EffectsPanel::effectsChanged,
+            this, &MainWindow::updateCaptionSpeed);
     connect(transportBar_, &TransportBar::playClicked,
             audioEngine_, &AudioEngine::play);
     connect(transportBar_, &TransportBar::pauseClicked,
@@ -319,6 +321,9 @@ void MainWindow::setupConnections() {
     
     connect(effectsPanel_, &EffectsPanel::effectsChanged,
             this, &MainWindow::updatePreview);
+
+    connect(effectsPanel_, &EffectsPanel::effectsChanged,
+            this, &MainWindow::updateCaptionSpeed);
     
     // Connect to state changes for undo/redo
     connect(effectsPanel_, &EffectsPanel::stateChangeCompleted,
@@ -705,7 +710,6 @@ void MainWindow::startPreviewComputation(const std::vector<std::shared_ptr<IEffe
 
     auto future = QtConcurrent::run([baseSamples = std::move(baseSamples), effectCopies]() mutable {
         auto processed = baseSamples;
-        size_t dataSize = processed.size();  // Track actual data size
         
         for (const auto& effect : effectCopies) {
             if (!effect) continue;
@@ -714,25 +718,12 @@ void MainWindow::startPreviewComputation(const std::vector<std::shared_ptr<IEffe
                 reverb->reset();
             }
 
-            // Ensure buffer is large enough for speed changes
-            if (auto* speed = dynamic_cast<SpeedChangeEffect*>(effect.get())) {
-                float factor = speed->getSpeedFactor();
-                size_t neededSize = static_cast<size_t>(dataSize / factor) + 1024;
-                if (neededSize > processed.size()) {
-                    processed.resize(neededSize, 0.0f);
-                }
-            }
-
-            // Pass actual data size, not buffer size
-            size_t newSize = effect->apply(processed.data(), dataSize);
-            dataSize = newSize;
+            // New interface: effect modifies vector in place and may resize it
+            effect->apply(processed);
         }
 
-        // Trim to actual size
-        processed.resize(dataSize);
         return processed;
     });
-
     previewWatcher_->setFuture(future);
 }
 
@@ -787,11 +778,11 @@ void MainWindow::onEffectStateChanged(const EffectsPanelState& oldState,
 void MainWindow::onApplyEffects() {
     if (!audioClip_) return;
 
-    // Example: Apply all effects from the EffectsPanel to the audioClip
+    // Apply all effects from the EffectsPanel to the audioClip
     auto effects = effectsPanel_->getEffects();
     for (auto& effect : effects) {
         if (effect) {
-            effect->apply(audioClip_->getSamples().data(), audioClip_->getSamples().size());
+            effect->apply(audioClip_->getSamplesRef());
         }
     }
 
@@ -799,4 +790,18 @@ void MainWindow::onApplyEffects() {
     hasUnsavedChanges_ = true;
     updateWindowTitle();
     statusBar()->showMessage("Effects applied", 2000);
+}
+
+void MainWindow::updateCaptionSpeed() {
+    float speedFactor = 1.0f;
+    
+    auto effects = effectsPanel_->getEffects();
+    for (const auto& effect : effects) {
+        if (auto* speed = dynamic_cast<SpeedChangeEffect*>(effect.get())) {
+            speedFactor = speed->getSpeedFactor();
+            break;
+        }
+    }
+    
+    captionPanel_->setSpeedFactor(speedFactor);
 }

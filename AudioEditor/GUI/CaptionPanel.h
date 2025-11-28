@@ -54,6 +54,7 @@ public:
     
     // Enable/disable the panel
     void setEnabled(bool enabled);
+    void setSpeedFactor(float factor) { speedFactor_ = factor; }
 
 signals:
     // Emitted when user clicks Import button
@@ -82,6 +83,7 @@ private:
     // Captions data
     std::vector<Caption> captions_;
     int currentHighlightedRow_;
+    float speedFactor_ = 1.0f;  // Add this line
     
     // UI Components
     QVBoxLayout* mainLayout_;

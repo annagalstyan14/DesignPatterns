@@ -273,7 +273,8 @@ void CaptionPanel::updateTable() {
 }
 
 void CaptionPanel::setCurrentTime(qint64 positionMs) {
-    double positionSec = positionMs / 1000.0;
+    // Scale position by speed factor to match original caption times
+    double positionSec = (positionMs / 1000.0) * speedFactor_;
     
     // Find caption at current time
     int foundRow = -1;

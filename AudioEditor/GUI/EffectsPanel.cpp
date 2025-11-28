@@ -4,6 +4,7 @@
 #include "../Core/Effects/Speed.h"
 #include "../Core/Effects/Volume.h"
 #include <QHBoxLayout>
+#include <algorithm>
 #include "../Core/EffectFactory.h"
 
 EffectsPanel::EffectsPanel(std::shared_ptr<ILogger> logger, QWidget* parent)
@@ -255,6 +256,19 @@ std::vector<std::shared_ptr<IEffect>> EffectsPanel::getEffects() const {
         auto effect = widget->createEffect();
         if (effect) effects.push_back(effect);
     }
+    
+    // Sort: Speed -> Volume -> Reverb (always same order)
+    std::sort(effects.begin(), effects.end(), 
+        [](const std::shared_ptr<IEffect>& a, const std::shared_ptr<IEffect>& b) {
+            auto priority = [](const std::shared_ptr<IEffect>& e) -> int {
+                if (e->getName() == "Speed") return 0;
+                if (e->getName() == "Volume") return 1;
+                if (e->getName() == "Reverb") return 2;
+                return 1;  // Default to middle
+            };
+            return priority(a) < priority(b);
+        });
+    
     return effects;
 }
 
@@ -264,6 +278,19 @@ std::vector<std::shared_ptr<IEffect>> EffectsPanel::getEffectsForExport() const 
         auto effect = widget->createEffect();
         if (effect) effects.push_back(effect);
     }
+    
+    // Same sorting as getEffects()
+    std::sort(effects.begin(), effects.end(), 
+        [](const std::shared_ptr<IEffect>& a, const std::shared_ptr<IEffect>& b) {
+            auto priority = [](const std::shared_ptr<IEffect>& e) -> int {
+                if (e->getName() == "Speed") return 0;
+                if (e->getName() == "Volume") return 1;
+                if (e->getName() == "Reverb") return 2;
+                return 1;
+            };
+            return priority(a) < priority(b);
+        });
+    
     return effects;
 }
 

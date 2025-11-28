@@ -34,7 +34,7 @@ namespace reverb {
     constexpr float kDefaultRoomSize = 0.5f;
     constexpr float kDefaultDamping = 0.3f;
     constexpr float kDefaultFeedback = 0.7f;
-    constexpr float kMaxWetMix = 0.5f;
+    constexpr float kMaxWetMix = 1.0f;
     constexpr float kSoftClipThreshold = 0.8f;
 }
 
