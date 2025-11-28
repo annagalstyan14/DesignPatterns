@@ -1,0 +1,39 @@
+[2025-11-28 21:27:43] [INFO] Application starting...
+[2025-11-28 21:27:43] [INFO] Application ready
+[2025-11-28 21:27:57] [INFO] Loading audio file: /Users/annagalstyan/Music/Music/Media.localized/Music/Arctic Monkeys/Unknown Album/Arctic Monkeys - Do I Wanna Know_ (Lyrics).mp3
+[2025-11-28 21:27:57] [INFO] Loading MP3 file from: /Users/annagalstyan/Music/Music/Media.localized/Music/Arctic Monkeys/Unknown Album/Arctic Monkeys - Do I Wanna Know_ (Lyrics).mp3
+[2025-11-28 21:27:57] [INFO] Loaded MP3: /Users/annagalstyan/Music/Music/Media.localized/Music/Arctic Monkeys/Unknown Album/Arctic Monkeys - Do I Wanna Know_ (Lyrics).mp3 (24352768 samples, 276.108490s, 2 channels)
+[2025-11-28 21:27:57] [INFO] Loaded 24352768 samples from /Users/annagalstyan/Music/Music/Media.localized/Music/Arctic Monkeys/Unknown Album/Arctic Monkeys - Do I Wanna Know_ (Lyrics).mp3
+[2025-11-28 21:28:02] [INFO] EffectStateCommand: Effect state changed
+[2025-11-28 21:28:02] [INFO] Command executed, history size: 1
+[2025-11-28 21:28:02] [INFO] Effect state change recorded for undo/redo
+[2025-11-28 21:28:02] [INFO] EffectStateCommand: Effect state changed
+[2025-11-28 21:28:02] [INFO] Command executed, history size: 2
+[2025-11-28 21:28:02] [INFO] Effect state change recorded for undo/redo
+[2025-11-28 21:28:06] [INFO] EffectStateCommand: Effect state changed
+[2025-11-28 21:28:06] [INFO] Command executed, history size: 3
+[2025-11-28 21:28:06] [INFO] Effect state change recorded for undo/redo
+[2025-11-28 21:28:19] [INFO] EffectStateCommand: Effect state changed
+[2025-11-28 21:28:19] [INFO] Command executed, history size: 4
+[2025-11-28 21:28:19] [INFO] Effect state change recorded for undo/redo
+[2025-11-28 21:28:19] [INFO] Reverb intensity: 50.000000%
+[2025-11-28 21:28:19] [INFO] Reverb intensity: 50.000000%
+[2025-11-28 21:28:19] [INFO] EffectStateCommand: Effect state changed
+[2025-11-28 21:28:19] [INFO] Command executed, history size: 5
+[2025-11-28 21:28:19] [INFO] Effect state change recorded for undo/redo
+[2025-11-28 21:28:19] [INFO] Reverb intensity: 50.000000%
+[2025-11-28 21:28:19] [INFO] Reverb intensity: 50.000000%
+[2025-11-28 21:28:20] [INFO] Reverb intensity: 50.000000%
+[2025-11-28 21:30:42] [INFO] EffectStateCommand: Effect state changed
+[2025-11-28 21:30:42] [INFO] Command executed, history size: 6
+[2025-11-28 21:30:42] [INFO] Effect state change recorded for undo/redo
+[2025-11-28 21:30:42] [INFO] Reverb intensity: 71.000000%
+[2025-11-28 21:30:42] [INFO] Reverb intensity: 71.000000%
+[2025-11-28 21:30:42] [INFO] Reverb intensity: 71.000000%
+[2025-11-28 21:30:48] [INFO] EffectStateCommand: Effect state changed
+[2025-11-28 21:30:48] [INFO] Command executed, history size: 7
+[2025-11-28 21:30:48] [INFO] Effect state change recorded for undo/redo
+[2025-11-28 21:30:48] [INFO] Reverb intensity: 71.000000%
+[2025-11-28 21:30:48] [INFO] Reverb intensity: 71.000000%
+[2025-11-28 21:30:49] [INFO] Reverb intensity: 71.000000%
+[2025-11-28 21:32:17] [INFO] Application closing...
