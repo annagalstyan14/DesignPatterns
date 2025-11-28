@@ -773,6 +773,9 @@
  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Commands/ApplyEffect.h
  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Commands/CommandHistory.cpp
  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Commands/CommandHistory.h
+ /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Commands/EffectState.h
+ /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Commands/EffectStateCommand.cpp
+ /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Commands/EffectStateCommand.h
  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/EffectFactory.cpp
  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/EffectFactory.h
  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects/IEffect.h

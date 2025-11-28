@@ -772,6 +772,9 @@ AudioEditor_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platfo
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Commands/ApplyEffect.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Commands/CommandHistory.cpp \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Commands/CommandHistory.h \
+  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Commands/EffectState.h \
+  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Commands/EffectStateCommand.cpp \
+  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Commands/EffectStateCommand.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/EffectFactory.cpp \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/EffectFactory.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects/IEffect.h \
@@ -2390,6 +2393,10 @@ AudioEditor_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platfo
 
 /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/MainWindow.cpp:
 
+/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/EffectsPanel.cpp:
+
+/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/EffectWidget.cpp:
+
 /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/CaptionPanel.h:
 
 /opt/homebrew/opt/qt@6/lib/cmake/Qt6Concurrent/Qt6ConcurrentTargets-release.cmake:
@@ -3056,6 +3063,8 @@ AudioEditor_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platfo
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/is_abstract.h:
 
+/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Commands/EffectStateCommand.h:
+
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__type_traits/integral_constant.h:
 
 /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Effects/Volume.cpp:
@@ -3284,6 +3293,10 @@ AudioEditor_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platfo
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__mutex/once_flag.h:
 
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/algorithm:
+
+/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Commands/EffectStateCommand.cpp:
+
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__fwd/stack.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__memory/uninitialized_algorithms.h:
@@ -3385,6 +3398,8 @@ AudioEditor_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platfo
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__locale_dir/pad_and_output.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__new/align_val_t.h:
+
+/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Commands/EffectState.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/remove_copy.h:
 
@@ -3577,8 +3592,6 @@ AudioEditor_autogen/timestamp: /Applications/Xcode.app/Contents/Developer/Platfo
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__fwd/ios.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/_types/_fd_set.h:
-
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/algorithm:
 
 /opt/homebrew/opt/qt@6/lib/cmake/Qt6WidgetsPrivate/Qt6WidgetsPrivateConfigVersion.cmake:
 
@@ -3915,8 +3928,6 @@ CMakeFiles/4.0.1/CMakeCXXCompiler.cmake:
 /opt/homebrew/opt/qt@6/lib/cmake/Qt6Concurrent/Qt6ConcurrentDependencies.cmake:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__compare/common_comparison_category.h:
-
-/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/EffectsPanel.cpp:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__chrono/steady_clock.h:
 
@@ -4479,8 +4490,6 @@ AudioEditor_autogen/moc_predefs.h:
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/arm/_types.h:
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/__algorithm/copy_move_common.h:
-
-/Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/EffectWidget.cpp:
 
 /opt/homebrew/Cellar/qtbase/6.9.3_1/lib/QtCore.framework/Versions/A/Headers/qcoreevent.h:
 

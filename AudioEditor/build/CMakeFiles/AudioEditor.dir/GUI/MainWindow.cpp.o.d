@@ -1107,8 +1107,9 @@ CMakeFiles/AudioEditor.dir/GUI/MainWindow.cpp.o: \
   /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qlabel.h \
   /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/qpicture.h \
   /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/qtextdocument.h \
-  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/QMap \
+  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Commands/EffectState.h \
   /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/QString \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/QMap \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/AudioEngine.h \
   /opt/homebrew/opt/qt@6/lib/QtMultimedia.framework/Headers/QAudioSink \
   /opt/homebrew/opt/qt@6/lib/QtMultimedia.framework/Headers/qaudiosink.h \
@@ -1139,11 +1140,8 @@ CMakeFiles/AudioEditor.dir/GUI/MainWindow.cpp.o: \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Services/CaptionParser.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/AudioClip.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Adapters/AudioFileAdapter.h \
-  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Effects/Speed.h \
-  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Effects/../Logging/ILogger.h \
-  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Logging/ILogger.h \
-  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/EffectFactory.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Logging/ILogger.h \
+  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/EffectFactory.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Commands/CommandHistory.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Commands/ICommand.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Commands/../Logging/ILogger.h \
@@ -1152,12 +1150,14 @@ CMakeFiles/AudioEditor.dir/GUI/MainWindow.cpp.o: \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Logging/FileLogger.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/fstream \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Effects/Reverb.h \
+  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Effects/../Logging/ILogger.h \
+  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Effects/../Constants.h \
+  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Effects/Speed.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Effects/Volume.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Commands/ApplyEffect.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Commands/../AudioClip.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Commands/../Effects/IEffect.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Commands/EffectStateCommand.h \
-  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Commands/../../GUI/EffectsPanel.h \
   /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/QApplication \
   /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qapplication.h \
   /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/QScreen \

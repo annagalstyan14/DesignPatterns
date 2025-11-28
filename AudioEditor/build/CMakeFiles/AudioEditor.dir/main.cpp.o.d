@@ -1112,5 +1112,6 @@ CMakeFiles/AudioEditor.dir/main.cpp.o: \
   /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qlabel.h \
   /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/qpicture.h \
   /opt/homebrew/opt/qt@6/lib/QtGui.framework/Headers/qtextdocument.h \
-  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/QMap \
-  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/QString
+  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Commands/EffectState.h \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/QString \
+  /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/QMap

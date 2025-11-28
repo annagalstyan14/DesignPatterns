@@ -1044,6 +1044,7 @@ CMakeFiles/AudioEditor.dir/AudioEditor_autogen/mocs_compilation.cpp.o: \
   /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qscrollarea.h \
   /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/QComboBox \
   /opt/homebrew/opt/qt@6/lib/QtWidgets.framework/Headers/qcombobox.h \
+  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/AudioEditor_autogen/2LCCYRVYXB/../../../GUI/../Core/Commands/EffectState.h \
   /opt/homebrew/opt/qt@6/lib/QtCore.framework/Headers/QString \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/AudioEditor_autogen/2LCCYRVYXB/moc_MainWindow.cpp \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/build/AudioEditor_autogen/2LCCYRVYXB/../../../GUI/MainWindow.h \

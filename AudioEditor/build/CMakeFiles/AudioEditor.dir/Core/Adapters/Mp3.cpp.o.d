@@ -754,6 +754,7 @@ CMakeFiles/AudioEditor.dir/Core/Adapters/Mp3.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/_types/_nl_item.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/cstdarg \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Adapters/../Logging/ILogger.h \
+  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Adapters/../Constants.h \
   /opt/homebrew/Cellar/mpg123/1.33.3/include/mpg123.h \
   /opt/homebrew/Cellar/mpg123/1.33.3/include/fmt123.h \
   /opt/homebrew/include/lame/lame.h

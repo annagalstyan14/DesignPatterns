@@ -7,6 +7,11 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
+# Compiler warnings for better code quality
+if(CMAKE_CXX_COMPILER_ID MATCHES "Clang|GNU")
+    add_compile_options(-Wall -Wextra -Wpedantic -Wno-unused-parameter)
+endif()
+
 # Find Qt
 set(CMAKE_PREFIX_PATH "/opt/homebrew/opt/qt@6" ${CMAKE_PREFIX_PATH})
 find_package(Qt6 REQUIRED COMPONENTS Core Widgets Multimedia Concurrent)
@@ -19,7 +24,7 @@ pkg_check_modules(MPG123 REQUIRED libmpg123)
 find_library(LAME_LIBRARY NAMES mp3lame lame)
 find_path(LAME_INCLUDE_DIR lame/lame.h)
 
-# Source files (no src/ prefix - files are directly in Core/ and GUI/)
+# Source files
 set(CORE_SOURCES
     Core/AudioClip.cpp
     Core/EffectFactory.cpp
@@ -33,6 +38,7 @@ set(CORE_SOURCES
     Core/Effects/Normalize.cpp
     Core/Commands/CommandHistory.cpp
     Core/Commands/ApplyEffect.cpp
+    Core/Commands/EffectStateCommand.cpp  # NEW - moved from header-only
     Core/Services/CaptionParser.cpp
 )
 
@@ -46,7 +52,7 @@ set(GUI_SOURCES
     GUI/CaptionPanel.cpp
 )
 
-# Include directories (no src/ prefix)
+# Include directories
 include_directories(
     ${CMAKE_SOURCE_DIR}
     ${CMAKE_SOURCE_DIR}/Core
@@ -60,7 +66,7 @@ include_directories(
     ${LAME_INCLUDE_DIR}
 )
 
-# Executable (main.cpp is in root, not src/)
+# Executable
 add_executable(AudioEditor 
     main.cpp
     ${CORE_SOURCES}

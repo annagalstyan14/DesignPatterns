@@ -2,185 +2,124 @@
 #include <algorithm>
 #include <cmath>
 
-constexpr int Reverb::COMB_TUNING[NUM_COMBS];
-constexpr int Reverb::ALLPASS_TUNING[NUM_ALLPASSES];
-
 Reverb::Reverb(std::shared_ptr<ILogger> logger)
-    : wetMix_(0.3f)
-    , dryMix_(1.0f)
-    , roomSize_(0.5f)
-    , damping_(0.5f)
-    , preDelayMs_(20.0f)
-    , width_(1.0f)
-    , earlyMix_(0.5f)
-    , feedback_(0.7f)
-    , damp1_(0.5f)
-    , damp2_(0.5f)
-    , dcBlockL_(0.0f)
-    , dcBlockR_(0.0f)
-    , logger_(logger)
+    : wetMix_(audio::reverb::kDefaultWetMix)
+    , roomSize_(audio::reverb::kDefaultRoomSize)
+    , damping_(audio::reverb::kDefaultDamping)
+    , feedback_(audio::reverb::kDefaultFeedback)
+    , logger_(std::move(logger))
 {
-    initializeFilters();
-    updateParameters();
-}
-
-void Reverb::initializeFilters() {
-    for (int i = 0; i < NUM_COMBS; ++i) {
-        combsL_[i].init(COMB_TUNING[i]);
-        combsR_[i].init(COMB_TUNING[i] + STEREO_SPREAD);
+    // Initialize delay lines with prime number lengths to avoid resonance
+    delayBuffers_.reserve(audio::reverb::kNumDelayLines);
+    delayIndices_.reserve(audio::reverb::kNumDelayLines);
+    
+    for (size_t i = 0; i < audio::reverb::kNumDelayLines; ++i) {
+        delayBuffers_.emplace_back(audio::reverb::kDelayLineLengths[i], 0.0f);
+        delayIndices_.push_back(0);
     }
     
-    for (int i = 0; i < NUM_ALLPASSES; ++i) {
-        allpassesL_[i].init(ALLPASS_TUNING[i]);
-        allpassesR_[i].init(ALLPASS_TUNING[i] + STEREO_SPREAD);
-    }
-    
-    earlyL_.init(SAMPLE_RATE);
-    earlyR_.init(SAMPLE_RATE);
-    
-    size_t maxPreDelay = static_cast<size_t>(SAMPLE_RATE * 0.1);
-    preDelayBufferL_.resize(maxPreDelay, 0.0f);
-    preDelayBufferR_.resize(maxPreDelay, 0.0f);
+    // Pre-delay buffer (~20ms at 44.1kHz)
+    preDelayBuffer_.resize(audio::reverb::kPreDelaySamples, 0.0f);
     preDelayIndex_ = 0;
-    preDelaySamples_ = static_cast<size_t>((preDelayMs_ / 1000.0f) * SAMPLE_RATE);
+    
+    updateParameters();
 }
 
 void Reverb::setIntensity(float intensityPercent) {
-    float intensity = std::clamp(intensityPercent / 100.0f, 0.0f, 1.0f);
-    
-    dryMix_ = 1.0f;
-    
-    // Stronger wet signal
-    wetMix_ = 0.4f + intensity * 1.0f;  // 0.4 to 1.4
-    
-    roomSize_ = 0.4f + intensity * 0.45f;  // 0.4 to 0.85
-    damping_ = 0.5f - intensity * 0.25f;
-    preDelayMs_ = 10.0f + intensity * 30.0f;
-    earlyMix_ = 0.35f;
-    
+    const float intensity = std::clamp(intensityPercent / 100.0f, 0.0f, 1.0f);
+
+    wetMix_ = 0.3f + intensity * 0.7f;
+    roomSize_ = 0.5f + intensity * 0.5f;
+    damping_ = 0.2f + (1.0f - intensity) * 0.2f;
+
     updateParameters();
     
     if (logger_) {
-        logger_->log("Reverb intensity: " + std::to_string(intensityPercent) + 
-                     "% (wet: " + std::to_string(wetMix_) + 
-                     ", room: " + std::to_string(roomSize_) + ")");
+        logger_->log("Reverb intensity set to " + std::to_string(intensityPercent) + 
+                     "% (wet: " + std::to_string(wetMix_) + ")");
+    }
+}
+
+void Reverb::setParameter(const std::string& name, float value) {
+    if (name == "intensity") {
+        setIntensity(value * 100.0f);
+    } else if (name == "wetMix") {
+        setWetMix(value);
+    } else if (name == "roomSize") {
+        setRoomSize(value);
+    } else if (name == "damping") {
+        setDamping(value);
     }
 }
 
 void Reverb::updateParameters() {
-    feedback_ = 0.65f + roomSize_ * 0.25f;  // 0.65 to 0.9
-    feedback_ = std::clamp(feedback_, 0.0f, 0.9f);
-    
-    damp1_ = damping_;
-    damp2_ = 1.0f - damping_;
-    
-    preDelaySamples_ = static_cast<size_t>((preDelayMs_ / 1000.0f) * SAMPLE_RATE);
-    if (preDelaySamples_ >= preDelayBufferL_.size()) {
-        preDelaySamples_ = preDelayBufferL_.size() - 1;
-    }
+    feedback_ = 0.6f + roomSize_ * 0.4f;
 }
 
-size_t Reverb::apply(float* buffer, size_t bufferSize) {
-    const float combInputGain = 0.08f;   // Back up from 0.025
-    const float combOutputGain = 0.4f;   // Back up from 0.25
+void Reverb::apply(std::vector<float>& buffer) {
+    if (buffer.empty()) return;
     
-    const float wet1 = wetMix_ * (width_ / 2.0f + 0.5f);
-    const float wet2 = wetMix_ * ((1.0f - width_) / 2.0f);
+    const float dryMix = 1.0f - wetMix_;
+    const size_t bufferSize = buffer.size();
     
-    const float dcCoeff = 0.995f;
-    
-    for (size_t i = 0; i < bufferSize; i += 2) {
-        float inputL = buffer[i];
-        float inputR = buffer[i + 1];
+    for (size_t i = 0; i + 1 < bufferSize; i += 2) {
+        const float inputL = buffer[i];
+        const float inputR = buffer[i + 1];
+        
+        // Mix to mono for reverb input
+        const float monoInput = (inputL + inputR) * 0.5f;
         
         // Pre-delay
-        float delayedL, delayedR;
-        if (preDelaySamples_ > 0) {
-            size_t readIndex = (preDelayIndex_ + preDelayBufferL_.size() - preDelaySamples_) 
-                               % preDelayBufferL_.size();
-            delayedL = preDelayBufferL_[readIndex];
-            delayedR = preDelayBufferR_[readIndex];
+        const float delayedInput = preDelayBuffer_[preDelayIndex_];
+        preDelayBuffer_[preDelayIndex_] = monoInput;
+        preDelayIndex_ = (preDelayIndex_ + 1) % preDelayBuffer_.size();
+        
+        // Sum of delay lines with different feedback amounts
+        float reverbSum = 0.0f;
+        
+        for (size_t d = 0; d < delayBuffers_.size(); ++d) {
+            auto& buf = delayBuffers_[d];
+            size_t& idx = delayIndices_[d];
             
-            preDelayBufferL_[preDelayIndex_] = inputL;
-            preDelayBufferR_[preDelayIndex_] = inputR;
-            preDelayIndex_ = (preDelayIndex_ + 1) % preDelayBufferL_.size();
-        } else {
-            delayedL = inputL;
-            delayedR = inputR;
+            const float delayed = buf[idx];
+            
+            // Apply damping (simple low-pass)
+            const float damped = delayed * (1.0f - damping_) + delayedInput * damping_ * 0.1f;
+            
+            // Write back with feedback
+            buf[idx] = delayedInput + damped * feedback_;
+            
+            // Advance index
+            idx = (idx + 1) % buf.size();
+            
+            // Alternate sign for better diffusion
+            reverbSum += delayed * ((d % 2 == 0) ? 1.0f : -1.0f);
         }
         
-        // Early reflections
-        float earlyL = earlyL_.process(delayedL) * 0.8f;
-        float earlyR = earlyR_.process(delayedR) * 0.8f;
+        // Normalize reverb sum
+        reverbSum /= static_cast<float>(delayBuffers_.size());
         
-        // Comb filter input
-        float combInputL = delayedL * combInputGain;
-        float combInputR = delayedR * combInputGain;
-        
-        // Parallel comb filters
-        float combOutL = 0.0f;
-        float combOutR = 0.0f;
-        
-        for (int c = 0; c < NUM_COMBS; ++c) {
-            combOutL += combsL_[c].process(combInputL, feedback_, damp1_, damp2_);
-            combOutR += combsR_[c].process(combInputR, feedback_, damp1_, damp2_);
+        // Soft clipping to prevent harshness
+        constexpr float threshold = audio::reverb::kSoftClipThreshold;
+        if (reverbSum > threshold) {
+            reverbSum = threshold + (reverbSum - threshold) * 0.3f;
+        } else if (reverbSum < -threshold) {
+            reverbSum = -threshold + (reverbSum + threshold) * 0.3f;
         }
         
-        combOutL *= combOutputGain;
-        combOutR *= combOutputGain;
-        
-        // Allpass filters
-        for (int a = 0; a < NUM_ALLPASSES; ++a) {
-            combOutL = allpassesL_[a].process(combOutL, 0.5f);
-            combOutR = allpassesR_[a].process(combOutR, 0.5f);
-        }
-        
-        // DC blocker
-        float prevDcL = dcBlockL_;
-        float prevDcR = dcBlockR_;
-        dcBlockL_ = combOutL + dcCoeff * dcBlockL_;
-        dcBlockR_ = combOutR + dcCoeff * dcBlockR_;
-        combOutL = dcBlockL_ - prevDcL;
-        combOutR = dcBlockR_ - prevDcR;
-        
-        // Mix early and late
-        float reverbL = earlyL * earlyMix_ + combOutL * (1.0f - earlyMix_);
-        float reverbR = earlyR * earlyMix_ + combOutR * (1.0f - earlyMix_);
-        
-        // Stereo width
-        float wetL = reverbL * wet1 + reverbR * wet2;
-        float wetR = reverbR * wet1 + reverbL * wet2;
-        
-        // Additive mix
-        float outL = inputL * dryMix_ + wetL;
-        float outR = inputR * dryMix_ + wetR;
-        
-        // Tanh saturation - smooth and musical
-        buffer[i]     = std::tanh(outL);
-        buffer[i + 1] = std::tanh(outR);
+        // Mix dry and wet
+        buffer[i] = std::clamp(inputL * dryMix + reverbSum * wetMix_, -1.0f, 1.0f);
+        buffer[i + 1] = std::clamp(inputR * dryMix + reverbSum * wetMix_, -1.0f, 1.0f);
     }
-    
-    return bufferSize;
 }
 
 void Reverb::reset() {
-    for (int i = 0; i < NUM_COMBS; ++i) {
-        combsL_[i].clear();
-        combsR_[i].clear();
+    for (auto& buf : delayBuffers_) {
+        std::fill(buf.begin(), buf.end(), 0.0f);
     }
-    
-    for (int i = 0; i < NUM_ALLPASSES; ++i) {
-        allpassesL_[i].clear();
-        allpassesR_[i].clear();
+    for (auto& idx : delayIndices_) {
+        idx = 0;
     }
-    
-    earlyL_.clear();
-    earlyR_.clear();
-    
-    std::fill(preDelayBufferL_.begin(), preDelayBufferL_.end(), 0.0f);
-    std::fill(preDelayBufferR_.begin(), preDelayBufferR_.end(), 0.0f);
+    std::fill(preDelayBuffer_.begin(), preDelayBuffer_.end(), 0.0f);
     preDelayIndex_ = 0;
-    
-    dcBlockL_ = 0.0f;
-    dcBlockR_ = 0.0f;
 }

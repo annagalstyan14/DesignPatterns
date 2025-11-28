@@ -1,46 +1,33 @@
-#ifndef EFFECT_STATE_COMMAND_H
-#define EFFECT_STATE_COMMAND_H
+#pragma once
 
 #include "ICommand.h"
-#include "../../GUI/EffectsPanel.h"
+#include "EffectState.h"  // State structs defined separately to avoid circular deps
 #include "../Logging/ILogger.h"
 #include <memory>
+
+// Forward declare EffectsPanel (avoid circular include with GUI)
+class EffectsPanel;
 
 /**
  * @brief Command for undoing/redoing effect state changes
  * 
  * Stores the before and after state of the effects panel,
  * allowing undo/redo of effect additions, removals, and parameter changes.
+ * 
+ * Design Pattern: Command (ConcreteCommand) + Memento (state snapshots)
  */
 class EffectStateCommand : public ICommand {
 public:
     EffectStateCommand(EffectsPanel* panel, 
-                       const EffectsPanelState& oldState,
-                       const EffectsPanelState& newState,
-                       std::shared_ptr<ILogger> logger)
-        : panel_(panel)
-        , oldState_(oldState)
-        , newState_(newState)
-        , logger_(logger)
-    {
-    }
+                       EffectsPanelState oldState,
+                       EffectsPanelState newState,
+                       std::shared_ptr<ILogger> logger);
 
-    void execute() override {
-        // Command is created after the change, so execute just logs
-        logger_->log("EffectStateCommand: Effect state changed");
-    }
-
-    void undo() override {
-        logger_->log("EffectStateCommand: Undoing effect state change");
-        panel_->restoreState(oldState_);
-    }
-
-    void redo() override {
-        logger_->log("EffectStateCommand: Redoing effect state change");
-        panel_->restoreState(newState_);
-    }
-
-    std::string getDescription() const override {
+    void execute() override;
+    void undo() override;
+    void redo() override;
+    
+    [[nodiscard]] std::string getDescription() const override {
         return "Effect Change";
     }
 
@@ -50,5 +37,3 @@ private:
     EffectsPanelState newState_;
     std::shared_ptr<ILogger> logger_;
 };
-
-#endif // EFFECT_STATE_COMMAND_H

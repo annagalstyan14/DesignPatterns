@@ -275,6 +275,30 @@ Core/Commands/CommandHistory.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Commands/CommandHistory.cpp.s
 .PHONY : Core/Commands/CommandHistory.cpp.s
 
+Core/Commands/EffectStateCommand.o: Core/Commands/EffectStateCommand.cpp.o
+.PHONY : Core/Commands/EffectStateCommand.o
+
+# target to build an object file
+Core/Commands/EffectStateCommand.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Commands/EffectStateCommand.cpp.o
+.PHONY : Core/Commands/EffectStateCommand.cpp.o
+
+Core/Commands/EffectStateCommand.i: Core/Commands/EffectStateCommand.cpp.i
+.PHONY : Core/Commands/EffectStateCommand.i
+
+# target to preprocess a source file
+Core/Commands/EffectStateCommand.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Commands/EffectStateCommand.cpp.i
+.PHONY : Core/Commands/EffectStateCommand.cpp.i
+
+Core/Commands/EffectStateCommand.s: Core/Commands/EffectStateCommand.cpp.s
+.PHONY : Core/Commands/EffectStateCommand.s
+
+# target to generate assembly for a file
+Core/Commands/EffectStateCommand.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AudioEditor.dir/build.make CMakeFiles/AudioEditor.dir/Core/Commands/EffectStateCommand.cpp.s
+.PHONY : Core/Commands/EffectStateCommand.cpp.s
+
 Core/EffectFactory.o: Core/EffectFactory.cpp.o
 .PHONY : Core/EffectFactory.o
 
@@ -709,6 +733,9 @@ help:
 	@echo "... Core/Commands/CommandHistory.o"
 	@echo "... Core/Commands/CommandHistory.i"
 	@echo "... Core/Commands/CommandHistory.s"
+	@echo "... Core/Commands/EffectStateCommand.o"
+	@echo "... Core/Commands/EffectStateCommand.i"
+	@echo "... Core/Commands/EffectStateCommand.s"
 	@echo "... Core/EffectFactory.o"
 	@echo "... Core/EffectFactory.i"
 	@echo "... Core/EffectFactory.s"

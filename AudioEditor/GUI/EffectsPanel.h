@@ -8,7 +8,7 @@
 #include <QLabel>
 #include <vector>
 #include <memory>
-#include "../Core/Commands/EffectStateCommand.h"  // For EffectsPanelState
+#include "../Core/Commands/EffectState.h"  // Just the state structs, no circular dep
 
 class EffectWidget;
 class IEffect;
