@@ -5,16 +5,6 @@
 #include "../Constants.h"
 #include <memory>
 
-/**
- * @brief Speed change effect using high-quality interpolation
- * 
- * Changes playback speed by resampling. Uses cubic interpolation
- * for smooth results at non-integer speed factors.
- * 
- * Design Pattern: Strategy (ConcreteStrategy)
- * 
- * @note This effect changes the buffer size (faster = shorter, slower = longer)
- */
 class SpeedChangeEffect : public IEffect {
 public:
     SpeedChangeEffect(float speedFactor, std::shared_ptr<ILogger> logger);

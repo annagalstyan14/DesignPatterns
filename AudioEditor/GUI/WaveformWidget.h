@@ -5,17 +5,6 @@
 #include <QPixmap>
 #include <vector>
 
-/**
- * @brief Widget that displays audio waveform with playhead
- * 
- * Features:
- * - Displays waveform computed from audio samples
- * - Shows moving playhead during playback
- * - Click to seek
- * - Zoom in/out with mouse wheel
- * 
- * Design pattern: Observer (receives position updates via slot)
- */
 class WaveformWidget : public QWidget {
     Q_OBJECT
 

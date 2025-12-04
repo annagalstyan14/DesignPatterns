@@ -20,7 +20,6 @@ bool AudioClip::load() {
         return false;
     }
 
-    // Copy samples from adapter (only copy, adapter owns original)
     samples_ = std::vector<float>(audioFile_->getSamples());
     isLoaded_ = true;
     
@@ -41,7 +40,6 @@ bool AudioClip::save(const std::string& outputPath) {
     }
 
     if (logger_) {
-        // Log stats before save
         const auto [minIt, maxIt] = std::minmax_element(samples_.begin(), samples_.end());
         const double sumSquares = std::accumulate(samples_.begin(), samples_.end(), 0.0,
             [](double acc, float s) { return acc + s * s; });
@@ -64,7 +62,6 @@ void AudioClip::addEffect(std::shared_ptr<IEffect> effect) {
 void AudioClip::applyEffects() {
     if (!isLoaded_ || samples_.empty()) return;
 
-    // Calculate original RMS for normalization
     const double sumSquaresBefore = std::accumulate(samples_.begin(), samples_.end(), 0.0,
         [](double acc, float s) { return acc + s * s; });
     const double rmsBefore = std::sqrt(sumSquaresBefore / samples_.size());
@@ -73,14 +70,12 @@ void AudioClip::applyEffects() {
         logger_->log("Before effects - RMS: " + std::to_string(rmsBefore));
     }
 
-    // Apply all effects (using new vector& interface - safe!)
     for (auto& effect : effects_) {
         if (effect) {
             effect->apply(samples_);
         }
     }
 
-    // Normalize at the end to match original loudness
     auto normalizer = std::make_shared<NormalizeEffect>(logger_, static_cast<float>(rmsBefore));
     normalizer->apply(samples_);
 

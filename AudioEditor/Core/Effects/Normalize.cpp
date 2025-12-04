@@ -48,17 +48,14 @@ void NormalizeEffect::apply(std::vector<float>& buffer) {
                      ", Peak: " + std::to_string(currentPeak));
     }
     
-    // Calculate gain to achieve target RMS
     const float rmsGain = (currentRMS > audio::normalize::kMinRMSThreshold) 
                          ? (targetRMS_ / currentRMS) 
                          : 1.0f;
     
-    // Apply RMS gain
     for (float& sample : buffer) {
         sample *= rmsGain;
     }
     
-    // Apply peak limiter to prevent clipping
     const float newPeak = calculatePeak(buffer);
     if (newPeak > targetPeak_) {
         const float peakGain = targetPeak_ / newPeak;

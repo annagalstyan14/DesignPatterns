@@ -5,23 +5,14 @@
 #include "../Constants.h"
 #include <memory>
 
-/**
- * @brief MP3 file adapter using mpg123 for decoding and LAME for encoding
- * 
- * Design Pattern: Adapter (ConcreteAdapter)
- * - Adaptee: mpg123 library, LAME library
- * - Target: AudioFileAdapter interface
- */
 class Mp3Adapter : public AudioFileAdapter {
 public:
     explicit Mp3Adapter(std::shared_ptr<ILogger> logger);
     ~Mp3Adapter() override = default;
     
-    // Non-copyable (owns resources)
     Mp3Adapter(const Mp3Adapter&) = delete;
     Mp3Adapter& operator=(const Mp3Adapter&) = delete;
     
-    // Movable
     Mp3Adapter(Mp3Adapter&&) = default;
     Mp3Adapter& operator=(Mp3Adapter&&) = default;
     

@@ -46,11 +46,9 @@ void WaveformWidget::setSamples(const std::vector<float>& samples,
         durationMs_ = 0;
     }
     
-    // Reset view when samples change
     zoom_ = 1.0f;
     scrollOffsetMs_ = 0;
     
-    // Clamp playhead to valid range
     if (playheadPositionMs_ > durationMs_) {
         playheadPositionMs_ = 0;
     }
@@ -75,17 +73,14 @@ void WaveformWidget::clear() {
 }
 
 void WaveformWidget::setPlayheadPosition(qint64 positionMs) {
-    // Clamp to valid range
     positionMs = std::clamp(positionMs, qint64(0), durationMs_);
     
     if (playheadPositionMs_ != positionMs) {
         playheadPositionMs_ = positionMs;
         
-        // Auto-scroll to keep playhead visible when zoomed in
         if (zoom_ > 1.0f && durationMs_ > 0) {
             qint64 visibleDuration = durationMs_ / zoom_;
             
-            // If playhead is past 80% of visible area, scroll
             qint64 scrollThreshold = scrollOffsetMs_ + (visibleDuration * 0.8);
             if (playheadPositionMs_ > scrollThreshold && playheadPositionMs_ < durationMs_) {
                 scrollOffsetMs_ = playheadPositionMs_ - (visibleDuration * 0.2);
@@ -93,7 +88,6 @@ void WaveformWidget::setPlayheadPosition(qint64 positionMs) {
                 cacheValid_ = false;
             }
             
-            // If playhead is before visible area, scroll back
             if (playheadPositionMs_ < scrollOffsetMs_) {
                 scrollOffsetMs_ = playheadPositionMs_;
                 cacheValid_ = false;
@@ -122,16 +116,39 @@ qint64 WaveformWidget::getDurationMs() const {
 void WaveformWidget::computePeaks() {
     peaks_.clear();
     
-    if (samples_.empty() || width() <= 0 || durationMs_ <= 0) {
+    if (samples_.empty()) {
         return;
     }
     
     int widgetWidth = width();
+    if (widgetWidth <= 0) {
+        return;
+    }
+    
+    if (durationMs_ <= 0) {
+        return;
+    }
+    
+    if (sampleRate_ <= 0 || channels_ <= 0) {
+        return;
+    }
+    
     peaks_.resize(widgetWidth);
     
     qint64 visibleDuration = durationMs_ / zoom_;
+    if (visibleDuration <= 0) {
+        visibleDuration = durationMs_;
+    }
+    
     qint64 visibleSamples = (visibleDuration * sampleRate_ * channels_) / 1000;
+    if (visibleSamples <= 0) {
+        return;
+    }
+    
     double samplesPerPixel = static_cast<double>(visibleSamples) / widgetWidth;
+    if (samplesPerPixel <= 0) {
+        samplesPerPixel = 1.0;
+    }
     
     qint64 startSample = (scrollOffsetMs_ * sampleRate_ * channels_) / 1000;
     
@@ -141,7 +158,6 @@ void WaveformWidget::computePeaks() {
         qint64 sampleStart = startSample + static_cast<qint64>(x * samplesPerPixel);
         qint64 sampleEnd = startSample + static_cast<qint64>((x + 1) * samplesPerPixel);
         
-        // Clamp to valid range
         sampleStart = std::clamp(sampleStart, qint64(0), static_cast<qint64>(samples_.size()));
         sampleEnd = std::clamp(sampleEnd, qint64(0), static_cast<qint64>(samples_.size()));
         
@@ -186,7 +202,6 @@ void WaveformWidget::renderWaveform() {
     int widgetHeight = height();
     int centerY = widgetHeight / 2;
     
-    // Draw center line
     painter.setPen(QPen(centerLineColor_, 1));
     painter.drawLine(0, centerY, width(), centerY);
     
@@ -206,7 +221,6 @@ void WaveformWidget::renderWaveform() {
         int minY = centerY - static_cast<int>(scaledMax * (centerY - 4));
         int maxY = centerY - static_cast<int>(scaledMin * (centerY - 4));
         
-        // Clamp to widget bounds
         minY = std::clamp(minY, 0, widgetHeight);
         maxY = std::clamp(maxY, 0, widgetHeight);
         
@@ -231,7 +245,7 @@ void WaveformWidget::paintEvent(QPaintEvent* event) {
     Q_UNUSED(event);
     
     QPainter painter(this);
-    painter.setClipRect(rect());  // Ensure we don't draw outside bounds
+    painter.setClipRect(rect());
     
     if (!cacheValid_ || waveformCache_.size() != size()) {
         computePeaks();
@@ -240,7 +254,6 @@ void WaveformWidget::paintEvent(QPaintEvent* event) {
     
     painter.drawPixmap(0, 0, waveformCache_);
     
-    // Draw playhead
     if (durationMs_ > 0) {
         int playheadX = positionToX(playheadPositionMs_);
         
@@ -258,7 +271,6 @@ void WaveformWidget::paintEvent(QPaintEvent* event) {
         }
     }
     
-    // Draw border
     painter.setPen(QPen(QColor(0x3d, 0x3d, 0x3d), 1));
     painter.setBrush(Qt::NoBrush);
     painter.drawRect(rect().adjusted(0, 0, -1, -1));

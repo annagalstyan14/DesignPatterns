@@ -14,15 +14,9 @@
 #include <memory>
 #include <map>
 
-// Forward declarations
 class IEffect;
 class ILogger;
 
-/**
- * @brief Widget for a single audio effect with parameter controls
- * 
- * Displays effect name, enable checkbox, parameter sliders, and remove button.
- */
 class EffectWidget : public QFrame {
     Q_OBJECT
 

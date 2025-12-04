@@ -23,15 +23,7 @@ std::vector<Caption> CaptionParser::parseSRT(const QString& filePath) {
     
     QTextStream in(&file);
     in.setEncoding(QStringConverter::Utf8);
-    
-    // SRT format:
-    // 1
-    // 00:00:01,234 --> 00:00:04,567
-    // Caption text line 1
-    // Caption text line 2 (optional)
-    // 
-    // 2
-    // ...
+
     
     enum class State { Index, Timestamp, Text };
     State state = State::Index;
@@ -39,7 +31,6 @@ std::vector<Caption> CaptionParser::parseSRT(const QString& filePath) {
     Caption currentCaption;
     QStringList textLines;
     
-    // Regex for timestamp line
     QRegularExpression timestampRegex(
         R"((\d{2}:\d{2}:\d{2}[,\.]\d{3})\s*-->\s*(\d{2}:\d{2}:\d{2}[,\.]\d{3}))"
     );
@@ -49,20 +40,16 @@ std::vector<Caption> CaptionParser::parseSRT(const QString& filePath) {
         
         switch (state) {
             case State::Index:
-                // Skip index number, look for timestamp
                 if (line.isEmpty()) {
                     continue;
                 }
-                // Check if this line is actually a timestamp (some SRT files skip index)
                 if (timestampRegex.match(line).hasMatch()) {
-                    // This is a timestamp line, process it
                     auto match = timestampRegex.match(line);
                     currentCaption.startTime = parseTimestamp(match.captured(1));
                     currentCaption.endTime = parseTimestamp(match.captured(2));
                     textLines.clear();
                     state = State::Text;
                 } else {
-                    // Assume it's an index, next line should be timestamp
                     state = State::Timestamp;
                 }
                 break;
@@ -75,7 +62,6 @@ std::vector<Caption> CaptionParser::parseSRT(const QString& filePath) {
                     textLines.clear();
                     state = State::Text;
                 } else {
-                    // Invalid format, try to recover
                     if (logger_) {
                         logger_->warning("Invalid SRT timestamp: " + line.toStdString());
                     }
@@ -86,21 +72,18 @@ std::vector<Caption> CaptionParser::parseSRT(const QString& filePath) {
                 
             case State::Text:
                 if (line.isEmpty()) {
-                    // End of this caption
                     if (!textLines.isEmpty()) {
                         currentCaption.text = textLines.join(" ");
                         captions.push_back(currentCaption);
                     }
                     state = State::Index;
                 } else {
-                    // Add text line
                     textLines.append(line);
                 }
                 break;
         }
     }
     
-    // Don't forget last caption if file doesn't end with blank line
     if (state == State::Text && !textLines.isEmpty()) {
         currentCaption.text = textLines.join(" ");
         captions.push_back(currentCaption);
@@ -121,7 +104,7 @@ double CaptionParser::parseTimestamp(const QString& timestamp) {
     // Returns seconds as double
     
     QString ts = timestamp;
-    ts.replace(',', '.');  // Normalize separator
+    ts.replace(',', '.');
     
     QStringList parts = ts.split(':');
     if (parts.size() != 3) {
@@ -197,17 +180,14 @@ bool CaptionParser::exportSRT(const QString& filePath,
     for (size_t i = 0; i < captions.size(); ++i) {
         const Caption& cap = captions[i];
         
-        // Index
+
         out << (i + 1) << "\n";
         
-        // Timestamps
         out << formatTimestamp(cap.startTime) << " --> " 
             << formatTimestamp(cap.endTime) << "\n";
         
-        // Text
         out << cap.text << "\n";
         
-        // Blank line separator
         out << "\n";
     }
     

@@ -1,21 +1,12 @@
 #pragma once
 
 #include "ICommand.h"
-#include "EffectState.h"  // State structs defined separately to avoid circular deps
+#include "EffectState.h"
 #include "../Logging/ILogger.h"
 #include <memory>
 
-// Forward declare EffectsPanel (avoid circular include with GUI)
 class EffectsPanel;
 
-/**
- * @brief Command for undoing/redoing effect state changes
- * 
- * Stores the before and after state of the effects panel,
- * allowing undo/redo of effect additions, removals, and parameter changes.
- * 
- * Design Pattern: Command (ConcreteCommand) + Memento (state snapshots)
- */
 class EffectStateCommand : public ICommand {
 public:
     EffectStateCommand(EffectsPanel* panel, 

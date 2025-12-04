@@ -8,17 +8,8 @@
 #include <QHBoxLayout>
 #include <QToolButton>
 
-// Forward declaration
 enum class PlaybackState;
 
-/**
- * @brief Transport bar widget with playback controls
- * 
- * Contains play/pause, stop buttons, time slider, time display, and volume.
- * Emits signals when user interacts with controls.
- * 
- * Design pattern: Observer (Qt signals/slots)
- */
 class TransportBar : public QWidget {
     Q_OBJECT
 

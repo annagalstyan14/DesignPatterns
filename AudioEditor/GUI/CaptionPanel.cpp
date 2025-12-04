@@ -24,7 +24,6 @@ void CaptionPanel::setupUI() {
     mainLayout_->setContentsMargins(10, 10, 10, 10);
     mainLayout_->setSpacing(10);
 
-    // --- Header ---
     headerLabel_ = new QLabel("Captions", this);
     headerLabel_->setStyleSheet(R"(
         QLabel {
@@ -36,7 +35,6 @@ void CaptionPanel::setupUI() {
     )");
     mainLayout_->addWidget(headerLabel_);
 
-    // --- Current Caption Display ---
     currentCaptionLabel_ = new QLabel(this);
     currentCaptionLabel_->setWordWrap(true);
     currentCaptionLabel_->setAlignment(Qt::AlignCenter);
@@ -54,7 +52,6 @@ void CaptionPanel::setupUI() {
     currentCaptionLabel_->setText("No caption");
     mainLayout_->addWidget(currentCaptionLabel_);
 
-    // --- Button Row ---
     QHBoxLayout* buttonLayout = new QHBoxLayout();
     buttonLayout->setSpacing(8);
 
@@ -105,7 +102,6 @@ void CaptionPanel::setupUI() {
     buttonLayout->addWidget(exportButton_);
     mainLayout_->addLayout(buttonLayout);
 
-    // --- Caption Table ---
     captionTable_ = new QTableWidget(this);
     captionTable_->setColumnCount(3);
     captionTable_->setHorizontalHeaderLabels({"Start", "End", "Text"});
@@ -116,7 +112,6 @@ void CaptionPanel::setupUI() {
     captionTable_->verticalHeader()->setVisible(false);
     captionTable_->setShowGrid(false);
     
-    // Column widths
     captionTable_->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Fixed);
     captionTable_->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Fixed);
     captionTable_->horizontalHeader()->setSectionResizeMode(2, QHeaderView::Stretch);
@@ -174,7 +169,6 @@ void CaptionPanel::setupUI() {
     connect(captionTable_, &QTableWidget::cellDoubleClicked,
             this, &CaptionPanel::onCaptionDoubleClicked);
 
-    // --- No Captions Label (overlay) ---
     noCaptionsLabel_ = new QLabel("No captions loaded.\nClick 'Import SRT' to load a subtitle file.", this);
     noCaptionsLabel_->setAlignment(Qt::AlignCenter);
     noCaptionsLabel_->setStyleSheet(R"(
@@ -188,7 +182,6 @@ void CaptionPanel::setupUI() {
         }
     )");
 
-    // Stack table and label
     QWidget* tableContainer = new QWidget(this);
     QVBoxLayout* tableLayout = new QVBoxLayout(tableContainer);
     tableLayout->setContentsMargins(0, 0, 0, 0);
@@ -196,11 +189,9 @@ void CaptionPanel::setupUI() {
     
     mainLayout_->addWidget(tableContainer, 1);
     
-    // Position no captions label over table (initially visible)
     noCaptionsLabel_->setParent(tableContainer);
     captionTable_->hide();
 
-    // Panel background
     setStyleSheet(R"(
         CaptionPanel {
             background-color: #252525;
@@ -256,27 +247,27 @@ void CaptionPanel::updateTable() {
         const Caption& cap = captions_[i];
         int row = static_cast<int>(i);
         
-        // Start time
         QTableWidgetItem* startItem = new QTableWidgetItem(formatTime(cap.startTime));
         startItem->setTextAlignment(Qt::AlignCenter);
         captionTable_->setItem(row, 0, startItem);
         
-        // End time
         QTableWidgetItem* endItem = new QTableWidgetItem(formatTime(cap.endTime));
         endItem->setTextAlignment(Qt::AlignCenter);
         captionTable_->setItem(row, 1, endItem);
         
-        // Text
         QTableWidgetItem* textItem = new QTableWidgetItem(cap.text);
         captionTable_->setItem(row, 2, textItem);
     }
 }
 
 void CaptionPanel::setCurrentTime(qint64 positionMs) {
-    // Scale position by speed factor to match original caption times
-    double positionSec = (positionMs / 1000.0) * speedFactor_;
+    float safeSpeedFactor = speedFactor_;
+    if (safeSpeedFactor <= 0.01f || safeSpeedFactor > 10.0f) {
+        safeSpeedFactor = 1.0f;
+    }
     
-    // Find caption at current time
+    double positionSec = (positionMs / 1000.0) * safeSpeedFactor;
+    
     int foundRow = -1;
     for (size_t i = 0; i < captions_.size(); ++i) {
         if (positionSec >= captions_[i].startTime && 
@@ -286,12 +277,10 @@ void CaptionPanel::setCurrentTime(qint64 positionMs) {
         }
     }
     
-    // Update highlight if changed
     if (foundRow != currentHighlightedRow_) {
         highlightRow(foundRow);
         currentHighlightedRow_ = foundRow;
         
-        // Update current caption label
         if (foundRow >= 0 && foundRow < static_cast<int>(captions_.size())) {
             currentCaptionLabel_->setText(captions_[foundRow].text);
             currentCaptionLabel_->setStyleSheet(R"(
@@ -322,7 +311,6 @@ void CaptionPanel::setCurrentTime(qint64 positionMs) {
 }
 
 void CaptionPanel::highlightRow(int row) {
-    // Clear previous highlight
     for (int r = 0; r < captionTable_->rowCount(); ++r) {
         for (int c = 0; c < captionTable_->columnCount(); ++c) {
             QTableWidgetItem* item = captionTable_->item(r, c);
@@ -333,7 +321,6 @@ void CaptionPanel::highlightRow(int row) {
         }
     }
     
-    // Highlight new row
     if (row >= 0 && row < captionTable_->rowCount()) {
         for (int c = 0; c < captionTable_->columnCount(); ++c) {
             QTableWidgetItem* item = captionTable_->item(row, c);
@@ -343,7 +330,6 @@ void CaptionPanel::highlightRow(int row) {
             }
         }
         
-        // Scroll to make visible
         captionTable_->scrollToItem(captionTable_->item(row, 0),
                                      QAbstractItemView::PositionAtCenter);
     }
@@ -367,14 +353,12 @@ void CaptionPanel::onCaptionClicked(int row, int column) {
     Q_UNUSED(column);
     
     if (row >= 0 && row < static_cast<int>(captions_.size())) {
-        // Seek to caption start time
         qint64 positionMs = static_cast<qint64>(captions_[row].startTime * 1000);
         emit seekRequested(positionMs);
     }
 }
 
 void CaptionPanel::onCaptionDoubleClicked(int row, int column) {
-    // Same as single click for now
     onCaptionClicked(row, column);
 }
 

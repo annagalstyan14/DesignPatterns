@@ -99,7 +99,6 @@ MainWindow::~MainWindow() {
 }
 
 void MainWindow::setupShortcuts() {
-    // Spacebar for play/pause
     QShortcut* playPauseShortcut = new QShortcut(QKeySequence(Qt::Key_Space), this);
     connect(playPauseShortcut, &QShortcut::activated, this, &MainWindow::onTogglePlayPause);
 }
@@ -325,7 +324,6 @@ void MainWindow::setupConnections() {
     connect(effectsPanel_, &EffectsPanel::effectsChanged,
             this, &MainWindow::updateCaptionSpeed);
     
-    // Connect to state changes for undo/redo
     connect(effectsPanel_, &EffectsPanel::stateChangeCompleted,
             this, &MainWindow::onEffectStateChanged);
 
@@ -432,6 +430,35 @@ void MainWindow::loadAudioFile(const QString& filePath) {
     statusBar()->showMessage("Loaded: " + filePath, 5000);
 }
 
+std::vector<float> MainWindow::getSamplesToSave() {
+    auto effects = effectsPanel_->getEffectsForExport();
+    
+    if (effects.empty()) {
+        if (logger_) {
+            logger_->log("Saving original samples (no effects)");
+        }
+        return originalSamples_;
+    }
+    
+    std::vector<float> result = originalSamples_;
+    
+    if (logger_) {
+        logger_->log("Applying " + std::to_string(effects.size()) + " effects for save");
+    }
+    
+    for (const auto& effect : effects) {
+        if (!effect) continue;
+        
+        if (auto* reverb = dynamic_cast<Reverb*>(effect.get())) {
+            reverb->reset();
+        }
+        
+        effect->apply(result);
+    }
+    
+    return result;
+}
+
 void MainWindow::onSaveAudio() {
     if (!audioClip_) return;
     
@@ -454,7 +481,26 @@ void MainWindow::onSaveAudio() {
     statusBar()->showMessage("Saving...");
     QApplication::processEvents();
     
-    if (audioClip_->save(savePath.toStdString())) {
+    std::vector<float> samplesToSave = getSamplesToSave();
+    
+    if (logger_) {
+        float maxSample = 0.0f;
+        for (const float s : samplesToSave) {
+            maxSample = std::max(maxSample, std::abs(s));
+        }
+        logger_->log("Saving " + std::to_string(samplesToSave.size()) + 
+                     " samples, peak: " + std::to_string(maxSample));
+    }
+    
+    std::vector<float> backup = audioClip_->getSamples();
+    
+    audioClip_->setSamples(std::move(samplesToSave));
+    
+    bool success = audioClip_->save(savePath.toStdString());
+    
+    audioClip_->setSamples(std::move(backup));
+    
+    if (success) {
         hasUnsavedChanges_ = false;
         updateWindowTitle();
         statusBar()->showMessage("Saved: " + savePath, 5000);
@@ -467,7 +513,8 @@ void MainWindow::onSaveAudio() {
 void MainWindow::onExportAudio() {
     if (!audioClip_) return;
     
-    QString filePath = QFileDialog::getSaveFileName(this, "Export Audio", "exported_audio.mp3",
+    QString filePath = QFileDialog::getSaveFileName(this, "Export Audio", 
+        "exported_audio.mp3",
         "MP3 Files (*.mp3);;WAV Files (*.wav)");
 
     if (filePath.isEmpty()) return;
@@ -475,7 +522,17 @@ void MainWindow::onExportAudio() {
     statusBar()->showMessage("Exporting...");
     QApplication::processEvents();
     
-    if (audioClip_->save(filePath.toStdString())) {
+    std::vector<float> samplesToSave = getSamplesToSave();
+    
+    std::vector<float> backup = audioClip_->getSamples();
+    
+    audioClip_->setSamples(std::move(samplesToSave));
+    
+    bool success = audioClip_->save(filePath.toStdString());
+    
+    audioClip_->setSamples(std::move(backup));
+    
+    if (success) {
         statusBar()->showMessage("Exported: " + filePath, 5000);
         QMessageBox::information(this, "Export Complete",
             "Audio exported successfully to:\n" + filePath);
@@ -718,7 +775,6 @@ void MainWindow::startPreviewComputation(const std::vector<std::shared_ptr<IEffe
                 reverb->reset();
             }
 
-            // New interface: effect modifies vector in place and may resize it
             effect->apply(processed);
         }
 
@@ -764,11 +820,9 @@ void MainWindow::cancelPendingPreview() {
 
 void MainWindow::onEffectStateChanged(const EffectsPanelState& oldState, 
                                        const EffectsPanelState& newState) {
-    // Create and execute command for undo/redo
     auto command = std::make_shared<EffectStateCommand>(
         effectsPanel_, oldState, newState, logger_);
     
-    // Execute command (execute is a no-op since change already happened)
     commandHistory_->executeCommand(command);
     
     updateUIState();
@@ -778,7 +832,6 @@ void MainWindow::onEffectStateChanged(const EffectsPanelState& oldState,
 void MainWindow::onApplyEffects() {
     if (!audioClip_) return;
 
-    // Apply all effects from the EffectsPanel to the audioClip
     auto effects = effectsPanel_->getEffects();
     for (auto& effect : effects) {
         if (effect) {
@@ -786,7 +839,6 @@ void MainWindow::onApplyEffects() {
         }
     }
 
-    // Mark unsaved changes
     hasUnsavedChanges_ = true;
     updateWindowTitle();
     statusBar()->showMessage("Effects applied", 2000);

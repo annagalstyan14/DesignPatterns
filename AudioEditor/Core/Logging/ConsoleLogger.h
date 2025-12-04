@@ -2,13 +2,6 @@
 
 #include "ILogger.h"
 
-/**
- * @brief Console-based logger implementation
- * 
- * Writes to stdout (info, warning) and stderr (errors).
- * 
- * Design Pattern: Strategy (ConcreteStrategy for logging)
- */
 class ConsoleLogger : public ILogger {
 public:
     ConsoleLogger() = default;

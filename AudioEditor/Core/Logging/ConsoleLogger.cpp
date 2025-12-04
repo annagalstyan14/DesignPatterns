@@ -14,7 +14,7 @@ void writeLog(const std::string& level, std::ostream& stream,
            << "] [" << level << "] " << message << '\n';
 }
 
-}  // namespace
+}
 
 void ConsoleLogger::log(const std::string& message) {
     writeLog("INFO", std::cout, message);

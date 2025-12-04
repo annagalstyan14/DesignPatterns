@@ -65,7 +65,6 @@ bool Mp3Adapter::load(const std::string& filePath) {
     
     while (mpg123_read(mh, buffer.data(), buffer.size(), &done) == MPG123_OK) {
         for (size_t i = 0; i + 1 < done; i += 2) {
-            // Convert 16-bit little-endian to float
             const auto sample = static_cast<short>((buffer[i + 1] << 8) | buffer[i]);
             samples_.push_back(static_cast<float>(sample) / audio::kSampleNormalizationFactor);
         }
@@ -85,10 +84,32 @@ bool Mp3Adapter::load(const std::string& filePath) {
 }
 
 bool Mp3Adapter::save(const std::string& filePath, const std::vector<float>& samples) {
+    if (samples.empty()) {
+        if (logger_) {
+            logger_->error("Cannot save: empty sample buffer");
+        }
+        return false;
+    }
+    
+    if (channels_ <= 0) {
+        if (logger_) {
+            logger_->error("Cannot save: invalid channel count (" + 
+                          std::to_string(channels_) + ")");
+        }
+        return false;
+    }
+    
+    if (sampleRate_ <= 0) {
+        if (logger_) {
+            logger_->error("Cannot save: invalid sample rate (" + 
+                          std::to_string(sampleRate_) + ")");
+        }
+        return false;
+    }
+    
     if (logger_) {
         logger_->log("Saving MP3: " + filePath);
         
-        // Log sample statistics
         float maxSample = 0.0f;
         double sumSquares = 0.0;
         for (const float sample : samples) {
@@ -96,7 +117,8 @@ bool Mp3Adapter::save(const std::string& filePath, const std::vector<float>& sam
             sumSquares += sample * sample;
         }
         const double rms = std::sqrt(sumSquares / samples.size());
-        logger_->log("Saving samples - Max: " + std::to_string(maxSample) + 
+        logger_->log("Saving samples - Count: " + std::to_string(samples.size()) +
+                     ", Max: " + std::to_string(maxSample) + 
                      ", RMS: " + std::to_string(rms));
     }
     
@@ -110,7 +132,7 @@ bool Mp3Adapter::save(const std::string& filePath, const std::vector<float>& sam
     
     lame_set_in_samplerate(lame, sampleRate_);
     lame_set_num_channels(lame, channels_);
-    lame_set_quality(lame, 2);  // High quality
+    lame_set_quality(lame, 2);
     
     if (lame_init_params(lame) < 0) {
         if (logger_) {
@@ -129,14 +151,12 @@ bool Mp3Adapter::save(const std::string& filePath, const std::vector<float>& sam
         return false;
     }
 
-    // Convert float samples to 16-bit integers
     std::vector<short> intSamples(samples.size());
     for (size_t i = 0; i < samples.size(); ++i) {
         const float clamped = std::clamp(samples[i], -1.0f, 1.0f);
         intSamples[i] = static_cast<short>(clamped * audio::kMaxSampleValue);
     }
 
-    // Allocate MP3 buffer
     const size_t mp3BufferSize = audio::kMp3WriteBufferMultiplier + 
                                   static_cast<size_t>(samples.size() / channels_ * 1.25);
     std::vector<unsigned char> mp3Buffer(mp3BufferSize);
@@ -172,7 +192,6 @@ bool Mp3Adapter::save(const std::string& filePath, const std::vector<float>& sam
     
     fwrite(mp3Buffer.data(), 1, static_cast<size_t>(mp3Size), file);
 
-    // Flush encoder
     mp3Size = lame_encode_flush(lame, mp3Buffer.data(), static_cast<int>(mp3Buffer.size()));
     if (mp3Size > 0) {
         fwrite(mp3Buffer.data(), 1, static_cast<size_t>(mp3Size), file);

@@ -1,36 +1,41 @@
-#pragma once
+#ifndef REVERB_H
+#define REVERB_H
 
 #include "IEffect.h"
 #include "../Logging/ILogger.h"
-#include <vector>
+#include "../Constants.h"
 #include <memory>
+#include <vector>
 #include <array>
 
-/**
- * @brief Classic Schroeder reverb - smooth diffuse wash
- */
 class Reverb : public IEffect {
 public:
-    explicit Reverb(std::shared_ptr<ILogger> logger);
+    explicit Reverb(std::shared_ptr<ILogger> logger = nullptr);
     
     void apply(std::vector<float>& audioBuffer) override;
-    void setParameter(const std::string& name, float value) override;
-    [[nodiscard]] std::string getName() const noexcept override { return "Reverb"; }
+    std::string getName() const noexcept override { return "Reverb"; }
     
-    void setIntensity(float intensityPercent);
+    void setIntensity(float intensity);
+    float getIntensity() const { return intensity_; }
+    void setParameter(const std::string& name, float value) override;
+    
     void reset();
 
 private:
-    std::array<std::vector<float>, 4> combBuffers_;
-    std::array<size_t, 4> combIndices_;
-    std::array<float, 4> combFilterState_;
-    
-    std::array<std::vector<float>, 2> allpassBuffers_;
-    std::array<size_t, 2> allpassIndices_;
-    
-    float wetMix_ = 0.5f;
-    float feedback_ = 0.7f;
-    float damping_ = 0.3f;
-    
+    float intensity_;
     std::shared_ptr<ILogger> logger_;
+    
+    std::array<std::vector<float>, audio::reverb::kNumCombFilters> combBuffersL_;
+    std::array<std::vector<float>, audio::reverb::kNumCombFilters> combBuffersR_;
+    std::array<size_t, audio::reverb::kNumCombFilters> combIndices_;
+    std::array<float, audio::reverb::kNumCombFilters> combFilterStore_;
+    
+    std::array<std::vector<float>, audio::reverb::kNumAllpassFilters> allpassBuffersL_;
+    std::array<std::vector<float>, audio::reverb::kNumAllpassFilters> allpassBuffersR_;
+    std::array<size_t, audio::reverb::kNumAllpassFilters> allpassIndices_;
+    
+    bool initialized_;
+    void initBuffers(int sampleRate);
 };
+
+#endif

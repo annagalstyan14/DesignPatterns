@@ -22,7 +22,6 @@ void SpeedChangeEffect::setParameter(const std::string& name, float value) {
     }
 }
 
-// Hermite interpolation - smooth without overshooting
 static float hermite(float y0, float y1, float y2, float y3, float t) {
     const float t2 = t * t;
     const float t3 = t2 * t;
@@ -41,10 +40,24 @@ void SpeedChangeEffect::apply(std::vector<float>& audioBuffer) {
     }
 
     constexpr int channels = 2;
+    
+    if (audioBuffer.size() % channels != 0) {
+        if (logger_) {
+            logger_->warning("Odd buffer size (" + std::to_string(audioBuffer.size()) + 
+                            "), padding with silence");
+        }
+        audioBuffer.push_back(0.0f);
+    }
+    
     const size_t inputFrames = audioBuffer.size() / channels;
     const size_t outputFrames = static_cast<size_t>(static_cast<double>(inputFrames) / speedFactor_);
     
-    if (outputFrames == 0) return;
+    if (outputFrames == 0) {
+        if (logger_) {
+            logger_->warning("Speed change would produce 0 frames, skipping");
+        }
+        return;
+    }
     
     std::vector<float> output(outputFrames * channels, 0.0f);
 
@@ -54,7 +67,6 @@ void SpeedChangeEffect::apply(std::vector<float>& audioBuffer) {
         const float t = static_cast<float>(srcPos - srcIdx);
         
         for (int ch = 0; ch < channels; ++ch) {
-            // Get 4 samples for Hermite interpolation with safe bounds
             auto getSample = [&](size_t idx) -> float {
                 if (idx >= inputFrames) idx = inputFrames - 1;
                 return audioBuffer[idx * channels + ch];
@@ -70,7 +82,6 @@ void SpeedChangeEffect::apply(std::vector<float>& audioBuffer) {
             const float y2 = getSample(idx2);
             const float y3 = getSample(idx3);
             
-            // Hermite interpolation with clamp to prevent any overshoot
             float sample = hermite(y0, y1, y2, y3, t);
             output[i * channels + ch] = std::clamp(sample, -1.0f, 1.0f);
         }

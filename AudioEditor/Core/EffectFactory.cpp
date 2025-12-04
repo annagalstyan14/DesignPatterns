@@ -1,7 +1,6 @@
 #include "EffectFactory.h"
 
 std::map<std::string, EffectFactory::Creator>& EffectFactory::getRegistry() {
-    // Meyer's singleton - thread-safe in C++11+
     static std::map<std::string, Creator> registry;
     return registry;
 }

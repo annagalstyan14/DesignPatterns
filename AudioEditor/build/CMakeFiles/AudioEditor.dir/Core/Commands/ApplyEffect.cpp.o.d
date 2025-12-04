@@ -759,5 +759,5 @@ CMakeFiles/AudioEditor.dir/Core/Commands/ApplyEffect.cpp.o: \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Commands/../Logging/ILogger.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Commands/../Effects/Reverb.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Commands/../Effects/../Logging/ILogger.h \
-  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Commands/../Effects/Speed.h \
-  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Commands/../Effects/../Constants.h
+  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Commands/../Effects/../Constants.h \
+  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/Core/Commands/../Effects/Speed.h

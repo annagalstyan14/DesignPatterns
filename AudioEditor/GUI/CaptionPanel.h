@@ -9,30 +9,14 @@
 #include <vector>
 #include <memory>
 
-// Forward declaration
 class ILogger;
 
-/**
- * @brief Struct representing a single caption/subtitle
- */
 struct Caption {
     double startTime;   // Start time in seconds
     double endTime;     // End time in seconds
     QString text;       // Caption text
 };
 
-/**
- * @brief Panel for displaying and managing captions/subtitles
- * 
- * Features:
- * - Import SRT files
- * - Display captions in a table
- * - Highlight current caption during playback
- * - Click caption to seek
- * - Export captions to TXT
- * 
- * Design pattern: Observer (Qt signals/slots)
- */
 class CaptionPanel : public QWidget {
     Q_OBJECT
 

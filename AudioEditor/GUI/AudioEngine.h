@@ -11,28 +11,14 @@
 #include <vector>
 #include "../Core/Effects/IEffect.h"
 
-// Forward declaration
 class AudioClip;
 
-/**
- * @brief Playback state enumeration
- */
 enum class PlaybackState {
     Stopped,
     Playing,
     Paused
 };
 
-/**
- * @brief Audio playback engine using Qt6 QAudioSink
- * 
- * This class handles real-time audio playback with play/pause/stop/seek
- * functionality. It emits signals for UI synchronization.
- * 
- * Design patterns used:
- * - Observer: Qt signals notify UI of state changes
- * - Dependency Injection: AudioClip is set externally
- */
 class AudioEngine : public QObject {
     Q_OBJECT
 
@@ -65,7 +51,7 @@ public:
 
 
     // Setters
-    void setVolume(float volume);  // 0.0 to 1.0
+    void setVolume(float volume);
 
 signals:
     void positionChanged(qint64 positionMs);

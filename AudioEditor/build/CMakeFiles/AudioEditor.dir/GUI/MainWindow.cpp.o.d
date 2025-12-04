@@ -1151,8 +1151,8 @@ CMakeFiles/AudioEditor.dir/GUI/MainWindow.cpp.o: \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1/fstream \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Effects/Reverb.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Effects/../Logging/ILogger.h \
-  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Effects/Speed.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Effects/../Constants.h \
+  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Effects/Speed.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Effects/Volume.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Commands/ApplyEffect.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Commands/../AudioClip.h \

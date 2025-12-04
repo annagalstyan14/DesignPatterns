@@ -8,7 +8,6 @@ CommandHistory::CommandHistory(std::shared_ptr<ILogger> logger)
 void CommandHistory::executeCommand(std::shared_ptr<ICommand> command) {
     if (!command) return;
     
-    // Remove any commands after current index (redo history)
     if (currentIndex_ < static_cast<int>(history_.size()) - 1) {
         history_.erase(history_.begin() + currentIndex_ + 1, history_.end());
     }

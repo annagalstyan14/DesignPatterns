@@ -13,7 +13,6 @@ EffectStateCommand::EffectStateCommand(EffectsPanel* panel,
 }
 
 void EffectStateCommand::execute() {
-    // Command is created after the change, so execute just logs
     if (logger_) {
         logger_->log("EffectStateCommand: Effect state changed");
     }

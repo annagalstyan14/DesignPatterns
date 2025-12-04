@@ -251,7 +251,7 @@ std::shared_ptr<IEffect> EffectWidget::createEffect() const {
     if (effectType_ == "Reverb") {
         auto reverb = std::make_shared<Reverb>(logger_);
         if (sliders_.count("intensity")) {
-            reverb->setIntensity(sliders_.at("intensity").slider->value());
+            reverb->setIntensity(sliders_.at("intensity").slider->value() / 100.0f);
         }
         return reverb;
         

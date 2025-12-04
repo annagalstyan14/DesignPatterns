@@ -5,14 +5,6 @@
 #include "../Constants.h"
 #include <memory>
 
-/**
- * @brief Normalize effect to match target RMS level
- * 
- * Adjusts gain to achieve a target RMS level while
- * preventing clipping with a peak limiter.
- * 
- * Design Pattern: Strategy (ConcreteStrategy)
- */
 class NormalizeEffect : public IEffect {
 public:
     explicit NormalizeEffect(std::shared_ptr<ILogger> logger, 

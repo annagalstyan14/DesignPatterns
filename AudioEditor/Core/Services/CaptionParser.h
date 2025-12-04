@@ -5,15 +5,9 @@
 #include <vector>
 #include <memory>
 
-// Forward declaration
 class ILogger;
 struct Caption;
 
-/**
- * @brief Parser for subtitle files (SRT format)
- * 
- * Handles reading SRT files and exporting to plain text.
- */
 class CaptionParser {
 public:
     explicit CaptionParser(std::shared_ptr<ILogger> logger);

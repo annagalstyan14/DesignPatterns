@@ -38,7 +38,7 @@ void FileLogger::writeLog(const std::string& level, const std::string& message) 
 
     file_ << "[" << std::put_time(std::localtime(&time), "%Y-%m-%d %H:%M:%S") << "] "
           << "[" << level << "] " 
-          << message << '\n';  // Use '\n' instead of std::endl for performance
+          << message << '\n';
 
-    file_.flush();  // Explicit flush when we want it
+    file_.flush();
 }

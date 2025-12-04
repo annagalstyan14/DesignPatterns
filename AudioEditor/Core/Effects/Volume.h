@@ -5,14 +5,6 @@
 #include "../Constants.h"
 #include <memory>
 
-/**
- * @brief Volume/gain adjustment effect with soft clipping
- * 
- * Applies gain to audio samples with soft clipping to prevent
- * harsh distortion at high gain levels.
- * 
- * Design Pattern: Strategy (ConcreteStrategy)
- */
 class VolumeEffect : public IEffect {
 public:
     VolumeEffect(float gain, std::shared_ptr<ILogger> logger);

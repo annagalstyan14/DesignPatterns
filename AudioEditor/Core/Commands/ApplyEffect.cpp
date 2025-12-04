@@ -26,15 +26,12 @@ void ApplyEffectCommand::execute() {
     if (!clip_) return;
     
     if (!executed_) {
-        // First execution - save state and apply effects
         beforeState_ = clip_->getSamples();
         
-        // Work on a copy of the samples
         std::vector<float> samples = beforeState_;
         
         for (const auto& effect : effects_) {
             if (effect) {
-                // Reset reverb state before applying
                 if (auto* reverb = dynamic_cast<Reverb*>(effect.get())) {
                     reverb->reset();
                 }
@@ -51,7 +48,6 @@ void ApplyEffectCommand::execute() {
             logger_->log("Effects applied and state saved for undo");
         }
     } else {
-        // Re-execute (redo) - restore post-effect state
         clip_->setSamples(afterState_);
         
         if (logger_) {

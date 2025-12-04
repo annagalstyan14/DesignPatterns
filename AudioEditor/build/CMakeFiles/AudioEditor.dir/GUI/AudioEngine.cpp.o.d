@@ -942,8 +942,8 @@ CMakeFiles/AudioEditor.dir/GUI/AudioEngine.cpp.o: \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Logging/ILogger.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Effects/Reverb.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Effects/../Logging/ILogger.h \
-  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Effects/Speed.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Effects/../Constants.h \
+  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Effects/Speed.h \
   /opt/homebrew/opt/qt@6/lib/QtMultimedia.framework/Headers/QMediaDevices \
   /opt/homebrew/opt/qt@6/lib/QtMultimedia.framework/Headers/qmediadevices.h \
   /opt/homebrew/opt/qt@6/lib/QtMultimedia.framework/Headers/QAudioDevice \

@@ -8,60 +8,24 @@
 #include <QLabel>
 #include <vector>
 #include <memory>
-#include "../Core/Commands/EffectState.h"  // Just the state structs, no circular dep
+#include "../Core/Commands/EffectState.h"
 
 class EffectWidget;
 class IEffect;
 class ILogger;
 
-/**
- * @brief Panel for managing audio effects
- * 
- * Allows adding, removing, and configuring effects.
- * Emits signals when effects change for preview updates.
- * 
- * Design Pattern: Observer (Qt signals/slots)
- */
 class EffectsPanel : public QWidget {
     Q_OBJECT
 
 public:
     explicit EffectsPanel(std::shared_ptr<ILogger> logger, QWidget* parent = nullptr);
     ~EffectsPanel() override = default;
-
-    /**
-     * @brief Get all currently enabled effects
-     */
     [[nodiscard]] std::vector<std::shared_ptr<IEffect>> getEffects() const;
-    
-    /**
-     * @brief Get all effects regardless of enabled state (for export)
-     */
     [[nodiscard]] std::vector<std::shared_ptr<IEffect>> getEffectsForExport() const;
-    
-    /**
-     * @brief Check if effects are globally enabled (compare toggle)
-     */
     [[nodiscard]] bool areEffectsEnabled() const noexcept { return effectsEnabled_; }
-    
-    /**
-     * @brief Clear all effects
-     */
     void clearEffects();
-    
-    /**
-     * @brief Enable/disable the panel
-     */
     void setEnabled(bool enabled);
-    
-    /**
-     * @brief Restore state from snapshot (for undo/redo)
-     */
     void restoreState(const EffectsPanelState& state);
-    
-    /**
-     * @brief Save current state to snapshot
-     */
     [[nodiscard]] EffectsPanelState saveState() const;
 
 signals:

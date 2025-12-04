@@ -1015,8 +1015,8 @@ CMakeFiles/AudioEditor.dir/GUI/EffectsPanel.cpp.o: \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Effects/Reverb.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Effects/IEffect.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Effects/../Logging/ILogger.h \
-  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Effects/Speed.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Effects/../Constants.h \
+  /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Effects/Speed.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Effects/Volume.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/EffectFactory.h \
   /Users/annagalstyan/Desktop/projects/DesignPatterns/AudioEditor/GUI/../Core/Logging/ILogger.h
