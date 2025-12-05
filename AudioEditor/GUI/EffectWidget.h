@@ -25,16 +25,10 @@ public:
                  QWidget* parent = nullptr);
     ~EffectWidget() = default;
 
-    // Get the effect type name
     QString getEffectType() const;
-    
-    // Check if effect is enabled
     bool isEffectEnabled() const;
-    
-    // Create the actual effect with current parameters
     std::shared_ptr<IEffect> createEffect() const;
     
-    // Get/set parameter state for undo/redo
     QMap<QString, int> getParameterState() const;
     void setParameterState(const QMap<QString, int>& state);
     int getPreviousSliderValue(const QString& paramKey) const;
@@ -64,14 +58,12 @@ private:
     QString effectType_;
     std::shared_ptr<ILogger> logger_;
     
-    // UI Components
     QVBoxLayout* mainLayout_;
     QCheckBox* enableCheckbox_;
     QPushButton* removeButton_;
     QWidget* parametersWidget_;
     QVBoxLayout* parametersLayout_;
     
-    // Parameter sliders and their current values
     struct SliderData {
         QSlider* slider;
         QLabel* valueLabel;
@@ -84,4 +76,4 @@ private:
     QTimer* parameterDebounceTimer_;
 };
 
-#endif // EFFECT_WIDGET_H
+#endif

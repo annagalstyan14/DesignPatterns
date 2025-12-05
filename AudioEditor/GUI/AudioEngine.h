@@ -24,33 +24,31 @@ class AudioEngine : public QObject {
 
 public:
     explicit AudioEngine(QObject* parent = nullptr);
-    ~AudioEngine();
+    ~AudioEngine() override;
 
-    // Clip management
+    AudioEngine(const AudioEngine&) = delete;
+    AudioEngine& operator=(const AudioEngine&) = delete;
+
     void setAudioClip(std::shared_ptr<AudioClip> clip);
-    std::shared_ptr<AudioClip> getAudioClip() const;
+    [[nodiscard]] std::shared_ptr<AudioClip> getAudioClip() const;
 
-    // Playback control
     void play();
     void pause();
     void stop();
     void seek(qint64 positionMs);
 
-    // Getters
-    PlaybackState getState() const;
-    qint64 getPositionMs() const;
-    qint64 getDurationMs() const;
-    float getVolume() const;
+    [[nodiscard]] PlaybackState getState() const;
+    [[nodiscard]] qint64 getPositionMs() const;
+    [[nodiscard]] qint64 getDurationMs() const;
+    [[nodiscard]] float getVolume() const;
 
     void setOriginalSamples(const std::vector<float>& samples);
     void previewWithEffects(const std::vector<std::shared_ptr<IEffect>>& effects);
     void previewWithSamples(const std::vector<float>& samples);
-    void commitEffects();  // Make preview permanent
-    void revertToOriginal();  // Discard preview
-    bool hasPreview() const { return hasPreview_; }
+    void commitEffects();
+    void revertToOriginal();
+    [[nodiscard]] bool hasPreview() const { return hasPreview_; }
 
-
-    // Setters
     void setVolume(float volume);
 
 signals:
@@ -68,9 +66,9 @@ private:
     void convertSamplesToBytes();
     void applyVolume(QByteArray& buffer);
 
-    std::vector<float> originalSamples_;  // Unmodified original
-    std::vector<float> previewSamples_;   // Current preview with effects
-    bool hasPreview_ = false;
+    std::vector<float> originalSamples_;
+    std::vector<float> previewSamples_;
+    bool hasPreview_;
 
     std::shared_ptr<AudioClip> audioClip_;
     
@@ -83,7 +81,7 @@ private:
     float volume_;
     int sampleRate_;
     int channels_;
-    qint64 pausedPosition_;  // Bytes position when paused
+    qint64 pausedPosition_;
 };
 
-#endif // AUDIO_ENGINE_H
+#endif

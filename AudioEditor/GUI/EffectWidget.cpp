@@ -29,7 +29,6 @@ EffectWidget::EffectWidget(const QString& effectType,
 }
 
 void EffectWidget::setupUI() {
-    // Frame styling
     setFrameShape(QFrame::StyledPanel);
     setStyleSheet(R"(
         EffectWidget {
@@ -46,11 +45,9 @@ void EffectWidget::setupUI() {
     mainLayout_->setContentsMargins(10, 8, 10, 10);
     mainLayout_->setSpacing(8);
 
-    // --- Header Row ---
     QHBoxLayout* headerLayout = new QHBoxLayout();
     headerLayout->setSpacing(8);
 
-    // Enable checkbox with effect name
     enableCheckbox_ = new QCheckBox(effectType_, this);
     enableCheckbox_->setChecked(true);
     enableCheckbox_->setStyleSheet(R"(
@@ -75,7 +72,6 @@ void EffectWidget::setupUI() {
     connect(enableCheckbox_, &QCheckBox::toggled, this, &EffectWidget::onEnabledToggled);
     headerLayout->addWidget(enableCheckbox_);
 
-    // Remove button
     removeButton_ = new QPushButton("Remove", this);
     removeButton_->setStyleSheet(R"(
         QPushButton {
@@ -99,14 +95,12 @@ void EffectWidget::setupUI() {
 
     mainLayout_->addLayout(headerLayout);
 
-    // Parameters container
     parametersWidget_ = new QWidget(this);
     parametersLayout_ = new QVBoxLayout(parametersWidget_);
     parametersLayout_->setContentsMargins(0, 0, 0, 0);
     parametersLayout_->setSpacing(6);
     mainLayout_->addWidget(parametersWidget_);
 
-    // Setup specific controls
     if (effectType_ == "Reverb") {
         setupReverbControls();
     } else if (effectType_ == "Speed") {
@@ -125,7 +119,7 @@ void EffectWidget::setupSpeedControls() {
 }
 
 void EffectWidget::setupVolumeControls() {
-    addSlider("Gain", "gain", 0, 800, 100, "%");
+    addSlider("Gain", "gain", 0, 200, 100, "%");
 }
 
 void EffectWidget::addSlider(const QString& name, const QString& paramKey,
@@ -183,7 +177,6 @@ void EffectWidget::onRemoveClicked() {
 }
 
 void EffectWidget::onSliderChanged(int value) {
-    // Find which slider changed
     QString paramKey;
     for (auto& entry : sliders_) {
         if (entry.second.slider == sender()) {
@@ -199,7 +192,6 @@ void EffectWidget::onSliderChanged(int value) {
 }
 
 void EffectWidget::onSliderPressed() {
-    // Find which slider was pressed
     for (auto& entry : sliders_) {
         if (entry.second.slider == sender()) {
             entry.second.previousValue = entry.second.slider->value();
@@ -210,11 +202,9 @@ void EffectWidget::onSliderPressed() {
 }
 
 void EffectWidget::onSliderReleased() {
-    // Find which slider was released
     for (auto& entry : sliders_) {
         if (entry.second.slider == sender()) {
             setSliderDragging(entry.first, false);
-            // Emit parameter changed on release
             emit parameterChanged();
             break;
         }
@@ -222,7 +212,6 @@ void EffectWidget::onSliderReleased() {
 }
 
 void EffectWidget::onEnabledToggled(bool enabled) {
-    // Dim parameters when disabled
     parametersWidget_->setEnabled(enabled);
     
     if (enabled) {
@@ -274,7 +263,6 @@ std::shared_ptr<IEffect> EffectWidget::createEffect() const {
 }
 
 void EffectWidget::scheduleParameterChange() {
-    // If any slider is currently being dragged, wait for release
     for (const auto& entry : sliders_) {
         if (entry.second.isDragging) {
             return;
@@ -299,7 +287,6 @@ QMap<QString, int> EffectWidget::getParameterState() const {
 }
 
 void EffectWidget::setParameterState(const QMap<QString, int>& state) {
-    // Block signals during restore to prevent triggering parameter changed
     for (auto it = state.begin(); it != state.end(); ++it) {
         auto sliderIt = sliders_.find(it.key());
         if (sliderIt != sliders_.end()) {

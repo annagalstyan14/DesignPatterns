@@ -7,6 +7,7 @@ ApplyEffectCommand::ApplyEffectCommand(std::shared_ptr<AudioClip> clip,
                                        std::shared_ptr<ILogger> logger)
     : clip_(std::move(clip))
     , logger_(std::move(logger))
+    , executed_(false)
 {
     if (effect) {
         effects_.push_back(std::move(effect));
@@ -19,25 +20,38 @@ ApplyEffectCommand::ApplyEffectCommand(std::shared_ptr<AudioClip> clip,
     : clip_(std::move(clip))
     , effects_(std::move(effects))
     , logger_(std::move(logger))
+    , executed_(false)
 {
 }
 
 void ApplyEffectCommand::execute() {
-    if (!clip_) return;
+    if (!clip_ || !clip_->isLoaded()) {
+        if (logger_) {
+            logger_->error("ApplyEffectCommand: No valid clip to apply effects");
+        }
+        return;
+    }
     
     if (!executed_) {
         beforeState_ = clip_->getSamples();
         
+        if (beforeState_.empty()) {
+            if (logger_) {
+                logger_->warning("ApplyEffectCommand: Empty sample buffer");
+            }
+            return;
+        }
+        
         std::vector<float> samples = beforeState_;
         
         for (const auto& effect : effects_) {
-            if (effect) {
-                if (auto* reverb = dynamic_cast<Reverb*>(effect.get())) {
-                    reverb->reset();
-                }
-                
-                effect->apply(samples);
+            if (!effect) continue;
+            
+            if (auto* reverb = dynamic_cast<Reverb*>(effect.get())) {
+                reverb->reset();
             }
+            
+            effect->apply(samples);
         }
         
         clip_->setSamples(samples);
@@ -57,7 +71,12 @@ void ApplyEffectCommand::execute() {
 }
 
 void ApplyEffectCommand::undo() {
-    if (!clip_) return;
+    if (!clip_) {
+        if (logger_) {
+            logger_->error("ApplyEffectCommand: No clip for undo");
+        }
+        return;
+    }
     
     clip_->setSamples(beforeState_);
     

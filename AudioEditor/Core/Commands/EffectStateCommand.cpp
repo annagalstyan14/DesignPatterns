@@ -9,31 +9,42 @@ EffectStateCommand::EffectStateCommand(EffectsPanel* panel,
     , oldState_(std::move(oldState))
     , newState_(std::move(newState))
     , logger_(std::move(logger))
+    , executed_(false)
 {
 }
 
 void EffectStateCommand::execute() {
-    if (logger_) {
-        logger_->log("EffectStateCommand: Effect state changed");
+    if (!panel_) return;
+    
+    if (!executed_) {
+        executed_ = true;
+        if (logger_) {
+            logger_->log("EffectStateCommand: Initial execution recorded");
+        }
+    } else {
+        panel_->restoreState(newState_);
+        if (logger_) {
+            logger_->log("EffectStateCommand: Re-executed (redo)");
+        }
     }
 }
 
 void EffectStateCommand::undo() {
+    if (!panel_) return;
+    
     if (logger_) {
         logger_->log("EffectStateCommand: Undoing effect state change");
     }
     
-    if (panel_) {
-        panel_->restoreState(oldState_);
-    }
+    panel_->restoreState(oldState_);
 }
 
 void EffectStateCommand::redo() {
+    if (!panel_) return;
+    
     if (logger_) {
         logger_->log("EffectStateCommand: Redoing effect state change");
     }
     
-    if (panel_) {
-        panel_->restoreState(newState_);
-    }
+    panel_->restoreState(newState_);
 }

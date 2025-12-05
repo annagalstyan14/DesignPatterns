@@ -8,7 +8,11 @@
 #include "../Core/EffectFactory.h"
 
 EffectsPanel::EffectsPanel(std::shared_ptr<ILogger> logger, QWidget* parent)
-    : QWidget(parent), logger_(logger) {
+    : QWidget(parent)
+    , logger_(std::move(logger))
+    , effectsEnabled_(true)
+    , isRestoringState_(false)
+{
     setupUI();
     lastSavedState_ = saveState();
 }
@@ -160,6 +164,10 @@ void EffectsPanel::onAddEffectClicked() {
 }
 
 void EffectsPanel::addEffectWidget(const QString& effectType, const QMap<QString, int>& params) {
+    if (effectType.isEmpty()) {
+        return;
+    }
+    
     EffectWidget* widget = new EffectWidget(effectType, logger_, this);
     
     if (!params.isEmpty()) {
@@ -176,6 +184,10 @@ void EffectsPanel::addEffectWidget(const QString& effectType, const QMap<QString
 }
 
 void EffectsPanel::onEffectRemoved(EffectWidget* widget) {
+    if (!widget) {
+        return;
+    }
+    
     EffectsPanelState oldState = saveState();
     
     auto it = std::find(effectWidgets_.begin(), effectWidgets_.end(), widget);
@@ -233,17 +245,26 @@ void EffectsPanel::onCompareToggled(bool enabled) {
 }
 
 std::vector<std::shared_ptr<IEffect>> EffectsPanel::getEffects() const {
-    if (!effectsEnabled_) return {};
+    if (!effectsEnabled_) {
+        return {};
+    }
     
     std::vector<std::shared_ptr<IEffect>> effects;
-    for (auto widget : effectWidgets_) {
+    effects.reserve(effectWidgets_.size());
+    
+    for (const auto& widget : effectWidgets_) {
+        if (!widget) continue;
+        
         auto effect = widget->createEffect();
-        if (effect) effects.push_back(effect);
+        if (effect) {
+            effects.push_back(effect);
+        }
     }
     
     std::sort(effects.begin(), effects.end(), 
         [](const std::shared_ptr<IEffect>& a, const std::shared_ptr<IEffect>& b) {
             auto priority = [](const std::shared_ptr<IEffect>& e) -> int {
+                if (!e) return 99;
                 if (e->getName() == "Speed") return 0;
                 if (e->getName() == "Volume") return 1;
                 if (e->getName() == "Reverb") return 2;
@@ -257,14 +278,21 @@ std::vector<std::shared_ptr<IEffect>> EffectsPanel::getEffects() const {
 
 std::vector<std::shared_ptr<IEffect>> EffectsPanel::getEffectsForExport() const {
     std::vector<std::shared_ptr<IEffect>> effects;
-    for (auto widget : effectWidgets_) {
+    effects.reserve(effectWidgets_.size());
+    
+    for (const auto& widget : effectWidgets_) {
+        if (!widget) continue;
+        
         auto effect = widget->createEffect();
-        if (effect) effects.push_back(effect);
+        if (effect) {
+            effects.push_back(effect);
+        }
     }
     
     std::sort(effects.begin(), effects.end(), 
         [](const std::shared_ptr<IEffect>& a, const std::shared_ptr<IEffect>& b) {
             auto priority = [](const std::shared_ptr<IEffect>& e) -> int {
+                if (!e) return 99;
                 if (e->getName() == "Speed") return 0;
                 if (e->getName() == "Volume") return 1;
                 if (e->getName() == "Reverb") return 2;
@@ -279,8 +307,11 @@ std::vector<std::shared_ptr<IEffect>> EffectsPanel::getEffectsForExport() const 
 EffectsPanelState EffectsPanel::saveState() const {
     EffectsPanelState state;
     state.effectsEnabled = effectsEnabled_;
+    state.effects.reserve(effectWidgets_.size());
     
-    for (auto widget : effectWidgets_) {
+    for (const auto& widget : effectWidgets_) {
+        if (!widget) continue;
+        
         EffectState effectState;
         effectState.effectType = widget->getEffectType();
         effectState.enabled = widget->isEffectEnabled();
@@ -307,7 +338,9 @@ void EffectsPanel::restoreState(const EffectsPanelState& state) {
     
     noEffectsLabel_->setVisible(effectWidgets_.empty());
     
+    compareButton_->blockSignals(true);
     compareButton_->setChecked(state.effectsEnabled);
+    compareButton_->blockSignals(false);
     effectsEnabled_ = state.effectsEnabled;
     
     lastSavedState_ = state;
@@ -321,7 +354,9 @@ void EffectsPanel::clearEffects() {
     isRestoringState_ = true;
     
     for (auto widget : effectWidgets_) {
-        widget->deleteLater();
+        if (widget) {
+            widget->deleteLater();
+        }
     }
     effectWidgets_.clear();
     noEffectsLabel_->setVisible(true);
@@ -335,7 +370,9 @@ void EffectsPanel::setEnabled(bool enabled) {
     compareButton_->setEnabled(enabled);
     effectTypeCombo_->setEnabled(enabled);
     for (auto widget : effectWidgets_) {
-        widget->setEnabled(enabled);
+        if (widget) {
+            widget->setEnabled(enabled);
+        }
     }
 }
 
@@ -343,7 +380,11 @@ void EffectsPanel::onApplyClicked() {
     emit effectsChanged();
 }
 
-void EffectsPanel::addEffectWidget(const QString &effectName) {
+void EffectsPanel::addEffectWidget(const QString& effectName) {
+    if (effectName.isEmpty()) {
+        return;
+    }
+    
     EffectWidget* widget = new EffectWidget(effectName, logger_, this);
 
     connect(widget, &EffectWidget::removeRequested, this, &EffectsPanel::onEffectRemoved);

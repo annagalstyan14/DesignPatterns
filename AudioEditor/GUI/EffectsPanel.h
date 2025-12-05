@@ -20,9 +20,15 @@ class EffectsPanel : public QWidget {
 public:
     explicit EffectsPanel(std::shared_ptr<ILogger> logger, QWidget* parent = nullptr);
     ~EffectsPanel() override = default;
+    
+    EffectsPanel(const EffectsPanel&) = delete;
+    EffectsPanel& operator=(const EffectsPanel&) = delete;
+    
     [[nodiscard]] std::vector<std::shared_ptr<IEffect>> getEffects() const;
     [[nodiscard]] std::vector<std::shared_ptr<IEffect>> getEffectsForExport() const;
     [[nodiscard]] bool areEffectsEnabled() const noexcept { return effectsEnabled_; }
+    [[nodiscard]] size_t effectCount() const noexcept { return effectWidgets_.size(); }
+    
     void clearEffects();
     void setEnabled(bool enabled);
     void restoreState(const EffectsPanelState& state);
@@ -49,21 +55,18 @@ private:
 
     std::shared_ptr<ILogger> logger_;
     
-    // UI Components
-    QVBoxLayout* mainLayout_ = nullptr;
-    QComboBox* effectTypeCombo_ = nullptr;
-    QPushButton* addButton_ = nullptr;
-    QPushButton* compareButton_ = nullptr;
-    QScrollArea* scrollArea_ = nullptr;
-    QWidget* effectsContainer_ = nullptr;
-    QVBoxLayout* effectsLayout_ = nullptr;
-    QLabel* noEffectsLabel_ = nullptr;
+    QVBoxLayout* mainLayout_;
+    QComboBox* effectTypeCombo_;
+    QPushButton* addButton_;
+    QPushButton* compareButton_;
+    QScrollArea* scrollArea_;
+    QWidget* effectsContainer_;
+    QVBoxLayout* effectsLayout_;
+    QLabel* noEffectsLabel_;
     
-    // Effect widgets
     std::vector<EffectWidget*> effectWidgets_;
     
-    // State
-    bool effectsEnabled_ = true;
+    bool effectsEnabled_;
     EffectsPanelState lastSavedState_;
-    bool isRestoringState_ = false;
+    bool isRestoringState_;
 };

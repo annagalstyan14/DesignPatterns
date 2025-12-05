@@ -38,11 +38,21 @@ MainWindow::MainWindow(QWidget* parent)
     , effectsPanel_(nullptr)
     , captionPanel_(nullptr)
     , previewDebounceTimer_(nullptr)
+    , previewWatcher_(nullptr)
+    , previewComputationQueued_(false)
+    , discardPreviewResult_(false)
     , hasUnsavedChanges_(false)
+    , isPreviewMode_(false)
 {
     auto compositeLogger = std::make_shared<CompositeLogger>();
     compositeLogger->addLogger(std::make_shared<ConsoleLogger>());
-    compositeLogger->addLogger(std::make_shared<FileLogger>("audioeditor.log"));
+    
+    try {
+        compositeLogger->addLogger(std::make_shared<FileLogger>("audioeditor.log"));
+    } catch (const std::exception& e) {
+        qWarning() << "Failed to create file logger:" << e.what();
+    }
+    
     logger_ = compositeLogger;
     
     logger_->log("Application starting...");
@@ -81,10 +91,14 @@ MainWindow::MainWindow(QWidget* parent)
     setMinimumSize(1000, 600);
     
     QScreen* screen = QApplication::primaryScreen();
-    QRect screenGeometry = screen->availableGeometry();
-    int x = (screenGeometry.width() - 1200) / 2;
-    int y = (screenGeometry.height() - 700) / 2;
-    setGeometry(x, y, 1200, 700);
+    if (screen) {
+        QRect screenGeometry = screen->availableGeometry();
+        int x = (screenGeometry.width() - 1200) / 2;
+        int y = (screenGeometry.height() - 700) / 2;
+        setGeometry(x, y, 1200, 700);
+    } else {
+        resize(1200, 700);
+    }
     
     setAcceptDrops(true);
     updateUIState();
@@ -94,12 +108,14 @@ MainWindow::MainWindow(QWidget* parent)
 
 MainWindow::~MainWindow() {
     logger_->log("Application closing...");
+    cancelPendingPreview();
     delete commandHistory_;
     delete captionParser_;
 }
 
 void MainWindow::setupShortcuts() {
     QShortcut* playPauseShortcut = new QShortcut(QKeySequence(Qt::Key_Space), this);
+    playPauseShortcut->setContext(Qt::ApplicationShortcut);
     connect(playPauseShortcut, &QShortcut::activated, this, &MainWindow::onTogglePlayPause);
 }
 
@@ -328,8 +344,7 @@ void MainWindow::setupConnections() {
             this, &MainWindow::onEffectStateChanged);
 
     connect(effectsPanel_, &EffectsPanel::compareToggled,
-            this, [this](bool enabled) {
-                Q_UNUSED(enabled);
+            this, [this](bool) {
                 onPreviewTimerTimeout();
             });
 }
@@ -392,6 +407,10 @@ void MainWindow::onOpenAudio() {
 }
 
 void MainWindow::loadAudioFile(const QString& filePath) {
+    if (filePath.isEmpty()) {
+        return;
+    }
+    
     logger_->log("Loading audio file: " + filePath.toStdString());
     
     cancelPendingPreview();
@@ -674,6 +693,7 @@ bool MainWindow::confirmUnsavedChanges() {
 
 void MainWindow::closeEvent(QCloseEvent* event) {
     if (confirmUnsavedChanges()) {
+        cancelPendingPreview();
         audioEngine_->stop();
         event->accept();
     } else {
@@ -759,7 +779,7 @@ void MainWindow::startPreviewComputation(const std::vector<std::shared_ptr<IEffe
         return;
     }
 
-    discardPreviewResult_ = false;
+    discardPreviewResult_.store(false);
     statusBar()->showMessage("Rendering preview...");
 
     auto baseSamples = audioClip_->getSamples();
@@ -786,8 +806,8 @@ void MainWindow::startPreviewComputation(const std::vector<std::shared_ptr<IEffe
 void MainWindow::onPreviewComputationFinished() {
     if (!previewWatcher_) return;
 
-    if (discardPreviewResult_) {
-        discardPreviewResult_ = false;
+    if (discardPreviewResult_.load()) {
+        discardPreviewResult_.store(false);
     } else {
         std::vector<float> processed = previewWatcher_->result();
         audioEngine_->previewWithSamples(processed);
@@ -810,8 +830,8 @@ void MainWindow::cancelPendingPreview() {
     if (!previewWatcher_) return;
 
     if (previewWatcher_->isRunning()) {
-        discardPreviewResult_ = true;
-        previewWatcher_->cancel();
+        discardPreviewResult_.store(true);
+        previewWatcher_->waitForFinished();
     }
 
     previewComputationQueued_ = false;

@@ -5,6 +5,7 @@
 #include <QWheelEvent>
 #include <cmath>
 #include <algorithm>
+#include <numeric>
 
 WaveformWidget::WaveformWidget(QWidget* parent)
     : QWidget(parent)
@@ -12,6 +13,7 @@ WaveformWidget::WaveformWidget(QWidget* parent)
     , channels_(2)
     , durationMs_(0)
     , cacheValid_(false)
+    , displayScale_(1.0f)
     , zoom_(1.0f)
     , scrollOffsetMs_(0)
     , playheadPositionMs_(0)
@@ -180,9 +182,8 @@ void WaveformWidget::computePeaks() {
         maxAbsValue = std::max(maxAbsValue, std::max(std::abs(minVal), std::abs(maxVal)));
     }
 
-    const float padding = 0.9f;
-    if (maxAbsValue > 0.0f) {
-        displayScale_ = (maxAbsValue < 1.0f) ? padding : (padding / maxAbsValue);
+    if (maxAbsValue > 0.001f) {
+        displayScale_ = 0.85f / maxAbsValue;
     } else {
         displayScale_ = 1.0f;
     }
@@ -198,9 +199,12 @@ void WaveformWidget::renderWaveform() {
     
     QPainter painter(&waveformCache_);
     painter.setRenderHint(QPainter::Antialiasing, false);
+    painter.setClipRect(rect());
     
     int widgetHeight = height();
     int centerY = widgetHeight / 2;
+    int margin = 10;
+    int drawableHeight = (widgetHeight / 2) - margin;
     
     painter.setPen(QPen(centerLineColor_, 1));
     painter.drawLine(0, centerY, width(), centerY);
@@ -215,14 +219,14 @@ void WaveformWidget::renderWaveform() {
     for (int x = 0; x < peakCount && x < width(); ++x) {
         const Peak& peak = peaks_[x];
         
-        float scaledMax = peak.max * displayScale_;
-        float scaledMin = peak.min * displayScale_;
+        float scaledMax = std::clamp(peak.max * displayScale_, -1.0f, 1.0f);
+        float scaledMin = std::clamp(peak.min * displayScale_, -1.0f, 1.0f);
 
-        int minY = centerY - static_cast<int>(scaledMax * (centerY - 4));
-        int maxY = centerY - static_cast<int>(scaledMin * (centerY - 4));
+        int minY = centerY - static_cast<int>(scaledMax * drawableHeight);
+        int maxY = centerY - static_cast<int>(scaledMin * drawableHeight);
         
-        minY = std::clamp(minY, 0, widgetHeight);
-        maxY = std::clamp(maxY, 0, widgetHeight);
+        minY = std::clamp(minY, margin, widgetHeight - margin);
+        maxY = std::clamp(maxY, margin, widgetHeight - margin);
         
         if (minY == maxY) {
             maxY = minY + 1;

@@ -25,22 +25,12 @@ void VolumeEffect::setParameter(const std::string& name, float value) {
 }
 
 void VolumeEffect::apply(std::vector<float>& buffer) {
-    // Skip if gain is essentially 1.0
     if (std::abs(gain_ - 1.0f) < 0.001f) {
         return;
     }
     
     for (float& sample : buffer) {
         sample *= gain_;
-        
-        // Soft clipping to prevent harsh distortion at high gain
-        // Using tanh-like soft clipping curve
-        if (sample > audio::volume::kSoftClipThreshold) {
-            sample = audio::volume::kSoftClipThreshold - 
-                     audio::volume::kSoftClipThreshold / (sample + audio::volume::kSoftClipThreshold);
-        } else if (sample < -audio::volume::kSoftClipThreshold) {
-            sample = -audio::volume::kSoftClipThreshold + 
-                     audio::volume::kSoftClipThreshold / (-sample + audio::volume::kSoftClipThreshold);
-        }
+        sample = std::clamp(sample, -1.0f, 1.0f);
     }
 }

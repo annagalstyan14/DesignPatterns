@@ -15,8 +15,9 @@
 #include <QCloseEvent>
 #include <QTimer>
 #include <QFileInfo>
-#include <memory>
 #include <QFutureWatcher>
+#include <memory>
+#include <atomic>
 #include "EffectsPanel.h"
 
 class AudioEngine;
@@ -34,7 +35,10 @@ class MainWindow : public QMainWindow {
 
 public:
     explicit MainWindow(QWidget* parent = nullptr);
-    ~MainWindow();
+    ~MainWindow() override;
+    
+    MainWindow(const MainWindow&) = delete;
+    MainWindow& operator=(const MainWindow&) = delete;
 
 protected:
     void closeEvent(QCloseEvent* event) override;
@@ -81,7 +85,7 @@ private:
     void updatePreview();
     void startPreviewComputation(const std::vector<std::shared_ptr<IEffect>>& effects);
     void cancelPendingPreview();
-    std::vector<float> getSamplesToSave();
+    [[nodiscard]] std::vector<float> getSamplesToSave();
 
     std::shared_ptr<ILogger> logger_;
     std::shared_ptr<AudioClip> audioClip_;
@@ -114,14 +118,14 @@ private:
     QAction* aboutAction_;
     
     QTimer* previewDebounceTimer_;
-    QFutureWatcher<std::vector<float>>* previewWatcher_ = nullptr;
-    bool previewComputationQueued_ = false;
+    QFutureWatcher<std::vector<float>>* previewWatcher_;
+    bool previewComputationQueued_;
     std::vector<std::shared_ptr<IEffect>> queuedEffects_;
-    bool discardPreviewResult_ = false;
+    std::atomic<bool> discardPreviewResult_;
     
     QString currentFilePath_;
     bool hasUnsavedChanges_;
-    bool isPreviewMode_ = false;
+    bool isPreviewMode_;
 };
 
 #endif

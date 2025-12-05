@@ -9,11 +9,9 @@
 
 class ApplyEffectCommand : public ICommand {
 public:
-
     ApplyEffectCommand(std::shared_ptr<AudioClip> clip, 
                        std::shared_ptr<IEffect> effect,
                        std::shared_ptr<ILogger> logger);
-    
 
     ApplyEffectCommand(std::shared_ptr<AudioClip> clip, 
                        std::vector<std::shared_ptr<IEffect>> effects,
@@ -32,5 +30,5 @@ private:
     std::shared_ptr<ILogger> logger_;
     std::vector<float> beforeState_;
     std::vector<float> afterState_;
-    bool executed_ = false;
+    bool executed_;
 };

@@ -20,8 +20,8 @@ AudioEngine::AudioEngine(QObject* parent)
     , sampleRate_(44100)
     , channels_(2)
     , pausedPosition_(0)
+    , hasPreview_(false)
 {
-    // Timer to emit position updates every 50ms during playback
     connect(positionTimer_, &QTimer::timeout, this, &AudioEngine::updatePosition);
 }
 
@@ -36,11 +36,10 @@ void AudioEngine::setAudioClip(std::shared_ptr<AudioClip> clip) {
     
     audioClip_ = clip;
     
-    if (audioClip_) {
+    if (audioClip_ && audioClip_->isLoaded()) {
         sampleRate_ = 44100;
         channels_ = 2;
         
-        // THIS LINE IS CRITICAL
         originalSamples_ = audioClip_->getSamples();
         previewSamples_.clear();
         hasPreview_ = false;
@@ -49,6 +48,11 @@ void AudioEngine::setAudioClip(std::shared_ptr<AudioClip> clip) {
         setupAudio();
         
         emit durationChanged(getDurationMs());
+    } else {
+        originalSamples_.clear();
+        previewSamples_.clear();
+        hasPreview_ = false;
+        audioData_.clear();
     }
 }
 
@@ -57,7 +61,6 @@ std::shared_ptr<AudioClip> AudioEngine::getAudioClip() const {
 }
 
 void AudioEngine::setupAudio() {
-    // Clean up previous audio sink
     if (audioSink_) {
         audioSink_->stop();
         delete audioSink_;
@@ -69,49 +72,42 @@ void AudioEngine::setupAudio() {
         audioBuffer_ = nullptr;
     }
     
-    // Setup audio format (16-bit signed PCM, stereo, 44100 Hz)
     QAudioFormat format;
     format.setSampleRate(sampleRate_);
     format.setChannelCount(channels_);
     format.setSampleFormat(QAudioFormat::Int16);
     
-    // Get default audio output device
     QAudioDevice audioDevice = QMediaDevices::defaultAudioOutput();
+    
+    if (audioDevice.isNull()) {
+        qWarning() << "No audio output device available";
+        return;
+    }
     
     if (!audioDevice.isFormatSupported(format)) {
         qWarning() << "Audio format not supported, trying nearest format";
         format = audioDevice.preferredFormat();
     }
     
-    // Create audio sink
     audioSink_ = new QAudioSink(audioDevice, format, this);
     
-    // Connect state change signal
     connect(audioSink_, &QAudioSink::stateChanged, 
             this, &AudioEngine::onAudioStateChanged);
     
-    // Create buffer with audio data
     audioBuffer_ = new QBuffer(&audioData_, this);
 }
 
 void AudioEngine::convertSamplesToBytes() {
-    if (!audioClip_) {
+    if (!audioClip_ || audioClip_->getSamples().empty()) {
         audioData_.clear();
         return;
     }
     
-    std::vector<float> samples = audioClip_->getSamples();
+    const std::vector<float>& samples = audioClip_->getSamples();
     
-    if (samples.empty()) {
-        audioData_.clear();
-        return;
-    }
-    
-    // Allocate buffer: 2 bytes per sample (16-bit)
-    audioData_.resize(samples.size() * sizeof(qint16));
+    audioData_.resize(static_cast<qsizetype>(samples.size() * sizeof(qint16)));
     qint16* dataPtr = reinterpret_cast<qint16*>(audioData_.data());
     
-    // Convert float [-1.0, 1.0] to int16 [-32768, 32767]
     for (size_t i = 0; i < samples.size(); ++i) {
         float sample = std::clamp(samples[i], -1.0f, 1.0f);
         dataPtr[i] = static_cast<qint16>(sample * 32767.0f);
@@ -125,15 +121,13 @@ void AudioEngine::play() {
     }
     
     if (state_ == PlaybackState::Playing) {
-        return;  // Already playing
+        return;
     }
     
     if (state_ == PlaybackState::Paused) {
-        // Resume from paused position
         audioBuffer_->open(QIODevice::ReadOnly);
         audioBuffer_->seek(pausedPosition_);
     } else {
-        // Start from beginning
         audioBuffer_->open(QIODevice::ReadOnly);
         audioBuffer_->seek(0);
     }
@@ -143,8 +137,7 @@ void AudioEngine::play() {
     state_ = PlaybackState::Playing;
     emit stateChanged(state_);
     
-    // Start position update timer
-    positionTimer_->start(50);  // Update every 50ms
+    positionTimer_->start(50);
 }
 
 void AudioEngine::pause() {
@@ -152,7 +145,6 @@ void AudioEngine::pause() {
         return;
     }
     
-    // Save current position before stopping
     pausedPosition_ = audioBuffer_->pos();
     
     audioSink_->stop();
@@ -191,26 +183,20 @@ void AudioEngine::seek(qint64 positionMs) {
         return;
     }
     
-    // Convert milliseconds to byte position
-    // Bytes = (ms / 1000) * sampleRate * channels * bytesPerSample
-    qint64 bytePosition = (positionMs * sampleRate_ * channels_ * sizeof(qint16)) / 1000;
+    qint64 bytePosition = (positionMs * sampleRate_ * channels_ * static_cast<qint64>(sizeof(qint16))) / 1000;
     
-    // Align to frame boundary (channels * bytesPerSample)
-    int frameSize = channels_ * sizeof(qint16);
+    int frameSize = channels_ * static_cast<int>(sizeof(qint16));
     bytePosition = (bytePosition / frameSize) * frameSize;
     
-    // Clamp to valid range
     bytePosition = std::clamp(bytePosition, qint64(0), qint64(audioData_.size()));
     
     if (state_ == PlaybackState::Playing) {
-        // If playing, we need to restart from new position
         audioSink_->stop();
         audioBuffer_->close();
         audioBuffer_->open(QIODevice::ReadOnly);
         audioBuffer_->seek(bytePosition);
         audioSink_->start(audioBuffer_);
     } else {
-        // If paused or stopped, just save the position
         pausedPosition_ = bytePosition;
     }
     
@@ -234,9 +220,7 @@ qint64 AudioEngine::getPositionMs() const {
         bytePos = pausedPosition_;
     }
     
-    // Convert bytes to milliseconds
-    // ms = (bytes / (sampleRate * channels * bytesPerSample)) * 1000
-    qint64 positionMs = (bytePos * 1000) / (sampleRate_ * channels_ * sizeof(qint16));
+    qint64 positionMs = (bytePos * 1000) / (sampleRate_ * channels_ * static_cast<qint64>(sizeof(qint16)));
     
     return positionMs;
 }
@@ -246,9 +230,8 @@ qint64 AudioEngine::getDurationMs() const {
         return 0;
     }
     
-    // Duration = totalBytes / (sampleRate * channels * bytesPerSample) * 1000
     qint64 durationMs = (audioData_.size() * 1000) / 
-                        (sampleRate_ * channels_ * sizeof(qint16));
+                        (sampleRate_ * channels_ * static_cast<qint64>(sizeof(qint16)));
     
     return durationMs;
 }
@@ -268,7 +251,6 @@ void AudioEngine::setVolume(float volume) {
 void AudioEngine::onAudioStateChanged(QAudio::State audioState) {
     switch (audioState) {
         case QAudio::IdleState:
-            // Playback finished (buffer empty)
             if (state_ == PlaybackState::Playing) {
                 stop();
                 emit audioFinished();
@@ -276,19 +258,16 @@ void AudioEngine::onAudioStateChanged(QAudio::State audioState) {
             break;
             
         case QAudio::StoppedState:
-            // Check for errors
-            if (audioSink_->error() != QAudio::NoError) {
+            if (audioSink_ && audioSink_->error() != QAudio::NoError) {
                 qWarning() << "Audio error:" << audioSink_->error();
                 stop();
             }
             break;
             
         case QAudio::ActiveState:
-            // Audio is playing
             break;
             
         case QAudio::SuspendedState:
-            // Audio is paused (system level)
             break;
     }
 }
@@ -316,26 +295,21 @@ void AudioEngine::previewWithEffects(const std::vector<std::shared_ptr<IEffect>>
         return;
     }
     
-    // Start from original samples
     previewSamples_ = originalSamples_;
     
-    // Apply all effects using new vector interface
     for (const auto& effect : effects) {
         if (!effect) continue;
         
-        // Reset effect state
         if (auto* reverb = dynamic_cast<Reverb*>(effect.get())) {
             reverb->reset();
         }
         
-        // Apply effect - modifies vector in place, may resize
         effect->apply(previewSamples_);
     }
     
     hasPreview_ = true;
     
-    // Update audio buffer
-    audioData_.resize(previewSamples_.size() * sizeof(qint16));
+    audioData_.resize(static_cast<qsizetype>(previewSamples_.size() * sizeof(qint16)));
     qint16* dataPtr = reinterpret_cast<qint16*>(audioData_.data());
     for (size_t i = 0; i < previewSamples_.size(); ++i) {
         float sample = std::clamp(previewSamples_[i], -1.0f, 1.0f);
@@ -354,7 +328,7 @@ void AudioEngine::previewWithSamples(const std::vector<float>& samples) {
     previewSamples_ = samples;
     hasPreview_ = true;
 
-    audioData_.resize(previewSamples_.size() * sizeof(qint16));
+    audioData_.resize(static_cast<qsizetype>(previewSamples_.size() * sizeof(qint16)));
     qint16* dataPtr = reinterpret_cast<qint16*>(audioData_.data());
     for (size_t i = 0; i < previewSamples_.size(); ++i) {
         float sample = std::clamp(previewSamples_[i], -1.0f, 1.0f);
@@ -379,8 +353,7 @@ void AudioEngine::revertToOriginal() {
     previewSamples_.clear();
     hasPreview_ = false;
     
-    // Restore original audio
-    audioData_.resize(originalSamples_.size() * sizeof(qint16));
+    audioData_.resize(static_cast<qsizetype>(originalSamples_.size() * sizeof(qint16)));
     qint16* dataPtr = reinterpret_cast<qint16*>(audioData_.data());
     for (size_t i = 0; i < originalSamples_.size(); ++i) {
         float sample = std::clamp(originalSamples_[i], -1.0f, 1.0f);

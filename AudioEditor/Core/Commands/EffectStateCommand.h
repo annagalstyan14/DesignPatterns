@@ -27,4 +27,5 @@ private:
     EffectsPanelState oldState_;
     EffectsPanelState newState_;
     std::shared_ptr<ILogger> logger_;
+    bool executed_;
 };
